@@ -1,9 +1,10 @@
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using MySql.Data.MySqlClient;
+using RumikApp.UserControls;
+using RumikApp.ViewModels;
 using System.Collections.Generic;
 using System.Configuration;
-using System.Data.SqlClient;
 
 namespace RumikApp.ViewModel
 {
@@ -11,10 +12,42 @@ namespace RumikApp.ViewModel
     public class MainViewModel : ViewModelBase
     {
         private string connectionStringSosek;
+
+        private MainControlPanelViewModel _MainControlPanelViewModel;
+        public MainControlPanelViewModel MainControlPanelViewModel
+        {
+            get { return _MainControlPanelViewModel; }
+            set
+            {
+                if (_MainControlPanelViewModel == value)
+                    return;
+
+                _MainControlPanelViewModel = value;
+                RaisePropertyChanged("MainControlPanelViewModel");
+            }
+        }
+        
+        private PollViewModel _PollViewModel;
+        public PollViewModel PollViewModel
+        {
+            get { return _PollViewModel; }
+            set
+            {
+                if (_PollViewModel == value)
+                    return;
+
+                _PollViewModel = value;
+                RaisePropertyChanged("PollViewModel");
+            }
+        }
+
+
         public MainViewModel()
         {
-            
+            PollViewModel = new PollViewModel();
+            MainControlPanelViewModel = new MainControlPanelViewModel(this);
         }
+
         private RelayCommand _Test;
         public RelayCommand Test
         {
@@ -39,6 +72,7 @@ namespace RumikApp.ViewModel
 
         private List<string> list1 = new List<string>();
         private List<string> list2 = new List<string>();
+
         void test() 
         {
             connectionStringSosek = CnnVal("sosek");
