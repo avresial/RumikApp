@@ -46,6 +46,7 @@ namespace RumikApp.ViewModels
                     {
                         Visibility = Visibility.Collapsed;
                         mainViewModel.PollViewModel.Visibility = Visibility.Visible;
+                        
                     },
                     () =>
                     {
@@ -56,6 +57,30 @@ namespace RumikApp.ViewModels
                 return _GetMeARum;
             }
         }
+        private RelayCommand _LetMeChoose;
+        public RelayCommand LetMeChoose
+        {
+            get
+            {
+                if (_LetMeChoose == null)
+                {
+                    _LetMeChoose = new RelayCommand(
+                    () =>
+                    {
+                        mainViewModel.DataGridViewModel.Reload();
+                        this.Visibility = Visibility.Collapsed;
+                        mainViewModel.DataGridViewModel.Visibility = Visibility.Visible;
+                    },
+                    () =>
+                    {
+                        return true;
+                    });
+                }
+
+                return _LetMeChoose;
+            }
+        }
+
 
     }
 }

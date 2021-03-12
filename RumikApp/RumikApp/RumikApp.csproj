@@ -133,6 +133,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Beverage.cs" />
     <Compile Include="MainViewModel.cs" />
     <Compile Include="UserControls\DataGrid.xaml.cs">
       <DependentUpon>DataGrid.xaml</DependentUpon>
@@ -143,6 +144,7 @@
     <Compile Include="UserControls\Poll.xaml.cs">
       <DependentUpon>Poll.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\DataGridViewModel.cs" />
     <Compile Include="ViewModels\MainControlPanelViewModel.cs" />
     <Compile Include="ViewModels\PollViewModel.cs" />
     <Page Include="MainWindow.xaml">

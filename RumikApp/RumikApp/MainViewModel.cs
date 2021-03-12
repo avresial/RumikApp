@@ -41,11 +41,26 @@ namespace RumikApp.ViewModel
             }
         }
 
+        private DataGridViewModel _DataGridViewModel;
+        public DataGridViewModel DataGridViewModel
+        {
+            get { return _DataGridViewModel; }
+            set
+            {
+                if (_DataGridViewModel == value)
+                    return;
+
+                _DataGridViewModel = value;
+                RaisePropertyChanged("DataGridViewModel");
+            }
+        }
+
 
         public MainViewModel()
         {
-            PollViewModel = new PollViewModel();
+            PollViewModel = new PollViewModel(this);
             MainControlPanelViewModel = new MainControlPanelViewModel(this);
+            DataGridViewModel = new DataGridViewModel(this);
         }
 
         private RelayCommand _Test;
