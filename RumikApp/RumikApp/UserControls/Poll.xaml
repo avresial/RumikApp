@@ -34,11 +34,11 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
-            <ToggleButton Content="na imprezę, ekonomicznie" Margin="15,5,15,5" Width="150" HorizontalAlignment="Center"/>
-            <ToggleButton Grid.Column="1" Content="porządny ale tani" Margin="15,5,15,5" Width="150" HorizontalAlignment="Center" />
-            <ToggleButton Grid.Column="2" Content="eksluzywnie, milordzie" Margin="15,5,15,5" Width="150" HorizontalAlignment="Center" />
+            <ToggleButton Content="na imprezę, ekonomicznie" IsChecked="{Binding ForPartyBool}" Margin="15,5,15,5" Width="150" HorizontalAlignment="Center"/>
+            <ToggleButton Grid.Column="1" Content="porządny ale tani" IsChecked="{Binding GoodButCheap}" Margin="15,5,15,5" Width="150" HorizontalAlignment="Center" />
+            <ToggleButton Grid.Column="2" Content="eksluzywnie, milordzie" IsChecked="{Binding exclusive}" Margin="15,5,15,5" Width="150" HorizontalAlignment="Center" />
 
-            <ToggleButton Grid.Column="3" Margin="15,5,15,5" Width="150" HorizontalAlignment="Center">
+            <ToggleButton Grid.Column="3" Margin="15,5,15,5" Width="150" HorizontalAlignment="Center" IsChecked="{Binding ForPiratesFromCarabien}">
                 <TextBlock TextAlignment="Center" TextWrapping="Wrap" Text="do oglądania piłatów z kałaibów"/>
             </ToggleButton>
 
@@ -91,6 +91,10 @@
 
 
         </Grid>
-        <Button Grid.Row="8" Content="Wróć do początku :)" Command="{Binding GoToMainMenu}"></Button>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"  Grid.Row="8">
+            <Button Content="Wróć do początku :)" Width="200" Command="{Binding GoToMainMenu}" Margin="10,0,10,0"/>
+            <Button Content="Dej mnie ten rum :)" Width="200" Command="{Binding GetMeThatRum}" Margin="10,0,10,0"/>
+        </StackPanel>
+       
     </Grid>
 </UserControl>

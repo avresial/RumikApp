@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:RumikApp"
         xmlns:UserControls="clr-namespace:RumikApp.UserControls"
         mc:Ignorable="d"
-        Title="MainWindow" Height="850" Width="800">
+        Title="RumikApp" Height="850" Width="800" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>

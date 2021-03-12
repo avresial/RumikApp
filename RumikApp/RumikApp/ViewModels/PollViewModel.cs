@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Forms;
 
 namespace RumikApp.UserControls
 {
@@ -27,6 +28,72 @@ namespace RumikApp.UserControls
 
             }
         }
+
+
+        // first section - potrzebuję w celu
+
+        private bool _ForPartyBool;
+        public bool ForPartyBool
+        {
+            get { return _ForPartyBool; }
+            set
+            {
+                if (_ForPartyBool == value)
+                    return;
+
+                _ForPartyBool = value;
+                RaisePropertyChanged("ForPartyBool");
+            }
+        }
+
+        private bool _GoodButCheap;
+        public bool GoodButCheap
+        {
+            get { return _GoodButCheap; }
+            set
+            {
+                if (_GoodButCheap == value)
+                    return;
+
+                _GoodButCheap = value;
+                RaisePropertyChanged("GoodButCheap");
+            }
+        }
+
+        private bool _exclusive;
+        public bool exclusive
+        {
+            get { return _exclusive; }
+            set
+            {
+                if (_exclusive == value)
+                    return;
+
+                _exclusive = value;
+                RaisePropertyChanged("exclusive");
+            }
+        }
+
+        private bool _ForPiratesFromCarabien;
+        public bool ForPiratesFromCarabien
+        {
+            get { return _ForPiratesFromCarabien; }
+            set
+            {
+                if (_ForPiratesFromCarabien == value)
+                    return;
+
+                _ForPiratesFromCarabien = value;
+                RaisePropertyChanged("ForPiratesFromCarabien");
+            }
+        }
+
+        // second section - do picia
+
+        // third section - chce poczuc smak
+
+        // fourth section - price
+
 
         private RelayCommand _GoToMainMenu;
         public RelayCommand GoToMainMenu
@@ -50,6 +117,29 @@ namespace RumikApp.UserControls
                 return _GoToMainMenu;
             }
         }
+
+        private RelayCommand _GetMeThatRum;
+        public RelayCommand GetMeThatRum
+        {
+            get
+            {
+                if (_GetMeThatRum == null)
+                {
+                    _GetMeThatRum = new RelayCommand(
+                    () =>
+                    {
+                        System.Windows.Forms.MessageBox.Show("not implemented");
+                    },
+                    () =>
+                    {
+                        return true;
+                    });
+                }
+
+                return _GetMeThatRum;
+            }
+        }
+
         public PollViewModel(MainViewModel mainViewModel)
         {
             this.mainViewModel = mainViewModel;
