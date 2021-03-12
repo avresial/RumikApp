@@ -9,6 +9,20 @@ namespace RumikApp
 {
     public class Beverage : ViewModelBase
     {
+        private int _ID;
+        public int ID
+        {
+            get { return _ID; }
+            set
+            {
+                if (_ID == value)
+                    return;
+
+                _ID = value;
+                RaisePropertyChanged("ID");
+            }
+        }
+
         private String _Name;
         public String Name
         {

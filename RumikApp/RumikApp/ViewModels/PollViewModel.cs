@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.CommandWpf;
 using RumikApp.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -24,6 +25,29 @@ namespace RumikApp.UserControls
                 _Visibility = value;
                 RaisePropertyChanged("Visibility");
 
+            }
+        }
+
+        private RelayCommand _GoToMainMenu;
+        public RelayCommand GoToMainMenu
+        {
+            get
+            {
+                if (_GoToMainMenu == null)
+                {
+                    _GoToMainMenu = new RelayCommand(
+                    () =>
+                    {
+                        mainViewModel.MainControlPanelViewModel.Visibility = Visibility.Visible;
+                        Visibility = Visibility.Collapsed;
+                    },
+                    () =>
+                    {
+                        return true;
+                    });
+                }
+
+                return _GoToMainMenu;
             }
         }
         public PollViewModel(MainViewModel mainViewModel)

@@ -21,6 +21,7 @@
             <RowDefinition Height="1*" />
             <RowDefinition Height="1*" />
             <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
 
         <TextBlock Grid.ColumnSpan="2" HorizontalAlignment="Center"  TextWrapping="Wrap" Text="Potrzebuję w celu" VerticalAlignment="Center" FontSize="24" />
@@ -90,5 +91,6 @@
 
 
         </Grid>
+        <Button Grid.Row="8" Content="Wróć do początku :)" Command="{Binding GoToMainMenu}"></Button>
     </Grid>
 </UserControl>

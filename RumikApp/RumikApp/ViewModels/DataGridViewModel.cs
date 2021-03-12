@@ -99,13 +99,14 @@ namespace RumikApp.ViewModels
                     while (reader.Read())
                     {
                         Beverage beverageTMP = new Beverage();
-                        beverageTMP.Name = reader.GetString(0);
-                        beverageTMP.Capacity = reader.GetInt32(1);
-                        beverageTMP.AlcoholPercentage = reader.GetFloat(2);
-                        beverageTMP.Price = reader.GetFloat(3);
-                        beverageTMP.Grade = reader.GetInt32(4);
-                        beverageTMP.GradeWithCoke = reader.GetInt32(5);
-                        beverageTMP.Color = reader.GetString(6);
+                        beverageTMP.ID = reader.GetInt32(0);
+                        beverageTMP.Name = reader.GetString(1);
+                        beverageTMP.Capacity = reader.GetInt32(2);
+                        beverageTMP.AlcoholPercentage = reader.GetFloat(3);
+                        beverageTMP.Price = reader.GetFloat(4);
+                        beverageTMP.Grade = reader.GetInt32(5);
+                        beverageTMP.GradeWithCoke = reader.GetInt32(6);
+                        beverageTMP.Color = reader.GetString(7);
 
                         Users.Add(beverageTMP);
                         
