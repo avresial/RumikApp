@@ -72,10 +72,10 @@ namespace RumikApp.ViewModels
         public DataGridViewModel(MainViewModel mainViewModel)
         {
             this.mainViewModel = mainViewModel;
-           
+
         }
 
-        public void Reload() 
+        public void Reload()
         {
             GetData();
         }
@@ -108,8 +108,49 @@ namespace RumikApp.ViewModels
                         beverageTMP.GradeWithCoke = reader.GetInt32(6);
                         beverageTMP.Color = reader.GetString(7);
 
+                        if (reader.GetInt16(8) == 1)
+                            beverageTMP.Vanila = true;
+                        else
+                            beverageTMP.Vanila = false;
+
+                        if (reader.GetInt16(9) == 1)
+                            beverageTMP.Nuts = true;
+                        else
+                            beverageTMP.Nuts = false;
+
+                        if (reader.GetInt16(10) == 1)
+                            beverageTMP.Caramel = true;
+                        else
+                            beverageTMP.Caramel = false;
+
+                        if (reader.GetInt16(11) == 1)
+                            beverageTMP.Smoke = true;
+                        else
+                            beverageTMP.Smoke = false;
+
+                        if (reader.GetInt16(12) == 1)
+                            beverageTMP.Cinnamon = true;
+                        else
+                            beverageTMP.Cinnamon = false;
+
+                        if (reader.GetInt16(13) == 1)
+                            beverageTMP.Nutmeg = true;
+                        else
+                            beverageTMP.Nutmeg = false;
+
+                        if (reader.GetInt16(14) == 1)
+                            beverageTMP.Fruits = true;
+                        else
+                            beverageTMP.Fruits = false;
+
+                        if (reader.GetInt16(15) == 1)
+                            beverageTMP.Honey = true;
+                        else
+                            beverageTMP.Honey = false;
+
+
                         Users.Add(beverageTMP);
-                        
+
                     }
                 }
                 con.Close();

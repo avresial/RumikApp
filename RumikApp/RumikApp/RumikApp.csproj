@@ -204,5 +204,8 @@
   <ItemGroup>
     <Resource Include="IMGs\frog.gif" />
   </ItemGroup>
+  <ItemGroup>
+    <SplashScreen Include="IMGs\SplashScreen.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
