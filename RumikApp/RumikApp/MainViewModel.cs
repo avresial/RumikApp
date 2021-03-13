@@ -5,6 +5,7 @@ using RumikApp.UserControls;
 using RumikApp.ViewModels;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Windows;
 
 namespace RumikApp.ViewModel
 {
@@ -55,12 +56,28 @@ namespace RumikApp.ViewModel
             }
         }
 
+        private DataGridViewModel _DataGridViewModel2;
+        public DataGridViewModel DataGridViewModel2
+        {
+            get { return _DataGridViewModel2; }
+            set
+            {
+                if (_DataGridViewModel2 == value)
+                    return;
+
+                _DataGridViewModel2 = value;
+                RaisePropertyChanged("DataGridViewModel2");
+            }
+        }
+
 
         public MainViewModel()
         {
             PollViewModel = new PollViewModel(this);
             MainControlPanelViewModel = new MainControlPanelViewModel(this);
             DataGridViewModel = new DataGridViewModel(this);
+            DataGridViewModel2 = new DataGridViewModel(this);
+           
         }
 
         private RelayCommand _Test;

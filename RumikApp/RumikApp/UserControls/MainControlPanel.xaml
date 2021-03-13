@@ -16,8 +16,25 @@
             <RowDefinition Height="2*" />
         </Grid.RowDefinitions>
 
-        <Button Grid.Column="0" Grid.Row="1"  Content="dobierz mi rum" Command="{Binding GetMeARum}" Height="106"  Width="179" />
-        <Button Grid.Column="1" Grid.Row="1"  Content="daj, sam wybiorę" Command="{Binding LetMeChoose}" Height="106" Width="179"/>
+        <Button Grid.Column="0" Grid.Row="1"  Command="{Binding GetMeARum}" Height="106"  Width="179" >
+
+            <StackPanel Orientation="Vertical">
+                <Image Source="/IMGs/frog.gif" Height="50" RenderTransformOrigin="0.5,0.5">
+                    <Image.RenderTransform>
+                        <ScaleTransform ScaleX="-1"/>
+                    </Image.RenderTransform>
+                </Image>
+                <TextBlock>dobierz mi rum</TextBlock>
+            </StackPanel>
+
+        </Button>
+        <Button Grid.Column="1" Grid.Row="1" Command="{Binding LetMeChoose}" Height="106" Width="179">
+
+            <StackPanel Orientation="Vertical">
+                <Image Source="/IMGs/frog.gif" Height="50" RenderTransformOrigin="0.5,0.5"/>
+                <TextBlock>daj, sam wybiorę</TextBlock>
+            </StackPanel>
+        </Button>
         <TextBlock Grid.ColumnSpan="2" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" Height="88" TextWrapping="Wrap"  Width="618" FontSize="48" Text="Co chcesz zrobić, Piłacie?"></TextBlock>
     </Grid>
 </UserControl>

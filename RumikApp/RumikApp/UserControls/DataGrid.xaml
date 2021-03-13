@@ -15,11 +15,11 @@
         <DataGrid Grid.Row="0" ItemsSource="{Binding Users}" AutoGenerateColumns = "False" Name = "dataGrid" AlternatingRowBackground = "LightBlue" AlternationCount = "2"  >
             <DataGrid.Columns>
                 <DataGridTextColumn Header = "Nazwa" Binding = "{Binding Name}" />
-                <DataGridTextColumn Header = "Pojemność" Binding = "{Binding Capacity}" />
-                <DataGridTextColumn Header = "Alcohol Percentage" Binding = "{Binding AlcoholPercentage}"/>
-                <DataGridTextColumn Header = "Grade" Binding = "{Binding Grade}"/>
-                <DataGridTextColumn Header = "Smak z colą" Binding = "{Binding GradeWithCoke}"/>
-                <DataGridTextColumn Header = "Color" Binding = "{Binding Color}"/>
+                <DataGridTextColumn Header = "Pojemność [ml]" Binding = "{Binding Capacity}" />
+                <DataGridTextColumn Header = "Alcohol Percentaż" Binding = "{Binding AlcoholPercentage}"/>
+                <DataGridTextColumn Header = "Ocena smaku" Binding = "{Binding Grade}"/>
+                <DataGridTextColumn Header = "Ocena smaku z colą" Binding = "{Binding GradeWithCoke}"/>
+                <DataGridTextColumn Header = "Kolor" Binding = "{Binding Color}"/>
             </DataGrid.Columns>
 
         </DataGrid>

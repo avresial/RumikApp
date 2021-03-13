@@ -4,8 +4,12 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:RumikApp.UserControls"
+             xmlns:Converters="clr-namespace:RumikApp.Converters"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <Converters:TinyIntToBoolConverter x:Key="TinyIntToBoolConverter" />
+    </UserControl.Resources>
     <Grid>
 
         <Grid.ColumnDefinitions>
@@ -36,7 +40,7 @@
 
             <ToggleButton Content="na imprezę, ekonomicznie" IsChecked="{Binding ForPartyBool}" Margin="15,5,15,5" Width="150" HorizontalAlignment="Center"/>
             <ToggleButton Grid.Column="1" Content="porządny ale tani" IsChecked="{Binding GoodButCheap}" Margin="15,5,15,5" Width="150" HorizontalAlignment="Center" />
-            <ToggleButton Grid.Column="2" Content="eksluzywnie, milordzie" IsChecked="{Binding exclusive}" Margin="15,5,15,5" Width="150" HorizontalAlignment="Center" />
+            <ToggleButton Grid.Column="2" Content="eksluzywnie, milordzie" IsChecked="{Binding Exclusive}" Margin="15,5,15,5" Width="150" HorizontalAlignment="Center" />
 
             <ToggleButton Grid.Column="3" Margin="15,5,15,5" Width="150" HorizontalAlignment="Center" IsChecked="{Binding ForPiratesFromCarabien}">
                 <TextBlock TextAlignment="Center" TextWrapping="Wrap" Text="do oglądania piłatów z kałaibów"/>
@@ -52,9 +56,8 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
-            <ToggleButton Content="solo" Margin="15,5,15,5" Width="150" HorizontalAlignment="Center"/>
-            <ToggleButton Grid.Column="1" Content="z colo" Margin="15,5,15,5" Width="150" HorizontalAlignment="Center"/>
-
+            <ToggleButton Content="solo" Margin="15,5,15,5" Width="150" HorizontalAlignment="Center" IsChecked="{Binding solo}"/>
+            <ToggleButton Grid.Column="1" Content="z colo" Margin="15,5,15,5" Width="150" HorizontalAlignment="Center" IsChecked="{Binding WithCoke}"/>
 
         </Grid>
 
@@ -65,11 +68,13 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
+                <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
-            <ToggleButton Content="wanilii" Margin="15,5,15,5" Width="150" HorizontalAlignment="Center"/>
-            <ToggleButton Grid.Column="1" Content="dymiony" Margin="15,5,15,5" Width="150" HorizontalAlignment="Center"/>
-            <ToggleButton Grid.Column="2" Content="jakiś tam jeszcze" Margin="15,5,15,5" Width="150" HorizontalAlignment="Center"/>
+            <ToggleButton Grid.Column="0" Content="wanilii" Margin="15,5,15,5" Width="150" HorizontalAlignment="Center" IsChecked="{Binding Vanily, Converter={StaticResource TinyIntToBoolConverter}}"/>
+            <ToggleButton Grid.Column="1" Content="Miót" Margin="15,5,15,5" Width="150" HorizontalAlignment="Center" IsChecked="{Binding Honey, Converter={StaticResource TinyIntToBoolConverter}}"/>
+            <ToggleButton Grid.Column="2" Content="dymiony" Margin="15,5,15,5" Width="150" HorizontalAlignment="Center" IsChecked="{Binding Smoked}" />
+            <ToggleButton Grid.Column="3" Content="jakiś tam jeszcze" Margin="15,5,15,5" Width="150" HorizontalAlignment="Center" IsChecked="{Binding Other}" />
 
 
         </Grid>
@@ -84,16 +89,15 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
-            <ToggleButton Content="&#60;50" Margin="15,5,15,5" Width="150" HorizontalAlignment="Center"/>
-            <ToggleButton Grid.Column="1" Content="50-70" Margin="15,5,15,5" Width="150" HorizontalAlignment="Center"/>
-            <ToggleButton Grid.Column="2" Content="70-90" Margin="15,5,15,5" Width="150" HorizontalAlignment="Center"/>
-            <ToggleButton Grid.Column="3" Content="&#62;90" Margin="15,5,15,5" Width="150" HorizontalAlignment="Center"/>
-
-
+            <ToggleButton Content="&#60;50" Margin="15,5,15,5" Width="150" HorizontalAlignment="Center" IsChecked="{Binding PricePoint1}"/>
+            <ToggleButton Grid.Column="1" Content="50-70" Margin="15,5,15,5" Width="150" HorizontalAlignment="Center" IsChecked="{Binding PricePoint2}"/>
+            <ToggleButton Grid.Column="2" Content="70-90" Margin="15,5,15,5" Width="150" HorizontalAlignment="Center" IsChecked="{Binding PricePoint3}"/>
+            <ToggleButton Grid.Column="3" Content="&#62;90" Margin="15,5,15,5" Width="150" HorizontalAlignment="Center" IsChecked="{Binding PricePoint4}"/>
         </Grid>
+
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"  Grid.Row="8">
-            <Button Content="Wróć do początku :)" Width="200" Command="{Binding GoToMainMenu}" Margin="10,0,10,0"/>
-            <Button Content="Dej mnie ten rum :)" Width="200" Command="{Binding GetMeThatRum}" Margin="10,0,10,0"/>
+            <Button Content="Wróć do początku :)" Width="200" Command="{Binding GoToMainMenu}" Margin="10,5,10,5"/>
+            <Button Content="Dej mnie ten rum :)" Width="200" Command="{Binding GetMeThatRum}" Margin="10,5,10,5"/>
         </StackPanel>
        
     </Grid>

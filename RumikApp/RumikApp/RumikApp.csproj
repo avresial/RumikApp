@@ -135,6 +135,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Beverage.cs" />
+    <Compile Include="Converters\TinyIntToBoolConverter.cs" />
     <Compile Include="MainViewModel.cs" />
     <Compile Include="UserControls\DataGrid.xaml.cs">
       <DependentUpon>DataGrid.xaml</DependentUpon>
@@ -199,6 +200,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="IMGs\frog.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
