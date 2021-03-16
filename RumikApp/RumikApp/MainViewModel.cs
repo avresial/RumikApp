@@ -3,6 +3,7 @@ using GalaSoft.MvvmLight.Command;
 using MySql.Data.MySqlClient;
 using RumikApp.UserControls;
 using RumikApp.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Windows;
@@ -92,8 +93,12 @@ namespace RumikApp.ViewModel
             DataGridViewModel2 = new DataGridViewModel(this);
 
             ItemsControl = new DataGridViewModel(this);
-            ItemsControl.Users.Add(new Beverage() {Name = "XDXD" });
-            ItemsControl.Users.Add(new Beverage() { Name = "XDXD2" });
+
+            Random rand = new Random();
+            for (int i = 0; i < 15; i++)
+                ItemsControl.Users.Add(new Beverage().GetRandomBevrage(rand));
+
+
         }
 
         private RelayCommand _Test;

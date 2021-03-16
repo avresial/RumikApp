@@ -19,13 +19,23 @@
 
         </Grid.RowDefinitions>
         <Grid Grid.Row="0" Grid.ColumnSpan="2">
-            <!--<UserControls:MainControlPanel Visibility="{Binding Visibility}" DataContext="{Binding MainControlPanelViewModel}"/>
+            <UserControls:MainControlPanel Visibility="{Binding Visibility}" DataContext="{Binding MainControlPanelViewModel}"/>
             <UserControls:Poll Visibility="{Binding Visibility}" DataContext="{Binding PollViewModel}"/>
-            <UserControls:DataGrid Visibility="{Binding Visibility}"  DataContext="{Binding DataGridViewModel}" />
+            <!--<UserControls:DataGrid Visibility="{Binding Visibility}"  DataContext="{Binding DataGridViewModel}" />
             <UserControls:DataGrid Visibility="{Binding Visibility}"  DataContext="{Binding DataGridViewModel2}" />-->
 
-            <UserControls:ItemsControlList Visibility="Visible"  DataContext="{Binding ItemsControl}" />
+            <UserControls:ItemsControlList Visibility="{Binding Visibility}"  DataContext="{Binding DataGridViewModel}" />
+            <UserControls:ItemsControlList Visibility="{Binding Visibility}"  DataContext="{Binding DataGridViewModel2}" />
+            
+            
         </Grid>
+
+        <!--<Grid Grid.Row="0" Grid.ColumnSpan="2">
+
+            <UserControls:ItemsControlList Visibility="Visible"  DataContext="{Binding ItemsControl}" />
+        </Grid>-->
+
+
         <!--<Button Content="yy" Command="{Binding Test}" Width="200" Height="50" Grid.Row="1"/>-->
     </Grid>
 </Window>

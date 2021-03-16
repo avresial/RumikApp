@@ -1,6 +1,7 @@
 ﻿using GalaSoft.MvvmLight;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -215,6 +216,7 @@ namespace RumikApp
                     return;
 
                 _Honey = value;
+
                 RaisePropertyChanged("Honey");
             }
         }
@@ -233,5 +235,39 @@ namespace RumikApp
             }
         }
 
+        private ObservableCollection<String> _Flavours;
+        public ObservableCollection<String> Flavours
+        {
+            get { return _Flavours; }
+            set
+            {
+                if (_Flavours == value)
+                    return;
+
+                _Flavours = value;
+                RaisePropertyChanged("Flavours");
+            }
+        }
+
+
+        public Beverage GetRandomBevrage(Random rand) 
+        {
+            _Flavours = new ObservableCollection<String>();
+            _Name = "XD"+rand.Next().ToString();
+            _Capacity = rand.Next();
+            _AlcoholPercentage = rand.Next();
+            _Grade = rand.Next(0, 10);
+            _GradeWithCoke = rand.Next(0,10);
+            _Color = rand.Next().ToString();
+
+            if (((int)rand.Next(0,20))%2 == 0)
+               Honey = true;
+            else
+                Honey = false;
+
+            _Vanila = true;
+            _Price = rand.Next(0, 200);
+            return this;
+        }
     }
 }

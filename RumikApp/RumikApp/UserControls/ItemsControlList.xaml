@@ -4,20 +4,77 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:RumikApp.UserControls"
+             xmlns:Converters="clr-namespace:RumikApp.Converters"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <ItemsControl ItemsSource="{Binding Users}">
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <Grid Margin="0,0,0,5">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                         </Grid.ColumnDefinitions>
-                        <TextBlock Text="{Binding Name}" />
+    <UserControl.Resources>
+        <Converters:StringToIMGConverter x:Key="StringToIMGConverter" />
+        <Converters:HoneyConverter x:Key="HoneyConverter" />
+    </UserControl.Resources>
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="50"/>
+            </Grid.RowDefinitions>
+
+            <Grid Margin="0,0,0,5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition MinWidth="200" Width="1*" />
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="0.5*" />
+                    <ColumnDefinition Width="0.5*" />
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Column="1" Text="Name" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                <TextBlock Grid.Column="2" Text="Capacity" Margin="10"  VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <TextBlock Grid.Column="3" Text="AlcoholPercentage" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                <TextBlock Grid.Column="4" Text="Grade" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                <TextBlock Grid.Column="5" Text="GradeWithCoke" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                <TextBlock Grid.Column="6" Text="Color" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                <TextBlock Grid.Column="7" Text="Flavours" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" />
+            </Grid>
+
+            <ItemsControl ItemsSource="{Binding Users}" Grid.Row="1">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Margin="1,0,0,40">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition MinWidth="200" Width="1*" />
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="0.5*" />
+                                <ColumnDefinition Width="0.5*" />
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="auto" />
+                                <ColumnDefinition Width="auto" />
+                            </Grid.ColumnDefinitions>
+
+                         
+                            <Image Grid.Column="0" Source="/IMGs/Bottles/Jogaila.png" />
+
+                            <TextBlock Grid.Column="1" FontSize="20" TextWrapping="Wrap" Text="{Binding Name}" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                            <TextBlock Grid.Column="2" FontSize="20" Text="{Binding Capacity}" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                            <TextBlock Grid.Column="3" FontSize="20" Text="{Binding AlcoholPercentage}" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                            <TextBlock Grid.Column="4" FontSize="20" Text="{Binding Grade}" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                            <TextBlock Grid.Column="5" FontSize="20" Text="{Binding GradeWithCoke}" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                            <TextBlock Grid.Column="6" FontSize="20" Text="{Binding Color}" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" />
+
+                            <Image Grid.Column="7" Width="50" Source="{Binding Honey, Converter={StaticResource HoneyConverter}}" />
+                            <Image Grid.Column="8" Width="50" Source="{Binding Vanila, Converter={StaticResource StringToIMGConverter}}" />
+                         
                         </Grid>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+            <Button Grid.Row="2" Content="Wróć do początku :)" Command="{Binding GoToMainMenu}"/>
         </Grid>
+    </ScrollViewer>
 </UserControl>

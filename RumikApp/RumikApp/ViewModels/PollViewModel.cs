@@ -371,14 +371,12 @@ namespace RumikApp.UserControls
             if (PricePoint4)
                 whers += " Price >= 90";
 
+
             using (MySqlConnection con = new MySqlConnection(CnnVal("sosek")))
             {
                 Users = new ObservableCollection<Beverage>();
 
                 string oString = $"SELECT * FROM RumsBase WHERE Vanilly = {Vanily} and Honey = {Honey} and" + whers;
-
-               
-
 
                 oString = $"SELECT * FROM RumsBase";
 
