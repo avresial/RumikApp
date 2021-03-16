@@ -143,6 +143,9 @@
     <Compile Include="UserControls\DataGrid.xaml.cs">
       <DependentUpon>DataGrid.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\ItemsControlList.xaml.cs">
+      <DependentUpon>ItemsControlList.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\MainControlPanel.xaml.cs">
       <DependentUpon>MainControlPanel.xaml</DependentUpon>
     </Compile>
@@ -165,6 +168,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="UserControls\DataGrid.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\ItemsControlList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -27,7 +27,7 @@ namespace RumikApp.ViewModel
                 RaisePropertyChanged("MainControlPanelViewModel");
             }
         }
-        
+
         private PollViewModel _PollViewModel;
         public PollViewModel PollViewModel
         {
@@ -70,6 +70,19 @@ namespace RumikApp.ViewModel
             }
         }
 
+        private DataGridViewModel _ItemsControl;
+        public DataGridViewModel ItemsControl
+        {
+            get { return _ItemsControl; }
+            set
+            {
+                if (_ItemsControl == value)
+                    return;
+
+                _ItemsControl = value;
+                RaisePropertyChanged("ItemsControl");
+            }
+        }
 
         public MainViewModel()
         {
@@ -77,7 +90,10 @@ namespace RumikApp.ViewModel
             MainControlPanelViewModel = new MainControlPanelViewModel(this);
             DataGridViewModel = new DataGridViewModel(this);
             DataGridViewModel2 = new DataGridViewModel(this);
-           
+
+            ItemsControl = new DataGridViewModel(this);
+            ItemsControl.Users.Add(new Beverage() {Name = "XDXD" });
+            ItemsControl.Users.Add(new Beverage() { Name = "XDXD2" });
         }
 
         private RelayCommand _Test;
@@ -105,7 +121,7 @@ namespace RumikApp.ViewModel
         private List<string> list1 = new List<string>();
         private List<string> list2 = new List<string>();
 
-        void test() 
+        void test()
         {
             connectionStringSosek = CnnVal("sosek");
 
@@ -118,7 +134,7 @@ namespace RumikApp.ViewModel
 
                 con.Open();
 
-               ;
+                ;
 
                 using (MySqlDataReader reader = cmd0.ExecuteReader())
                 {
@@ -133,8 +149,8 @@ namespace RumikApp.ViewModel
             }
 
         }
-            
-        
+
+
         public string CnnVal(string name)
         {
             return ConfigurationManager.ConnectionStrings[name].ConnectionString;
