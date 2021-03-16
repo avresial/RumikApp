@@ -207,5 +207,19 @@
   <ItemGroup>
     <SplashScreen Include="IMGs\SplashScreen.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="IMGs\choose_wisely.png" />
+    <Resource Include="IMGs\TanioAle.png" />
+    <Resource Include="IMGs\Tanio.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="IMGs\Jogaila.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="IMGs\Milordzie2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="IMGs\PollIMG\1.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
