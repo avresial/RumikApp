@@ -241,5 +241,14 @@
   <ItemGroup>
     <Resource Include="Milordzie.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="IMGs\PollIMG\PricePoint1.png" />
+    <Resource Include="IMGs\PollIMG\PricePoint2.png" />
+    <Resource Include="IMGs\PollIMG\PricePoint3.png" />
+    <Resource Include="IMGs\PollIMG\PricePoint4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="IMGs\Other\Unknown.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
