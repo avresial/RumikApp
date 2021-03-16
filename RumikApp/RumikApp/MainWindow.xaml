@@ -5,15 +5,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RumikApp"
         xmlns:UserControls="clr-namespace:RumikApp.UserControls"
+        Icon="/IMGs/Milordzie2.png"
         mc:Ignorable="d"
-        Title="RumikApp" Height="850" Width="800" WindowStartupLocation="CenterScreen">
+        Title="RumikApp" Height="450" Width="800" WindowStartupLocation="CenterScreen">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="7*"/>
+            <ColumnDefinition Width="389*"/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="auto"/>
-            
+
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0">
+        <Grid Grid.Row="0" Grid.ColumnSpan="2">
             <UserControls:MainControlPanel Visibility="{Binding Visibility}" DataContext="{Binding MainControlPanelViewModel}"></UserControls:MainControlPanel>
             <UserControls:Poll Visibility="{Binding Visibility}" DataContext="{Binding PollViewModel}"></UserControls:Poll>
             <UserControls:DataGrid Visibility="{Binding Visibility}"  DataContext="{Binding DataGridViewModel}" ></UserControls:DataGrid>

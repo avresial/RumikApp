@@ -34,6 +34,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Milordzie.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="BouncyCastle.Crypto, Version=1.8.5.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
       <HintPath>..\packages\BouncyCastle.1.8.5\lib\BouncyCastle.Crypto.dll</HintPath>
@@ -202,24 +205,41 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="IMGs\frog.gif" />
-  </ItemGroup>
-  <ItemGroup>
-    <SplashScreen Include="IMGs\SplashScreen.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="IMGs\choose_wisely.png" />
     <Resource Include="IMGs\TanioAle.png" />
     <Resource Include="IMGs\Tanio.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="IMGs\Jogaila.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="IMGs\Milordzie2.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="IMGs\PollIMG\1.png" />
+    <Resource Include="IMGs\PollIMG\ForPartyCheap.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="IMGs\Bottles\Jogaila — kopia.png" />
+    <Resource Include="IMGs\Bottles\Jogaila.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="IMGs\Other\frog.gif" />
+    <Resource Include="IMGs\Other\SplashScreen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="IMGs\PollIMG\CheapButSolid.png" />
+    <Resource Include="IMGs\PollIMG\Exclusive.png" />
+    <Resource Include="IMGs\PollIMG\ForPiratesFrocCarabien.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="IMGs\PollIMG\Honey.png" />
+    <Resource Include="IMGs\PollIMG\Smoked.png" />
+    <Resource Include="IMGs\PollIMG\Solo.png" />
+    <Resource Include="IMGs\PollIMG\Vanila.png" />
+    <Resource Include="IMGs\PollIMG\WithCoke.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="IMGs\MainControllPanel\Milordzie.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Milordzie.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
