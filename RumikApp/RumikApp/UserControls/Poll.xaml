@@ -10,7 +10,7 @@
     <UserControl.Resources>
         <Converters:TinyIntToBoolConverter x:Key="TinyIntToBoolConverter" />
     </UserControl.Resources>
-    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" FontFamily="Bookman Old Style">
         <Grid MinHeight="500">
 
             <Grid.ColumnDefinitions>
@@ -169,9 +169,9 @@
                 </ToggleButton>
             </Grid>
 
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"  Grid.Row="8" Margin="0,50,0,30">
-                <Button Content="Wróć do początku :)" Width="200" MinHeight="100" Command="{Binding GoToMainMenu}" Margin="10,5,10,5" BorderBrush="Transparent" Background="LightGray"/>
-                <Button Content="Dej mnie ten rum :)" Width="200" MinHeight="100" Command="{Binding GetMeThatRum}" Margin="10,5,10,5" BorderBrush="Transparent" Background="LightGray"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"  Grid.Row="8" Margin="0,50,0,30" >
+                <Button Content="Wróć do początku :)" Width="250" MinHeight="100" Command="{Binding GoToMainMenu}" Margin="10,5,10,5" BorderBrush="Transparent" Background="LightGray" FontSize="20" />
+                <Button Content="Dej mnie ten rum :)" Width="250" MinHeight="100" Command="{Binding GetMeThatRum}" Margin="10,5,10,5" BorderBrush="Transparent" Background="LightGray" FontSize="20"/>
             </StackPanel>
 
         </Grid>
