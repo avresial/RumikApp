@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
-        <Grid>
+        <Grid MaxWidth="1400">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*" />
                 <ColumnDefinition Width="1*" />
@@ -17,13 +17,13 @@
                 <RowDefinition Height="2*" />
             </Grid.RowDefinitions>
 
-            <TextBlock Grid.ColumnSpan="2" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" TextWrapping="Wrap" FontSize="48" Text="Co chcesz zrobić, Piłacie?" Visibility="Visible"/>
+            <TextBlock Grid.ColumnSpan="2" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" TextWrapping="Wrap" FontSize="68" Text="Co chcesz zrobić, Piłacie?" Visibility="Visible" FontStyle="Italic" FontWeight="Bold" FontFamily="Bookman Old Style"/>
             <Image Grid.ColumnSpan="2" Source="/IMGs/choose_wisely.png" RenderTransformOrigin="0.5,0.5" Height="400" Visibility="Collapsed"/>
             
             <Button Grid.Column="0" Grid.Row="1" Command="{Binding GetMeARum}" Width="300" Height="350" Background="Transparent" BorderBrush="Transparent" VerticalAlignment="Top">
                 <StackPanel Orientation="Vertical">
                     <Image Source="/IMGs/Milordzie2.png" RenderTransformOrigin="0.5,0.5"/>
-                    <TextBlock HorizontalAlignment="Center" FontSize="25" Text="Daj, sam wybiorę"/>
+                    <TextBlock HorizontalAlignment="Center" FontSize="25" Text="Daj, sam wybiorę" FontFamily="Bookman Old Style"/>
                 </StackPanel>
             </Button>
 
@@ -34,7 +34,7 @@
                             <ScaleTransform ScaleX="-1"/>
                         </Image.RenderTransform>
                     </Image>
-                    <TextBlock HorizontalAlignment="Center" FontSize="25" Text="Dobierz mi rum" />
+                    <TextBlock HorizontalAlignment="Center" FontSize="25" Text="Dobierz mi rum" FontFamily="Bookman Old Style"/>
                 </StackPanel>
             </Button>
         </Grid>

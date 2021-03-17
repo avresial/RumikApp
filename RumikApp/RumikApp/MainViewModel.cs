@@ -111,7 +111,7 @@ namespace RumikApp.ViewModel
 
             Random rand = new Random();
             for (int i = 0; i < 15; i++)
-                ItemsControl.Users.Add(new Beverage().GetRandomBevrage(rand));
+                ItemsControl.Beverages.Add(new Beverage().GetRandomBevrage(rand));
 
 
         }

@@ -33,16 +33,16 @@ namespace RumikApp.UserControls
             }
         }
 
-        private ObservableCollection<Beverage> _Users = new ObservableCollection<Beverage>();
-        public ObservableCollection<Beverage> Users
+        private ObservableCollection<Beverage> _Beverages = new ObservableCollection<Beverage>();
+        public ObservableCollection<Beverage> Beverages
         {
-            get { return _Users; }
+            get { return _Beverages; }
             set
             {
-                if (_Users == value)
+                if (_Beverages == value)
                     return;
 
-                _Users = value;
+                _Beverages = value;
                 RaisePropertyChanged("users");
             }
         }
@@ -341,7 +341,7 @@ namespace RumikApp.UserControls
                         GetDataFromDatabase();
                         Visibility = Visibility.Collapsed;
                         mainViewModel.DataGridViewModel2.Visibility = Visibility.Visible;
-                        mainViewModel.DataGridViewModel2.Users = Users;
+                        mainViewModel.DataGridViewModel2.Beverages = Beverages;
                     },
                     () =>
                     {
@@ -375,7 +375,7 @@ namespace RumikApp.UserControls
                 oString = $"SELECT * FROM RumsBase";
             }
 
-            Users = mainViewModel.DatabaseConnectionService.GetData(oString);
+            Beverages = mainViewModel.DatabaseConnectionService.GetData(oString);
 
         }
         List<string> getListOfConditions()

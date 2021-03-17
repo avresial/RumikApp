@@ -25,17 +25,17 @@ namespace RumikApp.ViewModels
             }
         }
 
-        private ObservableCollection<Beverage> _Users = new ObservableCollection<Beverage>();
-        public ObservableCollection<Beverage> Users
+        private ObservableCollection<Beverage> _Beverages = new ObservableCollection<Beverage>();
+        public ObservableCollection<Beverage> Beverages
         {
-            get { return _Users; }
+            get { return _Beverages; }
             set
             {
-                if (_Users == value)
+                if (_Beverages == value)
                     return;
 
-                _Users = value;
-                RaisePropertyChanged("users");
+                _Beverages = value;
+                RaisePropertyChanged("Beverages");
             }
         }
 
@@ -70,7 +70,7 @@ namespace RumikApp.ViewModels
 
         public void Reload()
         {
-            Users = mainViewModel.DatabaseConnectionService.GetAllData();
+            Beverages = mainViewModel.DatabaseConnectionService.GetAllData();
         }
 
     }

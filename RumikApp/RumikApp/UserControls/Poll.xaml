@@ -170,8 +170,8 @@
             </Grid>
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"  Grid.Row="8" Margin="0,50,0,30">
-                <Button Content="Wróć do początku :)" Width="200" MinHeight="100" Command="{Binding GoToMainMenu}" Margin="10,5,10,5"/>
-                <Button Content="Dej mnie ten rum :)" Width="200" MinHeight="100" Command="{Binding GetMeThatRum}" Margin="10,5,10,5"/>
+                <Button Content="Wróć do początku :)" Width="200" MinHeight="100" Command="{Binding GoToMainMenu}" Margin="10,5,10,5" BorderBrush="Transparent" Background="LightGray"/>
+                <Button Content="Dej mnie ten rum :)" Width="200" MinHeight="100" Command="{Binding GetMeThatRum}" Margin="10,5,10,5" BorderBrush="Transparent" Background="LightGray"/>
             </StackPanel>
 
         </Grid>
