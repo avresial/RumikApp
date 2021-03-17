@@ -10,7 +10,7 @@
     <UserControl.Resources>
         <Converters:TinyIntToBoolConverter x:Key="TinyIntToBoolConverter" />
     </UserControl.Resources>
-    <ScrollViewer VerticalScrollBarVisibility="Auto">
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
         <Grid MinHeight="500">
 
             <Grid.ColumnDefinitions>

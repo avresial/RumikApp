@@ -12,7 +12,7 @@
         <Converters:HoneyConverter x:Key="HoneyConverter" />
         <Converters:SmokedConverter x:Key="SmokedConverter" />
     </UserControl.Resources>
-    <ScrollViewer VerticalScrollBarVisibility="Auto">
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
@@ -58,8 +58,9 @@
                                 <ColumnDefinition MinWidth="80"     Width="0.5*" />
                                 <ColumnDefinition MinWidth="150"    Width="1*" />
                                 <ColumnDefinition MinWidth="40"     Width="1*" />
-                                <ColumnDefinition Width="1*" />
-                                <ColumnDefinition Width="2*" />
+                                <ColumnDefinition MinWidth="150" Width="1*" />
+                                <ColumnDefinition MinWidth="150" Width="1*" />
+                                <ColumnDefinition MinWidth="150" Width="1*" />
                             </Grid.ColumnDefinitions>
 
                          
@@ -75,7 +76,7 @@
                             
                             <Image Grid.Column="8" Width="100" Source="{Binding Honey, Converter={StaticResource HoneyConverter}}" ToolTip="Zawiera miodzik" />
                             <Image Grid.Column="9" Width="100" Source="{Binding Vanila, Converter={StaticResource StringToIMGConverter}}" ToolTip="Zawiera Wanilie"/>
-                            <Image Grid.Column="9" Width="100" Source="{Binding Smoked, Converter={StaticResource SmokedConverter}}" ToolTip="Zawiera Wanilie"/>
+                            <Image Grid.Column="10" Width="100" Source="{Binding Smoke, Converter={StaticResource SmokedConverter}}" ToolTip="Dyyyymione"/>
 
                         </Grid>
                     </DataTemplate>
