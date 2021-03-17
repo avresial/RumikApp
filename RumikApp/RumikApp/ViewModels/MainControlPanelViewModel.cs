@@ -32,8 +32,7 @@ namespace RumikApp.ViewModels
 
             }
         }
-
-      
+              
         private RelayCommand _GetMeARum;
         public RelayCommand GetMeARum
         {
@@ -57,6 +56,7 @@ namespace RumikApp.ViewModels
                 return _GetMeARum;
             }
         }
+        
         private RelayCommand _LetMeChoose;
         public RelayCommand LetMeChoose
         {
@@ -80,7 +80,5 @@ namespace RumikApp.ViewModels
                 return _LetMeChoose;
             }
         }
-
-
     }
 }

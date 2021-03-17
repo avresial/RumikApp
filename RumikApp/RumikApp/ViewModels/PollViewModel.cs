@@ -17,6 +17,7 @@ namespace RumikApp.UserControls
     public class PollViewModel : ViewModelBase
     {
         private MainViewModel mainViewModel;
+
         private Visibility _Visibility = Visibility.Collapsed;
         public Visibility Visibility
         {
@@ -355,100 +356,31 @@ namespace RumikApp.UserControls
 
         void GetDataFromDatabase()
         {
-            string connectionStringSosek = CnnVal("sosek");
+                      
 
-            string whers = null;
+            string oString = $"SELECT * FROM RumsBase WHERE{getStringPrice()}";
+
+            Users = mainViewModel.DatabaseConnectionService.GetData(oString);
+            
+        }
+        string getStringPrice() 
+        {
+            string price = null;
 
             if (PricePoint1)
-                whers += " Price < 90";
+                price += " Price < 90";
 
             if (PricePoint2)
-                whers += " Price >= 50 and Price < 70";
+                price += " Price >= 50 and Price < 70";
 
             if (PricePoint3)
-                whers += " Price >= 70 and Price < 90";
+                price += " Price >= 70 and Price < 90";
 
             if (PricePoint4)
-                whers += " Price >= 90";
-
-
-            using (MySqlConnection con = new MySqlConnection(CnnVal("sosek")))
-            {
-                Users = new ObservableCollection<Beverage>();
-
-                string oString = $"SELECT * FROM RumsBase WHERE Vanilly = {Vanily} and Honey = {Honey} and" + whers;
-
-                oString = $"SELECT * FROM RumsBase";
-
-                if (whers != null)
-                    oString = $"SELECT * FROM RumsBase WHERE " + whers;
-
-                MySqlCommand cmd0 = new MySqlCommand(oString, con);
-
-                con.Open();
-
-                using (MySqlDataReader reader = cmd0.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        Beverage beverageTMP = new Beverage();
-                        beverageTMP.ID = reader.GetInt32(0);
-                        beverageTMP.Name = reader.GetString(1);
-                        beverageTMP.Capacity = reader.GetInt32(2);
-                        beverageTMP.AlcoholPercentage = reader.GetFloat(3);
-                        beverageTMP.Price = reader.GetFloat(4);
-                        beverageTMP.Grade = reader.GetInt32(5);
-                        beverageTMP.GradeWithCoke = reader.GetInt32(6);
-                        beverageTMP.Color = reader.GetString(7);
-
-                        if (reader.GetInt16(8) == 1)
-                            beverageTMP.Vanila = true;
-                        else
-                            beverageTMP.Vanila = false;
-
-                        if (reader.GetInt16(9) == 1)
-                            beverageTMP.Nuts = true;
-                        else
-                            beverageTMP.Nuts = false;
-
-                        if (reader.GetInt16(10) == 1)
-                            beverageTMP.Caramel = true;
-                        else
-                            beverageTMP.Caramel = false;
-
-                        if (reader.GetInt16(11) == 1)
-                            beverageTMP.Smoke = true;
-                        else
-                            beverageTMP.Smoke = false;
-
-                        if (reader.GetInt16(12) == 1)
-                            beverageTMP.Cinnamon = true;
-                        else
-                            beverageTMP.Cinnamon = false;
-
-                        if (reader.GetInt16(13) == 1)
-                            beverageTMP.Nutmeg = true;
-                        else
-                            beverageTMP.Nutmeg = false;
-
-                        if (reader.GetInt16(14) == 1)
-                            beverageTMP.Fruits = true;
-                        else
-                            beverageTMP.Fruits = false;
-
-                        if (reader.GetInt16(15) == 1)
-                            beverageTMP.Honey = true;
-                        else
-                            beverageTMP.Honey = false;
-
-
-                        Users.Add(beverageTMP);
-
-                    }
-                }
-                con.Close();
-            }
+                price += " Price >= 90";
+            return price;
         }
+
         public string CnnVal(string name)
         {
             return ConfigurationManager.ConnectionStrings[name].ConnectionString;

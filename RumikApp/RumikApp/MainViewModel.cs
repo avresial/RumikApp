@@ -1,6 +1,7 @@
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using MySql.Data.MySqlClient;
+using RumikApp.Services;
 using RumikApp.UserControls;
 using RumikApp.ViewModels;
 using System;
@@ -82,6 +83,20 @@ namespace RumikApp.ViewModel
 
                 _ItemsControl = value;
                 RaisePropertyChanged("ItemsControl");
+            }
+        }
+
+        private DatabaseConnectionService _DatabaseConnectionService = new DatabaseConnectionService();
+        public DatabaseConnectionService DatabaseConnectionService
+        {
+            get { return _DatabaseConnectionService; }
+            set
+            {
+                if (_DatabaseConnectionService == value)
+                    return;
+
+                _DatabaseConnectionService = value;
+                RaisePropertyChanged("DatabaseConnectionService");
             }
         }
 

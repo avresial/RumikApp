@@ -142,6 +142,7 @@
     <Compile Include="Converters\StringToIMGConverter.cs" />
     <Compile Include="Converters\TinyIntToBoolConverter.cs" />
     <Compile Include="MainViewModel.cs" />
+    <Compile Include="Services\DatabaseConnectionService.cs" />
     <Compile Include="UserControls\DataGrid.xaml.cs">
       <DependentUpon>DataGrid.xaml</DependentUpon>
     </Compile>
