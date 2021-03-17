@@ -20,6 +20,7 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*" />
                 <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
                 <RowDefinition Height="1*" />
                 <RowDefinition Height="1*" />
                 <RowDefinition Height="1*" />
@@ -29,9 +30,9 @@
                 <RowDefinition Height="1*" />
             </Grid.RowDefinitions>
 
-            <TextBlock Grid.ColumnSpan="2" HorizontalAlignment="Center"  TextWrapping="Wrap" Text="Potrzebuję w celu" VerticalAlignment="Center" FontSize="24" />
+            <TextBlock Grid.ColumnSpan="2" HorizontalAlignment="Center"  TextWrapping="Wrap" Text="Potrzebuję w celu" VerticalAlignment="Center" FontSize="40" Margin="0,50,0,30" />
 
-            <Grid Grid.Row="1">
+            <Grid Grid.Row="1" MaxWidth="900">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
@@ -39,7 +40,7 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
 
-                <ToggleButton IsChecked="{Binding ForPartyBool}" Margin="15,5,15,5" Width="150"  HorizontalAlignment="Center" Background="Transparent" BorderBrush="Transparent">
+                <ToggleButton IsChecked="{Binding ForPartyBool}" Margin="15,5,15,5" Width="150"  HorizontalAlignment="Center" Background="Transparent" BorderBrush="Transparent" IsEnabled="False">
 
                     <StackPanel Orientation="Vertical">
                         <Image Source="/IMGs/PollIMG/ForPartyCheap.png"  />
@@ -47,21 +48,21 @@
                     </StackPanel>
                 </ToggleButton>
 
-                <ToggleButton Grid.Column="1" IsChecked="{Binding GoodButCheap}" Margin="15,5,15,5" Width="150" HorizontalAlignment="Center" Background="Transparent" BorderBrush="Transparent" >
+                <ToggleButton Grid.Column="1" IsChecked="{Binding GoodButCheap}" Margin="15,5,15,5" Width="150" HorizontalAlignment="Center" Background="Transparent" BorderBrush="Transparent" IsEnabled="False" >
                     <StackPanel Orientation="Vertical">
                         <Image Source="/IMGs/PollIMG/CheapButSolid.png"  />
                         <TextBlock HorizontalAlignment="Center">porządny ale tani</TextBlock>
                     </StackPanel>
                 </ToggleButton>
 
-                <ToggleButton Grid.Column="2"  IsChecked="{Binding Exclusive}" Margin="15,5,15,5" Width="150" HorizontalAlignment="Center" Background="Transparent" BorderBrush="Transparent" >
+                <ToggleButton Grid.Column="2"  IsChecked="{Binding Exclusive}" Margin="15,5,15,5" Width="150" HorizontalAlignment="Center" Background="Transparent" BorderBrush="Transparent" IsEnabled="False" >
                     <StackPanel Orientation="Vertical">
                         <Image Source="/IMGs/PollIMG/Exclusive.png"  />
                         <TextBlock HorizontalAlignment="Center">Eksluzywnie milordzie</TextBlock>
                     </StackPanel>
                 </ToggleButton>
 
-                <ToggleButton Grid.Column="3" Margin="15,5,15,5" Width="150" HorizontalAlignment="Center" Background="Transparent" BorderBrush="Transparent" IsChecked="{Binding ForPiratesFromCarabien}">
+                <ToggleButton Grid.Column="3" Margin="15,5,15,5" Width="150" HorizontalAlignment="Center" Background="Transparent" BorderBrush="Transparent" IsChecked="{Binding ForPiratesFromCarabien}" IsEnabled="False">
                     <StackPanel Orientation="Vertical">
                         <Image Source="/IMGs/PollIMG/ForPiratesFrocCarabien.png"  />
                         <TextBlock TextAlignment="Center" TextWrapping="Wrap" Text="do oglądania piłatów z kałaibów"/>
@@ -69,9 +70,9 @@
                 </ToggleButton>
             </Grid>
 
-            <TextBlock Grid.ColumnSpan="2" Grid.Row="2" HorizontalAlignment="Center"  TextWrapping="Wrap" Text="Do picia" VerticalAlignment="Center" FontSize="24" />
+            <TextBlock Grid.ColumnSpan="2" Grid.Row="2" HorizontalAlignment="Center"  TextWrapping="Wrap" Text="Do picia" VerticalAlignment="Center" FontSize="40" Margin="0,50,0,30" />
 
-            <Grid Grid.Row="3">
+            <Grid Grid.Row="3" MaxWidth="900">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
@@ -93,9 +94,9 @@
 
             </Grid>
 
-            <TextBlock Grid.ColumnSpan="2" Grid.Row="4" HorizontalAlignment="Center"  TextWrapping="Wrap" Text="Chcę poczuć smak" VerticalAlignment="Center" FontSize="24" />
+            <TextBlock Grid.ColumnSpan="2" Grid.Row="4" HorizontalAlignment="Center"  TextWrapping="Wrap" Text="Chcę poczuć smak" VerticalAlignment="Center" FontSize="40" Margin="0,50,0,30" />
 
-            <Grid Grid.Row="5">
+            <Grid Grid.Row="5" MaxWidth="900">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
@@ -103,13 +104,13 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
 
-                <ToggleButton Grid.Column="0" Margin="15,5,15,5" Width="150" HorizontalAlignment="Center" IsChecked="{Binding Vanily, Converter={StaticResource TinyIntToBoolConverter}}" Background="Transparent" BorderBrush="Transparent">
+                <ToggleButton Grid.Column="0" Margin="15,5,15,5" Width="150" HorizontalAlignment="Center" IsChecked="{Binding Vanily}" Background="Transparent" BorderBrush="Transparent">
                     <StackPanel Orientation="Vertical">
                         <Image Source="/IMGs/PollIMG/Vanila.png"  />
                         <TextBlock TextAlignment="Center" TextWrapping="Wrap" Text="wanilii"/>
                     </StackPanel>
                 </ToggleButton>
-                <ToggleButton Grid.Column="1" Margin="15,5,15,5" Width="150" HorizontalAlignment="Center" IsChecked="{Binding Honey, Converter={StaticResource TinyIntToBoolConverter}}" Background="Transparent" BorderBrush="Transparent">
+                <ToggleButton Grid.Column="1" Margin="15,5,15,5" Width="150" HorizontalAlignment="Center" IsChecked="{Binding Honey}" Background="Transparent" BorderBrush="Transparent">
                     <StackPanel Orientation="Vertical">
                         <Image Source="/IMGs/PollIMG/Honey.png"  />
                         <TextBlock TextAlignment="Center" TextWrapping="Wrap" Text="Miót"/>
@@ -129,9 +130,9 @@
                 </ToggleButton>
             </Grid>
 
-            <TextBlock Grid.ColumnSpan="2" Grid.Row="6" HorizontalAlignment="Center"  TextWrapping="Wrap" Text="Cena" VerticalAlignment="Center" FontSize="24" />
+            <TextBlock Grid.ColumnSpan="2" Grid.Row="6" HorizontalAlignment="Center"  TextWrapping="Wrap" Text="Cena" VerticalAlignment="Center" FontSize="40" Margin="0,50,0,30" />
 
-            <Grid Grid.Row="7">
+            <Grid Grid.Row="7" MaxWidth="900">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
@@ -168,7 +169,7 @@
                 </ToggleButton>
             </Grid>
 
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"  Grid.Row="8">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"  Grid.Row="8" Margin="0,50,0,30">
                 <Button Content="Wróć do początku :)" Width="200" MinHeight="100" Command="{Binding GoToMainMenu}" Margin="10,5,10,5"/>
                 <Button Content="Dej mnie ten rum :)" Width="200" MinHeight="100" Command="{Binding GetMeThatRum}" Margin="10,5,10,5"/>
             </StackPanel>

@@ -5,9 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RumikApp"
         xmlns:UserControls="clr-namespace:RumikApp.UserControls"
+        WindowState="Maximized" WindowStartupLocation="CenterScreen"
         Icon="/IMGs/Milordzie2.png"
         mc:Ignorable="d"
-        Title="RumikApp" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+        Title="RumikApp" Height="450" Width="800">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="7*"/>

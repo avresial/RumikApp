@@ -8,13 +8,12 @@ using System.Windows.Data;
 
 namespace RumikApp.Converters
 {
-    class HoneyConverter : IValueConverter
+    class SmokedConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if ((bool)value)
-                return "/IMGs/PollIMG/Honey.png";
-
+                return "/IMGs/PollIMG/Smoked.png";
             return null;
         }
 
@@ -22,6 +21,5 @@ namespace RumikApp.Converters
         {
             throw new NotImplementedException();
         }
-
     }
 }

@@ -165,8 +165,8 @@ namespace RumikApp.UserControls
         }
 
         // third section - chce poczuc smak
-        private Int16 _Vanily;
-        public Int16 Vanily
+        private bool _Vanily;
+        public bool Vanily
         {
             get { return _Vanily; }
             set
@@ -179,8 +179,8 @@ namespace RumikApp.UserControls
             }
         }
 
-        private Int16 _Honey;
-        public Int16 Honey
+        private bool _Honey;
+        public bool Honey
         {
             get { return _Honey; }
             set
@@ -221,7 +221,6 @@ namespace RumikApp.UserControls
             }
         }
 
-
         // fourth section - price
         private bool _PricePoint1;
         public bool PricePoint1
@@ -239,7 +238,7 @@ namespace RumikApp.UserControls
                 }
 
                 _PricePoint1 = value;
-                RaisePropertyChanged("LessThen50");
+                RaisePropertyChanged("PricePoint1");
             }
         }
 
@@ -356,29 +355,107 @@ namespace RumikApp.UserControls
 
         void GetDataFromDatabase()
         {
-                      
 
-            string oString = $"SELECT * FROM RumsBase WHERE{getStringPrice()}";
+            List<string> conditions = getListOfConditions();
+            string oString;
+
+            if (conditions.Count > 0)
+            {
+                oString = $"SELECT * FROM RumsBase WHERE ";
+                for (int i = 0; i < conditions.Count; i++)
+                {
+                    if (i != 0)
+                        oString += " and ";
+
+                    oString += conditions[i];
+                }
+            }
+            else
+            {
+                oString = $"SELECT * FROM RumsBase";
+            }
 
             Users = mainViewModel.DatabaseConnectionService.GetData(oString);
-            
-        }
-        string getStringPrice() 
-        {
-            string price = null;
 
+        }
+        List<string> getListOfConditions()
+        {
+            List<string> conditions = new List<string>();
+
+            string price = getStringPrice();
+            string soloOrCoke = getSoloOrWithCoke();
+            string flavours = getFlavours();
+
+            if (price != null && price != "")
+                conditions.Add(price);
+
+            if (soloOrCoke != null && soloOrCoke != "")
+                conditions.Add(soloOrCoke);
+
+            if (flavours != null && flavours != "")
+                conditions.Add(flavours);
+
+            return conditions;
+        }
+
+        string getStringPrice()
+        {
+  
             if (PricePoint1)
-                price += " Price < 90";
+                return " Price < 50";
 
             if (PricePoint2)
-                price += " Price >= 50 and Price < 70";
+                return " Price >= 50 and Price < 70";
 
             if (PricePoint3)
-                price += " Price >= 70 and Price < 90";
+                return " Price >= 70 and Price < 90";
 
             if (PricePoint4)
-                price += " Price >= 90";
-            return price;
+                return " Price >= 90";
+
+            return null;
+        }
+
+        string getSoloOrWithCoke()
+        {
+            int minimalAllowedGrade = 5;
+
+            if (solo)
+                return $"grade > {minimalAllowedGrade}";
+            if (WithCoke)
+                return $"GradeWithCoke > {minimalAllowedGrade}";
+
+            return null;
+        }
+        string getFlavours()
+        {
+
+            List<string> flavoursList = new List<string>();
+            string flavoursString = "";
+
+            if (Vanily)
+                flavoursList.Add("Vanilly = 1");
+
+            if (Honey)
+                flavoursList.Add("Honey = 1");
+
+            if (Smoked)
+                flavoursList.Add("Smoky = 1");
+
+
+            if (flavoursList.Count > 0)
+            {
+                for (int i = 0; i < flavoursList.Count; i++)
+                {
+                    if (i != 0)
+                        flavoursString += " and ";
+
+                    flavoursString += flavoursList[i];
+                }
+                return flavoursString;
+            }
+
+            return null;
         }
 
         public string CnnVal(string name)

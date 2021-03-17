@@ -25,6 +25,7 @@ namespace RumikApp
         {
             InitializeComponent();
             this.DataContext = new MainViewModel();
+            
             this.Show();
         }
     }
