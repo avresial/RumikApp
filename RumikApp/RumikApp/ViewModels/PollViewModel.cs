@@ -207,19 +207,20 @@ namespace RumikApp.UserControls
             }
         }
 
-        private bool _Other;
-        public bool Other
+        private bool _Nuts;
+        public bool Nuts
         {
-            get { return _Other; }
+            get { return _Nuts; }
             set
             {
-                if (_Other == value)
+                if (_Nuts == value)
                     return;
 
-                _Other = value;
-                RaisePropertyChanged("Other");
+                _Nuts = value;
+                RaisePropertyChanged("Nuts");
             }
         }
+
 
         // fourth section - price
         private bool _PricePoint1;
@@ -442,6 +443,8 @@ namespace RumikApp.UserControls
             if (Smoked)
                 flavoursList.Add("Smoky = 1");
 
+            if (Nuts)
+                flavoursList.Add("Nuts = 1");
 
             if (flavoursList.Count > 0)
             {
