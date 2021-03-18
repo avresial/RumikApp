@@ -1,16 +1,10 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
-using MySql.Data.MySqlClient;
 using RumikApp.ViewModel;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Configuration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Forms;
 
 namespace RumikApp.UserControls
 {
@@ -165,50 +159,23 @@ namespace RumikApp.UserControls
         }
 
         // third section - chce poczuc smak
-        private bool _Vanily;
-        public bool Vanily
+        
+        private Flavour _Vanila = new Flavour("/IMGs/PollIMG/Vanila.png", "Vanila");
+        public Flavour Vanila
         {
-            get { return _Vanily; }
+            get { return _Vanila; }
             set
             {
-                if (_Vanily == value)
+                if (_Vanila == value)
                     return;
 
-                _Vanily = value;
-                RaisePropertyChanged("Vanily");
+                _Vanila = value;
+                RaisePropertyChanged("Vanila");
             }
         }
 
-        private bool _Honey;
-        public bool Honey
-        {
-            get { return _Honey; }
-            set
-            {
-                if (_Honey == value)
-                    return;
-
-                _Honey = value;
-                RaisePropertyChanged("Honey");
-            }
-        }
-
-        private bool _Smoked;
-        public bool Smoked
-        {
-            get { return _Smoked; }
-            set
-            {
-                if (_Smoked == value)
-                    return;
-
-                _Smoked = value;
-                RaisePropertyChanged("Smoked");
-            }
-        }
-
-        private bool _Nuts;
-        public bool Nuts
+        private Flavour _Nuts = new Flavour("/IMGs/PollIMG/Nuts.png", "Nuts");
+        public Flavour Nuts
         {
             get { return _Nuts; }
             set
@@ -218,6 +185,91 @@ namespace RumikApp.UserControls
 
                 _Nuts = value;
                 RaisePropertyChanged("Nuts");
+            }
+        }
+
+        private Flavour _Carmel = new Flavour("/IMGs/PollIMG/Carmel.png", "Carmel");
+        public Flavour Carmel
+        {
+            get { return _Carmel; }
+            set
+            {
+                if (_Carmel == value)
+                    return;
+
+                _Carmel = value;
+                RaisePropertyChanged("Caramel");
+            }
+        }
+
+        private Flavour _Smoke = new Flavour("/IMGs/PollIMG/Smoked.png", "Smoke");
+        public Flavour Smoke
+        {
+            get { return _Smoke; }
+            set
+            {
+                if (_Smoke == value)
+                    return;
+
+                _Smoke = value;
+                RaisePropertyChanged("Smoke");
+            }
+        }
+
+        private Flavour _Cinnamon = new Flavour("/IMGs/PollIMG/Cinamon.png", "Cinnamon");
+        public Flavour Cinnamon
+        {
+            get { return _Cinnamon; }
+            set
+            {
+                if (_Cinnamon == value)
+                    return;
+
+                _Cinnamon = value;
+                RaisePropertyChanged("Cinnamon");
+            }
+        }
+
+        private Flavour _Nutmeg = new Flavour("/IMGs/PollIMG/Nutmeg.png", "Nutmeg");
+        public Flavour Nutmeg
+        {
+            get { return _Nutmeg; }
+            set
+            {
+                if (_Nutmeg == value)
+                    return;
+
+                _Nutmeg = value;
+                RaisePropertyChanged("Nutmeg");
+            }
+        }
+
+        private Flavour _Fruits = new Flavour("/IMGs/PollIMG/Fruits.png", "Fruits");
+        public Flavour Fruits
+        {
+            get { return _Fruits; }
+            set
+            {
+                if (_Fruits == value)
+                    return;
+
+                _Fruits = value;
+                RaisePropertyChanged("Fruits");
+            }
+        }
+
+        private Flavour _Honey = new Flavour("/IMGs/PollIMG/Honey.png", "Honey");
+        public Flavour Honey
+        {
+            get { return _Honey; }
+            set
+            {
+                if (_Honey == value)
+                    return;
+
+                _Honey = value;
+
+                RaisePropertyChanged("Honey");
             }
         }
 
@@ -434,17 +486,30 @@ namespace RumikApp.UserControls
             List<string> flavoursList = new List<string>();
             string flavoursString = "";
 
-            if (Vanily)
+            if (Vanila.IsSet)
                 flavoursList.Add("Vanilly = 1");
 
-            if (Honey)
-                flavoursList.Add("Honey = 1");
+            if (Nuts.IsSet)
+                flavoursList.Add("Nuts = 1");
 
-            if (Smoked)
+            if (Carmel.IsSet)
+                flavoursList.Add("Carmel = 1");
+
+            if (Smoke.IsSet)
                 flavoursList.Add("Smoky = 1");
 
-            if (Nuts)
-                flavoursList.Add("Nuts = 1");
+            if (Cinnamon.IsSet)
+                flavoursList.Add("Cinnamon = 1");
+
+            if (Nutmeg.IsSet)
+                flavoursList.Add("Nutmeg = 1");
+
+            if (Fruits.IsSet)
+                flavoursList.Add("Fruits = 1");
+
+            if (Honey.IsSet)
+                flavoursList.Add("Honey = 1");
+
 
             if (flavoursList.Count > 0)
             {

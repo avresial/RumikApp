@@ -136,16 +136,16 @@ namespace RumikApp
             }
         }
 
-        private Flavour _Caramel = new Flavour("/IMGs/PollIMG/Carmel.png", "Caramel");
-        public Flavour Caramel
+        private Flavour _Carmel = new Flavour("/IMGs/PollIMG/Carmel.png", "Caramel");
+        public Flavour Carmel
         {
-            get { return _Caramel; }
+            get { return _Carmel; }
             set
             {
-                if (_Caramel == value)
+                if (_Carmel == value)
                     return;
 
-                _Caramel = value;
+                _Carmel = value;
                 RaisePropertyChanged("Caramel");
             }
         }
@@ -262,7 +262,7 @@ namespace RumikApp
 
             _Vanila.IsSet = true;
             _Nuts.IsSet = true;
-            _Caramel.IsSet = true;
+            _Carmel.IsSet = true;
             _Smoke.IsSet = true;
             _Cinnamon.IsSet = true;
             _Nutmeg.IsSet = true;

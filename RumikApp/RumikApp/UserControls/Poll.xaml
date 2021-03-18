@@ -103,31 +103,63 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
 
-                <ToggleButton Grid.Column="0" Margin="15,5,15,5" Width="150" HorizontalAlignment="Center" IsChecked="{Binding Vanily}" Background="Transparent" BorderBrush="Transparent">
+                <ToggleButton Grid.Column="0" Margin="15,5,15,5" Width="150" HorizontalAlignment="Center" IsChecked="{Binding Vanila.IsSet}" Background="Transparent" BorderBrush="Transparent">
                     <StackPanel Orientation="Vertical">
-                        <Image Source="/IMGs/PollIMG/Vanila.png"  />
+                        <Image Source="{Binding Vanila.IMGSrc}"  />
                         <TextBlock TextAlignment="Center" TextWrapping="Wrap" Text="Wanilii"/>
                     </StackPanel>
                 </ToggleButton>
-                <ToggleButton Grid.Column="1" Margin="15,5,15,5" Width="150" HorizontalAlignment="Center" IsChecked="{Binding Honey}" Background="Transparent" BorderBrush="Transparent">
+                <ToggleButton Grid.Column="1" Margin="15,5,15,5" Width="150" HorizontalAlignment="Center" IsChecked="{Binding Nuts.IsSet}" Background="Transparent" BorderBrush="Transparent">
                     <StackPanel Orientation="Vertical">
-                        <Image Source="/IMGs/PollIMG/Honey.png"  />
-                        <TextBlock TextAlignment="Center" TextWrapping="Wrap" Text="Miót"/>
+                        <Image Source="{Binding Nuts.IMGSrc}"  />
+                        <TextBlock TextAlignment="Center" TextWrapping="Wrap" Text="Orzeszki"/>
                     </StackPanel>
                 </ToggleButton>
-                <ToggleButton Grid.Column="2" Margin="15,5,15,5" Width="150" HorizontalAlignment="Center" IsChecked="{Binding Smoked}" Background="Transparent" BorderBrush="Transparent">
+                <ToggleButton Grid.Column="2" Margin="15,5,15,5" Width="150" HorizontalAlignment="Center" IsChecked="{Binding Carmel.IsSet}" Background="Transparent" BorderBrush="Transparent">
                     <StackPanel Orientation="Vertical">
-                        <Image Source="/IMGs/PollIMG/Smoked.png"  />
+                        <Image Source="{Binding Carmel.IMGSrc}"/>
+                        <TextBlock TextAlignment="Center" TextWrapping="Wrap" Text="Karmel"/>
+                    </StackPanel>
+                </ToggleButton>
+                <ToggleButton Grid.Column="3" Margin="15,5,15,5" Width="150" HorizontalAlignment="Center" IsChecked="{Binding Smoke.IsSet}" Background="Transparent" BorderBrush="Transparent">
+                    <StackPanel Orientation="Vertical">
+                        <Image Source="{Binding Smoke.IMGSrc}"/>
                         <TextBlock TextAlignment="Center" TextWrapping="Wrap" Text="Dymiony"/>
                     </StackPanel>
                 </ToggleButton>
-                <ToggleButton Grid.Column="3" Margin="15,5,15,5" Width="150" HorizontalAlignment="Center" IsChecked="{Binding Nuts}" Background="Transparent" BorderBrush="Transparent">
+
+
+
+                <ToggleButton Grid.Column="0" Grid.Row="1" Margin="15,5,15,5" Width="150" HorizontalAlignment="Center" IsChecked="{Binding Cinnamon.IsSet}" Background="Transparent" BorderBrush="Transparent">
                     <StackPanel Orientation="Vertical">
-                        <Image Source="/IMGs/PollIMG/Nuts.png"/>
-                        <TextBlock TextAlignment="Center" TextWrapping="Wrap" Text="Orzeszków"/>
+                        <Image Source="{Binding Cinnamon.IMGSrc}"  />
+                        <TextBlock TextAlignment="Center" TextWrapping="Wrap" Text="Cyna - mon"/>
                     </StackPanel>
                 </ToggleButton>
+                <ToggleButton Grid.Column="1" Grid.Row="1" Margin="15,5,15,5" Width="150" HorizontalAlignment="Center" IsChecked="{Binding Nutmeg.IsSet}" Background="Transparent" BorderBrush="Transparent">
+                    <StackPanel Orientation="Vertical">
+                        <Image Source="{Binding Nutmeg.IMGSrc}"  />
+                        <TextBlock TextAlignment="Center" TextWrapping="Wrap" Text="Gałka muszkatałowa"/>
+                    </StackPanel>
+                </ToggleButton>
+                <ToggleButton Grid.Column="2" Grid.Row="1" Margin="15,5,15,5" Width="150" HorizontalAlignment="Center" IsChecked="{Binding Fruits.IsSet}" Background="Transparent" BorderBrush="Transparent">
+                    <StackPanel Orientation="Vertical">
+                        <Image Source="{Binding Fruits.IMGSrc}"/>
+                        <TextBlock TextAlignment="Center" TextWrapping="Wrap" Text="Owocki"/>
+                    </StackPanel>
+                </ToggleButton>
+                <ToggleButton Grid.Column="3" Grid.Row="1" Margin="15,5,15,5" Width="150" HorizontalAlignment="Center" IsChecked="{Binding Honey.IsSet}" Background="Transparent" BorderBrush="Transparent">
+                    <StackPanel Orientation="Vertical">
+                        <Image Source="{Binding Honey.IMGSrc}"/>
+                        <TextBlock TextAlignment="Center" TextWrapping="Wrap" Text="Miót XD"/>
+                    </StackPanel>
+                </ToggleButton>
+
             </Grid>
 
             <TextBlock Grid.ColumnSpan="2" Grid.Row="6" HorizontalAlignment="Center"  TextWrapping="Wrap" Text="Cena" VerticalAlignment="Center" FontSize="40" Margin="0,50,0,30" />

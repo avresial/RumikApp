@@ -82,9 +82,9 @@ namespace RumikApp.Services
                 beverageTMP.Nuts.IsSet = false;
 
             if (reader.GetInt16(10) == 1)
-                beverageTMP.Caramel.IsSet = true;
+                beverageTMP.Carmel.IsSet = true;
             else
-                beverageTMP.Caramel.IsSet = false;
+                beverageTMP.Carmel.IsSet = false;
 
             if (reader.GetInt16(11) == 1)
                 beverageTMP.Smoke.IsSet = true;
