@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace RumikApp.Services
 {
-    public class DatabaseConnectionService
+    public class DatabaseConnectionService : IDatabaseConnectionService
     {
         public ObservableCollection<Beverage> GetData(string Query)
         {            
@@ -117,5 +117,7 @@ namespace RumikApp.Services
         {
             return ConfigurationManager.ConnectionStrings[name].ConnectionString;
         }
+
+     
     }
 }

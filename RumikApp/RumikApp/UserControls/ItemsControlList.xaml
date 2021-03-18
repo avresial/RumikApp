@@ -44,17 +44,6 @@
                 <TextBlock Grid.Column="8" Text="Smaczek"              Margin="10" VerticalAlignment="Center" HorizontalAlignment="Right" />
             </Grid>
 
-            <Grid  Visibility="{Binding UnknownGuyVisibility}" Grid.Row="1">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="6*"/>
-                    <RowDefinition Height="*"/>
-
-                </Grid.RowDefinitions>
-                <Image Source="/IMGs/Other/Unknown.png" RenderTransformOrigin="0.5,0.5" Grid.Row="0"/>
-                <TextBlock Text="Najwyraźniej takiego rumu nie ma w naszej bazie." Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="24" FontStyle="Italic" FontWeight="Bold" FontFamily="Bookman Old Style"/>
-            </Grid>
-
-
             <ItemsControl ItemsSource="{Binding Beverages}" Grid.Row="1" Visibility="{Binding ScrollViewerVisibility}" MaxWidth="1300">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
@@ -111,6 +100,17 @@
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
+
+            <Grid  Visibility="{Binding UnknownGuyVisibility}" Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="6*"/>
+                    <RowDefinition Height="*"/>
+
+                </Grid.RowDefinitions>
+                <Image Source="/IMGs/Other/Unknown.png" RenderTransformOrigin="0.5,0.5" Grid.Row="0"/>
+                <TextBlock Text="Najwyraźniej takiego rumu nie ma w naszej bazie." Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="24" FontStyle="Italic" FontWeight="Bold" FontFamily="Bookman Old Style"/>
+            </Grid>
+
             <Button Grid.Row="2" Content="Wróć do początku :)" Command="{Binding GoToMainMenu}" BorderBrush="Transparent" Background="LightGray" FontSize="24" FontStyle="Italic" FontWeight="Bold" FontFamily="Bookman Old Style"/>
         </Grid>
     </ScrollViewer>

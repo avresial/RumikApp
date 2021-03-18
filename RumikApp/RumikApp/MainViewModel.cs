@@ -86,8 +86,8 @@ namespace RumikApp.ViewModel
             }
         }
 
-        private DatabaseConnectionService _DatabaseConnectionService = new DatabaseConnectionService();
-        public DatabaseConnectionService DatabaseConnectionService
+        private IDatabaseConnectionService _DatabaseConnectionService = new DatabaseConnectionService();
+        public IDatabaseConnectionService DatabaseConnectionService
         {
             get { return _DatabaseConnectionService; }
             set
