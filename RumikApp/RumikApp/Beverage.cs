@@ -136,7 +136,7 @@ namespace RumikApp
             }
         }
 
-        private Flavour _Caramel = new Flavour("/IMGs/PollIMG/Caramel.png", "Caramel");
+        private Flavour _Caramel = new Flavour("/IMGs/PollIMG/Carmel.png", "Caramel");
         public Flavour Caramel
         {
             get { return _Caramel; }
@@ -164,7 +164,7 @@ namespace RumikApp
             }
         }
 
-        private Flavour _Cinnamon = new Flavour("/IMGs/PollIMG/Cinnamon.png", "Cinnamon");
+        private Flavour _Cinnamon = new Flavour("/IMGs/PollIMG/Cinamon.png", "Cinnamon");
         public Flavour Cinnamon
         {
             get { return _Cinnamon; }
@@ -250,22 +250,29 @@ namespace RumikApp
         }
 
 
-        public Beverage GetRandomBevrage(Random rand) 
+        public Beverage GetRandomBevrage(Random rand)
         {
             _Flavours = new ObservableCollection<String>();
-            _Name = "XD"+rand.Next().ToString();
+            _Name = "XD" + rand.Next().ToString();
             _Capacity = rand.Next();
             _AlcoholPercentage = rand.Next();
             _Grade = rand.Next(0, 10);
-            _GradeWithCoke = rand.Next(0,10);
+            _GradeWithCoke = rand.Next(0, 10);
             _Color = rand.Next().ToString();
 
-            if (((int)rand.Next(0,20))%2 == 0)
-               Honey.IsSet = true;
+            _Vanila.IsSet = true;
+            _Nuts.IsSet = true;
+            _Caramel.IsSet = true;
+            _Smoke.IsSet = true;
+            _Cinnamon.IsSet = true;
+            _Nutmeg.IsSet = true;
+            _Fruits.IsSet = true;
+
+            if (((int)rand.Next(0, 20)) % 2 == 0)
+                Honey.IsSet = true;
             else
                 Honey.IsSet = false;
-            _Nuts.IsSet = true;
-            _Vanila.IsSet = true;
+
             _Price = rand.Next(0, 200);
             return this;
         }
