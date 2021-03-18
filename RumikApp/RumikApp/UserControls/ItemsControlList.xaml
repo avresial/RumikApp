@@ -59,8 +59,9 @@
                                 <ColumnDefinition MinWidth="40"     Width="1*" />
                                 <ColumnDefinition MinWidth="350"    Width="1*" />
                             </Grid.ColumnDefinitions>
+                            <!--<Image Grid.Column="0" Source="/IMGs/Bottles/Jogaila.png" ToolTip="Tu też kiedyś każde zdjęcie innym będzie :)" />-->
 
-                            <Image Grid.Column="0" Source="/IMGs/Bottles/Jogaila.png" ToolTip="Tu też kiedyś każde zdjęcie innym będzie :)" />
+                            <Image Grid.Column="0" Source="{Binding TestIcon}" ToolTip="Tu też kiedyś każde zdjęcie innym będzie :)" />
 
                             <TextBlock Grid.Column="1" FontFamily="Bookman Old Style" FontSize="20" TextWrapping="Wrap" Text="{Binding Name}" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" />
                             <TextBlock Grid.Column="2" FontFamily="Bookman Old Style" FontSize="20" Text="{Binding Capacity}" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" />
