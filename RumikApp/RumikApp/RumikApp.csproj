@@ -139,6 +139,7 @@
     </ApplicationDefinition>
     <Compile Include="Beverage.cs" />
     <Compile Include="Converters\HoneyConverter.cs" />
+    <Compile Include="Converters\NutsConverter.cs" />
     <Compile Include="Converters\SmokedConverter.cs" />
     <Compile Include="Converters\StringToIMGConverter.cs" />
     <Compile Include="Converters\TinyIntToBoolConverter.cs" />
@@ -259,6 +260,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="IMGs\Other\Unknown.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="IMGs\PollIMG\Nuts.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

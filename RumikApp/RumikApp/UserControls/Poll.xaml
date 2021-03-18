@@ -107,7 +107,7 @@
                 <ToggleButton Grid.Column="0" Margin="15,5,15,5" Width="150" HorizontalAlignment="Center" IsChecked="{Binding Vanily}" Background="Transparent" BorderBrush="Transparent">
                     <StackPanel Orientation="Vertical">
                         <Image Source="/IMGs/PollIMG/Vanila.png"  />
-                        <TextBlock TextAlignment="Center" TextWrapping="Wrap" Text="wanilii"/>
+                        <TextBlock TextAlignment="Center" TextWrapping="Wrap" Text="Wanilii"/>
                     </StackPanel>
                 </ToggleButton>
                 <ToggleButton Grid.Column="1" Margin="15,5,15,5" Width="150" HorizontalAlignment="Center" IsChecked="{Binding Honey}" Background="Transparent" BorderBrush="Transparent">
@@ -119,13 +119,13 @@
                 <ToggleButton Grid.Column="2" Margin="15,5,15,5" Width="150" HorizontalAlignment="Center" IsChecked="{Binding Smoked}" Background="Transparent" BorderBrush="Transparent">
                     <StackPanel Orientation="Vertical">
                         <Image Source="/IMGs/PollIMG/Smoked.png"  />
-                        <TextBlock TextAlignment="Center" TextWrapping="Wrap" Text="dymiony"/>
+                        <TextBlock TextAlignment="Center" TextWrapping="Wrap" Text="Dymiony"/>
                     </StackPanel>
                 </ToggleButton>
-                <ToggleButton Grid.Column="3" Margin="15,5,15,5" Width="150" HorizontalAlignment="Center" IsChecked="{Binding Other}" Background="Transparent" BorderBrush="Transparent">
+                <ToggleButton Grid.Column="3" Margin="15,5,15,5" Width="150" HorizontalAlignment="Center" IsChecked="{Binding Nuts}" Background="Transparent" BorderBrush="Transparent">
                     <StackPanel Orientation="Vertical">
-                        <Image Source="/IMGs/Other/Unknown.png"/>
-                        <TextBlock TextAlignment="Center" TextWrapping="Wrap" Text="jakiś tam jeszcze"/>
+                        <Image Source="/IMGs/PollIMG/Nuts.png"/>
+                        <TextBlock TextAlignment="Center" TextWrapping="Wrap" Text="Orzeszków"/>
                     </StackPanel>
                 </ToggleButton>
             </Grid>
@@ -147,21 +147,21 @@
                     </StackPanel>
                 </ToggleButton>
                 
-                <ToggleButton Grid.Column="1" Margin="15,5,15,5" Width="150" HorizontalAlignment="Center" IsChecked="{Binding PricePoint2}" Background="Transparent" BorderBrush="Transparent">
+                <ToggleButton Grid.Column="1" Margin="15,5,15,5" HorizontalAlignment="Center" IsChecked="{Binding PricePoint2}" Background="Transparent" BorderBrush="Transparent">
                     <StackPanel Orientation="Vertical">
-                        <Image Source="/IMGs/PollIMG/PricePoint2.png"  />
+                        <Image Source="/IMGs/PollIMG/PricePoint2.png"/>
                         <TextBlock TextAlignment="Center" TextWrapping="Wrap" Text="50-70"/>
                     </StackPanel>
                 </ToggleButton>
                 
-                <ToggleButton Grid.Column="2" Margin="15,5,15,5" Width="150" HorizontalAlignment="Center" IsChecked="{Binding PricePoint3}" Background="Transparent" BorderBrush="Transparent">
+                <ToggleButton Grid.Column="2" Margin="15,5,15,5" HorizontalAlignment="Center" IsChecked="{Binding PricePoint3}" Background="Transparent" BorderBrush="Transparent">
                     <StackPanel Orientation="Vertical">
                         <Image Source="/IMGs/PollIMG/PricePoint3.png"  />
                         <TextBlock TextAlignment="Center" TextWrapping="Wrap" Text="70-90"/>
                     </StackPanel>
                 </ToggleButton>
                 
-                <ToggleButton Grid.Column="3" Margin="15,5,15,5" Width="150" HorizontalAlignment="Center" IsChecked="{Binding PricePoint4}" Background="Transparent" BorderBrush="Transparent">
+                <ToggleButton Grid.Column="3" Margin="15,5,15,5"  HorizontalAlignment="Center" IsChecked="{Binding PricePoint4}" Background="Transparent" BorderBrush="Transparent">
                     <StackPanel Orientation="Vertical">
                         <Image Source="/IMGs/PollIMG/PricePoint4.png"  />
                         <TextBlock TextAlignment="Center" TextWrapping="Wrap" Text="&#62;90"/>

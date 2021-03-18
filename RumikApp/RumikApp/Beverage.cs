@@ -264,7 +264,7 @@ namespace RumikApp
                Honey = true;
             else
                 Honey = false;
-
+            _Nuts = true;
             _Vanila = true;
             _Price = rand.Next(0, 200);
             return this;
