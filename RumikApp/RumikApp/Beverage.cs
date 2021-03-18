@@ -108,8 +108,8 @@ namespace RumikApp
             }
         }
 
-        private bool _Vanila;
-        public bool Vanila
+        private Flavour _Vanila = new Flavour("/IMGs/PollIMG/Vanila.png", "Vanila");
+        public Flavour Vanila
         {
             get { return _Vanila; }
             set
@@ -122,8 +122,8 @@ namespace RumikApp
             }
         }
 
-        private bool _Nuts;
-        public bool Nuts
+        private Flavour _Nuts = new Flavour("/IMGs/PollIMG/Nuts.png", "Nuts");
+        public Flavour Nuts
         {
             get { return _Nuts; }
             set
@@ -136,8 +136,8 @@ namespace RumikApp
             }
         }
 
-        private bool _Caramel;
-        public bool Caramel
+        private Flavour _Caramel = new Flavour("/IMGs/PollIMG/Caramel.png", "Caramel");
+        public Flavour Caramel
         {
             get { return _Caramel; }
             set
@@ -150,8 +150,8 @@ namespace RumikApp
             }
         }
 
-        private bool _Smoke;
-        public bool Smoke
+        private Flavour _Smoke = new Flavour("/IMGs/PollIMG/Smoked.png", "Smoke");
+        public Flavour Smoke
         {
             get { return _Smoke; }
             set
@@ -164,8 +164,8 @@ namespace RumikApp
             }
         }
 
-        private bool _Cinnamon;
-        public bool Cinnamon
+        private Flavour _Cinnamon = new Flavour("/IMGs/PollIMG/Cinnamon.png", "Cinnamon");
+        public Flavour Cinnamon
         {
             get { return _Cinnamon; }
             set
@@ -178,8 +178,8 @@ namespace RumikApp
             }
         }
 
-        private bool _Nutmeg;
-        public bool Nutmeg
+        private Flavour _Nutmeg = new Flavour("/IMGs/PollIMG/Nutmeg.png", "Nutmeg");
+        public Flavour Nutmeg
         {
             get { return _Nutmeg; }
             set
@@ -192,8 +192,8 @@ namespace RumikApp
             }
         }
 
-        private bool _Fruits;
-        public bool Fruits
+        private Flavour _Fruits = new Flavour("/IMGs/PollIMG/Fruits.png", "Fruits");
+        public Flavour Fruits
         {
             get { return _Fruits; }
             set
@@ -206,8 +206,8 @@ namespace RumikApp
             }
         }
 
-        private bool _Honey;
-        public bool Honey
+        private Flavour _Honey = new Flavour("/IMGs/PollIMG/Honey.png", "Honey");
+        public Flavour Honey
         {
             get { return _Honey; }
             set
@@ -261,11 +261,11 @@ namespace RumikApp
             _Color = rand.Next().ToString();
 
             if (((int)rand.Next(0,20))%2 == 0)
-               Honey = true;
+               Honey.IsSet = true;
             else
-                Honey = false;
-            _Nuts = true;
-            _Vanila = true;
+                Honey.IsSet = false;
+            _Nuts.IsSet = true;
+            _Vanila.IsSet = true;
             _Price = rand.Next(0, 200);
             return this;
         }

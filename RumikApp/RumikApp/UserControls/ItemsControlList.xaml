@@ -8,10 +8,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
-        <Converters:StringToIMGConverter x:Key="StringToIMGConverter" />
-        <Converters:HoneyConverter x:Key="HoneyConverter" />
-        <Converters:SmokedConverter x:Key="SmokedConverter" />
-        <Converters:NutsConverter x:Key="NutsConverter" />
+        <Converters:FlavourToIMGSrcConverter x:Key="FlavourToIMGSrcConverter" />
     </UserControl.Resources>
     <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
         <Grid>
@@ -35,7 +32,7 @@
                     <ColumnDefinition MinWidth="150"    Width="1*" />
                     <ColumnDefinition MinWidth="150"    Width="1*" />
                 </Grid.ColumnDefinitions>
-                
+
                 <TextBlock Grid.Column="0" Text="Obrazek"               Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                 <TextBlock Grid.Column="1" Text="Nazwa"                  Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                 <TextBlock Grid.Column="2" Text="Pojemność"              Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center"/>
@@ -51,13 +48,13 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="6*"/>
                     <RowDefinition Height="*"/>
-                    
+
                 </Grid.RowDefinitions>
                 <Image Source="/IMGs/Other/Unknown.png" RenderTransformOrigin="0.5,0.5" Grid.Row="0"/>
                 <TextBlock Text="Najwyraźniej takiego rumu nie ma w naszej bazie." Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="24" FontStyle="Italic" FontWeight="Bold" FontFamily="Bookman Old Style"/>
             </Grid>
-           
-            
+
+
             <ItemsControl ItemsSource="{Binding Beverages}" Grid.Row="1" Visibility="{Binding ScrollViewerVisibility}" MaxWidth="1300">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
@@ -83,28 +80,28 @@
                             <TextBlock Grid.Column="5" FontFamily="Bookman Old Style" FontSize="20" Text="{Binding GradeWithCoke}" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" />
                             <TextBlock Grid.Column="6" FontFamily="Bookman Old Style" FontSize="20" Text="{Binding Color}" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" />
                             <TextBlock Grid.Column="7" FontFamily="Bookman Old Style" FontSize="20" Text="{Binding Price}" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" />
-                           
+
                             <Grid Grid.Column="8">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition/>
                                     <ColumnDefinition/>
                                     <ColumnDefinition/>
                                 </Grid.ColumnDefinitions>
-                                
+
                                 <Grid.RowDefinitions>
                                     <RowDefinition/>
                                     <RowDefinition/>
                                 </Grid.RowDefinitions>
-                                
-                                <Image Grid.Column="0" Grid.Row="0" Width="100" Source="{Binding Honey, Converter={StaticResource HoneyConverter}}" ToolTip="Zawiera miodzik" />
-                                <Image Grid.Column="1" Grid.Row="0" Width="100" Source="{Binding Vanila, Converter={StaticResource StringToIMGConverter}}" ToolTip="Zawiera Wanilie"/>
-                                <Image Grid.Column="2" Grid.Row="0" Width="100" Source="{Binding Smoke, Converter={StaticResource SmokedConverter}}" ToolTip="Dyyyymione"/>
-                                
-                                <Image Grid.Column="0" Grid.Row="1" Width="100" Source="{Binding Nuts, Converter={StaticResource NutsConverter}}" ToolTip="Orzeszki"/>
-                                <Image Grid.Column="1" Grid.Row="1" Width="100" Source="{Binding Nuts, Converter={StaticResource NutsConverter}}" ToolTip="Orzeszki"/>
-                                <Image Grid.Column="2" Grid.Row="1" Width="100" Source="{Binding Nuts, Converter={StaticResource NutsConverter}}" ToolTip="Orzeszki"/>
+
+                                <Image Grid.Column="0" Grid.Row="0" Width="100" Source="{Binding Honey, Converter={StaticResource FlavourToIMGSrcConverter}}" ToolTip="Zawiera miodzik" />
+                                <Image Grid.Column="1" Grid.Row="0" Width="100" Source="{Binding Vanila, Converter={StaticResource FlavourToIMGSrcConverter}}" ToolTip="Zawiera Wanilie"/>
+                                <Image Grid.Column="2" Grid.Row="0" Width="100" Source="{Binding Smoke, Converter={StaticResource FlavourToIMGSrcConverter}}" ToolTip="Dyyyymione"/>
+
+                                <Image Grid.Column="0" Grid.Row="1" Width="100" Source="{Binding Nuts, Converter={StaticResource FlavourToIMGSrcConverter}}" ToolTip="Orzeszki"/>
+                                <Image Grid.Column="1" Grid.Row="1" Width="100" Source="{Binding Nuts, Converter={StaticResource FlavourToIMGSrcConverter}}" ToolTip="Orzeszki"/>
+                                <Image Grid.Column="2" Grid.Row="1" Width="100" Source="{Binding Nuts, Converter={StaticResource FlavourToIMGSrcConverter}}" ToolTip="Orzeszki"/>
                             </Grid>
-                                
+
 
                         </Grid>
                     </DataTemplate>

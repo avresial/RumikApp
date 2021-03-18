@@ -8,12 +8,14 @@ using System.Windows.Data;
 
 namespace RumikApp.Converters
 {
-    class HoneyConverter : IValueConverter
+    class FlavourToIMGSrcConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if ((bool)value)
-                return "/IMGs/PollIMG/Honey.png";
+            Flavour flavour = (Flavour)value;
+
+            if (flavour.IsSet)
+                return flavour.IMGSrc;
 
             return null;
         }
@@ -22,6 +24,5 @@ namespace RumikApp.Converters
         {
             throw new NotImplementedException();
         }
-
     }
 }

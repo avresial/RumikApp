@@ -72,44 +72,44 @@ namespace RumikApp.Services
             beverageTMP.Color = reader.GetString(7);
 
             if (reader.GetInt16(8) == 1)
-                beverageTMP.Vanila = true;
+                beverageTMP.Vanila.IsSet = true;
             else
-                beverageTMP.Vanila = false;
+                beverageTMP.Vanila.IsSet = false;
 
             if (reader.GetInt16(9) == 1)
-                beverageTMP.Nuts = true;
+                beverageTMP.Nuts.IsSet = true;
             else
-                beverageTMP.Nuts = false;
+                beverageTMP.Nuts.IsSet = false;
 
             if (reader.GetInt16(10) == 1)
-                beverageTMP.Caramel = true;
+                beverageTMP.Caramel.IsSet = true;
             else
-                beverageTMP.Caramel = false;
+                beverageTMP.Caramel.IsSet = false;
 
             if (reader.GetInt16(11) == 1)
-                beverageTMP.Smoke = true;
+                beverageTMP.Smoke.IsSet = true;
             else
-                beverageTMP.Smoke = false;
+                beverageTMP.Smoke.IsSet = false;
 
             if (reader.GetInt16(12) == 1)
-                beverageTMP.Cinnamon = true;
+                beverageTMP.Cinnamon.IsSet = true;
             else
-                beverageTMP.Cinnamon = false;
+                beverageTMP.Cinnamon.IsSet = false;
 
             if (reader.GetInt16(13) == 1)
-                beverageTMP.Nutmeg = true;
+                beverageTMP.Nutmeg.IsSet = true;
             else
-                beverageTMP.Nutmeg = false;
+                beverageTMP.Nutmeg.IsSet = false;
 
             if (reader.GetInt16(14) == 1)
-                beverageTMP.Fruits = true;
+                beverageTMP.Fruits.IsSet = true;
             else
-                beverageTMP.Fruits = false;
+                beverageTMP.Fruits.IsSet = false;
 
             if (reader.GetInt16(15) == 1)
-                beverageTMP.Honey = true;
+                beverageTMP.Honey.IsSet = true;
             else
-                beverageTMP.Honey = false;
+                beverageTMP.Honey.IsSet = false;
             return beverageTMP;
         }
 
