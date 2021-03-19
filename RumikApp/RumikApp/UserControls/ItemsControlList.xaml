@@ -63,13 +63,13 @@
 
                             <Image Grid.Column="0" Source="{Binding TestIcon}" ToolTip="Tu też kiedyś każde zdjęcie innym będzie :)" />
 
-                            <TextBlock Grid.Column="1" FontFamily="Bookman Old Style" FontSize="20" TextWrapping="Wrap" Text="{Binding Name}" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" />
-                            <TextBlock Grid.Column="2" FontFamily="Bookman Old Style" FontSize="20" Text="{Binding Capacity}" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" />
-                            <TextBlock Grid.Column="3" FontFamily="Bookman Old Style" FontSize="20" Text="{Binding AlcoholPercentage}" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" />
-                            <TextBlock Grid.Column="4" FontFamily="Bookman Old Style" FontSize="20" Text="{Binding Grade}" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" />
-                            <TextBlock Grid.Column="5" FontFamily="Bookman Old Style" FontSize="20" Text="{Binding GradeWithCoke}" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" />
-                            <TextBlock Grid.Column="6" FontFamily="Bookman Old Style" FontSize="20" Text="{Binding Color}" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" />
-                            <TextBlock Grid.Column="7" FontFamily="Bookman Old Style" FontSize="20" Text="{Binding Price}" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                            <TextBlock Grid.Column="1" FontFamily="Bookman Old Style" FontSize="15" TextWrapping="Wrap" Text="{Binding Name}" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                            <TextBlock Grid.Column="2" FontFamily="Bookman Old Style" FontSize="15" Text="{Binding Capacity}" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                            <TextBlock Grid.Column="3" FontFamily="Bookman Old Style" FontSize="15" Text="{Binding AlcoholPercentage}" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                            <TextBlock Grid.Column="4" FontFamily="Bookman Old Style" FontSize="15" Text="{Binding Grade}" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                            <TextBlock Grid.Column="5" FontFamily="Bookman Old Style" FontSize="15" Text="{Binding GradeWithCoke}" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                            <TextBlock Grid.Column="6" FontFamily="Bookman Old Style" FontSize="15" Text="{Binding Color}" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                            <TextBlock Grid.Column="7" FontFamily="Bookman Old Style" FontSize="15" Text="{Binding Price}" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" />
 
                             <Grid Grid.Column="8">
                                 <Grid.ColumnDefinitions>
