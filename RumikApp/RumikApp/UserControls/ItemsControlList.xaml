@@ -18,30 +18,29 @@
                 <RowDefinition Height="60"/>
             </Grid.RowDefinitions>
 
-            <Grid Margin="0,0,0,5" MaxWidth="1200" Visibility="{Binding ScrollViewerVisibility}">
+            <!--<Grid Margin="0,0,0,5" MaxWidth="1200" Visibility="{Binding ScrollViewerVisibility}">-->
+                <Grid Margin="0,0,0,5" MaxWidth="1200" Visibility="Visible">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition MinWidth="200"    Width="1*" />
-                    <ColumnDefinition MinWidth="100"    Width="1*" />
-                    <ColumnDefinition MinWidth="50"     Width="1*" />
-                    <ColumnDefinition MinWidth="70"     Width="1*" />
-                    <ColumnDefinition MinWidth="60"     Width="0.5*" />
-                    <ColumnDefinition MinWidth="80"     Width="0.5*" />
-                    <ColumnDefinition MinWidth="150"    Width="1*" />
-                    <ColumnDefinition MinWidth="40"     Width="1*" />
-                    <ColumnDefinition MinWidth="150"    Width="1*" />
-                    <ColumnDefinition MinWidth="150"    Width="1*" />
-                    <ColumnDefinition MinWidth="150"    Width="1*" />
+                    <ColumnDefinition MinWidth="200"    Width="1*" />                    <!--Obraz-->
+                    <ColumnDefinition MinWidth="140"    Width="2*" />                    <!--Name-->
+                    <ColumnDefinition MinWidth="50"     Width="0.2*" />                    <!--Capacity-->
+                    <ColumnDefinition MinWidth="70"     Width="0.2*" />                    <!--AlcoholPercentage-->
+                    <ColumnDefinition                   Width="0.3*" />                    <!--Grade-->
+                    <ColumnDefinition                   Width="0.3*" />                    <!--GradeWithCoke-->
+                    <ColumnDefinition                   Width="0.7*" />                    <!--Color-->
+                    <ColumnDefinition MinWidth="40"     Width="0.3*" />                    <!--Price-->
+                    <ColumnDefinition MinWidth="350"    Width="3*" />                    <!--Flavours-->
                 </Grid.ColumnDefinitions>
 
                 <TextBlock Grid.Column="0" Text="Obrazek"               Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                 <TextBlock Grid.Column="1" Text="Nazwa"                  Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                 <TextBlock Grid.Column="2" Text="Pojemność"              Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                <TextBlock Grid.Column="3" Text="Alcohol procenraż"     Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" TextWrapping="Wrap" />
+                <TextBlock Grid.Column="3" Text="%"                     Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" TextWrapping="Wrap" />
                 <TextBlock Grid.Column="4" Text="Ocena"                 Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" />
                 <TextBlock Grid.Column="5" Text="Ocena z kolką"         Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" TextWrapping="Wrap"/>
                 <TextBlock Grid.Column="6" Text="Kolor"                 Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" />
                 <TextBlock Grid.Column="7" Text="Cena"                  Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" />
-                <TextBlock Grid.Column="8" Text="Smaczek"              Margin="10" VerticalAlignment="Center" HorizontalAlignment="Right" />
+                <TextBlock Grid.Column="8" Text="Smaczek"              Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" />
             </Grid>
 
             <ItemsControl ItemsSource="{Binding Beverages}" Grid.Row="1" Visibility="{Binding ScrollViewerVisibility}" MaxWidth="1300">
@@ -49,21 +48,21 @@
                     <DataTemplate>
                         <Grid Margin="1,0,0,70">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition MinWidth="200"    Width="1*" />
-                                <ColumnDefinition MinWidth="100"    Width="1*" />
-                                <ColumnDefinition MinWidth="50"     Width="1*" />
-                                <ColumnDefinition MinWidth="70"     Width="1*" />
-                                <ColumnDefinition MinWidth="60"     Width="0.5*" />
-                                <ColumnDefinition MinWidth="80"     Width="0.5*" />
-                                <ColumnDefinition MinWidth="150"    Width="1*" />
-                                <ColumnDefinition MinWidth="40"     Width="1*" />
-                                <ColumnDefinition MinWidth="350"    Width="1*" />
+                                <ColumnDefinition MinWidth="200"    Width="1*" />       <!--Obraz-->
+                                <ColumnDefinition MinWidth="140"    Width="2*" />       <!--Name--> 
+                                <ColumnDefinition MinWidth="50"     Width="0.2*" />       <!--Capacity-->
+                                <ColumnDefinition MinWidth="70"     Width="0.2*" />       <!--AlcoholPercentage-->
+                                <ColumnDefinition                   Width="0.3*" />     <!--Grade-->
+                                <ColumnDefinition                   Width="0.3*" />     <!--GradeWithCoke--> 
+                                <ColumnDefinition                   Width="0.7*" />       <!--Color-->
+                                <ColumnDefinition MinWidth="40"     Width="0.3*" />       <!--Price--> 
+                                <ColumnDefinition MinWidth="350"    Width="3*" />       <!--Flavours--> 
                             </Grid.ColumnDefinitions>
                             <!--<Image Grid.Column="0" Source="/IMGs/Bottles/Jogaila.png" ToolTip="Tu też kiedyś każde zdjęcie innym będzie :)" />-->
 
                             <Image Grid.Column="0" Source="{Binding TestIcon}" ToolTip="Tu też kiedyś każde zdjęcie innym będzie :)" />
 
-                            <TextBlock Grid.Column="1" FontFamily="Bookman Old Style" FontSize="15" TextWrapping="Wrap" Text="{Binding Name}" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                            <TextBlock Grid.Column="1" FontFamily="Bookman Old Style" FontWeight="Bold" FontSize="15" TextWrapping="Wrap" Text="{Binding Name}" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Left" TextAlignment="Center" />
                             <TextBlock Grid.Column="2" FontFamily="Bookman Old Style" FontSize="15" Text="{Binding Capacity}" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" />
                             <TextBlock Grid.Column="3" FontFamily="Bookman Old Style" FontSize="15" Text="{Binding AlcoholPercentage}" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" />
                             <TextBlock Grid.Column="4" FontFamily="Bookman Old Style" FontSize="15" Text="{Binding Grade}" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" />
