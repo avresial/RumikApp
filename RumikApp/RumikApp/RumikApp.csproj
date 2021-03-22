@@ -139,7 +139,11 @@
     </ApplicationDefinition>
     <Compile Include="Beverage.cs" />
     <Compile Include="Converters\FlavourToIMGSrcConverter.cs" />
+    <Compile Include="Converters\ValueCapacityToString.cs" />
     <Compile Include="Converters\TinyIntToBoolConverter.cs" />
+    <Compile Include="Converters\ValueGradeToStringConverter.cs" />
+    <Compile Include="Converters\ValuePrecentageToStringConverter.cs" />
+    <Compile Include="Converters\ValuePriceToStringConverter.cs" />
     <Compile Include="Flavour.cs" />
     <Compile Include="MainViewModel.cs" />
     <Compile Include="Services\DatabaseConnectionService.cs" />
@@ -149,6 +153,9 @@
     </Compile>
     <Compile Include="UserControls\ItemsControlList.xaml.cs">
       <DependentUpon>ItemsControlList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ItemsControlListV2.xaml.cs">
+      <DependentUpon>ItemsControlListV2.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\MainControlPanel.xaml.cs">
       <DependentUpon>MainControlPanel.xaml</DependentUpon>
@@ -176,6 +183,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\ItemsControlList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\ItemsControlListV2.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
