@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.CommandWpf;
 using RumikApp.Services;
 using RumikApp.ViewModel;
 using System;
@@ -15,27 +16,47 @@ namespace RumikApp.ViewModels
     {
         private MainViewModel mainViewModel;
 
-        private BitmapImage _TestIcon;
-        public BitmapImage TestIcon
+        private Beverage _Beverage = new Beverage();
+        public Beverage Beverage
         {
-            get { return _TestIcon; }
+            get { return _Beverage; }
             set
             {
-                if (_TestIcon == value)
+                if (_Beverage == value)
                     return;
 
-                _TestIcon = value;
-                RaisePropertyChanged("TestIcon");
+                _Beverage = value;
+                RaisePropertyChanged("Beverage");
             }
         }
 
+        private RelayCommand _LoadNewImage;
+        public RelayCommand LoadNewImage
+        {
+            get
+            {
+                if (_LoadNewImage == null)
+                {
+                    _LoadNewImage = new RelayCommand(
+                    () =>
+                    {
+                        ;
+                    },
+                    () =>
+                    {
+                        return true;
+                    });
+                }
+
+                return _LoadNewImage;
+            }
+        }
+
+
+
         public InsertDataToDatabaseFormViewModel(MainViewModel mainViewModel)
         {
-            ;
-            byte[] XD = loadImage(null);
-            //
-
-            TestIcon = ImageProcessingService.ConvertToBitMapImage(XD);
+            Beverage.TestIcon = ImageProcessingService.ConvertToBitMapImage(loadImage(null));
         }
 
         void saveToDatabase()
@@ -47,19 +68,16 @@ namespace RumikApp.ViewModels
         byte[] loadImage(string imagePath)
         {
             if (imagePath == null || imagePath == "")
-                imagePath = Environment.CurrentDirectory + "\\IMG\\Unknown.png";
+                imagePath = Environment.CurrentDirectory + "\\IMG\\UnknownBottle.png";
 
             if (File.Exists(imagePath))
             {
-
                 byte[] array = ImageProcessingService.FileToByteArray(imagePath);
-                TestIcon = ImageProcessingService.ConvertToBitMapImage(array);
 
                 return array;
-
             }
-            return null;
 
+            return null;
         }
     }
 }
