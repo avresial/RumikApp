@@ -12,7 +12,7 @@ namespace RumikApp.Services
     public class DatabaseConnectionService : IDatabaseConnectionService
     {
         public ObservableCollection<Beverage> GetData(string Query)
-        {            
+        {
             if (Query == null || Query == "")
                 return null;
 
@@ -118,36 +118,35 @@ namespace RumikApp.Services
             return ConfigurationManager.ConnectionStrings[name].ConnectionString;
         }
 
-        void SaveImageToDatabase() 
+        public void SaveImageToDatabase(byte[] img)
         {
             using (MySqlConnection con = new MySqlConnection(CnnVal("sosek")))
             {
-                byte[] img = new byte[5];
-
                 // Notice that you are missing the third field (the image one)
                 // Please replace Image with the correct name of the image field in your table
-                string query = @"INSERT INTO example (Name, Description, Image) 
-                 VALUES (@name, @description, @img";
+                string query = @"INSERT INTO TestImgTable (Name, Image) 
+                 VALUES (@name, @img";
                 MySqlCommand cmd = new MySqlCommand(query, con);
-                //cmd.Parameters.Add("@name", MySqlDbType.VarChar).Value = u;
-                //cmd.Parameters.Add("@description", MySqlDbType.VarChar).Value = v;
+                cmd.Parameters.Add("@name", MySqlDbType.VarChar).Value = "XD";
                 cmd.Parameters.Add("@img", MySqlDbType.Binary).Value = img;
                 con.Open();
+
                 // Do not execute the query two times.
                 // cmd.ExecuteNonQuery();
                 if (cmd.ExecuteNonQuery() == 1)
                 {
-                    
+
                     int id = (int)cmd.LastInsertedId;
 
                 }
                 else
                 {
+                    ;
                     // failure msg ?
                 }
                 con.Close();
             }
         }
-     
+
     }
 }
