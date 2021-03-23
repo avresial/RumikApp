@@ -8,6 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using System.Windows.Media.Imaging;
 
 namespace RumikApp.ViewModels
@@ -40,7 +41,25 @@ namespace RumikApp.ViewModels
                     _LoadNewImage = new RelayCommand(
                     () =>
                     {
-                        ;
+                        var fileContent = string.Empty;
+                        var filePath = string.Empty;
+
+                        using (OpenFileDialog openFileDialog = new OpenFileDialog())
+                        {
+                            openFileDialog.InitialDirectory = "c:\\";
+                            openFileDialog.Filter = "png files (*.png)|*.png";
+                            openFileDialog.FilterIndex = 2;
+                            openFileDialog.RestoreDirectory = true;
+
+                            if (openFileDialog.ShowDialog() == DialogResult.OK)
+                            {
+
+                                filePath = openFileDialog.FileName;
+
+                                Beverage.TestIcon = ImageProcessingService.ConvertToBitMapImage(loadImage(filePath));
+
+                            }
+                        }
                     },
                     () =>
                     {
@@ -73,8 +92,9 @@ namespace RumikApp.ViewModels
             if (File.Exists(imagePath))
             {
                 byte[] array = ImageProcessingService.FileToByteArray(imagePath);
-
-                return array;
+                
+                if (array.Length < ImageProcessingService.MaxSupportedImageSize)
+                    return array;
             }
 
             return null;

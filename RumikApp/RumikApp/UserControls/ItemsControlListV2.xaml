@@ -100,8 +100,6 @@
                                     <RowDefinition/>
                                 </Grid.RowDefinitions>
 
-                                Source=""
-
                                 <Image Grid.Column="0" Grid.Row="0" Width="100" Source="{Binding Vanila, Converter={StaticResource FlavourToIMGSrcConverter}}" ToolTip="Wanila"/>
                                 <Image Grid.Column="1" Grid.Row="0" Width="100" Source="{Binding Nuts, Converter={StaticResource FlavourToIMGSrcConverter}}" ToolTip="Orzeszki"/>
                                 <Image Grid.Column="2" Grid.Row="0" Width="100" Source="{Binding Carmel, Converter={StaticResource FlavourToIMGSrcConverter}}" ToolTip="Karmel"/>
