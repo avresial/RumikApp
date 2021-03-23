@@ -252,28 +252,13 @@ namespace RumikApp
             }
         }
 
-        private ObservableCollection<String> _Flavours;
-        public ObservableCollection<String> Flavours
-        {
-            get { return _Flavours; }
-            set
-            {
-                if (_Flavours == value)
-                    return;
-
-                _Flavours = value;
-                RaisePropertyChanged("Flavours");
-            }
-        }
-
-        public Beverage()
-        {
-            loadImage();
-        }
-
+        /// <summary>
+        /// Creates instance of bevereage element with random values
+        /// </summary>
+        /// <param name="rand"></param>
+        /// <returns></returns>
         public Beverage GetRandomBevrage(Random rand)
         {
-            _Flavours = new ObservableCollection<String>();
             _Name = "XD" + rand.Next().ToString();
             _Capacity = rand.Next();
             _AlcoholPercentage = rand.Next();
@@ -297,63 +282,5 @@ namespace RumikApp
             _Price = rand.Next(0, 200);
             return this;
         }
-
-        void loadImage()
-        {
-            string imagePath = Environment.CurrentDirectory + "\\IMG\\Unknown.png";
-           
-
-            if (File.Exists(imagePath))
-            {
-                // Create image element to set as icon on the menu element
-
-                BitmapImage bmImage = new BitmapImage();
-                //bmImage.BeginInit();
-                //bmImage.UriSource = new Uri(imagePath, UriKind.Absolute);
-                //bmImage.EndInit();
-                //TestIcon = bmImage;
-
-                byte[] array = FileToByteArray(imagePath);
-                TestIcon = ConvertToBitMapImage(array);
-
-                //BitmapImage bImg = new BitmapImage();
-                //bImg.Source = ConvertToBitMapImage(bytes);
-                //byte[] bytes = ImageToByte(bImg);
-
-
-            }
-
-        
-        }
-        public static BitmapImage ConvertToBitMapImage(byte[] bytes)
-        {
-            if (bytes == null || bytes.Length == 0) return null;
-            var image = new BitmapImage();
-            using (var mem = new MemoryStream(bytes))
-            {
-                mem.Position = 0;
-                image.BeginInit();
-                image.CreateOptions = BitmapCreateOptions.PreservePixelFormat;
-                image.CacheOption = BitmapCacheOption.OnLoad;
-                image.UriSource = null;
-                image.StreamSource = mem;
-                image.EndInit();
-            }
-            //image.Freeze();
-            return image;
-        }
-        public static byte[] FileToByteArray(string fileName)
-        {
-            byte[] fileData = null;
-
-            using (FileStream fs = File.OpenRead(fileName))
-            {
-                var binaryReader = new BinaryReader(fs);
-                fileData = binaryReader.ReadBytes((int)fs.Length);
-            }
-            return fileData;
-        }
-
-
     }
 }

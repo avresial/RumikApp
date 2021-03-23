@@ -25,7 +25,7 @@
             <!--<UserControls:DataGrid Visibility="{Binding Visibility}"  DataContext="{Binding DataGridViewModel}" />
             <UserControls:DataGrid Visibility="{Binding Visibility}"  DataContext="{Binding DataGridViewModel2}" />-->
 
-            <UserControls:ItemsControlList Visibility="{Binding Visibility}"  DataContext="{Binding DataGridViewModel}" />
+            <UserControls:ItemsControlListV2 Visibility="{Binding Visibility}"  DataContext="{Binding DataGridViewModel}" />
             <UserControls:ItemsControlListV2 Visibility="{Binding Visibility}"  DataContext="{Binding DataGridViewModel2}" />
 
         </Grid>

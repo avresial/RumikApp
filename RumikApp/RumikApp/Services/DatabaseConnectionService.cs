@@ -71,10 +71,6 @@ namespace RumikApp.Services
             beverageTMP.GradeWithCoke = reader.GetInt32(6);
             beverageTMP.Color = reader.GetString(7);
 
-            byte[] buffer = new byte[250000];
-            reader.GetBytes(16, 0, buffer, 0, 250000);
-            beverageTMP.TestIcon = Beverage.ConvertToBitMapImage(buffer);
-
             if (reader.GetInt16(8) == 1)
                 beverageTMP.Vanila.IsSet = true;
             else
@@ -114,6 +110,11 @@ namespace RumikApp.Services
                 beverageTMP.Honey.IsSet = true;
             else
                 beverageTMP.Honey.IsSet = false;
+
+            byte[] buffer = new byte[250000];
+            reader.GetBytes(16, 0, buffer, 0, 250000);
+            beverageTMP.TestIcon = ImageProcessingService.ConvertToBitMapImage(buffer);
+
             return beverageTMP;
         }
 
@@ -122,20 +123,20 @@ namespace RumikApp.Services
             return ConfigurationManager.ConnectionStrings[name].ConnectionString;
         }
 
+        /// <summary>
+        /// Test method
+        /// </summary>
+        /// <param name="img"></param>
         public void SaveImageToDatabase(byte[] img)
         {
             using (MySqlConnection con = new MySqlConnection(CnnVal("sosek")))
             {
-                // Notice that you are missing the third field (the image one)
-                // Please replace Image with the correct name of the image field in your table
                 string query = @"INSERT INTO TestImgTable (Name, Image) VALUES (@name, @img)";
                 MySqlCommand cmd = new MySqlCommand(query, con);
                 cmd.Parameters.Add("@name", MySqlDbType.VarChar).Value = "XD";
                 cmd.Parameters.Add("@img", MySqlDbType.Binary).Value = img;
                 con.Open();
 
-                // Do not execute the query two times.
-                // cmd.ExecuteNonQuery();
                 if (cmd.ExecuteNonQuery() == 1)
                 {
 
@@ -151,36 +152,9 @@ namespace RumikApp.Services
             }
         }
 
-        public byte[] GetIMGData()
+        public void SaveBevreageToDatabase(Beverage beverage)
         {
-            
-            byte[] buffer = new byte[250000];
-
-            using (MySqlConnection con = new MySqlConnection(CnnVal("sosek")))
-            {
-
-                //string oString = "SELECT * FROM (SELECT * FROM RumsBase ORDER BY id DESC LIMIT 4) sub ORDER BY id ASC";
-                string oString = "SELECT * FROM TestImgTable ";
-
-                MySqlCommand cmd0 = new MySqlCommand(oString, con);
-
-                con.Open();
-
-                using (MySqlDataReader myReader = cmd0.ExecuteReader()) 
-                {
-                    while (myReader.Read())
-                    {
-                        
-                     var xd = myReader.GetBytes(1,0, buffer,0, 250000);
-                    }
-                }
-                   
-                        
-
-                con.Close();
-            }
-            return buffer;
-
+            throw new NotImplementedException();
         }
     }
 }
