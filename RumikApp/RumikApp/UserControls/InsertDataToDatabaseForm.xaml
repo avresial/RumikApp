@@ -22,14 +22,15 @@
 
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="*"/>
-                
+                <RowDefinition Height="auto"/>
+
             </Grid.RowDefinitions>
 
             <TextBlock Text="Super tajny formulaż do wprowadzania nudesów" FontWeight="Bold" FontSize="50" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.ColumnSpan="4" Margin="0,50,0,0"/>
 
             <StackPanel Grid.Column="0" Grid.Row="1" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="40,0,40,0" >
                 
-                <Image MaxWidth="500" Source="{Binding Beverage.TestIcon}" ToolTip="Tu też kiedyś każde zdjęcie innym będzie :)" HorizontalAlignment="Center" />
+                <Image MaxWidth="500" Source="{Binding Beverage.TestIcon}" ToolTip="Przyjmujemy zdjęcia do 30 kB" HorizontalAlignment="Center" />
                 <Button Height="50" BorderBrush="Transparent" Command="{Binding LoadNewImage}" Content="Dodaj foticzku" />
 
             </StackPanel>
@@ -56,22 +57,22 @@
                 <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding Beverage.Name}" Width="200" Height="25" />
 
                 <TextBlock Grid.Column="0" Grid.Row="1" FontFamily="Bookman Old Style" FontSize="20" Text="Pojemność"  Margin="10" VerticalAlignment="Center" HorizontalAlignment="Left" />
-                <TextBox Grid.Column="1" Grid.Row="1" Width="200" Height="25" />
+                <TextBox Grid.Column="1" Grid.Row="1" Text="Pojemność" Width="200" Height="25" />
 
                 <TextBlock Grid.Row="2" FontFamily="Bookman Old Style" FontSize="20" Text="Zawartość alkoholu" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Left" />
-                <TextBox Grid.Column="1" Grid.Row="2" Width="200" Height="25" />
+                <TextBox Grid.Column="1" Grid.Row="2" Text="Zawartość alkoholu" Width="200" Height="25" />
 
                 <TextBlock Grid.Row="3" FontFamily="Bookman Old Style" FontSize="20" Text="Kolor" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Left" />
                 <TextBox Grid.Column="1" Grid.Row="3" Text="{Binding Beverage.Color}" Width="200" Height="25" />
 
                 <TextBlock Grid.Column="0" Grid.Row="4" FontFamily="Bookman Old Style" FontSize="20" Text="Ocena solo" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Left" />
-                <TextBox Grid.Column="1" Grid.Row="4" Width="200" Height="25" />
+                <TextBox Grid.Column="1" Grid.Row="4" Text="Ocena solo" Width="200" Height="25" />
 
                 <TextBlock Grid.Column="0" Grid.Row="5"  FontFamily="Bookman Old Style" FontSize="20" Text="Ocena z kolką" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Left" />
-                <TextBox Grid.Column="1" Grid.Row="5" Width="200" Height="25" />
+                <TextBox Grid.Column="1" Grid.Row="5" Text="Ocena z kolką" Width="200" Height="25" />
 
                 <TextBlock Grid.Column="0" Grid.Row="6" FontFamily="Bookman Old Style" FontSize="20" Text="Cenka :)" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Left" />
-                <TextBox Grid.Column="1" Grid.Row="6" Width="200" Height="25" />
+                <TextBox Grid.Column="1" Grid.Row="6" Text="Cena" Width="200" Height="25" />
             
             </Grid>
             
@@ -122,8 +123,9 @@
 
             </Grid>
 
+            <Button Grid.Row="2" Width="100" Height="50" Command="{Binding SaveToDatabase}" Grid.Column="1"  />
 
-            
+
         </Grid>
     </ScrollViewer>
 </UserControl>

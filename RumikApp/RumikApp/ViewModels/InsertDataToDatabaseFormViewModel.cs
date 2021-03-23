@@ -71,17 +71,46 @@ namespace RumikApp.ViewModels
             }
         }
 
+        private RelayCommand _SaveToDatabase;
+        public RelayCommand SaveToDatabase
+        {
+            get
+            {
+                if (_SaveToDatabase == null)
+                {
+                    _SaveToDatabase = new RelayCommand(
+                    () =>
+                    {
+                        saveToDatabase();
+                    },
+                    () =>
+                    {
+                        return true;
+                    });
+                }
 
+                return _SaveToDatabase;
+            }
+        }
+
+
+        private Random rad = new Random();
+        private byte[] img;
 
         public InsertDataToDatabaseFormViewModel(MainViewModel mainViewModel)
         {
+            this.mainViewModel = mainViewModel;
             Beverage.TestIcon = ImageProcessingService.ConvertToBitMapImage(loadImage(null));
+           
         }
 
         void saveToDatabase()
         {
+            //RumsBaseTEST
             byte[] Image = new byte[250000];
-            mainViewModel.DatabaseConnectionService.SaveImageToDatabase(Image);
+
+            mainViewModel.DatabaseConnectionService.SaveBevreageToDatabase(Beverage, img);
+            //mainViewModel.DatabaseConnectionService.SaveImageToDatabase(Image);
         }
 
         byte[] loadImage(string imagePath)
@@ -92,9 +121,18 @@ namespace RumikApp.ViewModels
             if (File.Exists(imagePath))
             {
                 byte[] array = ImageProcessingService.FileToByteArray(imagePath);
-                
+
                 if (array.Length < ImageProcessingService.MaxSupportedImageSize)
+                {
+                    img = array;
                     return array;
+                }
+                else
+                {
+                    string message = "Zdięcie wydaje się być za duże.\nPrzyjmujemy zdjęcia o rozmiarze 30 kB";
+                    string title = "Task failed succesfully";
+                    MessageBox.Show(message, title);
+                }
             }
 
             return null;

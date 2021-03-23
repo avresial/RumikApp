@@ -117,6 +117,7 @@ namespace RumikApp.ViewModel
 
         public MainViewModel()
         {
+           
             PollViewModel = new PollViewModel(this);
             MainControlPanelViewModel = new MainControlPanelViewModel(this);
             DataGridViewModel = new DataGridViewModel(this);

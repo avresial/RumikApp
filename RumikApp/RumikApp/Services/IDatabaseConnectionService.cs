@@ -12,7 +12,7 @@ namespace RumikApp.Services
     {
         ObservableCollection<Beverage> GetData(string Query);
         ObservableCollection<Beverage> GetAllData();
-        void SaveBevreageToDatabase(Beverage beverage);
+        void SaveBevreageToDatabase(Beverage beverage, byte[] img);
         void SaveImageToDatabase(byte[] img);
         string CnnVal(string name);
     }

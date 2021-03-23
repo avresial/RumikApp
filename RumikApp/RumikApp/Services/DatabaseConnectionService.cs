@@ -43,8 +43,9 @@ namespace RumikApp.Services
             {
 
                 //string oString = "SELECT * FROM (SELECT * FROM RumsBase ORDER BY id DESC LIMIT 4) sub ORDER BY id ASC";
+                
                 string oString = "SELECT * FROM RumsBase ";
-
+                 //oString = "SELECT * FROM RumsBaseTEST ";
                 MySqlCommand cmd0 = new MySqlCommand(oString, con);
 
                 con.Open();
@@ -131,10 +132,12 @@ namespace RumikApp.Services
         {
             using (MySqlConnection con = new MySqlConnection(CnnVal("sosek")))
             {
+                
+
                 string query = @"INSERT INTO TestImgTable (Name, Image) VALUES (@name, @img)";
                 MySqlCommand cmd = new MySqlCommand(query, con);
                 cmd.Parameters.Add("@name", MySqlDbType.VarChar).Value = "XD";
-                cmd.Parameters.Add("@img", MySqlDbType.Binary).Value = img;
+                cmd.Parameters.Add("@img", MySqlDbType.Binary).Value = img.ToArray();
                 con.Open();
 
                 if (cmd.ExecuteNonQuery() == 1)
@@ -152,9 +155,53 @@ namespace RumikApp.Services
             }
         }
 
-        public void SaveBevreageToDatabase(Beverage beverage)
+        public void SaveBevreageToDatabase(Beverage beverage, byte[] img)
         {
-            throw new NotImplementedException();
+            //RumsBaseTEST
+
+
+            using (MySqlConnection con = new MySqlConnection(CnnVal("sosek")))
+            {
+                string query = @"INSERT INTO RumsBaseTEST 
+                (Name, Capacity, AlcoholPercentage, Price, Grade, GradeWithCoke, Color, Vanilly, Nuts, Carmel, Smoky, Cinnamon, Nutmeg, Fruits, Honey, Image) 
+                VALUES (@Name, @Capacity, @AlcoholPercentage, @Price, @Grade, @GradeWithCoke, @Color, @Vanilly, @Nuts, @Carmel, @Smoky, @Cinnamon, @Nutmeg, @Fruits, @Honey, @Image)";
+
+                MySqlCommand cmd = new MySqlCommand(query, con);
+
+                cmd.Parameters.Add("@Name", MySqlDbType.VarChar).Value = beverage.Name;
+                cmd.Parameters.Add("@Capacity", MySqlDbType.Int64).Value = 2;
+
+                cmd.Parameters.Add("@AlcoholPercentage", MySqlDbType.Float).Value = 1.1;
+                cmd.Parameters.Add("@Price", MySqlDbType.Float).Value = 3.69;
+                cmd.Parameters.Add("@Grade", MySqlDbType.Int32).Value = 420;
+                cmd.Parameters.Add("@GradeWithCoke", MySqlDbType.Int32).Value = 69;
+                cmd.Parameters.Add("@Color", MySqlDbType.VarChar).Value = "xd";
+
+                cmd.Parameters.Add("@Vanilly", MySqlDbType.Int16).Value = 1;
+                cmd.Parameters.Add("@Nuts", MySqlDbType.Int16).Value = 1;
+                cmd.Parameters.Add("@Carmel", MySqlDbType.Int16).Value = 1;
+                cmd.Parameters.Add("@Smoky", MySqlDbType.Int16).Value = 1;
+                cmd.Parameters.Add("@Cinnamon", MySqlDbType.Int16).Value = 1;
+                cmd.Parameters.Add("@Nutmeg", MySqlDbType.Int16).Value = 1;
+                cmd.Parameters.Add("@Fruits", MySqlDbType.Int16).Value = 1;
+                cmd.Parameters.Add("@Honey", MySqlDbType.Int16).Value = 1;
+                
+                cmd.Parameters.Add("@Image", MySqlDbType.Binary).Value = img;
+                con.Open();
+
+                if (cmd.ExecuteNonQuery() == 1)
+                {
+
+                    int id = (int)cmd.LastInsertedId;
+
+                }
+                else
+                {
+                    ;
+                    // failure msg ?
+                }
+                con.Close();
+            }
         }
     }
 }

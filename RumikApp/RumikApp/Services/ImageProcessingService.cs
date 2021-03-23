@@ -10,7 +10,7 @@ namespace RumikApp.Services
 {
     static class ImageProcessingService
     {
-        public static int MaxSupportedImageSize = 500 * 500;
+        public static int MaxSupportedImageSize = 30000;
         public static BitmapImage ConvertToBitMapImage(byte[] bytes)
         {
             if (bytes == null || bytes.Length == 0) return null;
