@@ -167,6 +167,7 @@
       <DependentUpon>Poll.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\DataGridViewModel.cs" />
+    <Compile Include="ViewModels\InsertDataToDatabaseFormViewModel.cs" />
     <Compile Include="ViewModels\MainControlPanelViewModel.cs" />
     <Compile Include="ViewModels\PollViewModel.cs" />
     <Page Include="MainWindow.xaml">

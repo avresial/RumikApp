@@ -27,7 +27,14 @@
 
             <UserControls:ItemsControlList Visibility="{Binding Visibility}"  DataContext="{Binding DataGridViewModel}" />
             <UserControls:ItemsControlListV2 Visibility="{Binding Visibility}"  DataContext="{Binding DataGridViewModel2}" />
+
         </Grid>
+
+
+        <!--<UserControls:InsertDataToDatabaseForm Grid.Row="0" Grid.ColumnSpan="2" Visibility="Visible"  DataContext="{Binding InsertDataToDatabaseForm}"/>-->
+            
+       
+
 
         <!--<Grid Grid.Row="0" Grid.ColumnSpan="2">
 

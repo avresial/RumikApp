@@ -86,6 +86,21 @@ namespace RumikApp.ViewModel
             }
         }
 
+        private InsertDataToDatabaseFormViewModel _InsertDataToDatabaseForm;
+        public InsertDataToDatabaseFormViewModel InsertDataToDatabaseForm
+        {
+            get { return _InsertDataToDatabaseForm; }
+            set
+            {
+                if (_InsertDataToDatabaseForm == value)
+                    return;
+
+                _InsertDataToDatabaseForm = value;
+                RaisePropertyChanged("InsertDataToDatabaseForm");
+            }
+        }
+
+
         private IDatabaseConnectionService _DatabaseConnectionService = new DatabaseConnectionService();
         public IDatabaseConnectionService DatabaseConnectionService
         {
@@ -106,6 +121,7 @@ namespace RumikApp.ViewModel
             MainControlPanelViewModel = new MainControlPanelViewModel(this);
             DataGridViewModel = new DataGridViewModel(this);
             DataGridViewModel2 = new DataGridViewModel(this);
+            InsertDataToDatabaseForm = new InsertDataToDatabaseFormViewModel(this);
 
             ItemsControl = new DataGridViewModel(this);
 
