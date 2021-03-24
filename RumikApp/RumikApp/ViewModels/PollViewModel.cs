@@ -159,7 +159,7 @@ namespace RumikApp.UserControls
         }
 
         // third section - chce poczuc smak
-        
+
         private Flavour _Vanila = new Flavour("/IMGs/PollIMG/Vanila.png", "Vanila");
         public Flavour Vanila
         {
@@ -272,7 +272,6 @@ namespace RumikApp.UserControls
                 RaisePropertyChanged("Honey");
             }
         }
-
 
         // fourth section - price
         private bool _PricePoint1;
@@ -422,6 +421,12 @@ namespace RumikApp.UserControls
 
                     oString += conditions[i];
                 }
+
+                if (solo)
+                    oString += " ORDER BY Grade DESC";
+                else if (WithCoke)
+                    oString += " ORDER BY GradeWithCoke DESC";
+
             }
             else
             {
@@ -429,8 +434,8 @@ namespace RumikApp.UserControls
             }
 
             Beverages = mainViewModel.DatabaseConnectionService.GetData(oString);
-
         }
+
         List<string> getListOfConditions()
         {
             List<string> conditions = new List<string>();
@@ -453,7 +458,7 @@ namespace RumikApp.UserControls
 
         string getStringPrice()
         {
-  
+
             if (PricePoint1)
                 return " Price < 50";
 
@@ -480,6 +485,7 @@ namespace RumikApp.UserControls
 
             return null;
         }
+
         string getFlavours()
         {
 
