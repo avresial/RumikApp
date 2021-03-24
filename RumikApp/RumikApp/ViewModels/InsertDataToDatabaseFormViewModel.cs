@@ -31,6 +31,21 @@ namespace RumikApp.ViewModels
             }
         }
 
+        private List<String> _StringList = new List<string>();
+        public List<String> StringList
+        {
+            get { return _StringList; }
+            set
+            {
+                if (_StringList == value)
+                    return;
+
+                _StringList = value;
+                RaisePropertyChanged("StringList");
+            }
+        }
+
+
         private RelayCommand _LoadNewImage;
         public RelayCommand LoadNewImage
         {
@@ -101,7 +116,11 @@ namespace RumikApp.ViewModels
         {
             this.mainViewModel = mainViewModel;
             Beverage.TestIcon = ImageProcessingService.ConvertToBitMapImage(loadImage(null));
-           
+
+            StringList.Add("Złoty");
+            StringList.Add("Miedziany");
+            StringList.Add("Biały");
+            StringList.Add("Bursztynowy");
         }
 
         void saveToDatabase()
@@ -116,7 +135,8 @@ namespace RumikApp.ViewModels
         byte[] loadImage(string imagePath)
         {
             if (imagePath == null || imagePath == "")
-                imagePath = Environment.CurrentDirectory + "\\IMG\\UnknownBottle.png";
+                imagePath = "../../IMGs/Bottles/UnknownBottle.png";
+
 
             if (File.Exists(imagePath))
             {
@@ -137,5 +157,7 @@ namespace RumikApp.ViewModels
 
             return null;
         }
+
+
     }
 }

@@ -107,10 +107,10 @@ namespace RumikApp
                     return;
 
                 _Color = value;
-                RaisePropertyChanged("Color");
+                RaisePropertyChanged(nameof(Color));
             }
         }
-
+    
         private Flavour _Vanila = new Flavour("/IMGs/PollIMG/Vanila.png", "Vanila");
         public Flavour Vanila
         {
