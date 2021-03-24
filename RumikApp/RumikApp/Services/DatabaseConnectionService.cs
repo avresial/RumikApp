@@ -73,14 +73,14 @@ namespace RumikApp.Services
             beverageTMP.GradeWithCoke = reader.GetInt32(6);
             beverageTMP.Color = reader.GetString(7);
 
-            beverageTMP.Vanila.IsSet    = IntToBool(reader.GetInt16(8));
-            beverageTMP.Nuts.IsSet      = IntToBool(reader.GetInt16(9));
-            beverageTMP.Carmel.IsSet    = IntToBool(reader.GetInt16(10));
-            beverageTMP.Smoke.IsSet     = IntToBool(reader.GetInt16(11));
-            beverageTMP.Cinnamon.IsSet  = IntToBool(reader.GetInt16(12));
-            beverageTMP.Nutmeg.IsSet    = IntToBool(reader.GetInt16(13));
-            beverageTMP.Fruits.IsSet    = IntToBool(reader.GetInt16(14));
-            beverageTMP.Honey.IsSet     = IntToBool(reader.GetInt16(15));
+            beverageTMP.Vanila.IsSet = IntToBool(reader.GetInt16(8));
+            beverageTMP.Nuts.IsSet = IntToBool(reader.GetInt16(9));
+            beverageTMP.Carmel.IsSet = IntToBool(reader.GetInt16(10));
+            beverageTMP.Smoke.IsSet = IntToBool(reader.GetInt16(11));
+            beverageTMP.Cinnamon.IsSet = IntToBool(reader.GetInt16(12));
+            beverageTMP.Nutmeg.IsSet = IntToBool(reader.GetInt16(13));
+            beverageTMP.Fruits.IsSet = IntToBool(reader.GetInt16(14));
+            beverageTMP.Honey.IsSet = IntToBool(reader.GetInt16(15));
 
             byte[] buffer = new byte[250000];
             reader.GetBytes(16, 0, buffer, 0, 250000);
@@ -125,10 +125,11 @@ namespace RumikApp.Services
             }
         }
 
-        public void SaveBevreageToDatabase(Beverage beverage, byte[] img)
+        public string SaveBevreageToDatabase(Beverage beverage, byte[] img)
         {
             //RumsBaseTEST
 
+            string result = null;
 
             using (MySqlConnection con = new MySqlConnection(CnnVal("sosek")))
             {
@@ -147,31 +148,32 @@ namespace RumikApp.Services
                 cmd.Parameters.Add("@GradeWithCoke", MySqlDbType.Int32).Value = beverage.GradeWithCoke;
                 cmd.Parameters.Add("@Color", MySqlDbType.VarChar).Value = beverage.Color;
 
-                cmd.Parameters.Add("@Vanilly", MySqlDbType.Int16).Value = 1;
-                cmd.Parameters.Add("@Nuts", MySqlDbType.Int16).Value = 1;
-                cmd.Parameters.Add("@Carmel", MySqlDbType.Int16).Value = 1;
-                cmd.Parameters.Add("@Smoky", MySqlDbType.Int16).Value = 1;
-                cmd.Parameters.Add("@Cinnamon", MySqlDbType.Int16).Value = 1;
-                cmd.Parameters.Add("@Nutmeg", MySqlDbType.Int16).Value = 1;
-                cmd.Parameters.Add("@Fruits", MySqlDbType.Int16).Value = 1;
-                cmd.Parameters.Add("@Honey", MySqlDbType.Int16).Value = 1;
+                cmd.Parameters.Add("@Vanilly", MySqlDbType.Int16).Value = boolToInt16(beverage.Vanila.IsSet);
+                cmd.Parameters.Add("@Nuts", MySqlDbType.Int16).Value = boolToInt16(beverage.Nuts.IsSet);
+                cmd.Parameters.Add("@Carmel", MySqlDbType.Int16).Value = boolToInt16(beverage.Carmel.IsSet);
+                cmd.Parameters.Add("@Smoky", MySqlDbType.Int16).Value = boolToInt16(beverage.Smoke.IsSet);
+                cmd.Parameters.Add("@Cinnamon", MySqlDbType.Int16).Value = boolToInt16(beverage.Cinnamon.IsSet);
+                cmd.Parameters.Add("@Nutmeg", MySqlDbType.Int16).Value = boolToInt16(beverage.Nutmeg.IsSet);
+                cmd.Parameters.Add("@Fruits", MySqlDbType.Int16).Value = boolToInt16(beverage.Fruits.IsSet);
+                cmd.Parameters.Add("@Honey", MySqlDbType.Int16).Value = boolToInt16(beverage.Honey.IsSet);
 
                 cmd.Parameters.Add("@Image", MySqlDbType.Binary).Value = img;
                 con.Open();
 
                 if (cmd.ExecuteNonQuery() == 1)
                 {
-
                     int id = (int)cmd.LastInsertedId;
-
+                    result = "Dodano nowy rekord o Id - " + id + ".";
                 }
                 else
                 {
-                    ;
-                    // failure msg ?
+                    result = "Coś poszło nie tak jak powinno \ndodawanie rekordu nie powiodło się;";
                 }
                 con.Close();
             }
+            result += "\ninformacja z - " + DateTime.Now.ToString();
+
+            return result;
         }
         Int16 boolToInt16(bool boolVariable)
         {

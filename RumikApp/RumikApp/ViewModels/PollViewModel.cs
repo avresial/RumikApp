@@ -532,11 +532,6 @@ namespace RumikApp.UserControls
             return null;
         }
 
-        public string CnnVal(string name)
-        {
-            return ConfigurationManager.ConnectionStrings[name].ConnectionString;
-        }
-
         public PollViewModel(MainViewModel mainViewModel)
         {
             this.mainViewModel = mainViewModel;

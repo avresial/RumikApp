@@ -121,14 +121,39 @@ namespace RumikApp.ViewModels
             }
         }
 
+        private String _Output;
+        public String Output
+        {
+            get { return _Output; }
+            set
+            {
+                if (_Output == value)
+                    return;
+
+                _Output = value;
+                RaisePropertyChanged(nameof(Output));
+            }
+        }
+
 
         private Random rad = new Random();
+
         private byte[] img;
 
         public InsertDataToDatabaseFormViewModel(MainViewModel mainViewModel)
         {
             this.mainViewModel = mainViewModel;
-            Beverage.TestIcon = ImageProcessingService.ConvertToBitMapImage(loadImage(null));
+            //Beverage.TestIcon = ImageProcessingService.ConvertToBitMapImage(loadImage(null));
+
+            byte[] TMPArray = loadImage(null);
+
+            BitmapImage CheckSize = ImageProcessingService.ConvertToBitMapImage(TMPArray);
+
+            if (CheckSize.PixelWidth <= 500 && CheckSize.PixelHeight <= 500)
+            {
+                img = TMPArray;
+                Beverage.TestIcon = CheckSize;
+            }
 
             StringList.Add("Złoty");
             StringList.Add("Miedziany");
@@ -141,8 +166,7 @@ namespace RumikApp.ViewModels
             //RumsBaseTEST
             byte[] Image = new byte[250000];
 
-            mainViewModel.DatabaseConnectionService.SaveBevreageToDatabase(Beverage, img);
-            //mainViewModel.DatabaseConnectionService.SaveImageToDatabase(Image);
+            Output = mainViewModel.DatabaseConnectionService.SaveBevreageToDatabase(Beverage, img);
         }
 
         byte[] loadImage(string imagePath)

@@ -132,7 +132,9 @@
 
             </Grid>
 
-            <Button Grid.Row="2" Width="100" Height="50" Command="{Binding SaveToDatabase}" Grid.Column="1"  />
+            <TextBlock Grid.Row="2" Grid.Column="0" Text="{Binding Output}" TextAlignment="Center" Height="auto" VerticalAlignment="Center"/>
+            
+            <Button Grid.Row="2" Grid.Column="1" Width="200" Height="50" Command="{Binding SaveToDatabase}" Content="Dodaj rekord do bazy"  />
 
 
         </Grid>
