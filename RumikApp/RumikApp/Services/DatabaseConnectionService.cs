@@ -43,9 +43,9 @@ namespace RumikApp.Services
             {
 
                 //string oString = "SELECT * FROM (SELECT * FROM RumsBase ORDER BY id DESC LIMIT 4) sub ORDER BY id ASC";
-                
+
                 string oString = "SELECT * FROM RumsBase ";
-                 //oString = "SELECT * FROM RumsBaseTEST ";
+                //oString = "SELECT * FROM RumsBaseTEST ";
                 MySqlCommand cmd0 = new MySqlCommand(oString, con);
 
                 con.Open();
@@ -63,6 +63,7 @@ namespace RumikApp.Services
         Beverage saveReaderToBevrage(MySqlDataReader reader)
         {
             Beverage beverageTMP = new Beverage();
+
             beverageTMP.ID = reader.GetInt32(0);
             beverageTMP.Name = reader.GetString(1);
             beverageTMP.Capacity = reader.GetInt32(2);
@@ -72,45 +73,14 @@ namespace RumikApp.Services
             beverageTMP.GradeWithCoke = reader.GetInt32(6);
             beverageTMP.Color = reader.GetString(7);
 
-            if (reader.GetInt16(8) == 1)
-                beverageTMP.Vanila.IsSet = true;
-            else
-                beverageTMP.Vanila.IsSet = false;
-
-            if (reader.GetInt16(9) == 1)
-                beverageTMP.Nuts.IsSet = true;
-            else
-                beverageTMP.Nuts.IsSet = false;
-
-            if (reader.GetInt16(10) == 1)
-                beverageTMP.Carmel.IsSet = true;
-            else
-                beverageTMP.Carmel.IsSet = false;
-
-            if (reader.GetInt16(11) == 1)
-                beverageTMP.Smoke.IsSet = true;
-            else
-                beverageTMP.Smoke.IsSet = false;
-
-            if (reader.GetInt16(12) == 1)
-                beverageTMP.Cinnamon.IsSet = true;
-            else
-                beverageTMP.Cinnamon.IsSet = false;
-
-            if (reader.GetInt16(13) == 1)
-                beverageTMP.Nutmeg.IsSet = true;
-            else
-                beverageTMP.Nutmeg.IsSet = false;
-
-            if (reader.GetInt16(14) == 1)
-                beverageTMP.Fruits.IsSet = true;
-            else
-                beverageTMP.Fruits.IsSet = false;
-
-            if (reader.GetInt16(15) == 1)
-                beverageTMP.Honey.IsSet = true;
-            else
-                beverageTMP.Honey.IsSet = false;
+            beverageTMP.Vanila.IsSet    = IntToBool(reader.GetInt16(8));
+            beverageTMP.Nuts.IsSet      = IntToBool(reader.GetInt16(9));
+            beverageTMP.Carmel.IsSet    = IntToBool(reader.GetInt16(10));
+            beverageTMP.Smoke.IsSet     = IntToBool(reader.GetInt16(11));
+            beverageTMP.Cinnamon.IsSet  = IntToBool(reader.GetInt16(12));
+            beverageTMP.Nutmeg.IsSet    = IntToBool(reader.GetInt16(13));
+            beverageTMP.Fruits.IsSet    = IntToBool(reader.GetInt16(14));
+            beverageTMP.Honey.IsSet     = IntToBool(reader.GetInt16(15));
 
             byte[] buffer = new byte[250000];
             reader.GetBytes(16, 0, buffer, 0, 250000);
@@ -132,7 +102,7 @@ namespace RumikApp.Services
         {
             using (MySqlConnection con = new MySqlConnection(CnnVal("sosek")))
             {
-                
+
 
                 string query = @"INSERT INTO TestImgTable (Name, Image) VALUES (@name, @img)";
                 MySqlCommand cmd = new MySqlCommand(query, con);
@@ -169,13 +139,13 @@ namespace RumikApp.Services
                 MySqlCommand cmd = new MySqlCommand(query, con);
 
                 cmd.Parameters.Add("@Name", MySqlDbType.VarChar).Value = beverage.Name;
-                cmd.Parameters.Add("@Capacity", MySqlDbType.Int64).Value = 2;
+                cmd.Parameters.Add("@Capacity", MySqlDbType.Int64).Value = beverage.Capacity;
 
-                cmd.Parameters.Add("@AlcoholPercentage", MySqlDbType.Float).Value = 1.1;
-                cmd.Parameters.Add("@Price", MySqlDbType.Float).Value = 3.69;
-                cmd.Parameters.Add("@Grade", MySqlDbType.Int32).Value = 420;
-                cmd.Parameters.Add("@GradeWithCoke", MySqlDbType.Int32).Value = 69;
-                cmd.Parameters.Add("@Color", MySqlDbType.VarChar).Value = "xd";
+                cmd.Parameters.Add("@AlcoholPercentage", MySqlDbType.Float).Value = beverage.AlcoholPercentage;
+                cmd.Parameters.Add("@Price", MySqlDbType.Float).Value = beverage.Price;
+                cmd.Parameters.Add("@Grade", MySqlDbType.Int32).Value = beverage.Grade;
+                cmd.Parameters.Add("@GradeWithCoke", MySqlDbType.Int32).Value = beverage.GradeWithCoke;
+                cmd.Parameters.Add("@Color", MySqlDbType.VarChar).Value = beverage.Color;
 
                 cmd.Parameters.Add("@Vanilly", MySqlDbType.Int16).Value = 1;
                 cmd.Parameters.Add("@Nuts", MySqlDbType.Int16).Value = 1;
@@ -185,7 +155,7 @@ namespace RumikApp.Services
                 cmd.Parameters.Add("@Nutmeg", MySqlDbType.Int16).Value = 1;
                 cmd.Parameters.Add("@Fruits", MySqlDbType.Int16).Value = 1;
                 cmd.Parameters.Add("@Honey", MySqlDbType.Int16).Value = 1;
-                
+
                 cmd.Parameters.Add("@Image", MySqlDbType.Binary).Value = img;
                 con.Open();
 
@@ -202,6 +172,20 @@ namespace RumikApp.Services
                 }
                 con.Close();
             }
+        }
+        Int16 boolToInt16(bool boolVariable)
+        {
+            if (boolVariable)
+                return 1;
+            else
+                return 0;
+        }
+        bool IntToBool(Int16 Int16Variable)
+        {
+            if (Int16Variable == 1)
+                return true;
+            else
+                return false;
         }
     }
 }
