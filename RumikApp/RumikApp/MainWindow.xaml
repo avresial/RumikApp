@@ -19,29 +19,18 @@
             <RowDefinition Height="auto"/>
 
         </Grid.RowDefinitions>
-        <!--<Grid Grid.Row="0" Grid.ColumnSpan="2">
+        <Grid Grid.Row="0" Grid.ColumnSpan="2">
             <UserControls:MainControlPanel Visibility="{Binding Visibility}" DataContext="{Binding MainControlPanelViewModel}"/>
             <UserControls:Poll Visibility="{Binding Visibility}" DataContext="{Binding PollViewModel}"/>
-            --><!--<UserControls:DataGrid Visibility="{Binding Visibility}"  DataContext="{Binding DataGridViewModel}" />
-            <UserControls:DataGrid Visibility="{Binding Visibility}"  DataContext="{Binding DataGridViewModel2}" />--><!--
-
+          
             <UserControls:ItemsControlListV2 Visibility="{Binding Visibility}"  DataContext="{Binding DataGridViewModel}" />
             <UserControls:ItemsControlListV2 Visibility="{Binding Visibility}"  DataContext="{Binding DataGridViewModel2}" />
 
-        </Grid>-->
+        </Grid>
 
 
-        <UserControls:InsertDataToDatabaseForm Grid.Row="0" Grid.ColumnSpan="2" Visibility="Visible"  DataContext="{Binding InsertDataToDatabaseForm}"/>
+        <!--<UserControls:InsertDataToDatabaseForm Grid.Row="0" Grid.ColumnSpan="2" Visibility="Visible"  DataContext="{Binding InsertDataToDatabaseForm}"/>-->
             
-       
-
-
-        <!--<Grid Grid.Row="0" Grid.ColumnSpan="2">
-
-            <UserControls:ItemsControlList Visibility="Visible"  DataContext="{Binding ItemsControl}" />
-        </Grid>-->
-
-
-        <!--<Button Content="yy" Command="{Binding Test}" Width="200" Height="50" Grid.Row="1"/>-->
+        <!--<UserControls:ItemsControlListV2 Grid.Row="0" Grid.ColumnSpan="2" Visibility="Visible"  DataContext="{Binding ItemsControl}" />-->
     </Grid>
 </Window>
