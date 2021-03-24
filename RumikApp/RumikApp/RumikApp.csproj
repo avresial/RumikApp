@@ -139,6 +139,8 @@
     </ApplicationDefinition>
     <Compile Include="Beverage.cs" />
     <Compile Include="Converters\FlavourToIMGSrcConverter.cs" />
+    <Compile Include="Converters\StringToFloatWithValidation.cs" />
+    <Compile Include="Converters\StringToIntWithValidation.cs" />
     <Compile Include="Converters\ValueCapacityToString.cs" />
     <Compile Include="Converters\TinyIntToBoolConverter.cs" />
     <Compile Include="Converters\ValueGradeToStringConverter.cs" />

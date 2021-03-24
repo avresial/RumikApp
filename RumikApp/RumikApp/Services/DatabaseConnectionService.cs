@@ -102,12 +102,12 @@ namespace RumikApp.Services
         {
             using (MySqlConnection con = new MySqlConnection(CnnVal("sosek")))
             {
-
+                //entity framework in future or dapper
 
                 string query = @"INSERT INTO TestImgTable (Name, Image) VALUES (@name, @img)";
                 MySqlCommand cmd = new MySqlCommand(query, con);
                 cmd.Parameters.Add("@name", MySqlDbType.VarChar).Value = "XD";
-                cmd.Parameters.Add("@img", MySqlDbType.Binary).Value = img.ToArray();
+                cmd.Parameters.Add("@img", MySqlDbType.Binary).Value = img;
                 con.Open();
 
                 if (cmd.ExecuteNonQuery() == 1)

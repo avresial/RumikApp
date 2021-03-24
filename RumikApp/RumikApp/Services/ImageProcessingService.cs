@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -25,7 +26,7 @@ namespace RumikApp.Services
                 image.StreamSource = mem;
                 image.EndInit();
             }
-            
+
             return image;
         }
         public static byte[] FileToByteArray(string fileName)

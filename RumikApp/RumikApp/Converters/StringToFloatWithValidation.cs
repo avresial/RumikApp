@@ -8,26 +8,20 @@ using System.Windows.Data;
 
 namespace RumikApp.Converters
 {
-    class TinyIntToBoolConverter : IValueConverter
+    class StringToFloatWithValidation : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (int.TryParse(value.ToString(), out _))
-            {
-                if (int.Parse(value.ToString()) == 0)
-                    return false;
-                else
-                    return true;
-            }
-            return false;
+            float temp;
+            if (float.TryParse(value.ToString(), out temp))
+                return temp;
+
+            return 0.0;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if ((bool)value)
-                return 1;
-            else
-                return 0;
+            return value.ToString();
         }
     }
 }

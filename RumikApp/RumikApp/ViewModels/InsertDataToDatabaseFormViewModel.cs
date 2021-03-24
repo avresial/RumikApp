@@ -71,8 +71,21 @@ namespace RumikApp.ViewModels
 
                                 filePath = openFileDialog.FileName;
 
-                                Beverage.TestIcon = ImageProcessingService.ConvertToBitMapImage(loadImage(filePath));
+                                byte[] TMPArray = loadImage(filePath);
 
+                                BitmapImage CheckSize = ImageProcessingService.ConvertToBitMapImage(TMPArray);
+
+                                if (CheckSize.PixelWidth <= 500 && CheckSize.PixelHeight <= 500)
+                                {
+                                    img = TMPArray;
+                                    Beverage.TestIcon = CheckSize;
+                                }
+                                else
+                                {
+                                    string message = "Zdięcie wydaje się być za duże.\nPrzyjmujemy zdjęcia o 500x500 px";
+                                    string title = "Task failed succesfully";
+                                    MessageBox.Show(message, title);
+                                }
                             }
                         }
                     },
@@ -137,27 +150,11 @@ namespace RumikApp.ViewModels
             if (imagePath == null || imagePath == "")
                 imagePath = "../../IMGs/Bottles/UnknownBottle.png";
 
-
             if (File.Exists(imagePath))
-            {
-                byte[] array = ImageProcessingService.FileToByteArray(imagePath);
-
-                if (array.Length < ImageProcessingService.MaxSupportedImageSize)
-                {
-                    img = array;
-                    return array;
-                }
-                else
-                {
-                    string message = "Zdięcie wydaje się być za duże.\nPrzyjmujemy zdjęcia o rozmiarze 30 kB";
-                    string title = "Task failed succesfully";
-                    MessageBox.Show(message, title);
-                }
-            }
+                return ImageProcessingService.FileToByteArray(imagePath);
 
             return null;
         }
-
 
     }
 }
