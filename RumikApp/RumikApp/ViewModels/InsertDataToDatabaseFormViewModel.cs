@@ -110,10 +110,21 @@ namespace RumikApp.ViewModels
                     () =>
                     {
                         saveToDatabase();
+                        Beverage = new Beverage();
+                        byte[] TMPArray = loadImage(null);
+
+                        BitmapImage CheckSize = ImageProcessingService.ConvertToBitMapImage(TMPArray);
+
+                        if (CheckSize.PixelWidth <= 500 && CheckSize.PixelHeight <= 500)
+                        {
+                            img = TMPArray;
+                            Beverage.TestIcon = CheckSize;
+                        }
+                        Beverage.Color = StringList[0];
                     },
                     () =>
                     {
-                        return true;
+                        return doesFormContainsNewData();
                     });
                 }
 
@@ -143,8 +154,7 @@ namespace RumikApp.ViewModels
         public InsertDataToDatabaseFormViewModel(MainViewModel mainViewModel)
         {
             this.mainViewModel = mainViewModel;
-            //Beverage.TestIcon = ImageProcessingService.ConvertToBitMapImage(loadImage(null));
-
+            
             byte[] TMPArray = loadImage(null);
 
             BitmapImage CheckSize = ImageProcessingService.ConvertToBitMapImage(TMPArray);
@@ -159,6 +169,8 @@ namespace RumikApp.ViewModels
             StringList.Add("Miedziany");
             StringList.Add("Biały");
             StringList.Add("Bursztynowy");
+
+            Beverage.Color = StringList[0];
         }
 
         void saveToDatabase()
@@ -178,6 +190,36 @@ namespace RumikApp.ViewModels
                 return ImageProcessingService.FileToByteArray(imagePath);
 
             return null;
+        }
+        bool doesFormContainsNewData()
+        {
+            bool formContainsNewData = false;
+            int controlSum = 0;
+
+            if (Beverage.Name != null)
+                if (Beverage.Name.Length > 1)
+                    controlSum++;
+
+            if (Beverage.Capacity != 0)
+                controlSum++;
+
+            if (Beverage.AlcoholPercentage != 0)
+                controlSum++;
+
+            //if (Beverage.Grade != 0)
+            //    controlSum++;
+
+            //if (Beverage.GradeWithCoke != 0)
+            //    controlSum++;
+
+            if (Beverage.Price != 0)
+                controlSum++;
+
+
+            if (controlSum >= 4)
+                formContainsNewData = true;
+
+            return formContainsNewData;
         }
 
     }

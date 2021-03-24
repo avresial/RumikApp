@@ -21,6 +21,9 @@ namespace RumikApp.Converters
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
+            if (value.ToString() == "" || !value.ToString().All(char.IsDigit))
+                return 0.0;
+                       
             return value.ToString();
         }
     }
