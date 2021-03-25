@@ -29,7 +29,7 @@
         </Grid>
 
 
-        <!--<UserControls:InsertDataToDatabaseForm Grid.Row="0" Grid.ColumnSpan="2" Visibility="Visible"  DataContext="{Binding InsertDataToDatabaseForm}"/>-->
+        <UserControls:InsertDataToDatabaseForm Grid.Row="0" Grid.ColumnSpan="2" Visibility="{Binding Visibility}"  DataContext="{Binding InsertDataToDatabaseForm}"/>
             
         <!--<UserControls:ItemsControlListV2 Grid.Row="0" Grid.ColumnSpan="2" Visibility="Visible"  DataContext="{Binding ItemsControl}" />-->
     </Grid>

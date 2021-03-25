@@ -8,6 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Media.Imaging;
 
@@ -16,6 +17,21 @@ namespace RumikApp.ViewModels
     public class InsertDataToDatabaseFormViewModel : ViewModelBase
     {
         private MainViewModel mainViewModel;
+
+        private Visibility _Visibility = Visibility.Collapsed;
+        public Visibility Visibility
+        {
+            get { return _Visibility; }
+            set
+            {
+                if (_Visibility == value)
+                    return;
+
+                _Visibility = value;
+                RaisePropertyChanged("Visibility");
+
+            }
+        }
 
         private Beverage _Beverage = new Beverage();
         public Beverage Beverage
@@ -31,20 +47,19 @@ namespace RumikApp.ViewModels
             }
         }
 
-        private List<String> _StringList = new List<string>();
-        public List<String> StringList
+        private List<String> _ColorsList = new List<string>();
+        public List<String> ColorsList
         {
-            get { return _StringList; }
+            get { return _ColorsList; }
             set
             {
-                if (_StringList == value)
+                if (_ColorsList == value)
                     return;
 
-                _StringList = value;
+                _ColorsList = value;
                 RaisePropertyChanged("StringList");
             }
         }
-
 
         private RelayCommand _LoadNewImage;
         public RelayCommand LoadNewImage
@@ -84,7 +99,7 @@ namespace RumikApp.ViewModels
                                 {
                                     string message = "Zdięcie wydaje się być za duże.\nPrzyjmujemy zdjęcia o 500x500 px";
                                     string title = "Task failed succesfully";
-                                    MessageBox.Show(message, title);
+                                    System.Windows.MessageBox.Show(message, title);
                                 }
                             }
                         }
@@ -120,7 +135,7 @@ namespace RumikApp.ViewModels
                             img = TMPArray;
                             Beverage.TestIcon = CheckSize;
                         }
-                        Beverage.Color = StringList[0];
+                        Beverage.Color = ColorsList[0];
                     },
                     () =>
                     {
@@ -131,6 +146,30 @@ namespace RumikApp.ViewModels
                 return _SaveToDatabase;
             }
         }
+
+        private RelayCommand _CloseForm;
+        public RelayCommand CloseForm
+        {
+            get
+            {
+                if (_CloseForm == null)
+                {
+                    _CloseForm = new RelayCommand(
+                    () =>
+                    {
+                        Visibility = Visibility.Collapsed;
+                        mainViewModel.MainControlPanelViewModel.Visibility = Visibility.Visible;
+                    },
+                    () =>
+                    {
+                        return true;
+                    });
+                }
+
+                return _CloseForm;
+            }
+        }
+
 
         private String _Output;
         public String Output
@@ -154,7 +193,7 @@ namespace RumikApp.ViewModels
         public InsertDataToDatabaseFormViewModel(MainViewModel mainViewModel)
         {
             this.mainViewModel = mainViewModel;
-            
+
             byte[] TMPArray = loadImage(null);
 
             BitmapImage CheckSize = ImageProcessingService.ConvertToBitMapImage(TMPArray);
@@ -165,12 +204,13 @@ namespace RumikApp.ViewModels
                 Beverage.TestIcon = CheckSize;
             }
 
-            StringList.Add("Złoty");
-            StringList.Add("Miedziany");
-            StringList.Add("Biały");
-            StringList.Add("Bursztynowy");
+            ColorsList.Add("Złoty");
+            ColorsList.Add("Miedziany");
+            ColorsList.Add("Biały");
+            ColorsList.Add("Bursztynowy");
+            ColorsList.Add("Czarny");
 
-            Beverage.Color = StringList[0];
+            Beverage.Color = ColorsList[0];
         }
 
         void saveToDatabase()

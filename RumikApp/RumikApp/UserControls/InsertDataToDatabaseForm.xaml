@@ -73,7 +73,7 @@
                 <TextBox Grid.Column="1" Grid.Row="2" Text="{Binding Beverage.AlcoholPercentage, Converter={StaticResource StringToFloatWithValidation}}" Width="150" Height="25" MaxLength="3" />
 
                 <TextBlock Grid.Row="3" FontFamily="Bookman Old Style" FontSize="20" Text="Kolor" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Left" />
-                <ComboBox Grid.Column="1" Grid.Row="3" SelectedItem="{Binding Beverage.Color}" Height="25" ItemsSource="{Binding StringList}" Width="150"/>
+                <ComboBox Grid.Column="1" Grid.Row="3" SelectedItem="{Binding Beverage.Color}" Height="25" ItemsSource="{Binding ColorsList}" Width="150"/>
 
                 <TextBlock Grid.Column="0" Grid.Row="4" FontFamily="Bookman Old Style" FontSize="20" Text="Ocena solo [x/10]" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Left" />
                 <TextBox Grid.Column="1" Grid.Row="4" Text="{Binding Beverage.Grade, Converter={StaticResource StringToIntWithValidation}}" Width="150" Height="25" MaxLength="2" />
@@ -119,8 +119,8 @@
                     <Image Source="{Binding Beverage.Cinnamon.IMGSrc}" VerticalAlignment="Center" HorizontalAlignment="Center" Height="100" Width="100" />
                 </ToggleButton>
 
-                <ToggleButton Grid.Column="2" Grid.Row="1" IsChecked="{Binding Beverage.Nutmeg.IsSet}"  Width="100" Height="100" HorizontalAlignment="Center" Background="Transparent" BorderBrush="Transparent" Margin="5">
-                    <Image Source="{Binding Beverage.Nutmeg.IMGSrc}" VerticalAlignment="Center" HorizontalAlignment="Center" Height="100" Width="100" />
+                <ToggleButton Grid.Column="2" Grid.Row="1" IsChecked="{Binding Beverage.Spirit.IsSet}"  Width="100" Height="100" HorizontalAlignment="Center" Background="Transparent" BorderBrush="Transparent" Margin="5">
+                    <Image Source="{Binding Beverage.Spirit.IMGSrc}" VerticalAlignment="Center" HorizontalAlignment="Center" Height="100" Width="100" />
                 </ToggleButton>
 
                 <ToggleButton Grid.Column="0" Grid.Row="2" IsChecked="{Binding Beverage.Fruits.IsSet}"  Width="100" Height="100" HorizontalAlignment="Center" Background="Transparent" BorderBrush="Transparent" Margin="5">
@@ -133,11 +133,15 @@
 
             </Grid>
 
-            <TextBlock Grid.Row="2" Grid.ColumnSpan="2" FontFamily="Bookman Old Style" Grid.Column="0" Text="{Binding Output}" TextAlignment="Center" Height="auto" VerticalAlignment="Top" HorizontalAlignment="Right"/>
+            <TextBlock Grid.Row="2" Grid.ColumnSpan="2" FontFamily="Bookman Old Style" Grid.Column="0" Text="{Binding Output}" TextAlignment="Center" Height="auto" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="5"/>
 
-            <Button Grid.Row="2" Grid.Column="2" Width="200" FontFamily="Bookman Old Style" Height="50" Command="{Binding SaveToDatabase}" Content="Dodaj rekord do bazy" VerticalAlignment="Top"  />
+            <StackPanel Grid.Row="2" Grid.Column="2" Orientation="Horizontal" Margin="5">
 
+                <Button Width="200" FontFamily="Bookman Old Style" Height="50" Command="{Binding SaveToDatabase}" Content="Dodaj rekord do bazy" VerticalAlignment="Top" Margin="5,0,5,0" />
+                <Button Width="200" FontFamily="Bookman Old Style" Height="50" Command="{Binding CloseForm}" Content="Wyjdź stąd" VerticalAlignment="Top" Margin="5,0,5,0" />
 
+            </StackPanel>
+           
         </Grid>
     </ScrollViewer>
 </UserControl>

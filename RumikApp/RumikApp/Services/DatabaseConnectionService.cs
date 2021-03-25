@@ -11,6 +11,7 @@ namespace RumikApp.Services
 {
     public class DatabaseConnectionService : IDatabaseConnectionService
     {
+
         public ObservableCollection<Beverage> GetData(string Query)
         {
             if (Query == null || Query == "")
@@ -45,7 +46,7 @@ namespace RumikApp.Services
                 //string oString = "SELECT * FROM (SELECT * FROM RumsBase ORDER BY id DESC LIMIT 4) sub ORDER BY id ASC";
 
                 string oString = "SELECT * FROM RumsBase ";
-                //oString = "SELECT * FROM RumsBaseTEST ";
+                oString = "SELECT * FROM RumsBaseTEST ";
                 MySqlCommand cmd0 = new MySqlCommand(oString, con);
 
                 con.Open();
@@ -78,7 +79,7 @@ namespace RumikApp.Services
             beverageTMP.Carmel.IsSet = IntToBool(reader.GetInt16(10));
             beverageTMP.Smoke.IsSet = IntToBool(reader.GetInt16(11));
             beverageTMP.Cinnamon.IsSet = IntToBool(reader.GetInt16(12));
-            beverageTMP.Nutmeg.IsSet = IntToBool(reader.GetInt16(13));
+            beverageTMP.Spirit.IsSet = IntToBool(reader.GetInt16(13));
             beverageTMP.Fruits.IsSet = IntToBool(reader.GetInt16(14));
             beverageTMP.Honey.IsSet = IntToBool(reader.GetInt16(15));
 
@@ -134,8 +135,8 @@ namespace RumikApp.Services
             using (MySqlConnection con = new MySqlConnection(CnnVal("sosek")))
             {
                 string query = @"INSERT INTO RumsBaseTEST 
-                (Name, Capacity, AlcoholPercentage, Price, Grade, GradeWithCoke, Color, Vanilly, Nuts, Carmel, Smoky, Cinnamon, Nutmeg, Fruits, Honey, Image) 
-                VALUES (@Name, @Capacity, @AlcoholPercentage, @Price, @Grade, @GradeWithCoke, @Color, @Vanilly, @Nuts, @Carmel, @Smoky, @Cinnamon, @Nutmeg, @Fruits, @Honey, @Image)";
+                (Name, Capacity, AlcoholPercentage, Price, Grade, GradeWithCoke, Color, Vanilly, Nuts, Carmel, Smoky, Cinnamon, Spirit, Fruits, Honey, Image) 
+                VALUES (@Name, @Capacity, @AlcoholPercentage, @Price, @Grade, @GradeWithCoke, @Color, @Vanilly, @Nuts, @Carmel, @Smoky, @Cinnamon, @Spirit, @Fruits, @Honey, @Image)";
 
                 MySqlCommand cmd = new MySqlCommand(query, con);
 
@@ -153,7 +154,7 @@ namespace RumikApp.Services
                 cmd.Parameters.Add("@Carmel", MySqlDbType.Int16).Value = boolToInt16(beverage.Carmel.IsSet);
                 cmd.Parameters.Add("@Smoky", MySqlDbType.Int16).Value = boolToInt16(beverage.Smoke.IsSet);
                 cmd.Parameters.Add("@Cinnamon", MySqlDbType.Int16).Value = boolToInt16(beverage.Cinnamon.IsSet);
-                cmd.Parameters.Add("@Nutmeg", MySqlDbType.Int16).Value = boolToInt16(beverage.Nutmeg.IsSet);
+                cmd.Parameters.Add("@Spirit", MySqlDbType.Int16).Value = boolToInt16(beverage.Spirit.IsSet);
                 cmd.Parameters.Add("@Fruits", MySqlDbType.Int16).Value = boolToInt16(beverage.Fruits.IsSet);
                 cmd.Parameters.Add("@Honey", MySqlDbType.Int16).Value = boolToInt16(beverage.Honey.IsSet);
 

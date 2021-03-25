@@ -15,8 +15,16 @@
         <Converters:ValueGradeToStringConverter x:Key="ValueGradeToStringConverter"/>
     </UserControl.Resources>
 
-    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+    <!--<ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">-->
         <Grid>
+
+            <Grid.ColumnDefinitions>
+
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="auto"/>
+                
+            </Grid.ColumnDefinitions>
+            
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="*"/>
@@ -47,8 +55,9 @@
                 <TextBlock Grid.Column="7" Text="Cena"                  Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" />
                 <TextBlock Grid.Column="8" Text="Smaczek"              Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" />
             </Grid>
-
-            <ItemsControl ItemsSource="{Binding Beverages}" Grid.Row="1" Visibility="{Binding ScrollViewerVisibility}" MaxWidth="1300" HorizontalAlignment="Center">
+            
+            <ScrollViewer Grid.Row="1" Grid.ColumnSpan="2" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" >
+                <ItemsControl   ItemsSource="{Binding Beverages}" Visibility="{Binding ScrollViewerVisibility}" MaxWidth="1300" HorizontalAlignment="Center">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <Grid Margin="1,0,0,70" MaxHeight="300">
@@ -83,7 +92,7 @@
 
                                 <TextBlock Grid.Column="0" Grid.Row="2" FontFamily="Bookman Old Style" FontSize="20" Text="{Binding Grade, Converter={StaticResource ValueGradeToStringConverter}}"             Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" ToolTip="Ocena dla drinka rum + rum" />
                                 <TextBlock Grid.Column="1" Grid.Row="2" FontFamily="Bookman Old Style" FontSize="20" Text="{Binding GradeWithCoke, Converter={StaticResource ValueGradeToStringConverter}}"     Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" ToolTip="Ocena dla drinka z colą" />
-                                <TextBlock Grid.Column="2" Grid.Row="2" FontFamily="Bookman Old Style" FontSize="20" Text="{Binding Price, Converter={StaticResource ValuePriceToStringConverter}}"             Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                <TextBlock Grid.Column="2" Grid.Row="2" FontFamily="Bookman Old Style" FontSize="20" Text="{Binding Price, Converter={StaticResource ValuePriceToStringConverter}}"             Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" ToolTip="Tak na prawdę to PLN, ale rupees brzmi zabawniej xD"/>
 
                             </Grid>
                                                        
@@ -95,7 +104,7 @@
                                               
                                 <Image Width="100" Source="{Binding Smoke, Converter={StaticResource FlavourToIMGSrcConverter}}" ToolTip="Dymione"/>
                                 <Image Width="100" Source="{Binding Cinnamon, Converter={StaticResource FlavourToIMGSrcConverter}}" ToolTip="Cynamonik"/>
-                                <Image Width="100" Source="{Binding Nutmeg, Converter={StaticResource FlavourToIMGSrcConverter}}" ToolTip="Gałka muszkatałowa"/>
+                                <Image Width="100" Source="{Binding Spirit, Converter={StaticResource FlavourToIMGSrcConverter}}" ToolTip="Smak spirytusu"/>
                                               
                                 <Image Width="100" Source="{Binding Fruits, Converter={StaticResource FlavourToIMGSrcConverter}}" ToolTip="Owocki"/>
                                 <Image Width="100" Source="{Binding Honey, Converter={StaticResource FlavourToIMGSrcConverter}}" ToolTip="Miodzik" />
@@ -106,7 +115,7 @@
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
-
+            </ScrollViewer>
             <Grid  Visibility="{Binding UnknownGuyVisibility}" Grid.Row="1">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="6*"/>
@@ -116,9 +125,14 @@
                 <Image Source="/IMGs/Other/Unknown.png" RenderTransformOrigin="0.5,0.5" Grid.Row="0"/>
                 <TextBlock Text="Najwyraźniej takiego rumu nie ma w naszej bazie." Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="24" FontStyle="Italic" FontWeight="Bold" FontFamily="Bookman Old Style"/>
             </Grid>
+           
+            <Button Grid.Row="2" Grid.Column="0" Content="Wróć do początku :)" Command="{Binding GoToMainMenu}" BorderBrush="Transparent" Background="LightGray" FontSize="24" FontStyle="Italic" FontWeight="Bold" FontFamily="Bookman Old Style"/>
 
-            <Button Grid.Row="2" Content="Wróć do początku :)" Command="{Binding GoToMainMenu}" BorderBrush="Transparent" Background="LightGray" FontSize="24" FontStyle="Italic" FontWeight="Bold" FontFamily="Bookman Old Style"/>
+            <Button Grid.Row="2" Grid.Column="1" Content="Dodaj nowe do bazy" Command="{Binding AddNewToDatabase}" BorderBrush="Transparent" Background="WhiteSmoke" FontSize="24" FontStyle="Italic" FontWeight="Bold" FontFamily="Bookman Old Style" Padding="5"/>
+
         </Grid>
-    </ScrollViewer>
+        
+      
+    <!--</ScrollViewer>-->
 </UserControl>
 
