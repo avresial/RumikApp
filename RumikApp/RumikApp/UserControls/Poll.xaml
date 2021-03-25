@@ -141,10 +141,10 @@
                         <TextBlock TextAlignment="Center" TextWrapping="Wrap" Text="Cyna - mon"/>
                     </StackPanel>
                 </ToggleButton>
-                <ToggleButton Grid.Column="1" Grid.Row="1" Margin="15,5,15,5" Width="150" HorizontalAlignment="Center" IsChecked="{Binding Nutmeg.IsSet}" Background="Transparent" BorderBrush="Transparent">
+                <ToggleButton Grid.Column="1" Grid.Row="1" Margin="15,5,15,5" Width="150" HorizontalAlignment="Center" IsChecked="{Binding Spirit.IsSet}" Background="Transparent" BorderBrush="Transparent">
                     <StackPanel Orientation="Vertical">
-                        <Image Source="{Binding Nutmeg.IMGSrc}"  />
-                        <TextBlock TextAlignment="Center" TextWrapping="Wrap" Text="Gałka muszkatałowa"/>
+                        <Image Source="{Binding Spirit.IMGSrc}"  />
+                        <TextBlock TextAlignment="Center" TextWrapping="Wrap" Text="Błogosławiony smak spirytusu"/>
                     </StackPanel>
                 </ToggleButton>
                 <ToggleButton Grid.Column="2" Grid.Row="1" Margin="15,5,15,5" Width="150" HorizontalAlignment="Center" IsChecked="{Binding Fruits.IsSet}" Background="Transparent" BorderBrush="Transparent">

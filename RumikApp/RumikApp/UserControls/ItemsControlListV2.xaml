@@ -95,7 +95,7 @@
                                               
                                 <Image Width="100" Source="{Binding Smoke, Converter={StaticResource FlavourToIMGSrcConverter}}" ToolTip="Dymione"/>
                                 <Image Width="100" Source="{Binding Cinnamon, Converter={StaticResource FlavourToIMGSrcConverter}}" ToolTip="Cynamonik"/>
-                                <Image Width="100" Source="{Binding Nutmeg, Converter={StaticResource FlavourToIMGSrcConverter}}" ToolTip="Gałka muszkatałowa"/>
+                                <Image Width="100" Source="{Binding Spirit, Converter={StaticResource FlavourToIMGSrcConverter}}" ToolTip="Smak spirytusu"/>
                                               
                                 <Image Width="100" Source="{Binding Fruits, Converter={StaticResource FlavourToIMGSrcConverter}}" ToolTip="Owocki"/>
                                 <Image Width="100" Source="{Binding Honey, Converter={StaticResource FlavourToIMGSrcConverter}}" ToolTip="Miodzik" />

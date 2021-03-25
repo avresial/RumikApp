@@ -31,7 +31,7 @@
                 <DataGridCheckBoxColumn Header = "Caramel?" Binding = "{Binding Caramel}"/>
                 <DataGridCheckBoxColumn Header = "Dymek?" Binding = "{Binding Smoke}"/>
                 <DataGridCheckBoxColumn Header = "Cynamon?" Binding = "{Binding Cinnamon}"/>
-                <DataGridCheckBoxColumn Header = "Nutmeg?" Binding = "{Binding Nutmeg}"/>
+                <DataGridCheckBoxColumn Header = "Spirit?" Binding = "{Binding Spirit}"/>
                 <DataGridCheckBoxColumn Header = "Owocki?" Binding = "{Binding Fruits}"/>
                 <DataGridCheckBoxColumn Header = "Miodek?" Binding = "{Binding Honey}"/>
             </DataGrid.Columns>

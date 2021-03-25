@@ -230,17 +230,17 @@ namespace RumikApp.UserControls
             }
         }
 
-        private Flavour _Nutmeg = new Flavour("/IMGs/PollIMG/Nutmeg.png", "Nutmeg");
-        public Flavour Nutmeg
+        private Flavour _Spirit = new Flavour("/IMGs/PollIMG/Spirit.png", "Spirit");
+        public Flavour Spirit
         {
-            get { return _Nutmeg; }
+            get { return _Spirit; }
             set
             {
-                if (_Nutmeg == value)
+                if (_Spirit == value)
                     return;
 
-                _Nutmeg = value;
-                RaisePropertyChanged("Nutmeg");
+                _Spirit = value;
+                RaisePropertyChanged("Spirit");
             }
         }
 
@@ -507,8 +507,8 @@ namespace RumikApp.UserControls
             if (Cinnamon.IsSet)
                 flavoursList.Add("Cinnamon = 1");
 
-            if (Nutmeg.IsSet)
-                flavoursList.Add("Nutmeg = 1");
+            if (Spirit.IsSet)
+                flavoursList.Add("Spirit = 1");
 
             if (Fruits.IsSet)
                 flavoursList.Add("Fruits = 1");
