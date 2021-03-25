@@ -32,7 +32,7 @@
 
             <TextBlock Grid.ColumnSpan="2" HorizontalAlignment="Center"  TextWrapping="Wrap" Text="Potrzebuję w celu" VerticalAlignment="Center" FontSize="40" Margin="0,50,0,30" />
 
-            <Grid Grid.Row="1" MaxWidth="900">
+            <Grid Grid.Row="1" MaxWidth="900" ToolTip="Jeszcze nie aktywne">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
