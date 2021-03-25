@@ -14,8 +14,6 @@ namespace RumikApp.ViewModel
 
     public class MainViewModel : ViewModelBase
     {
-        private string connectionStringSosek;
-
         private MainControlPanelViewModel _MainControlPanelViewModel;
         public MainControlPanelViewModel MainControlPanelViewModel
         {

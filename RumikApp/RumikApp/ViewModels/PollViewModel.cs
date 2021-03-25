@@ -432,6 +432,7 @@ namespace RumikApp.UserControls
             else
             {
                 oString = $"SELECT * FROM RumsBase";
+                oString = "SELECT * FROM RumsBaseTEST";
             }
 
             Beverages = mainViewModel.DatabaseConnectionService.GetData(oString);

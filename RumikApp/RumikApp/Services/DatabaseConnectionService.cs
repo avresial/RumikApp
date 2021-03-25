@@ -11,6 +11,7 @@ namespace RumikApp.Services
 {
     public class DatabaseConnectionService : IDatabaseConnectionService
     {
+
         public ObservableCollection<Beverage> GetData(string Query)
         {
             if (Query == null || Query == "")

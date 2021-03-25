@@ -133,12 +133,10 @@
                     </StackPanel>
                 </ToggleButton>
 
-
-
                 <ToggleButton Grid.Column="0" Grid.Row="1" Margin="15,5,15,5" Width="150" HorizontalAlignment="Center" IsChecked="{Binding Cinnamon.IsSet}" Background="Transparent" BorderBrush="Transparent">
                     <StackPanel Orientation="Vertical">
                         <Image Source="{Binding Cinnamon.IMGSrc}"  />
-                        <TextBlock TextAlignment="Center" TextWrapping="Wrap" Text="Cyna - mon"/>
+                        <TextBlock TextAlignment="Center" TextWrapping="Wrap" Text="CynaMoon"/>
                     </StackPanel>
                 </ToggleButton>
                 <ToggleButton Grid.Column="1" Grid.Row="1" Margin="15,5,15,5" Width="150" HorizontalAlignment="Center" IsChecked="{Binding Spirit.IsSet}" Background="Transparent" BorderBrush="Transparent">

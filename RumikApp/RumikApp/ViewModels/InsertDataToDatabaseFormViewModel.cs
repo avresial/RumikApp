@@ -208,6 +208,7 @@ namespace RumikApp.ViewModels
             ColorsList.Add("Miedziany");
             ColorsList.Add("Biały");
             ColorsList.Add("Bursztynowy");
+            ColorsList.Add("Czarny");
 
             Beverage.Color = ColorsList[0];
         }
