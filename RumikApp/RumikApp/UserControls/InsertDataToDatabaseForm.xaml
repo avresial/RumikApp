@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:Converters="clr-namespace:RumikApp.Converters"
+             xmlns:UserControls="clr-namespace:RumikApp.UserControls"
              xmlns:local="clr-namespace:RumikApp.UserControls"
              mc:Ignorable="d" 
              d:DesignHeight="1121" d:DesignWidth="1800">
@@ -18,6 +19,7 @@
 
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*" MaxHeight="600"/>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
 
         </Grid.RowDefinitions>
@@ -67,8 +69,8 @@
                 <TextBlock Grid.Column="0" Grid.Row="1" FontFamily="Bookman Old Style" FontSize="20" Text="Pojemność [ml]"  Margin="10" VerticalAlignment="Center" HorizontalAlignment="Left" />
                 <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding Beverage.Capacity, Converter={StaticResource StringToFloatWithValidation}}" Width="150" Height="25" MaxLength="9" />
 
-                <TextBlock Grid.Row="2" FontFamily="Bookman Old Style" FontSize="20" Text="Zawartość alkoholu [%]" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Left" />
-                <TextBox Grid.Column="1" Grid.Row="2" Text="{Binding Beverage.AlcoholPercentage, Converter={StaticResource StringToFloatWithValidation}}" Width="150" Height="25" MaxLength="3" />
+                <TextBlock Grid.Row="2" FontFamily="Bookman Old Style" FontSize="20"  Text="Zawartość alkoholu [%]" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                <TextBox Grid.Column="1" Grid.Row="2" Text="{Binding Beverage.AlcoholPercentage, Converter={StaticResource StringToFloatWithValidation}}" Width="150" Height="25" MaxLength="2" />
 
                 <TextBlock Grid.Row="3" FontFamily="Bookman Old Style" FontSize="20" Text="Kolor" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Left" />
                 <ComboBox Grid.Column="1" Grid.Row="3" SelectedItem="{Binding Beverage.Color}" Height="25" ItemsSource="{Binding ColorsList}" Width="150"/>
@@ -149,6 +151,8 @@
 
             </StackPanel>
         </Grid>
+
+        <UserControls:ItemsControlListV2 Grid.Row="3" DataContext="{Binding DataGridViewModel}" />
 
 
     </Grid>
