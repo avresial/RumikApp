@@ -414,6 +414,7 @@ namespace RumikApp.UserControls
             if (conditions.Count > 0)
             {
                 oString = $"SELECT * FROM RumsBase WHERE ";
+                oString = $"SELECT * FROM RumsBaseTEST WHERE ";
                 for (int i = 0; i < conditions.Count; i++)
                 {
                     if (i != 0)

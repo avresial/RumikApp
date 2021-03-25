@@ -103,6 +103,30 @@ namespace RumikApp.ViewModels
             }
         }
 
+        private RelayCommand _AddNewToDatabase;
+        public RelayCommand AddNewToDatabase
+        {
+            get
+            {
+                if (_AddNewToDatabase == null)
+                {
+                    _AddNewToDatabase = new RelayCommand(
+                    () =>
+                    {
+                        mainViewModel.InsertDataToDatabaseForm.Visibility = Visibility.Visible;
+                        Visibility = Visibility.Collapsed;
+                    },
+                    () =>
+                    {
+                        return true;
+                    });
+                }
+
+                return _AddNewToDatabase;
+            }
+        }
+
+
         public DataGridViewModel(MainViewModel mainViewModel)
         {
             this.mainViewModel = mainViewModel;

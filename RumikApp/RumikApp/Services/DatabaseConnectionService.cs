@@ -45,7 +45,7 @@ namespace RumikApp.Services
                 //string oString = "SELECT * FROM (SELECT * FROM RumsBase ORDER BY id DESC LIMIT 4) sub ORDER BY id ASC";
 
                 string oString = "SELECT * FROM RumsBase ";
-                //oString = "SELECT * FROM RumsBaseTEST ";
+                oString = "SELECT * FROM RumsBaseTEST ";
                 MySqlCommand cmd0 = new MySqlCommand(oString, con);
 
                 con.Open();
