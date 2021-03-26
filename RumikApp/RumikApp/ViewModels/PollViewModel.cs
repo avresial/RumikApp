@@ -405,6 +405,29 @@ namespace RumikApp.UserControls
             }
         }
 
+        string GetForPartyAndCheap(string minimalWeight)
+        {
+            if (ForPartyBool)
+                return " AlcoholPercentage / (100 * (Price/ Capacity))  > " + minimalWeight;
+            return "";
+        }
+
+        string GetGoodButCheap(string minimalWeight)
+        {
+            if (GoodButCheap)
+                return " ((Grade+GradeWithCoke)/2)/((100 * (Price/ Capacity))) > " + minimalWeight + "and ((Grade+GradeWithCoke)/2) > 5";
+            return "";
+        }
+
+        string GetExclusive(string minimalSoloGrade, string minimalWeight)
+        {
+            if (Exclusive)
+                return " Grade > " + minimalSoloGrade + " and " + "AlcoholPercentage / (100 * (Price / Capacity)) < " + minimalWeight;
+            return "";
+        }
+
+
+
         void GetDataFromDatabase()
         {
 
@@ -427,7 +450,12 @@ namespace RumikApp.UserControls
                     oString += " ORDER BY Grade DESC";
                 else if (WithCoke)
                     oString += " ORDER BY GradeWithCoke DESC";
-
+                else if (ForPartyBool)
+                    oString += " ORDER BY AlcoholPercentage / (100 * (Price/ Capacity)) DESC";
+                else if (GoodButCheap)
+                    oString += " ORDER BY ((Grade+GradeWithCoke)/2)/((100 * (Price/ Capacity))) ASC";
+                else if (Exclusive)
+                    oString += " ORDER BY AlcoholPercentage / (100 * (Price / Capacity)) ASC";
             }
             else
             {
@@ -441,10 +469,22 @@ namespace RumikApp.UserControls
         List<string> getListOfConditions()
         {
             List<string> conditions = new List<string>();
+            string ForParty = GetForPartyAndCheap("4.0");
+            string GoodButCheap = GetGoodButCheap("0.8");
+            string Exclusive = GetExclusive("6", "1");
 
             string price = getStringPrice();
             string soloOrCoke = getSoloOrWithCoke();
             string flavours = getFlavours();
+
+            if (ForParty != null && ForParty != "")
+                conditions.Add(ForParty);
+
+            if (GoodButCheap != null && GoodButCheap != "")
+                conditions.Add(GoodButCheap);
+
+            if (Exclusive != null && Exclusive != "")
+                conditions.Add(Exclusive);
 
             if (price != null && price != "")
                 conditions.Add(price);

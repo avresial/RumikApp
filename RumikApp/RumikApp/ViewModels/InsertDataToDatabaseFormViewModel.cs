@@ -33,20 +33,6 @@ namespace RumikApp.ViewModels
             }
         }
 
-        private DataGridViewModel _DataGridViewModel ;
-        public DataGridViewModel DataGridViewModel
-        {
-            get { return _DataGridViewModel; }
-            set
-            {
-                if (_DataGridViewModel == value)
-                    return;
-
-                _DataGridViewModel = value;
-                RaisePropertyChanged(nameof(DataGridViewModel));
-            }
-        }
-
         private Beverage _Beverage = new Beverage();
         public Beverage Beverage
         {
@@ -139,7 +125,7 @@ namespace RumikApp.ViewModels
                     () =>
                     {
                         saveToDatabase();
-                        DataGridViewModel.Beverages.Add(Beverage);
+                        
                         Beverage = new Beverage();
                         byte[] TMPArray = loadImage(null);
 
@@ -207,9 +193,7 @@ namespace RumikApp.ViewModels
 
         public InsertDataToDatabaseFormViewModel(MainViewModel mainViewModel)
         {
-            DataGridViewModel = new DataGridViewModel(mainViewModel);
-            DataGridViewModel.UnknownGuyVisibility = Visibility.Collapsed;
-            this.mainViewModel = mainViewModel;
+                      this.mainViewModel = mainViewModel;
 
             byte[] TMPArray = loadImage(null);
 

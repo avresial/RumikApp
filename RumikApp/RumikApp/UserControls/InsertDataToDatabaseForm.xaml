@@ -20,8 +20,7 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*" MaxHeight="600"/>
             <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-
+            
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
 
@@ -151,9 +150,6 @@
 
             </StackPanel>
         </Grid>
-
-        <UserControls:ItemsControlListV2 Grid.Row="3" DataContext="{Binding DataGridViewModel}" />
-
 
     </Grid>
 </UserControl>

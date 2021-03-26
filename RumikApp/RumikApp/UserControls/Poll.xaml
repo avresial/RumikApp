@@ -40,7 +40,7 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
 
-                <ToggleButton IsChecked="{Binding ForPartyBool}" Margin="15,5,15,5" Width="150"  HorizontalAlignment="Center" Background="Transparent" BorderBrush="Transparent" IsEnabled="False">
+                <ToggleButton IsChecked="{Binding ForPartyBool}" Margin="15,5,15,5" Width="150"  HorizontalAlignment="Center" Background="Transparent" BorderBrush="Transparent" IsEnabled="True">
 
                     <StackPanel Orientation="Vertical">
                         <Image Source="/IMGs/PollIMG/ForPartyCheap.png"  />
@@ -48,14 +48,14 @@
                     </StackPanel>
                 </ToggleButton>
 
-                <ToggleButton Grid.Column="1" IsChecked="{Binding GoodButCheap}" Margin="15,5,15,5" Width="150" HorizontalAlignment="Center" Background="Transparent" BorderBrush="Transparent" IsEnabled="False" >
+                <ToggleButton Grid.Column="1" IsChecked="{Binding GoodButCheap}" Margin="15,5,15,5" Width="150" HorizontalAlignment="Center" Background="Transparent" BorderBrush="Transparent" IsEnabled="True" >
                     <StackPanel Orientation="Vertical">
                         <Image Source="/IMGs/PollIMG/CheapButSolid.png"  />
                         <TextBlock HorizontalAlignment="Center">porządny ale tani</TextBlock>
                     </StackPanel>
                 </ToggleButton>
 
-                <ToggleButton Grid.Column="2"  IsChecked="{Binding Exclusive}" Margin="15,5,15,5" Width="150" HorizontalAlignment="Center" Background="Transparent" BorderBrush="Transparent" IsEnabled="False" >
+                <ToggleButton Grid.Column="2"  IsChecked="{Binding Exclusive}" Margin="15,5,15,5" Width="150" HorizontalAlignment="Center" Background="Transparent" BorderBrush="Transparent" IsEnabled="True" >
                     <StackPanel Orientation="Vertical">
                         <Image Source="/IMGs/PollIMG/Exclusive.png"  />
                         <TextBlock HorizontalAlignment="Center">Eksluzywnie milordzie</TextBlock>
