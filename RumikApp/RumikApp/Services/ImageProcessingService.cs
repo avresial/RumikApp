@@ -31,6 +31,9 @@ namespace RumikApp.Services
         }
         public static byte[] FileToByteArray(string fileName)
         {
+            if (!File.Exists(fileName))
+                return null;
+
             byte[] fileData = null;
 
             using (FileStream fs = File.OpenRead(fileName))

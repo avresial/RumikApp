@@ -278,26 +278,31 @@ namespace RumikApp
             _Name = "XD" + rand.Next().ToString();
             _Capacity = rand.Next();
             _AlcoholPercentage = rand.Next();
+            _Price = rand.Next(0, 200);
             _Grade = rand.Next(0, 10);
             _GradeWithCoke = rand.Next(0, 10);
             _Color = rand.Next().ToString();
 
-            _Vanila.IsSet = true;
-            _Nuts.IsSet = true;
-            _Carmel.IsSet = true;
-            _Smoke.IsSet = true;
-            _Cinnamon.IsSet = true;
-            _Spirit.IsSet = true;
-            _Fruits.IsSet = true;
-            _BeAPirate.IsSet = true;
-
-
+            if (((int)rand.Next(0, 20)) % 2 == 0)
+                _Vanila.IsSet = true;
+            if (((int)rand.Next(0, 20)) % 2 == 0)
+                _Nuts.IsSet = true;
+            if (((int)rand.Next(0, 20)) % 2 == 0)
+                _Carmel.IsSet = true;
+            if (((int)rand.Next(0, 20)) % 2 == 0)
+                _Smoke.IsSet = true;
+            if (((int)rand.Next(0, 20)) % 2 == 0)
+                _Cinnamon.IsSet = true;
+            if (((int)rand.Next(0, 20)) % 2 == 0)
+                _Spirit.IsSet = true;
+            if (((int)rand.Next(0, 20)) % 2 == 0)
+                _Fruits.IsSet = true;
+            if (((int)rand.Next(0, 20)) % 2 == 0)
+                _BeAPirate.IsSet = true;
             if (((int)rand.Next(0, 20)) % 2 == 0)
                 Honey.IsSet = true;
-            else
-                Honey.IsSet = false;
-
-            _Price = rand.Next(0, 200);
+        
+            
             return this;
         }
     }

@@ -226,10 +226,8 @@ namespace RumikApp.ViewModels
             if (imagePath == null || imagePath == "")
                 imagePath = "../../IMGs/Bottles/UnknownBottle.png";
 
-            if (File.Exists(imagePath))
-                return ImageProcessingService.FileToByteArray(imagePath);
+            return ImageProcessingService.FileToByteArray(imagePath);
 
-            return null;
         }
         bool doesFormContainsNewData()
         {
@@ -246,15 +244,8 @@ namespace RumikApp.ViewModels
             if (Beverage.AlcoholPercentage != 0)
                 controlSum++;
 
-            //if (Beverage.Grade != 0)
-            //    controlSum++;
-
-            //if (Beverage.GradeWithCoke != 0)
-            //    controlSum++;
-
             if (Beverage.Price != 0)
                 controlSum++;
-
 
             if (controlSum >= 4)
                 formContainsNewData = true;
