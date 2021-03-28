@@ -44,21 +44,21 @@
 
                     <StackPanel Orientation="Vertical">
                         <Image Source="/IMGs/PollIMG/ForPartyCheap.png"  />
-                        <TextBlock HorizontalAlignment="Center">Taniego upojenia się<LineBreak/>tymże trunkiem</TextBlock>
+                        <TextBlock HorizontalAlignment="Center" TextAlignment="Center">Taniego upojenia się<LineBreak/>tymże trunkiem</TextBlock>
                     </StackPanel>
                 </ToggleButton>
 
                 <ToggleButton Grid.Column="1" IsChecked="{Binding GoodButCheap}" Margin="15,5,15,5" Width="150" HorizontalAlignment="Center" Background="Transparent" BorderBrush="Transparent">
                     <StackPanel Orientation="Vertical">
                         <Image Source="/IMGs/PollIMG/CheapButSolid.png"  />
-                        <TextBlock HorizontalAlignment="Center">Zaimponowania Syrence<LineBreak/>wyśmienitym trunkiem, <LineBreak/>ale trochę bida</TextBlock>
+                        <TextBlock HorizontalAlignment="Center" TextAlignment="Center">Zaimponowania Syrence<LineBreak/>wyśmienitym trunkiem, <LineBreak/>ale trochę bida</TextBlock>
                     </StackPanel>
                 </ToggleButton>
 
                 <ToggleButton Grid.Column="2" IsChecked="{Binding Exclusive}" Margin="15,5,15,5" Width="150" HorizontalAlignment="Center" Background="Transparent" BorderBrush="Transparent">
                     <StackPanel Orientation="Vertical">
                         <Image Source="/IMGs/PollIMG/Exclusive.png"  />
-                        <TextBlock HorizontalAlignment="Center">Eksluzywnego napitku,<LineBreak/> Milordzie <LineBreak/> bo wypłata przyszła</TextBlock>
+                        <TextBlock HorizontalAlignment="Center" TextAlignment="Center">Eksluzywnego napitku,<LineBreak/> Milordzie <LineBreak/> bo wypłata przyszła</TextBlock>
                     </StackPanel>
                 </ToggleButton>
 
