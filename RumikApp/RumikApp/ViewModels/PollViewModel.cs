@@ -124,6 +124,9 @@ namespace RumikApp.UserControls
 
                 _ForPiratesFromCarabien = value;
                 RaisePropertyChanged("ForPiratesFromCarabien");
+
+                if (value)
+                    GoForPiratesFromCarabien();
             }
         }
 
@@ -426,7 +429,15 @@ namespace RumikApp.UserControls
             return "";
         }
 
+        void GoForPiratesFromCarabien()
+        {
 
+            Beverages = mainViewModel.DatabaseConnectionService.GetAllPiratesBeverages();
+            Visibility = Visibility.Collapsed;
+            mainViewModel.DataGridViewModel2.Visibility = Visibility.Visible;
+            mainViewModel.DataGridViewModel2.Beverages = Beverages;
+            ForPiratesFromCarabien = false;
+        }
 
         void GetDataFromDatabase()
         {

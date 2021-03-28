@@ -14,7 +14,7 @@ namespace RumikApp.Services
     public class DatabaseConnectionService : IDatabaseConnectionService
     {
 
-        private AvailableTables _MainDataTable = AvailableTables.RumsBase;
+        private AvailableTables _MainDataTable = AvailableTables.RumsBaseTEST;
         public AvailableTables MainDataTable
         {
             get { return _MainDataTable; }
@@ -137,6 +137,25 @@ namespace RumikApp.Services
             }
             return allBeverages;
 
+        }
+        public ObservableCollection<Beverage> GetAllPiratesBeverages()
+        {
+            ObservableCollection<Beverage> allBeverages = new ObservableCollection<Beverage>();
+
+            using (MySqlConnection con = new MySqlConnection(CnnVal("sosek")))
+            {
+                string oString = "SELECT * FROM " + MainDataTable.ToString() + " WHERE BeAPirate = 1";
+
+                MySqlCommand cmd0 = new MySqlCommand(oString, con);
+
+                con.Open();
+
+                using (MySqlDataReader reader = cmd0.ExecuteReader())
+                    while (reader.Read())
+                        allBeverages.Add(saveReaderToBevrage(reader));
+                con.Close();
+            }
+            return allBeverages;
         }
 
         public string CnnVal(string name)
@@ -267,5 +286,7 @@ namespace RumikApp.Services
             else
                 return false;
         }
+
+
     }
 }

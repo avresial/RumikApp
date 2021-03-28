@@ -14,6 +14,7 @@ namespace RumikApp.Services
         AvailableTables MainDataTable { get; set; }
         ObservableCollection<Beverage> GetData(string Query);
         ObservableCollection<Beverage> GetAllData();
+        ObservableCollection<Beverage> GetAllPiratesBeverages();
         bool TestConnectionToDatabase();
         bool TestConnectionToTable(AvailableTables availableTables);
         string SaveBevreageToDatabase(Beverage beverage, byte[] img);
