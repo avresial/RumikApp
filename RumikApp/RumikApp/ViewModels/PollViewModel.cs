@@ -393,7 +393,7 @@ namespace RumikApp.UserControls
                     _GetMeThatRum = new RelayCommand(
                     () =>
                     {
-                        
+
                         Visibility = Visibility.Collapsed;
                         mainViewModel.DataGridViewModel2.Visibility = Visibility.Visible;
                         mainViewModel.DataGridViewModel2.Beverages = mainViewModel.DatabaseConnectionService.GetDataFromDatabaseWithConditions(getListOfConditions());
@@ -407,38 +407,6 @@ namespace RumikApp.UserControls
 
                 return _GetMeThatRum;
             }
-        }
-
-        string GetForPartyAndCheap(string minimalWeight)
-        {
-            if (ForPartyBool)
-                return " AlcoholPercentage / (100 * (Price/ Capacity))  > " + minimalWeight;
-            return "";
-        }
-
-        string GetGoodButCheap(string minimalWeight)
-        {
-            if (GoodButCheap)
-                return " ((Grade+GradeWithCoke)/2)/((100 * (Price/ Capacity))) > " + minimalWeight + "and ((Grade+GradeWithCoke)/2) > 5";
-            return "";
-        }
-
-        string GetExclusive(string minimalSoloGrade, string minimalWeight)
-        {
-            if (Exclusive)
-                return " Grade > " + minimalSoloGrade + " and " + "AlcoholPercentage / (100 * (Price / Capacity)) < " + minimalWeight;
-            return "";
-        }
-
-        void GoForPiratesFromCarabien()
-        {
-
-            Beverages = mainViewModel.DatabaseConnectionService.GetAllPiratesBeverages();
-            Visibility = Visibility.Collapsed;
-            mainViewModel.DataGridViewModel2.Visibility = Visibility.Visible;
-            mainViewModel.DataGridViewModel2.Beverages = Beverages;
-            ForPiratesFromCarabien = false;
-            clearSellection();
         }
 
         List<string> getListOfConditions()
@@ -471,6 +439,63 @@ namespace RumikApp.UserControls
                 conditions.Add(flavours);
 
             return conditions;
+        }
+
+        void clearSellection()
+        {
+            ForPartyBool = false;
+            GoodButCheap = false;
+            Exclusive = false;
+            ForPiratesFromCarabien = false;
+
+            solo = false;
+            WithCoke = false;
+
+            Vanila.IsSet = false;
+            Nuts.IsSet = false;
+            Carmel.IsSet = false;
+            Smoke.IsSet = false;
+            Cinnamon.IsSet = false;
+            Spirit.IsSet = false;
+            Fruits.IsSet = false;
+            Honey.IsSet = false;
+
+            PricePoint1 = false;
+            PricePoint2 = false;
+            PricePoint3 = false;
+            PricePoint4 = false;
+        }
+
+        string GetForPartyAndCheap(string minimalWeight)
+        {
+            if (ForPartyBool)
+                return " AlcoholPercentage / (100 * (Price/ Capacity))  > " + minimalWeight;
+            return "";
+        }
+
+        string GetGoodButCheap(string minimalWeight)
+        {
+            if (GoodButCheap)
+                return " ((Grade+GradeWithCoke)/2)/((100 * (Price/ Capacity))) > " + minimalWeight + " and ((Grade+GradeWithCoke)/2) > 5";
+            return "";
+        }
+
+        string GetExclusive(string minimalSoloGrade, string minimalWeight)
+        {
+            if (Exclusive)
+                return " Grade > " + minimalSoloGrade + " and " + "AlcoholPercentage / (100 * (Price / Capacity)) < " + minimalWeight;
+            return "";
+        }
+
+        void GoForPiratesFromCarabien()
+        {
+
+            Beverages = mainViewModel.DatabaseConnectionService.GetAllPiratesBeverages();
+            Visibility = Visibility.Collapsed;
+            mainViewModel.DataGridViewModel2.Visibility = Visibility.Visible;
+            mainViewModel.DataGridViewModel2.Beverages = Beverages;
+            ForPiratesFromCarabien = false;
+            clearSellection();
         }
 
         string getStringPrice()
@@ -549,30 +574,6 @@ namespace RumikApp.UserControls
             return null;
         }
 
-        void clearSellection()
-        {
-            ForPartyBool = false;
-            GoodButCheap = false;
-            Exclusive = false;
-            ForPiratesFromCarabien = false;
-
-            solo = false;
-            WithCoke = false;
-
-            Vanila.IsSet = false;
-            Nuts.IsSet = false;
-            Carmel.IsSet = false;
-            Smoke.IsSet = false;
-            Cinnamon.IsSet = false;
-            Spirit.IsSet = false;
-            Fruits.IsSet = false;
-            Honey.IsSet = false;
-
-            PricePoint1 = false;
-            PricePoint2 = false;
-            PricePoint3 = false;
-            PricePoint4 = false;
-        }
         public PollViewModel(MainViewModel mainViewModel)
         {
             this.mainViewModel = mainViewModel;

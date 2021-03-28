@@ -45,12 +45,12 @@ namespace RumikApp.Services
             catch (ArgumentException a_ex)
             {
                 doesConnectionWork = false;
-               // System.Windows.Forms.MessageBox.Show(a_ex.Message.ToString());
+                // System.Windows.Forms.MessageBox.Show(a_ex.Message.ToString());
             }
             catch (MySqlException ex)
             {
                 doesConnectionWork = false;
-              
+
                 //System.Windows.Forms.MessageBox.Show(ex.Message.ToString());
             }
 
@@ -117,65 +117,63 @@ namespace RumikApp.Services
 
         public ObservableCollection<Beverage> GetAllData()
         {
-            ObservableCollection<Beverage> allBeverages = new ObservableCollection<Beverage>();
+            string oString = "SELECT * FROM " + MainDataTable.ToString() + " ORDER BY Name";
 
-            using (MySqlConnection con = new MySqlConnection(CnnVal("sosek")))
-            {
-                //string oString = "SELECT * FROM (SELECT * FROM RumsBase ORDER BY id DESC LIMIT 4) sub ORDER BY id ASC";
-
-                string oString = "SELECT * FROM " + MainDataTable.ToString() + " ORDER BY Name";
-
-                MySqlCommand cmd0 = new MySqlCommand(oString, con);
-
-                con.Open();
-
-                using (MySqlDataReader reader = cmd0.ExecuteReader())
-                    while (reader.Read())
-                        allBeverages.Add(saveReaderToBevrage(reader));
-
-                con.Close();
-            }
-            return allBeverages;
-
+            return GetData(oString);
         }
+
         public ObservableCollection<Beverage> GetAllPiratesBeverages()
         {
-            ObservableCollection<Beverage> allBeverages = new ObservableCollection<Beverage>();
+            string oString = "SELECT* FROM " + MainDataTable.ToString() + " WHERE BeAPirate = 1";
 
-            using (MySqlConnection con = new MySqlConnection(CnnVal("sosek")))
-            {
-                string oString = "SELECT * FROM " + MainDataTable.ToString() + " WHERE BeAPirate = 1";
-
-                MySqlCommand cmd0 = new MySqlCommand(oString, con);
-
-                con.Open();
-
-                using (MySqlDataReader reader = cmd0.ExecuteReader())
-                    while (reader.Read())
-                        allBeverages.Add(saveReaderToBevrage(reader));
-                con.Close();
-            }
-            return allBeverages;
+            return GetData(oString);
         }
-        public Beverage GetRandomRow() 
+        public ObservableCollection<Beverage> GetDataFromDatabaseWithConditions(List<string> conditions)
         {
-            Beverage allBeverages = new Beverage();
+            string oString;
 
-            using (MySqlConnection con = new MySqlConnection(CnnVal("sosek")))
+            if (conditions.Count > 0)
             {
-                string oString = "SELECT * FROM " + MainDataTable.ToString() + " ORDER BY RAND() LIMIT 1";
 
-                MySqlCommand cmd0 = new MySqlCommand(oString, con);
+                oString = $"SELECT * FROM " + MainDataTable.ToString() + " WHERE ";
 
-                con.Open();
+                for (int i = 0; i < conditions.Count; i++)
+                {
+                    if (i != 0)
+                        oString += " and ";
 
-                using (MySqlDataReader reader = cmd0.ExecuteReader())
-                    while (reader.Read())
-                        allBeverages = saveReaderToBevrage(reader);
-                con.Close();
+                    oString += conditions[i];
+                }
+
+                if (conditions.Contains("grade > 5"))
+                    oString += " ORDER BY Grade DESC";
+                else if (conditions.Contains("GradeWithCoke > 5"))
+                    oString += " ORDER BY GradeWithCoke DESC";
+                //else if (conditions.Contains(" AlcoholPercentage / (100 * (Price/ Capacity))  > 4.0"))
+                //    oString += " ORDER BY AlcoholPercentage / (100 * (Price/ Capacity)) DESC";
+                //else if (conditions.Contains(" ((Grade+GradeWithCoke)/2)/((100 * (Price/ Capacity))) > 0.8 and ((Grade+GradeWithCoke)/2) > 5"))
+                //    oString += " ORDER BY ((Grade+GradeWithCoke)/2)/((100 * (Price/ Capacity))) ASC";
+                //else if (Exclusive)
+                //    oString += " ORDER BY AlcoholPercentage / (100 * (Price / Capacity)) ASC";
             }
-            return allBeverages;
+            else
+            {
+                oString = $"SELECT * FROM " + MainDataTable.ToString() + " ";
+            }
 
+            return GetData(oString);
+        }
+
+        public Beverage GetRandomRow()
+        {
+            string oString = "SELECT * FROM " + MainDataTable.ToString() + " ORDER BY RAND() LIMIT 1";
+
+            ObservableCollection<Beverage> possibleOneBeverages = GetData(oString);
+
+            if (possibleOneBeverages.Count > 0)
+                return possibleOneBeverages[0];
+            else
+                return null;
         }
 
         public string CnnVal(string name)
@@ -307,40 +305,6 @@ namespace RumikApp.Services
                 return false;
         }
 
-        public ObservableCollection<Beverage> GetDataFromDatabaseWithConditions(List<string> conditions)
-        {
-            string oString;
-
-            if (conditions.Count > 0)
-            {
-
-                oString = $"SELECT * FROM " + MainDataTable.ToString() + " WHERE ";
-
-                for (int i = 0; i < conditions.Count; i++)
-                {
-                    if (i != 0)
-                        oString += " and ";
-
-                    oString += conditions[i];
-                }
-                
-                if (conditions.Contains("solo"))
-                    oString += " ORDER BY Grade DESC";
-                //else if (WithCoke)
-                //    oString += " ORDER BY GradeWithCoke DESC";
-                //else if (ForPartyBool)
-                //    oString += " ORDER BY AlcoholPercentage / (100 * (Price/ Capacity)) DESC";
-                //else if (GoodButCheap)
-                //    oString += " ORDER BY ((Grade+GradeWithCoke)/2)/((100 * (Price/ Capacity))) ASC";
-                //else if (Exclusive)
-                //    oString += " ORDER BY AlcoholPercentage / (100 * (Price / Capacity)) ASC";
-            }
-            else
-            {
-                oString = $"SELECT * FROM " + MainDataTable.ToString() + " ";
-            }
-
-            return GetData(oString);
-        }
+       
     }
 }
