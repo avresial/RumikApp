@@ -9,12 +9,15 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Windows;
+using System.Windows.Threading;
 
 namespace RumikApp.ViewModel
 {
 
     public class MainViewModel : ViewModelBase
     {
+        private DispatcherTimer dispatcherTimerInCaseDatabaseDoesNotWork = new DispatcherTimer();
+
         private MainControlPanelViewModel _MainControlPanelViewModel;
         public MainControlPanelViewModel MainControlPanelViewModel
         {
@@ -119,18 +122,43 @@ namespace RumikApp.ViewModel
 
             if (DatabaseConnectionService.TestConnectionToDatabase() && DatabaseConnectionService.TestConnectionToTable(DatabaseConnectionService.MainDataTable))
             {
-                PollViewModel = new PollViewModel(this);
-                MainControlPanelViewModel = new MainControlPanelViewModel(this);
-                DataGridViewModel = new DataGridViewModel(this);
-                DataGridViewModel2 = new DataGridViewModel(this);
-                InsertDataToDatabaseForm = new InsertDataToDatabaseFormViewModel(this);
+                loadFunctionality();
+            }
+            else
+            {
 
-                ItemsControl = new DataGridViewModel(this);
+                dispatcherTimerInCaseDatabaseDoesNotWork.Tick += new EventHandler(CheckingDatabaseConnection);
+                dispatcherTimerInCaseDatabaseDoesNotWork.Interval = new TimeSpan(0, 0, 1);
+                dispatcherTimerInCaseDatabaseDoesNotWork.Start();
 
-                Random rand = new Random();
-                for (int i = 0; i < 15; i++)
-                    ItemsControl.Beverages.Add(new Beverage().GetRandomBevrage(rand));
             }
         }
+
+        private void CheckingDatabaseConnection(object sender, EventArgs e)
+        {
+            if (DatabaseConnectionService.TestConnectionToDatabase() && DatabaseConnectionService.TestConnectionToTable(DatabaseConnectionService.MainDataTable))
+            {
+                loadFunctionality();
+                dispatcherTimerInCaseDatabaseDoesNotWork.Stop();
+            }
+
+        }
+
+        void loadFunctionality()
+        {
+            PollViewModel = new PollViewModel(this);
+            MainControlPanelViewModel = new MainControlPanelViewModel(this);
+            DataGridViewModel = new DataGridViewModel(this);
+            DataGridViewModel2 = new DataGridViewModel(this);
+            InsertDataToDatabaseForm = new InsertDataToDatabaseFormViewModel(this);
+
+            ItemsControl = new DataGridViewModel(this);
+
+            Random rand = new Random();
+            for (int i = 0; i < 15; i++)
+                ItemsControl.Beverages.Add(new Beverage().GetRandomBevrage(rand));
+
+        }
+
     }
 }

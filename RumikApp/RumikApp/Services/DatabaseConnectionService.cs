@@ -45,12 +45,13 @@ namespace RumikApp.Services
             catch (ArgumentException a_ex)
             {
                 doesConnectionWork = false;
-                System.Windows.Forms.MessageBox.Show(a_ex.ToString());
+               // System.Windows.Forms.MessageBox.Show(a_ex.Message.ToString());
             }
             catch (MySqlException ex)
             {
                 doesConnectionWork = false;
-                System.Windows.Forms.MessageBox.Show(ex.ToString());
+              
+                //System.Windows.Forms.MessageBox.Show(ex.Message.ToString());
             }
 
             return doesConnectionWork;
@@ -79,11 +80,11 @@ namespace RumikApp.Services
             }
             catch (ArgumentException a_ex)
             {
-                System.Windows.Forms.MessageBox.Show(a_ex.ToString());
+                System.Windows.Forms.MessageBox.Show(a_ex.Message.ToString());
             }
             catch (MySqlException ex)
             {
-                System.Windows.Forms.MessageBox.Show(ex.ToString());
+                System.Windows.Forms.MessageBox.Show(ex.Message.ToString());
             }
 
             return false;
