@@ -158,6 +158,26 @@ namespace RumikApp.Services
             }
             return allBeverages;
         }
+        public Beverage GetRandomRow() 
+        {
+            Beverage allBeverages = new Beverage();
+
+            using (MySqlConnection con = new MySqlConnection(CnnVal("sosek")))
+            {
+                string oString = "SELECT * FROM " + MainDataTable.ToString() + " ORDER BY RAND() LIMIT 1";
+
+                MySqlCommand cmd0 = new MySqlCommand(oString, con);
+
+                con.Open();
+
+                using (MySqlDataReader reader = cmd0.ExecuteReader())
+                    while (reader.Read())
+                        allBeverages = saveReaderToBevrage(reader);
+                con.Close();
+            }
+            return allBeverages;
+
+        }
 
         public string CnnVal(string name)
         {

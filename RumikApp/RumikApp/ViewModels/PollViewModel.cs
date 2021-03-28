@@ -372,6 +372,7 @@ namespace RumikApp.UserControls
                     {
                         mainViewModel.MainControlPanelViewModel.Visibility = Visibility.Visible;
                         Visibility = Visibility.Collapsed;
+
                     },
                     () =>
                     {

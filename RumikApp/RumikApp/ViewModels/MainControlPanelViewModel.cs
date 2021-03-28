@@ -3,6 +3,7 @@ using GalaSoft.MvvmLight.CommandWpf;
 using RumikApp.ViewModel;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -32,20 +33,21 @@ namespace RumikApp.ViewModels
 
             }
         }
-              
-        private RelayCommand _GetMeARum;
-        public RelayCommand GetMeARum
+
+        private RelayCommand _ImFeelingLucky;
+        public RelayCommand ImFeelingLucky
         {
             get
             {
-                if (_GetMeARum == null)
+                if (_ImFeelingLucky == null)
                 {
-                    _GetMeARum = new RelayCommand(
+                    _ImFeelingLucky = new RelayCommand(
                     () =>
                     {
                         Visibility = Visibility.Collapsed;
-                        mainViewModel.PollViewModel.Visibility = Visibility.Visible;
-                        
+                        mainViewModel.DataGridViewModel2.Visibility = Visibility.Visible;
+                        mainViewModel.DataGridViewModel2.Beverages = new ObservableCollection<Beverage>() { mainViewModel.DatabaseConnectionService.GetRandomRow() };
+                       
                     },
                     () =>
                     {
@@ -53,10 +55,10 @@ namespace RumikApp.ViewModels
                     });
                 }
 
-                return _GetMeARum;
+                return _ImFeelingLucky;
             }
         }
-        
+
         private RelayCommand _LetMeChoose;
         public RelayCommand LetMeChoose
         {
@@ -65,6 +67,29 @@ namespace RumikApp.ViewModels
                 if (_LetMeChoose == null)
                 {
                     _LetMeChoose = new RelayCommand(
+                    () =>
+                    {
+                        Visibility = Visibility.Collapsed;
+                        mainViewModel.PollViewModel.Visibility = Visibility.Visible;
+                    },
+                    () =>
+                    {
+                        return true;
+                    });
+                }
+
+                return _LetMeChoose;
+            }
+        }
+
+        private RelayCommand _GoStraightToDatabase;
+        public RelayCommand GoStraightToDatabase
+        {
+            get
+            {
+                if (_GoStraightToDatabase == null)
+                {
+                    _GoStraightToDatabase = new RelayCommand(
                     () =>
                     {
                         mainViewModel.DataGridViewModel.Reload();
@@ -77,8 +102,9 @@ namespace RumikApp.ViewModels
                     });
                 }
 
-                return _LetMeChoose;
+                return _GoStraightToDatabase;
             }
         }
+
     }
 }
