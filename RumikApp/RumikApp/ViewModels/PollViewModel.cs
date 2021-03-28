@@ -37,7 +37,7 @@ namespace RumikApp.UserControls
                     return;
 
                 _Beverages = value;
-                RaisePropertyChanged("users");
+                RaisePropertyChanged("Beverages");
             }
         }
 
@@ -372,7 +372,6 @@ namespace RumikApp.UserControls
                     {
                         mainViewModel.MainControlPanelViewModel.Visibility = Visibility.Visible;
                         Visibility = Visibility.Collapsed;
-
                     },
                     () =>
                     {
@@ -394,10 +393,10 @@ namespace RumikApp.UserControls
                     _GetMeThatRum = new RelayCommand(
                     () =>
                     {
-                        GetDataFromDatabase();
+                        
                         Visibility = Visibility.Collapsed;
                         mainViewModel.DataGridViewModel2.Visibility = Visibility.Visible;
-                        mainViewModel.DataGridViewModel2.Beverages = Beverages;
+                        mainViewModel.DataGridViewModel2.Beverages = mainViewModel.DatabaseConnectionService.GetDataFromDatabaseWithConditions(getListOfConditions());
                         clearSellection();
                     },
                     () =>
@@ -440,44 +439,6 @@ namespace RumikApp.UserControls
             mainViewModel.DataGridViewModel2.Beverages = Beverages;
             ForPiratesFromCarabien = false;
             clearSellection();
-        }
-
-        void GetDataFromDatabase()
-        {
-
-            List<string> conditions = getListOfConditions();
-            string oString;
-
-            if (conditions.Count > 0)
-            {
-
-                oString = $"SELECT * FROM " + mainViewModel.DatabaseConnectionService.MainDataTable.ToString() + " WHERE ";
-
-                for (int i = 0; i < conditions.Count; i++)
-                {
-                    if (i != 0)
-                        oString += " and ";
-
-                    oString += conditions[i];
-                }
-
-                if (solo)
-                    oString += " ORDER BY Grade DESC";
-                else if (WithCoke)
-                    oString += " ORDER BY GradeWithCoke DESC";
-                else if (ForPartyBool)
-                    oString += " ORDER BY AlcoholPercentage / (100 * (Price/ Capacity)) DESC";
-                else if (GoodButCheap)
-                    oString += " ORDER BY ((Grade+GradeWithCoke)/2)/((100 * (Price/ Capacity))) ASC";
-                else if (Exclusive)
-                    oString += " ORDER BY AlcoholPercentage / (100 * (Price / Capacity)) ASC";
-            }
-            else
-            {
-                oString = $"SELECT * FROM " + mainViewModel.DatabaseConnectionService.MainDataTable.ToString() + " ";
-            }
-
-            Beverages = mainViewModel.DatabaseConnectionService.GetData(oString);
         }
 
         List<string> getListOfConditions()
@@ -588,7 +549,7 @@ namespace RumikApp.UserControls
             return null;
         }
 
-        void clearSellection() 
+        void clearSellection()
         {
             ForPartyBool = false;
             GoodButCheap = false;

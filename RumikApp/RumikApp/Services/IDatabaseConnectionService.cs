@@ -15,6 +15,7 @@ namespace RumikApp.Services
         ObservableCollection<Beverage> GetData(string Query);
         ObservableCollection<Beverage> GetAllData();
         ObservableCollection<Beverage> GetAllPiratesBeverages();
+        ObservableCollection<Beverage> GetDataFromDatabaseWithConditions(List<string> conditions);
         Beverage GetRandomRow();
         bool TestConnectionToDatabase();
         bool TestConnectionToTable(AvailableTables availableTables);

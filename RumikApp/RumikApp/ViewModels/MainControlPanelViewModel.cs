@@ -45,9 +45,9 @@ namespace RumikApp.ViewModels
                     () =>
                     {
                         Visibility = Visibility.Collapsed;
-                        mainViewModel.DataGridViewModel2.Visibility = Visibility.Visible;
                         mainViewModel.DataGridViewModel2.Beverages = new ObservableCollection<Beverage>() { mainViewModel.DatabaseConnectionService.GetRandomRow() };
-                       
+                        mainViewModel.DataGridViewModel2.Visibility = Visibility.Visible;
+
                     },
                     () =>
                     {
@@ -92,8 +92,8 @@ namespace RumikApp.ViewModels
                     _GoStraightToDatabase = new RelayCommand(
                     () =>
                     {
+                        Visibility = Visibility.Collapsed;
                         mainViewModel.DataGridViewModel.Reload();
-                        this.Visibility = Visibility.Collapsed;
                         mainViewModel.DataGridViewModel.Visibility = Visibility.Visible;
                     },
                     () =>

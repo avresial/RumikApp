@@ -121,10 +121,9 @@ namespace RumikApp.Services
 
             using (MySqlConnection con = new MySqlConnection(CnnVal("sosek")))
             {
-
                 //string oString = "SELECT * FROM (SELECT * FROM RumsBase ORDER BY id DESC LIMIT 4) sub ORDER BY id ASC";
 
-                string oString = "SELECT * FROM " + MainDataTable.ToString();
+                string oString = "SELECT * FROM " + MainDataTable.ToString() + " ORDER BY Name";
 
                 MySqlCommand cmd0 = new MySqlCommand(oString, con);
 
@@ -308,6 +307,40 @@ namespace RumikApp.Services
                 return false;
         }
 
+        public ObservableCollection<Beverage> GetDataFromDatabaseWithConditions(List<string> conditions)
+        {
+            string oString;
 
+            if (conditions.Count > 0)
+            {
+
+                oString = $"SELECT * FROM " + MainDataTable.ToString() + " WHERE ";
+
+                for (int i = 0; i < conditions.Count; i++)
+                {
+                    if (i != 0)
+                        oString += " and ";
+
+                    oString += conditions[i];
+                }
+                
+                if (conditions.Contains("solo"))
+                    oString += " ORDER BY Grade DESC";
+                //else if (WithCoke)
+                //    oString += " ORDER BY GradeWithCoke DESC";
+                //else if (ForPartyBool)
+                //    oString += " ORDER BY AlcoholPercentage / (100 * (Price/ Capacity)) DESC";
+                //else if (GoodButCheap)
+                //    oString += " ORDER BY ((Grade+GradeWithCoke)/2)/((100 * (Price/ Capacity))) ASC";
+                //else if (Exclusive)
+                //    oString += " ORDER BY AlcoholPercentage / (100 * (Price / Capacity)) ASC";
+            }
+            else
+            {
+                oString = $"SELECT * FROM " + MainDataTable.ToString() + " ";
+            }
+
+            return GetData(oString);
+        }
     }
 }
