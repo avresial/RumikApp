@@ -397,6 +397,7 @@ namespace RumikApp.UserControls
                         Visibility = Visibility.Collapsed;
                         mainViewModel.DataGridViewModel2.Visibility = Visibility.Visible;
                         mainViewModel.DataGridViewModel2.Beverages = Beverages;
+                        clearSellection();
                     },
                     () =>
                     {
@@ -437,6 +438,7 @@ namespace RumikApp.UserControls
             mainViewModel.DataGridViewModel2.Visibility = Visibility.Visible;
             mainViewModel.DataGridViewModel2.Beverages = Beverages;
             ForPiratesFromCarabien = false;
+            clearSellection();
         }
 
         void GetDataFromDatabase()
@@ -585,6 +587,30 @@ namespace RumikApp.UserControls
             return null;
         }
 
+        void clearSellection() 
+        {
+            ForPartyBool = false;
+            GoodButCheap = false;
+            Exclusive = false;
+            ForPiratesFromCarabien = false;
+
+            solo = false;
+            WithCoke = false;
+
+            Vanila.IsSet = false;
+            Nuts.IsSet = false;
+            Carmel.IsSet = false;
+            Smoke.IsSet = false;
+            Cinnamon.IsSet = false;
+            Spirit.IsSet = false;
+            Fruits.IsSet = false;
+            Honey.IsSet = false;
+
+            PricePoint1 = false;
+            PricePoint2 = false;
+            PricePoint3 = false;
+            PricePoint4 = false;
+        }
         public PollViewModel(MainViewModel mainViewModel)
         {
             this.mainViewModel = mainViewModel;
