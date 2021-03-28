@@ -116,19 +116,21 @@ namespace RumikApp.ViewModel
         public MainViewModel()
         {
             DatabaseConnectionService = new DatabaseConnectionService();
-            PollViewModel = new PollViewModel(this);
-            MainControlPanelViewModel = new MainControlPanelViewModel(this);
-            DataGridViewModel = new DataGridViewModel(this);
-            DataGridViewModel2 = new DataGridViewModel(this);
-            InsertDataToDatabaseForm = new InsertDataToDatabaseFormViewModel(this);
 
-            ItemsControl = new DataGridViewModel(this);
-            
-            DatabaseConnectionService.TestConnectionToDatabase();
-            DatabaseConnectionService.TestConnectionToTable(AvailableTables.RumsBaseTEST);
-            Random rand = new Random();
-            for (int i = 0; i < 15; i++)
-                ItemsControl.Beverages.Add(new Beverage().GetRandomBevrage(rand));
+            if (DatabaseConnectionService.TestConnectionToDatabase() && DatabaseConnectionService.TestConnectionToTable(DatabaseConnectionService.MainDataTable))
+            {
+                PollViewModel = new PollViewModel(this);
+                MainControlPanelViewModel = new MainControlPanelViewModel(this);
+                DataGridViewModel = new DataGridViewModel(this);
+                DataGridViewModel2 = new DataGridViewModel(this);
+                InsertDataToDatabaseForm = new InsertDataToDatabaseFormViewModel(this);
+
+                ItemsControl = new DataGridViewModel(this);
+
+                Random rand = new Random();
+                for (int i = 0; i < 15; i++)
+                    ItemsControl.Beverages.Add(new Beverage().GetRandomBevrage(rand));
+            }
         }
     }
 }

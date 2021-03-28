@@ -124,7 +124,7 @@ namespace RumikApp.Services
                 //string oString = "SELECT * FROM (SELECT * FROM RumsBase ORDER BY id DESC LIMIT 4) sub ORDER BY id ASC";
 
                 string oString = "SELECT * FROM " + MainDataTable.ToString();
-                
+
                 MySqlCommand cmd0 = new MySqlCommand(oString, con);
 
                 con.Open();
@@ -137,35 +137,6 @@ namespace RumikApp.Services
             }
             return allBeverages;
 
-        }
-
-        Beverage saveReaderToBevrage(MySqlDataReader reader)
-        {
-            Beverage beverageTMP = new Beverage();
-
-            beverageTMP.ID = reader.GetInt32(0);
-            beverageTMP.Name = reader.GetString(1);
-            beverageTMP.Capacity = reader.GetInt32(2);
-            beverageTMP.AlcoholPercentage = reader.GetFloat(3);
-            beverageTMP.Price = reader.GetFloat(4);
-            beverageTMP.Grade = reader.GetInt32(5);
-            beverageTMP.GradeWithCoke = reader.GetInt32(6);
-            beverageTMP.Color = reader.GetString(7);
-
-            beverageTMP.Vanila.IsSet = IntToBool(reader.GetInt16(8));
-            beverageTMP.Nuts.IsSet = IntToBool(reader.GetInt16(9));
-            beverageTMP.Carmel.IsSet = IntToBool(reader.GetInt16(10));
-            beverageTMP.Smoke.IsSet = IntToBool(reader.GetInt16(11));
-            beverageTMP.Cinnamon.IsSet = IntToBool(reader.GetInt16(12));
-            beverageTMP.Spirit.IsSet = IntToBool(reader.GetInt16(13));
-            beverageTMP.Fruits.IsSet = IntToBool(reader.GetInt16(14));
-            beverageTMP.Honey.IsSet = IntToBool(reader.GetInt16(15));
-
-            byte[] buffer = new byte[250000];
-            reader.GetBytes(17, 0, buffer, 0, 250000);
-            beverageTMP.TestIcon = ImageProcessingService.ConvertToBitMapImage(buffer);
-
-            return beverageTMP;
         }
 
         public string CnnVal(string name)
@@ -253,6 +224,34 @@ namespace RumikApp.Services
             result += "\ninformacja z - " + DateTime.Now.ToString();
 
             return result;
+        }
+        Beverage saveReaderToBevrage(MySqlDataReader reader)
+        {
+            Beverage beverageTMP = new Beverage();
+
+            beverageTMP.ID = reader.GetInt32(0);
+            beverageTMP.Name = reader.GetString(1);
+            beverageTMP.Capacity = reader.GetInt32(2);
+            beverageTMP.AlcoholPercentage = reader.GetFloat(3);
+            beverageTMP.Price = reader.GetFloat(4);
+            beverageTMP.Grade = reader.GetInt32(5);
+            beverageTMP.GradeWithCoke = reader.GetInt32(6);
+            beverageTMP.Color = reader.GetString(7);
+
+            beverageTMP.Vanila.IsSet = IntToBool(reader.GetInt16(8));
+            beverageTMP.Nuts.IsSet = IntToBool(reader.GetInt16(9));
+            beverageTMP.Carmel.IsSet = IntToBool(reader.GetInt16(10));
+            beverageTMP.Smoke.IsSet = IntToBool(reader.GetInt16(11));
+            beverageTMP.Cinnamon.IsSet = IntToBool(reader.GetInt16(12));
+            beverageTMP.Spirit.IsSet = IntToBool(reader.GetInt16(13));
+            beverageTMP.Fruits.IsSet = IntToBool(reader.GetInt16(14));
+            beverageTMP.Honey.IsSet = IntToBool(reader.GetInt16(15));
+
+            byte[] buffer = new byte[250000];
+            reader.GetBytes(17, 0, buffer, 0, 250000);
+            beverageTMP.TestIcon = ImageProcessingService.ConvertToBitMapImage(buffer);
+
+            return beverageTMP;
         }
         Int16 boolToInt16(bool boolVariable)
         {
