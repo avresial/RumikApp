@@ -44,28 +44,28 @@
 
                     <StackPanel Orientation="Vertical">
                         <Image Source="/IMGs/PollIMG/ForPartyCheap.png"  />
-                        <TextBlock HorizontalAlignment="Center">taniego upojenia się<LineBreak/>tymże trunkiem</TextBlock>
+                        <TextBlock HorizontalAlignment="Center">Taniego upojenia się<LineBreak/>tymże trunkiem</TextBlock>
                     </StackPanel>
                 </ToggleButton>
 
                 <ToggleButton Grid.Column="1" IsChecked="{Binding GoodButCheap}" Margin="15,5,15,5" Width="150" HorizontalAlignment="Center" Background="Transparent" BorderBrush="Transparent" IsEnabled="True" >
                     <StackPanel Orientation="Vertical">
                         <Image Source="/IMGs/PollIMG/CheapButSolid.png"  />
-                        <TextBlock HorizontalAlignment="Center">zaimponowania Syrence<LineBreak/>wyśmienitym trunkiem, <LineBreak/>ale trochę bida</TextBlock>
+                        <TextBlock HorizontalAlignment="Center">Zaimponowania Syrence<LineBreak/>wyśmienitym trunkiem, <LineBreak/>ale trochę bida</TextBlock>
                     </StackPanel>
                 </ToggleButton>
 
                 <ToggleButton Grid.Column="2"  IsChecked="{Binding Exclusive}" Margin="15,5,15,5" Width="150" HorizontalAlignment="Center" Background="Transparent" BorderBrush="Transparent" IsEnabled="True" >
                     <StackPanel Orientation="Vertical">
                         <Image Source="/IMGs/PollIMG/Exclusive.png"  />
-                        <TextBlock HorizontalAlignment="Center">eksluzywnego napitku,<LineBreak/> Milordzie <LineBreak/> bo wypłata przyszła</TextBlock>
+                        <TextBlock HorizontalAlignment="Center">Eksluzywnego napitku,<LineBreak/> Milordzie <LineBreak/> bo wypłata przyszła</TextBlock>
                     </StackPanel>
                 </ToggleButton>
 
                 <ToggleButton Grid.Column="3" Margin="15,5,15,5" Width="150" HorizontalAlignment="Center" Background="Transparent" BorderBrush="Transparent" IsChecked="{Binding ForPiratesFromCarabien}" IsEnabled="False">
                     <StackPanel Orientation="Vertical">
                         <Image Source="/IMGs/PollIMG/ForPiratesFrocCarabien.png"  />
-                        <TextBlock TextAlignment="Center" TextWrapping="Wrap" Text="wczucia się w Kałaibski klimat, podczas wieczołu z piłatami"/>
+                        <TextBlock TextAlignment="Center" TextWrapping="Wrap" Text="Wczucia się w Kałaibski klimat, podczas wieczołu z piłatami"/>
                     </StackPanel>
                 </ToggleButton>
             </Grid>
@@ -81,14 +81,14 @@
                 <ToggleButton Margin="15,5,15,5" Width="150" HorizontalAlignment="Center" IsChecked="{Binding solo}" Background="Transparent" BorderBrush="Transparent">
                     <StackPanel Orientation="Vertical">
                         <Image Source="/IMGs/PollIMG/Solo.png"  />
-                        <TextBlock TextAlignment="Center" TextWrapping="Wrap" Text="solo"/>
+                        <TextBlock TextAlignment="Center" TextWrapping="Wrap" Text="Solo"/>
                     </StackPanel>
                 </ToggleButton>
                 
                 <ToggleButton Grid.Column="1" Margin="15,5,15,5" Width="150" HorizontalAlignment="Center" IsChecked="{Binding WithCoke}" Background="Transparent" BorderBrush="Transparent">
                     <StackPanel Orientation="Vertical">
                         <Image Source="/IMGs/PollIMG/WithCoke.png"  />
-                        <TextBlock TextAlignment="Center" TextWrapping="Wrap" Text="z colo"/>
+                        <TextBlock TextAlignment="Center" TextWrapping="Wrap" Text="Z colo"/>
                     </StackPanel>
                 </ToggleButton>
 
