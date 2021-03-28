@@ -221,8 +221,8 @@ namespace RumikApp.Services
             using (MySqlConnection con = new MySqlConnection(CnnVal("sosek")))
             {
                 string query = @"INSERT INTO RumsBaseTEST 
-                (Name, Capacity, AlcoholPercentage, Price, Grade, GradeWithCoke, Color, Vanilly, Nuts, Carmel, Smoky, Cinnamon, Spirit, Fruits, Honey, Image) 
-                VALUES (@Name, @Capacity, @AlcoholPercentage, @Price, @Grade, @GradeWithCoke, @Color, @Vanilly, @Nuts, @Carmel, @Smoky, @Cinnamon, @Spirit, @Fruits, @Honey, @Image)";
+                (Name, Capacity, AlcoholPercentage, Price, Grade, GradeWithCoke, Color, Vanilly, Nuts, Carmel, Smoky, Cinnamon, Spirit, Fruits, Honey, BeAPirate, Image) 
+                VALUES (@Name, @Capacity, @AlcoholPercentage, @Price, @Grade, @GradeWithCoke, @Color, @Vanilly, @Nuts, @Carmel, @Smoky, @Cinnamon, @Spirit, @Fruits, @Honey,@BeAPirate, @Image)";
 
                 MySqlCommand cmd = new MySqlCommand(query, con);
 
@@ -243,6 +243,7 @@ namespace RumikApp.Services
                 cmd.Parameters.Add("@Spirit", MySqlDbType.Int16).Value = boolToInt16(beverage.Spirit.IsSet);
                 cmd.Parameters.Add("@Fruits", MySqlDbType.Int16).Value = boolToInt16(beverage.Fruits.IsSet);
                 cmd.Parameters.Add("@Honey", MySqlDbType.Int16).Value = boolToInt16(beverage.Honey.IsSet);
+                cmd.Parameters.Add("@BeAPirate", MySqlDbType.Int16).Value = boolToInt16(beverage.BeAPirate.IsSet);
 
                 cmd.Parameters.Add("@Image", MySqlDbType.Binary).Value = img;
                 con.Open();

@@ -298,5 +298,8 @@
   <ItemGroup>
     <Resource Include="IMGs\PollIMG\Spirit.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="IMGs\PollIMG\BeAPirate.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

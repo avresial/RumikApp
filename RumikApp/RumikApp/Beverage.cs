@@ -69,6 +69,20 @@ namespace RumikApp
             }
         }
 
+        private float _Price;
+        public float Price
+        {
+            get { return _Price; }
+            set
+            {
+                if (_Price == value)
+                    return;
+
+                _Price = value;
+                RaisePropertyChanged("Price");
+            }
+        }
+
         private int _Grade;
         public int Grade
         {
@@ -224,19 +238,21 @@ namespace RumikApp
             }
         }
 
-        private float _Price;
-        public float Price
+        private Flavour _BeAPirate = new Flavour("/IMGs/PollIMG/BeAPirate.png", "Honey");
+        public Flavour BeAPirate
         {
-            get { return _Price; }
+            get { return _BeAPirate; }
             set
             {
-                if (_Price == value)
+                if (_BeAPirate == value)
                     return;
 
-                _Price = value;
-                RaisePropertyChanged("Price");
+                _BeAPirate = value;
+
+                RaisePropertyChanged("BeAPirate");
             }
         }
+               
 
         private BitmapImage _TestIcon;
         public BitmapImage TestIcon
@@ -273,6 +289,8 @@ namespace RumikApp
             _Cinnamon.IsSet = true;
             _Spirit.IsSet = true;
             _Fruits.IsSet = true;
+            _BeAPirate.IsSet = true;
+
 
             if (((int)rand.Next(0, 20)) % 2 == 0)
                 Honey.IsSet = true;

@@ -125,7 +125,7 @@ namespace RumikApp.ViewModels
                     () =>
                     {
                         saveToDatabase();
-                        
+
                         Beverage = new Beverage();
                         byte[] TMPArray = loadImage(null);
 
@@ -193,7 +193,7 @@ namespace RumikApp.ViewModels
 
         public InsertDataToDatabaseFormViewModel(MainViewModel mainViewModel)
         {
-                      this.mainViewModel = mainViewModel;
+            this.mainViewModel = mainViewModel;
 
             byte[] TMPArray = loadImage(null);
 
@@ -216,7 +216,6 @@ namespace RumikApp.ViewModels
 
         void saveToDatabase()
         {
-            //RumsBaseTEST
             byte[] Image = new byte[250000];
 
             Output = mainViewModel.DatabaseConnectionService.SaveBevreageToDatabase(Beverage, img);
