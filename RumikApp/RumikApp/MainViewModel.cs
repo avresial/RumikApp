@@ -1,6 +1,7 @@
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using MySql.Data.MySqlClient;
+using RumikApp.Enums;
 using RumikApp.Services;
 using RumikApp.UserControls;
 using RumikApp.ViewModels;
@@ -98,7 +99,7 @@ namespace RumikApp.ViewModel
             }
         }
 
-        private IDatabaseConnectionService _DatabaseConnectionService = new DatabaseConnectionService();
+        private IDatabaseConnectionService _DatabaseConnectionService;
         public IDatabaseConnectionService DatabaseConnectionService
         {
             get { return _DatabaseConnectionService; }
@@ -114,6 +115,7 @@ namespace RumikApp.ViewModel
 
         public MainViewModel()
         {
+            DatabaseConnectionService = new DatabaseConnectionService();
             PollViewModel = new PollViewModel(this);
             MainControlPanelViewModel = new MainControlPanelViewModel(this);
             DataGridViewModel = new DataGridViewModel(this);
@@ -121,7 +123,9 @@ namespace RumikApp.ViewModel
             InsertDataToDatabaseForm = new InsertDataToDatabaseFormViewModel(this);
 
             ItemsControl = new DataGridViewModel(this);
-
+            
+            DatabaseConnectionService.TestConnectionToDatabase();
+            DatabaseConnectionService.TestConnectionToTable(AvailableTables.RumsBaseTEST);
             Random rand = new Random();
             for (int i = 0; i < 15; i++)
                 ItemsControl.Beverages.Add(new Beverage().GetRandomBevrage(rand));

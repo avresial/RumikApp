@@ -1,8 +1,10 @@
 ﻿using MySql.Data.MySqlClient;
+using RumikApp.Enums;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Configuration;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +13,82 @@ namespace RumikApp.Services
 {
     public class DatabaseConnectionService : IDatabaseConnectionService
     {
+
+        private AvailableTables _MainDataTable = AvailableTables.RumsBase;
+        public AvailableTables MainDataTable
+        {
+            get { return _MainDataTable; }
+            set
+            {
+                if (_MainDataTable == value)
+                    return;
+                _MainDataTable = value;
+            }
+        }
+
+        public bool TestConnectionToDatabase()
+        {
+            bool doesConnectionWork = true;
+
+            try
+            {
+                MySqlConnection con = new MySqlConnection(CnnVal("sosek"));
+
+                con.Open();
+
+                if (con.State == ConnectionState.Open)
+                {
+                    con.Close();
+                }
+
+            }
+            catch (ArgumentException a_ex)
+            {
+                doesConnectionWork = false;
+                System.Windows.Forms.MessageBox.Show(a_ex.ToString());
+            }
+            catch (MySqlException ex)
+            {
+                doesConnectionWork = false;
+                System.Windows.Forms.MessageBox.Show(ex.ToString());
+            }
+
+            return doesConnectionWork;
+        }
+
+        public bool TestConnectionToTable(AvailableTables availableTables)
+        {
+
+            string oString = "SELECT * FROM " + availableTables.ToString() + " LIMIT 1";
+
+            try
+            {
+                using (MySqlConnection con = new MySqlConnection(CnnVal("sosek")))
+                {
+                    MySqlCommand cmd0 = new MySqlCommand(oString, con);
+
+                    con.Open();
+
+                    using (MySqlDataReader reader = cmd0.ExecuteReader())
+                        while (reader.Read())
+                            return true;
+
+                    con.Close();
+                }
+
+            }
+            catch (ArgumentException a_ex)
+            {
+                System.Windows.Forms.MessageBox.Show(a_ex.ToString());
+            }
+            catch (MySqlException ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.ToString());
+            }
+
+            return false;
+
+        }
 
         public ObservableCollection<Beverage> GetData(string Query)
         {
@@ -45,8 +123,8 @@ namespace RumikApp.Services
 
                 //string oString = "SELECT * FROM (SELECT * FROM RumsBase ORDER BY id DESC LIMIT 4) sub ORDER BY id ASC";
 
-                string oString = "SELECT * FROM RumsBase ";
-                oString = "SELECT * FROM RumsBaseTEST ";
+                string oString = "SELECT * FROM " + MainDataTable.ToString();
+                
                 MySqlCommand cmd0 = new MySqlCommand(oString, con);
 
                 con.Open();
@@ -84,7 +162,7 @@ namespace RumikApp.Services
             beverageTMP.Honey.IsSet = IntToBool(reader.GetInt16(15));
 
             byte[] buffer = new byte[250000];
-            reader.GetBytes(16, 0, buffer, 0, 250000);
+            reader.GetBytes(17, 0, buffer, 0, 250000);
             beverageTMP.TestIcon = ImageProcessingService.ConvertToBitMapImage(buffer);
 
             return beverageTMP;

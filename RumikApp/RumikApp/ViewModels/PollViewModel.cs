@@ -436,8 +436,9 @@ namespace RumikApp.UserControls
 
             if (conditions.Count > 0)
             {
-                oString = $"SELECT * FROM RumsBase WHERE ";
-                oString = $"SELECT * FROM RumsBaseTEST WHERE ";
+
+                oString = $"SELECT * FROM " + mainViewModel.DatabaseConnectionService.MainDataTable.ToString() + " WHERE ";
+
                 for (int i = 0; i < conditions.Count; i++)
                 {
                     if (i != 0)
@@ -459,8 +460,7 @@ namespace RumikApp.UserControls
             }
             else
             {
-                oString = $"SELECT * FROM RumsBase";
-                oString = "SELECT * FROM RumsBaseTEST";
+                oString = $"SELECT * FROM " + mainViewModel.DatabaseConnectionService.MainDataTable.ToString() + " ";
             }
 
             Beverages = mainViewModel.DatabaseConnectionService.GetData(oString);
