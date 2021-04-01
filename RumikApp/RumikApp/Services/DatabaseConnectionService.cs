@@ -91,50 +91,22 @@ namespace RumikApp.Services
 
         }
 
-        public ObservableCollection<Beverage> GetData(string Query)
-        {
-            if (Query == null || Query == "")
-                return null;
-
-            ObservableCollection<Beverage> allBeverages = new ObservableCollection<Beverage>();
-
-            using (MySqlConnection con = new MySqlConnection(CnnVal("sosek")))
-            {
-
-                MySqlCommand cmd0 = new MySqlCommand(Query, con);
-
-                con.Open();
-
-                using (MySqlDataReader reader = cmd0.ExecuteReader())
-                    while (reader.Read())
-                        allBeverages.Add(saveReaderToBevrage(reader));
-
-                con.Close();
-            }
-            return allBeverages;
-
-        }
-
         public ObservableCollection<Beverage> GetAllData()
         {
-            string oString = "SELECT * FROM " + MainDataTable.ToString() + " ORDER BY Name";
-
-            return GetData(oString);
+            return getData("SELECT * FROM " + MainDataTable.ToString() + " ORDER BY Name");
         }
 
         public ObservableCollection<Beverage> GetAllPiratesBeverages()
         {
-            string oString = "SELECT* FROM " + MainDataTable.ToString() + " WHERE BeAPirate = 1";
-
-            return GetData(oString);
+            return getData("SELECT* FROM " + MainDataTable.ToString() + " WHERE BeAPirate = 1");
         }
+
         public ObservableCollection<Beverage> GetDataFromDatabaseWithConditions(List<string> conditions)
         {
             string oString;
 
             if (conditions.Count > 0)
             {
-
                 oString = $"SELECT * FROM " + MainDataTable.ToString() + " WHERE ";
 
                 for (int i = 0; i < conditions.Count; i++)
@@ -158,17 +130,17 @@ namespace RumikApp.Services
             }
             else
             {
-                oString = $"SELECT * FROM " + MainDataTable.ToString() + " ";
+                oString = $"SELECT * FROM " + MainDataTable.ToString();
             }
 
-            return GetData(oString);
+            return getData(oString);
         }
 
         public Beverage GetRandomRow()
         {
             string oString = "SELECT * FROM " + MainDataTable.ToString() + " ORDER BY RAND() LIMIT 1";
 
-            ObservableCollection<Beverage> possibleOneBeverages = GetData(oString);
+            ObservableCollection<Beverage> possibleOneBeverages = getData(oString);
 
             if (possibleOneBeverages.Count > 0)
                 return possibleOneBeverages[0];
@@ -179,37 +151,6 @@ namespace RumikApp.Services
         public string CnnVal(string name)
         {
             return ConfigurationManager.ConnectionStrings[name].ConnectionString;
-        }
-
-        /// <summary>
-        /// Test method
-        /// </summary>
-        /// <param name="img"></param>
-        public void SaveImageToDatabase(byte[] img)
-        {
-            using (MySqlConnection con = new MySqlConnection(CnnVal("sosek")))
-            {
-                //entity framework in future or dapper
-
-                string query = @"INSERT INTO TestImgTable (Name, Image) VALUES (@name, @img)";
-                MySqlCommand cmd = new MySqlCommand(query, con);
-                cmd.Parameters.Add("@name", MySqlDbType.VarChar).Value = "XD";
-                cmd.Parameters.Add("@img", MySqlDbType.Binary).Value = img;
-                con.Open();
-
-                if (cmd.ExecuteNonQuery() == 1)
-                {
-
-                    int id = (int)cmd.LastInsertedId;
-
-                }
-                else
-                {
-                    ;
-                    // failure msg ?
-                }
-                con.Close();
-            }
         }
 
         public string SaveBevreageToDatabase(Beverage beverage, byte[] img)
@@ -263,6 +204,7 @@ namespace RumikApp.Services
 
             return result;
         }
+
         Beverage saveReaderToBevrage(MySqlDataReader reader)
         {
             Beverage beverageTMP = new Beverage();
@@ -276,14 +218,14 @@ namespace RumikApp.Services
             beverageTMP.GradeWithCoke = reader.GetInt32(6);
             beverageTMP.Color = reader.GetString(7);
 
-            beverageTMP.Vanila.IsSet = IntToBool(reader.GetInt16(8));
-            beverageTMP.Nuts.IsSet = IntToBool(reader.GetInt16(9));
-            beverageTMP.Carmel.IsSet = IntToBool(reader.GetInt16(10));
-            beverageTMP.Smoke.IsSet = IntToBool(reader.GetInt16(11));
-            beverageTMP.Cinnamon.IsSet = IntToBool(reader.GetInt16(12));
-            beverageTMP.Spirit.IsSet = IntToBool(reader.GetInt16(13));
-            beverageTMP.Fruits.IsSet = IntToBool(reader.GetInt16(14));
-            beverageTMP.Honey.IsSet = IntToBool(reader.GetInt16(15));
+            beverageTMP.Vanila.IsSet = intToBool(reader.GetInt16(8));
+            beverageTMP.Nuts.IsSet = intToBool(reader.GetInt16(9));
+            beverageTMP.Carmel.IsSet = intToBool(reader.GetInt16(10));
+            beverageTMP.Smoke.IsSet = intToBool(reader.GetInt16(11));
+            beverageTMP.Cinnamon.IsSet = intToBool(reader.GetInt16(12));
+            beverageTMP.Spirit.IsSet = intToBool(reader.GetInt16(13));
+            beverageTMP.Fruits.IsSet = intToBool(reader.GetInt16(14));
+            beverageTMP.Honey.IsSet = intToBool(reader.GetInt16(15));
 
             byte[] buffer = new byte[250000];
             reader.GetBytes(17, 0, buffer, 0, 250000);
@@ -291,6 +233,7 @@ namespace RumikApp.Services
 
             return beverageTMP;
         }
+
         Int16 boolToInt16(bool boolVariable)
         {
             if (boolVariable)
@@ -298,7 +241,8 @@ namespace RumikApp.Services
             else
                 return 0;
         }
-        bool IntToBool(Int16 Int16Variable)
+
+        bool intToBool(Int16 Int16Variable)
         {
             if (Int16Variable == 1)
                 return true;
@@ -306,6 +250,28 @@ namespace RumikApp.Services
                 return false;
         }
 
-       
+        private ObservableCollection<Beverage> getData(string Query)
+        {
+            if (Query == null || Query == "")
+                return null;
+
+            ObservableCollection<Beverage> allBeverages = new ObservableCollection<Beverage>();
+
+            using (MySqlConnection con = new MySqlConnection(CnnVal("sosek")))
+            {
+
+                MySqlCommand cmd0 = new MySqlCommand(Query, con);
+
+                con.Open();
+
+                using (MySqlDataReader reader = cmd0.ExecuteReader())
+                    while (reader.Read())
+                        allBeverages.Add(saveReaderToBevrage(reader));
+
+                con.Close();
+            }
+            return allBeverages;
+
+        }
     }
 }

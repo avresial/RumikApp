@@ -500,15 +500,15 @@ namespace RumikApp.UserControls
             return "";
         }
 
+
         void GoForPiratesFromCarabien()
         {
 
-            Beverages = databaseConnectionService.GetAllPiratesBeverages();
+            informationBusService.Beverages = databaseConnectionService.GetDataFromDatabaseWithConditions(new List<string>() { "BeAPirate = 1" });
 
             PanelVisibilityService.PollVisibility = Visibility.Collapsed;
             PanelVisibilityService.DataGridViewModel2Visibility = Visibility.Visible;
-
-            //mainViewModel.DataGridViewModel2.Beverages = Beverages;
+                        
             ForPiratesFromCarabien = false;
             clearSellection();
         }
