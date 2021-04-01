@@ -9,6 +9,8 @@ namespace RumikApp.Enums
     public enum AvailableTables
     {
         RumsBase,
-        RumsBaseTEST
+        RumsBaseTEST,
+        NotYetApproved,
+        NotYetApprovedTEST
     }
 }

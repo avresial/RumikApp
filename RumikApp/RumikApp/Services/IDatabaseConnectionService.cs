@@ -12,6 +12,7 @@ namespace RumikApp.Services
     public interface IDatabaseConnectionService
     {
         AvailableTables MainDataTable { get; set; }
+        AvailableTables NotYetApprovedTESTDataTable { get; set; }
         ObservableCollection<Beverage> GetAllData();
         ObservableCollection<Beverage> GetAllPiratesBeverages();
         ObservableCollection<Beverage> GetDataFromDatabaseWithConditions(List<string> conditions);
