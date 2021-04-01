@@ -158,6 +158,7 @@
     <Compile Include="Converters\TinyIntToBoolConverter.cs" />
     <Compile Include="Converters\ValueGradeToStringConverter.cs" />
     <Compile Include="Converters\ValuePrecentageToStringConverter.cs" />
+    <Compile Include="Converters\ValuePricePer100mlToStringConverter.cs" />
     <Compile Include="Converters\ValuePriceToStringConverter.cs" />
     <Compile Include="Enums\AvailableTables.cs" />
     <Compile Include="Flavour.cs" />

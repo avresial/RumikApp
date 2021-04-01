@@ -50,6 +50,9 @@ namespace RumikApp
                 if (_Capacity == value)
                     return;
 
+                if (value != null && value != 0)
+                    PricePer100ml = (Price / value) * 100;
+
                 _Capacity = value;
                 RaisePropertyChanged(nameof(Capacity));
             }
@@ -78,8 +81,25 @@ namespace RumikApp
                 if (_Price == value)
                     return;
 
+                if (value != null)
+                    PricePer100ml = (value / Capacity) * 100;
+
                 _Price = value;
                 RaisePropertyChanged(nameof(Price));
+            }
+        }
+
+        private float _PricePer100ml;
+        public float PricePer100ml
+        {
+            get { return _PricePer100ml; }
+            set
+            {
+                if (_PricePer100ml == value)
+                    return;
+
+                _PricePer100ml = value;
+                RaisePropertyChanged(nameof(PricePer100ml));
             }
         }
 
@@ -124,7 +144,7 @@ namespace RumikApp
                 RaisePropertyChanged(nameof(Color));
             }
         }
-    
+
         private Flavour _Vanila = new Flavour("/IMGs/PollIMG/Vanila.png", "Vanila");
         public Flavour Vanila
         {
@@ -252,7 +272,7 @@ namespace RumikApp
                 RaisePropertyChanged(nameof(BeAPirate));
             }
         }
-               
+
 
         private BitmapImage _TestIcon;
         public BitmapImage TestIcon
@@ -301,8 +321,8 @@ namespace RumikApp
                 _BeAPirate.IsSet = true;
             if (((int)rand.Next(0, 20)) % 2 == 0)
                 Honey.IsSet = true;
-        
-            
+
+
             return this;
         }
     }

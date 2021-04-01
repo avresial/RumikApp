@@ -13,6 +13,8 @@
         <Converters:ValuePrecentageToStringConverter x:Key="ValuePrecentageToStringConverter"/>
         <Converters:ValuePriceToStringConverter x:Key="ValuePriceToStringConverter"/>
         <Converters:ValueGradeToStringConverter x:Key="ValueGradeToStringConverter"/>
+        <Converters:ValuePricePer100mlToStringConverter x:Key="ValuePricePer100mlToStringConverter"/>
+        
     </UserControl.Resources>
 
     <!--<ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">-->
@@ -92,7 +94,7 @@
 
                                 <TextBlock Grid.Column="0" Grid.Row="2" FontFamily="Bookman Old Style" FontSize="20" Text="{Binding Grade, Converter={StaticResource ValueGradeToStringConverter}}"             Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" ToolTip="Ocena dla drinka rum + rum" />
                                 <TextBlock Grid.Column="1" Grid.Row="2" FontFamily="Bookman Old Style" FontSize="20" Text="{Binding GradeWithCoke, Converter={StaticResource ValueGradeToStringConverter}}"     Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" ToolTip="Ocena dla drinka z colą" />
-                                <TextBlock Grid.Column="2" Grid.Row="2" FontFamily="Bookman Old Style" FontSize="20" Text="{Binding Price, Converter={StaticResource ValuePriceToStringConverter}}"             Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" ToolTip="Tak na prawdę to PLN, ale rupees brzmi zabawniej xD"/>
+                                <TextBlock Grid.Column="2" Grid.Row="2" FontFamily="Bookman Old Style" FontSize="20" Text="{Binding Price, Converter={StaticResource ValuePriceToStringConverter}}"             Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" ToolTip="{Binding PricePer100ml, Converter={StaticResource ValuePricePer100mlToStringConverter}}"/>
 
                             </Grid>
                                                        
