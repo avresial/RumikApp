@@ -13,7 +13,6 @@ using System.Windows.Threading;
 
 namespace RumikApp.ViewModel
 {
-
     public class MainViewModel : ViewModelBase
     {
         private DispatcherTimer dispatcherTimerInCaseDatabaseDoesNotWork = new DispatcherTimer();
@@ -131,7 +130,7 @@ namespace RumikApp.ViewModel
         }
 
         public MainViewModel(MainControlPanelViewModel mainControlPanelViewModel, PollViewModel pollViewModel,
-            DataGridViewModel dataGridViewModel, DataGridViewModel dataGridViewModel2, DataGridViewModel itemsControl, 
+            DataGridViewModel dataGridViewModel, DataGridViewModel dataGridViewModel2, DataGridViewModel itemsControl,
             InsertDataToDatabaseFormViewModel insertDataToDatabaseFormViewModel, IDatabaseConnectionService databaseConnectionService, IPanelVisibilityService panelVisibilityService)
         {
             PanelVisibilityService = panelVisibilityService;
