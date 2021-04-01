@@ -23,7 +23,7 @@ namespace RumikApp
                     return;
 
                 _ID = value;
-                RaisePropertyChanged("ID");
+                RaisePropertyChanged(nameof(ID));
             }
         }
 
@@ -37,7 +37,7 @@ namespace RumikApp
                     return;
 
                 _Name = value;
-                RaisePropertyChanged("Name");
+                RaisePropertyChanged(nameof(Name));
             }
         }
 
@@ -51,7 +51,7 @@ namespace RumikApp
                     return;
 
                 _Capacity = value;
-                RaisePropertyChanged("Capacity");
+                RaisePropertyChanged(nameof(Capacity));
             }
         }
 
@@ -65,7 +65,7 @@ namespace RumikApp
                     return;
 
                 _AlcoholPercentage = value;
-                RaisePropertyChanged("AlcoholPercentage");
+                RaisePropertyChanged(nameof(AlcoholPercentage));
             }
         }
 
@@ -79,7 +79,7 @@ namespace RumikApp
                     return;
 
                 _Price = value;
-                RaisePropertyChanged("Price");
+                RaisePropertyChanged(nameof(Price));
             }
         }
 
@@ -93,7 +93,7 @@ namespace RumikApp
                     return;
 
                 _Grade = value;
-                RaisePropertyChanged("Grade");
+                RaisePropertyChanged(nameof(Grade));
             }
         }
 
@@ -107,7 +107,7 @@ namespace RumikApp
                     return;
 
                 _GradeWithCoke = value;
-                RaisePropertyChanged("GradeWithCoke");
+                RaisePropertyChanged(nameof(GradeWithCoke));
             }
         }
 
@@ -135,7 +135,7 @@ namespace RumikApp
                     return;
 
                 _Vanila = value;
-                RaisePropertyChanged("Vanila");
+                RaisePropertyChanged(nameof(Vanila));
             }
         }
 
@@ -149,7 +149,7 @@ namespace RumikApp
                     return;
 
                 _Nuts = value;
-                RaisePropertyChanged("Nuts");
+                RaisePropertyChanged(nameof(Nuts));
             }
         }
 
@@ -163,7 +163,7 @@ namespace RumikApp
                     return;
 
                 _Carmel = value;
-                RaisePropertyChanged("Caramel");
+                RaisePropertyChanged(nameof(Carmel));
             }
         }
 
@@ -177,7 +177,7 @@ namespace RumikApp
                     return;
 
                 _Smoke = value;
-                RaisePropertyChanged("Smoke");
+                RaisePropertyChanged(nameof(Smoke));
             }
         }
 
@@ -191,7 +191,7 @@ namespace RumikApp
                     return;
 
                 _Cinnamon = value;
-                RaisePropertyChanged("Cinnamon");
+                RaisePropertyChanged(nameof(Cinnamon));
             }
         }
 
@@ -205,7 +205,7 @@ namespace RumikApp
                     return;
 
                 _Spirit = value;
-                RaisePropertyChanged("Spirit");
+                RaisePropertyChanged(nameof(Spirit));
             }
         }
 
@@ -219,7 +219,7 @@ namespace RumikApp
                     return;
 
                 _Fruits = value;
-                RaisePropertyChanged("Fruits");
+                RaisePropertyChanged(nameof(Fruits));
             }
         }
 
@@ -234,7 +234,7 @@ namespace RumikApp
 
                 _Honey = value;
 
-                RaisePropertyChanged("Honey");
+                RaisePropertyChanged(nameof(Honey));
             }
         }
 
@@ -249,7 +249,7 @@ namespace RumikApp
 
                 _BeAPirate = value;
 
-                RaisePropertyChanged("BeAPirate");
+                RaisePropertyChanged(nameof(BeAPirate));
             }
         }
                
@@ -264,7 +264,7 @@ namespace RumikApp
                     return;
 
                 _TestIcon = value;
-                RaisePropertyChanged("TestIcon");
+                RaisePropertyChanged(nameof(TestIcon));
             }
         }
 

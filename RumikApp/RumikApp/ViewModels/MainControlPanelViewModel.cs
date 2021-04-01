@@ -29,7 +29,7 @@ namespace RumikApp.ViewModels
                     return;
 
                 _Visibility = value;
-                RaisePropertyChanged("Visibility");
+                RaisePropertyChanged(nameof(Visibility));
 
             }
         }

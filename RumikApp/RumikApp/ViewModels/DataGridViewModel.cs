@@ -20,7 +20,7 @@ namespace RumikApp.ViewModels
                     return;
 
                 _Visibility = value;
-                RaisePropertyChanged("Visibility");
+                RaisePropertyChanged(nameof(Visibility));
 
             }
         }
@@ -35,7 +35,7 @@ namespace RumikApp.ViewModels
                     return;
 
                 _ScrollViewerVisibility = value;
-                RaisePropertyChanged("ScrollViewerVisibility");
+                RaisePropertyChanged(nameof(ScrollViewerVisibility));
             }
         }
 
@@ -49,7 +49,7 @@ namespace RumikApp.ViewModels
                     return;
 
                 _UnknownGuyVisibility = value;
-                RaisePropertyChanged("UnknownGuyVisibility");
+                RaisePropertyChanged(nameof(UnknownGuyVisibility));
             }
         }
 
@@ -76,7 +76,7 @@ namespace RumikApp.ViewModels
 
 
                 _Beverages = value;
-                RaisePropertyChanged("Beverages");
+                RaisePropertyChanged(nameof(Beverages));
             }
         }
 

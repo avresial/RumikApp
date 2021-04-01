@@ -22,7 +22,7 @@ namespace RumikApp.UserControls
                     return;
 
                 _Visibility = value;
-                RaisePropertyChanged("Visibility");
+                RaisePropertyChanged(nameof(Visibility));
 
             }
         }
@@ -37,7 +37,7 @@ namespace RumikApp.UserControls
                     return;
 
                 _Beverages = value;
-                RaisePropertyChanged("Beverages");
+                RaisePropertyChanged(nameof(Beverages));
             }
         }
 
@@ -60,7 +60,7 @@ namespace RumikApp.UserControls
                 }
 
                 _ForPartyBool = value;
-                RaisePropertyChanged("ForPartyBool");
+                RaisePropertyChanged(nameof(ForPartyBool));
             }
         }
 
@@ -81,7 +81,7 @@ namespace RumikApp.UserControls
                 }
 
                 _GoodButCheap = value;
-                RaisePropertyChanged("GoodButCheap");
+                RaisePropertyChanged(nameof(GoodButCheap));
             }
         }
 
@@ -102,7 +102,7 @@ namespace RumikApp.UserControls
                 }
 
                 _Exclusive = value;
-                RaisePropertyChanged("Exclusive");
+                RaisePropertyChanged(nameof(Exclusive));
             }
         }
 
@@ -123,7 +123,7 @@ namespace RumikApp.UserControls
                 }
 
                 _ForPiratesFromCarabien = value;
-                RaisePropertyChanged("ForPiratesFromCarabien");
+                RaisePropertyChanged(nameof(ForPiratesFromCarabien));
 
                 if (value)
                     GoForPiratesFromCarabien();
@@ -142,7 +142,7 @@ namespace RumikApp.UserControls
                 if (value)
                     WithCoke = false;
                 _solo = value;
-                RaisePropertyChanged("solo");
+                RaisePropertyChanged(nameof(solo));
             }
         }
 
@@ -157,7 +157,7 @@ namespace RumikApp.UserControls
                 if (value)
                     solo = false;
                 _WithCoke = value;
-                RaisePropertyChanged("WithCoke");
+                RaisePropertyChanged(nameof(WithCoke));
             }
         }
 
@@ -173,7 +173,7 @@ namespace RumikApp.UserControls
                     return;
 
                 _Vanila = value;
-                RaisePropertyChanged("Vanila");
+                RaisePropertyChanged(nameof(Vanila));
             }
         }
 
@@ -187,7 +187,7 @@ namespace RumikApp.UserControls
                     return;
 
                 _Nuts = value;
-                RaisePropertyChanged("Nuts");
+                RaisePropertyChanged(nameof(Nuts));
             }
         }
 
@@ -201,7 +201,7 @@ namespace RumikApp.UserControls
                     return;
 
                 _Carmel = value;
-                RaisePropertyChanged("Caramel");
+                RaisePropertyChanged(nameof(Carmel));
             }
         }
 
@@ -215,7 +215,7 @@ namespace RumikApp.UserControls
                     return;
 
                 _Smoke = value;
-                RaisePropertyChanged("Smoke");
+                RaisePropertyChanged(nameof(Smoke));
             }
         }
 
@@ -229,7 +229,7 @@ namespace RumikApp.UserControls
                     return;
 
                 _Cinnamon = value;
-                RaisePropertyChanged("Cinnamon");
+                RaisePropertyChanged(nameof(Cinnamon));
             }
         }
 
@@ -243,7 +243,7 @@ namespace RumikApp.UserControls
                     return;
 
                 _Spirit = value;
-                RaisePropertyChanged("Spirit");
+                RaisePropertyChanged(nameof(Spirit));
             }
         }
 
@@ -257,7 +257,7 @@ namespace RumikApp.UserControls
                     return;
 
                 _Fruits = value;
-                RaisePropertyChanged("Fruits");
+                RaisePropertyChanged(nameof(Fruits));
             }
         }
 
@@ -272,7 +272,7 @@ namespace RumikApp.UserControls
 
                 _Honey = value;
 
-                RaisePropertyChanged("Honey");
+                RaisePropertyChanged(nameof(Honey));
             }
         }
 
@@ -293,7 +293,7 @@ namespace RumikApp.UserControls
                 }
 
                 _PricePoint1 = value;
-                RaisePropertyChanged("PricePoint1");
+                RaisePropertyChanged(nameof(PricePoint1));
             }
         }
 
@@ -314,7 +314,7 @@ namespace RumikApp.UserControls
                 }
 
                 _PricePoint2 = value;
-                RaisePropertyChanged("PricePoint2");
+                RaisePropertyChanged(nameof(PricePoint2));
             }
         }
 
@@ -335,7 +335,7 @@ namespace RumikApp.UserControls
                 }
 
                 __PricePoint3 = value;
-                RaisePropertyChanged("PricePoint3");
+                RaisePropertyChanged(nameof(PricePoint3));
             }
         }
 
@@ -356,7 +356,7 @@ namespace RumikApp.UserControls
                 }
 
                 __PricePoint4 = value;
-                RaisePropertyChanged("PricePoint4");
+                RaisePropertyChanged(nameof(PricePoint4));
             }
         }
 

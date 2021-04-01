@@ -28,7 +28,7 @@ namespace RumikApp.ViewModel
                     return;
 
                 _MainControlPanelViewModel = value;
-                RaisePropertyChanged("MainControlPanelViewModel");
+                RaisePropertyChanged(nameof(MainControlPanelViewModel));
             }
         }
 
@@ -42,7 +42,7 @@ namespace RumikApp.ViewModel
                     return;
 
                 _PollViewModel = value;
-                RaisePropertyChanged("PollViewModel");
+                RaisePropertyChanged(nameof(PollViewModel));
             }
         }
 
@@ -56,7 +56,7 @@ namespace RumikApp.ViewModel
                     return;
 
                 _DataGridViewModel = value;
-                RaisePropertyChanged("DataGridViewModel");
+                RaisePropertyChanged(nameof(DataGridViewModel));
             }
         }
 
@@ -70,7 +70,7 @@ namespace RumikApp.ViewModel
                     return;
 
                 _DataGridViewModel2 = value;
-                RaisePropertyChanged("DataGridViewModel2");
+                RaisePropertyChanged(nameof(DataGridViewModel2));
             }
         }
 
@@ -84,7 +84,7 @@ namespace RumikApp.ViewModel
                     return;
 
                 _ItemsControl = value;
-                RaisePropertyChanged("ItemsControl");
+                RaisePropertyChanged(nameof(ItemsControl));
             }
         }
 
@@ -98,7 +98,7 @@ namespace RumikApp.ViewModel
                     return;
 
                 _InsertDataToDatabaseForm = value;
-                RaisePropertyChanged("InsertDataToDatabaseForm");
+                RaisePropertyChanged(nameof(InsertDataToDatabaseForm));
             }
         }
 
@@ -112,7 +112,7 @@ namespace RumikApp.ViewModel
                     return;
 
                 _DatabaseConnectionService = value;
-                RaisePropertyChanged("DatabaseConnectionService");
+                RaisePropertyChanged(nameof(DatabaseConnectionService));
             }
         }
 

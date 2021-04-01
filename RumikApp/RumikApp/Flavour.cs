@@ -20,7 +20,7 @@ namespace RumikApp
                     return;
 
                 _IMGSrc = value;
-                RaisePropertyChanged("IMGSrc");
+                RaisePropertyChanged(nameof(IMGSrc));
             }
         }
 
@@ -34,7 +34,7 @@ namespace RumikApp
                     return;
 
                 _IsSet = value;
-                RaisePropertyChanged("IsSet");
+                RaisePropertyChanged(nameof(IsSet));
             }
         }
 
@@ -48,7 +48,7 @@ namespace RumikApp
                     return;
 
                 _Name = value;
-                RaisePropertyChanged("Name");
+                RaisePropertyChanged(nameof(Name));
             }
         }
 

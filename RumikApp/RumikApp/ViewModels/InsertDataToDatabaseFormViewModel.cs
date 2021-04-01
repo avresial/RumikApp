@@ -28,7 +28,7 @@ namespace RumikApp.ViewModels
                     return;
 
                 _Visibility = value;
-                RaisePropertyChanged("Visibility");
+                RaisePropertyChanged(nameof(Visibility));
 
             }
         }
@@ -43,7 +43,7 @@ namespace RumikApp.ViewModels
                     return;
 
                 _Beverage = value;
-                RaisePropertyChanged("Beverage");
+                RaisePropertyChanged(nameof(Beverage));
             }
         }
 
@@ -57,7 +57,7 @@ namespace RumikApp.ViewModels
                     return;
 
                 _ColorsList = value;
-                RaisePropertyChanged("StringList");
+                RaisePropertyChanged(nameof(ColorsList));
             }
         }
 
