@@ -57,7 +57,7 @@
             </Grid>
             
             <ScrollViewer Grid.Row="1" Grid.ColumnSpan="2" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" >
-                <ItemsControl   ItemsSource="{Binding Beverages}" Visibility="{Binding ScrollViewerVisibility}" MaxWidth="1300" HorizontalAlignment="Center">
+            <ItemsControl   ItemsSource="{Binding informationBusService.Beverages}" Visibility="{Binding ScrollViewerVisibility}" MaxWidth="1300" HorizontalAlignment="Center">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <Grid Margin="1,0,0,70" MaxHeight="300">

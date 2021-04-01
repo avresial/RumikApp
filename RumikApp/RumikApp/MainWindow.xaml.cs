@@ -21,11 +21,19 @@ namespace RumikApp
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+    //    public MainWindow()
+    //    {
+    //        InitializeComponent();
+    //        //this.DataContext = new MainViewModel();
+            
+    //        this.Show();
+    //    }
+
+        public MainWindow(MainViewModel mainViewModel)
         {
             InitializeComponent();
-            this.DataContext = new MainViewModel();
-            
+            this.DataContext = mainViewModel;
+
             this.Show();
         }
     }

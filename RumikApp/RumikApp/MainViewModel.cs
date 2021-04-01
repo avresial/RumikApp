@@ -116,22 +116,47 @@ namespace RumikApp.ViewModel
             }
         }
 
-        public MainViewModel()
+        private IPanelVisibilityService _PanelVisibilityService;
+        public IPanelVisibilityService PanelVisibilityService
         {
-            DatabaseConnectionService = new DatabaseConnectionService();
-
-            if (DatabaseConnectionService.TestConnectionToDatabase() && DatabaseConnectionService.TestConnectionToTable(DatabaseConnectionService.MainDataTable))
+            get { return _PanelVisibilityService; }
+            set
             {
-                loadFunctionality();
-            }
-            else
-            {
+                if (_PanelVisibilityService == value)
+                    return;
 
-                dispatcherTimerInCaseDatabaseDoesNotWork.Tick += new EventHandler(CheckingDatabaseConnection);
-                dispatcherTimerInCaseDatabaseDoesNotWork.Interval = new TimeSpan(0, 0, 1);
-                dispatcherTimerInCaseDatabaseDoesNotWork.Start();
-
+                _PanelVisibilityService = value;
+                RaisePropertyChanged(nameof(PanelVisibilityService));
             }
+        }
+
+        public MainViewModel(MainControlPanelViewModel mainControlPanelViewModel, PollViewModel pollViewModel,
+            DataGridViewModel dataGridViewModel, DataGridViewModel dataGridViewModel2, DataGridViewModel itemsControl, 
+            InsertDataToDatabaseFormViewModel insertDataToDatabaseFormViewModel, IDatabaseConnectionService databaseConnectionService, IPanelVisibilityService panelVisibilityService)
+        {
+            PanelVisibilityService = panelVisibilityService;
+
+            MainControlPanelViewModel = mainControlPanelViewModel;
+            PollViewModel = pollViewModel;
+            DatabaseConnectionService = databaseConnectionService;
+            DataGridViewModel = dataGridViewModel;
+            DataGridViewModel2 = dataGridViewModel2;
+            ItemsControl = itemsControl;
+            InsertDataToDatabaseForm = insertDataToDatabaseFormViewModel;
+
+
+            //if (DatabaseConnectionService.TestConnectionToDatabase() && DatabaseConnectionService.TestConnectionToTable(DatabaseConnectionService.MainDataTable))
+            //{
+            //    loadFunctionality();
+            //}
+            //else
+            //{
+
+            //    dispatcherTimerInCaseDatabaseDoesNotWork.Tick += new EventHandler(CheckingDatabaseConnection);
+            //    dispatcherTimerInCaseDatabaseDoesNotWork.Interval = new TimeSpan(0, 0, 1);
+            //    dispatcherTimerInCaseDatabaseDoesNotWork.Start();
+
+            //}
         }
 
         private void CheckingDatabaseConnection(object sender, EventArgs e)
@@ -146,17 +171,17 @@ namespace RumikApp.ViewModel
 
         void loadFunctionality()
         {
-            PollViewModel = new PollViewModel(this);
-            MainControlPanelViewModel = new MainControlPanelViewModel(this);
-            DataGridViewModel = new DataGridViewModel(this);
-            DataGridViewModel2 = new DataGridViewModel(this);
-            InsertDataToDatabaseForm = new InsertDataToDatabaseFormViewModel(this);
+            //PollViewModel = new PollViewModel(this);
+            //MainControlPanelViewModel = new MainControlPanelViewModel(this);
+            //DataGridViewModel = new DataGridViewModel(this);
+            //DataGridViewModel2 = new DataGridViewModel(this);
+            //InsertDataToDatabaseForm = new InsertDataToDatabaseFormViewModel(this);
 
-            ItemsControl = new DataGridViewModel(this);
+            //ItemsControl = new DataGridViewModel(this);
 
-            Random rand = new Random();
-            for (int i = 0; i < 15; i++)
-                ItemsControl.Beverages.Add(new Beverage().GetRandomBevrage(rand));
+            //Random rand = new Random();
+            //for (int i = 0; i < 15; i++)
+            //    ItemsControl.Beverages.Add(new Beverage().GetRandomBevrage(rand));
 
         }
 

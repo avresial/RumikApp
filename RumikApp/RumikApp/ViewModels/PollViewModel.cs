@@ -1,5 +1,6 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
+using RumikApp.Services;
 using RumikApp.ViewModel;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -10,22 +11,24 @@ namespace RumikApp.UserControls
 {
     public class PollViewModel : ViewModelBase
     {
-        private MainViewModel mainViewModel;
+        //private MainViewModel mainViewModel;
 
-        private Visibility _Visibility = Visibility.Collapsed;
-        public Visibility Visibility
+        private IDatabaseConnectionService databaseConnectionService;
+
+        private IPanelVisibilityService _PanelVisibilityService;
+        public IPanelVisibilityService PanelVisibilityService
         {
-            get { return _Visibility; }
+            get { return _PanelVisibilityService; }
             set
             {
-                if (_Visibility == value)
+                if (_PanelVisibilityService == value)
                     return;
 
-                _Visibility = value;
-                RaisePropertyChanged(nameof(Visibility));
-
+                _PanelVisibilityService = value;
+                RaisePropertyChanged(nameof(PanelVisibilityService));
             }
         }
+
 
         private ObservableCollection<Beverage> _Beverages = new ObservableCollection<Beverage>();
         public ObservableCollection<Beverage> Beverages
@@ -370,8 +373,8 @@ namespace RumikApp.UserControls
                     _GoToMainMenu = new RelayCommand(
                     () =>
                     {
-                        mainViewModel.MainControlPanelViewModel.Visibility = Visibility.Visible;
-                        Visibility = Visibility.Collapsed;
+                        PanelVisibilityService.MainPanelVisibility = Visibility.Visible;
+                        PanelVisibilityService.PollVisibility = Visibility.Collapsed;
                     },
                     () =>
                     {
@@ -393,10 +396,10 @@ namespace RumikApp.UserControls
                     _GetMeThatRum = new RelayCommand(
                     () =>
                     {
-
-                        Visibility = Visibility.Collapsed;
-                        mainViewModel.DataGridViewModel2.Visibility = Visibility.Visible;
-                        mainViewModel.DataGridViewModel2.Beverages = mainViewModel.DatabaseConnectionService.GetDataFromDatabaseWithConditions(getListOfConditions());
+                        PanelVisibilityService.PollVisibility = Visibility.Collapsed;
+                        PanelVisibilityService.DataGridViewModel2Visibility = Visibility.Visible;
+                      
+                        var TESTBeverages = databaseConnectionService.GetDataFromDatabaseWithConditions(getListOfConditions());
                         clearSellection();
                     },
                     () =>
@@ -490,10 +493,12 @@ namespace RumikApp.UserControls
         void GoForPiratesFromCarabien()
         {
 
-            Beverages = mainViewModel.DatabaseConnectionService.GetAllPiratesBeverages();
-            Visibility = Visibility.Collapsed;
-            mainViewModel.DataGridViewModel2.Visibility = Visibility.Visible;
-            mainViewModel.DataGridViewModel2.Beverages = Beverages;
+            Beverages = databaseConnectionService.GetAllPiratesBeverages();
+
+            PanelVisibilityService.PollVisibility = Visibility.Collapsed;
+            PanelVisibilityService.DataGridViewModel2Visibility = Visibility.Visible;
+       
+            //mainViewModel.DataGridViewModel2.Beverages = Beverages;
             ForPiratesFromCarabien = false;
             clearSellection();
         }
@@ -574,9 +579,11 @@ namespace RumikApp.UserControls
             return null;
         }
 
-        public PollViewModel(MainViewModel mainViewModel)
+        public PollViewModel(IDatabaseConnectionService databaseConnectionService, IPanelVisibilityService panelVisibilityService)
         {
-            this.mainViewModel = mainViewModel;
+            PanelVisibilityService = panelVisibilityService;
+            this.databaseConnectionService = databaseConnectionService;
+            //this.mainViewModel = mainViewModel;
         }
     }
 }

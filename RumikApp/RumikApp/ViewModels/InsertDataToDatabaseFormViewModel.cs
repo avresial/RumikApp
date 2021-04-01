@@ -16,20 +16,19 @@ namespace RumikApp.ViewModels
 {
     public class InsertDataToDatabaseFormViewModel : ViewModelBase
     {
-        private MainViewModel mainViewModel;
+        private IDatabaseConnectionService databaseConnectionService;
 
-        private Visibility _Visibility = Visibility.Collapsed;
-        public Visibility Visibility
+        private IPanelVisibilityService _PanelVisibilityService;
+        public IPanelVisibilityService PanelVisibilityService
         {
-            get { return _Visibility; }
+            get { return _PanelVisibilityService; }
             set
             {
-                if (_Visibility == value)
+                if (_PanelVisibilityService == value)
                     return;
 
-                _Visibility = value;
-                RaisePropertyChanged(nameof(Visibility));
-
+                _PanelVisibilityService = value;
+                RaisePropertyChanged(nameof(PanelVisibilityService));
             }
         }
 
@@ -158,8 +157,8 @@ namespace RumikApp.ViewModels
                     _CloseForm = new RelayCommand(
                     () =>
                     {
-                        Visibility = Visibility.Collapsed;
-                        mainViewModel.MainControlPanelViewModel.Visibility = Visibility.Visible;
+                        PanelVisibilityService.InsertDataToDatabaseFormVisibility = Visibility.Collapsed;
+                        PanelVisibilityService.MainPanelVisibility = Visibility.Visible;
                     },
                     () =>
                     {
@@ -191,9 +190,10 @@ namespace RumikApp.ViewModels
 
         private byte[] img;
 
-        public InsertDataToDatabaseFormViewModel(MainViewModel mainViewModel)
+        public InsertDataToDatabaseFormViewModel(IDatabaseConnectionService databaseConnectionService, IPanelVisibilityService panelVisibilityService)
         {
-            this.mainViewModel = mainViewModel;
+            PanelVisibilityService = panelVisibilityService;
+            this.databaseConnectionService = databaseConnectionService;
 
             byte[] TMPArray = loadImage(null);
 
@@ -218,7 +218,7 @@ namespace RumikApp.ViewModels
         {
             byte[] Image = new byte[250000];
 
-            Output = mainViewModel.DatabaseConnectionService.SaveBevreageToDatabase(Beverage, img);
+            Output = databaseConnectionService.SaveBevreageToDatabase(Beverage, img);
         }
 
         byte[] loadImage(string imagePath)

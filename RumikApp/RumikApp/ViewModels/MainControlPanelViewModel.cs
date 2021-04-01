@@ -1,5 +1,6 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
+using RumikApp.Services;
 using RumikApp.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -13,10 +14,31 @@ namespace RumikApp.ViewModels
 {
     public class MainControlPanelViewModel : ViewModelBase
     {
-        private MainViewModel mainViewModel;
-        public MainControlPanelViewModel(MainViewModel mainViewModel)
+
+        private IDatabaseConnectionService databaseConnectionService;
+
+        private IInformationBusService informationBusService;
+
+        private IPanelVisibilityService _PanelVisibilityService;
+        public IPanelVisibilityService PanelVisibilityService
         {
-            this.mainViewModel = mainViewModel;
+            get { return _PanelVisibilityService; }
+            set
+            {
+                if (_PanelVisibilityService == value)
+                    return;
+
+                _PanelVisibilityService = value;
+                RaisePropertyChanged(nameof(PanelVisibilityService));
+            }
+        }
+
+
+        public MainControlPanelViewModel(IDatabaseConnectionService databaseConnectionService, IPanelVisibilityService panelVisibilityService, IInformationBusService informationBusService)
+        {
+            this.informationBusService = informationBusService;
+            this.databaseConnectionService = databaseConnectionService;
+            PanelVisibilityService = panelVisibilityService;
         }
 
         private Visibility _Visibility = Visibility.Visible;
@@ -44,10 +66,10 @@ namespace RumikApp.ViewModels
                     _ImFeelingLucky = new RelayCommand(
                     () =>
                     {
-                        Visibility = Visibility.Collapsed;
-                        mainViewModel.DataGridViewModel2.Beverages = new ObservableCollection<Beverage>() { mainViewModel.DatabaseConnectionService.GetRandomRow() };
-                        mainViewModel.DataGridViewModel2.Visibility = Visibility.Visible;
+                        PanelVisibilityService.MainPanelVisibility = Visibility.Collapsed;
+                        PanelVisibilityService.DataGridViewModel2Visibility = Visibility.Visible;
 
+                        informationBusService.Beverages = new ObservableCollection<Beverage>() { databaseConnectionService.GetRandomRow() };
                     },
                     () =>
                     {
@@ -69,8 +91,8 @@ namespace RumikApp.ViewModels
                     _LetMeChoose = new RelayCommand(
                     () =>
                     {
-                        Visibility = Visibility.Collapsed;
-                        mainViewModel.PollViewModel.Visibility = Visibility.Visible;
+                        PanelVisibilityService.MainPanelVisibility = Visibility.Collapsed;
+                        PanelVisibilityService.PollVisibility = Visibility.Visible;
                     },
                     () =>
                     {
@@ -92,9 +114,8 @@ namespace RumikApp.ViewModels
                     _GoStraightToDatabase = new RelayCommand(
                     () =>
                     {
-                        Visibility = Visibility.Collapsed;
-                        mainViewModel.DataGridViewModel.Reload();
-                        mainViewModel.DataGridViewModel.Visibility = Visibility.Visible;
+                        PanelVisibilityService.MainPanelVisibility = Visibility.Collapsed;
+                        PanelVisibilityService.DataGridViewModelVisibility = Visibility.Visible;
                     },
                     () =>
                     {

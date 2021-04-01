@@ -1,4 +1,9 @@
-﻿using System;
+﻿using Autofac;
+using RumikApp.Services;
+using RumikApp.UserControls;
+using RumikApp.ViewModel;
+using RumikApp.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -15,12 +20,19 @@ namespace RumikApp
     {
         protected override void OnStartup(StartupEventArgs e)
         {
-            //var container = IContainer.Configure();  //AutoFac preperation
+            var container = ContainerConfig.Configure();
+
+            
+            var scope = container.BeginLifetimeScope();
+            var MainControlPanelViewModel = scope.Resolve<MainControlPanelViewModel>();
 
 
-            base.OnStartup(e);
+            var mainViewModel = scope.Resolve<MainViewModel>();
+            var mainWindow = new MainWindow(mainViewModel);
+            mainWindow.Show();
 
 
+            //base.OnStartup(e);
         }
     }
 }
