@@ -116,6 +116,7 @@ namespace RumikApp.ViewModels
                     {
                         PanelVisibilityService.MainPanelVisibility = Visibility.Collapsed;
                         PanelVisibilityService.DataGridViewModelVisibility = Visibility.Visible;
+                        informationBusService.Beverages = databaseConnectionService.GetAllData();
                     },
                     () =>
                     {

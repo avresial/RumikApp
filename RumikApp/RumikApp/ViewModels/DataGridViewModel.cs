@@ -123,7 +123,6 @@ namespace RumikApp.ViewModels
             PanelVisibilityService = panelVisibilityService;
             this.databaseConnectionService = databaseConnectionService;
             this.informationBusService = informationBusService;
-
         }
     }
 }

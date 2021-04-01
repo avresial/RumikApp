@@ -15,6 +15,8 @@ namespace RumikApp.UserControls
 
         private IDatabaseConnectionService databaseConnectionService;
 
+        private IInformationBusService informationBusService;
+
         private IPanelVisibilityService _PanelVisibilityService;
         public IPanelVisibilityService PanelVisibilityService
         {
@@ -398,8 +400,8 @@ namespace RumikApp.UserControls
                     {
                         PanelVisibilityService.PollVisibility = Visibility.Collapsed;
                         PanelVisibilityService.DataGridViewModel2Visibility = Visibility.Visible;
-                      
-                        var TESTBeverages = databaseConnectionService.GetDataFromDatabaseWithConditions(getListOfConditions());
+
+                        informationBusService.Beverages = databaseConnectionService.GetDataFromDatabaseWithConditions(getListOfConditions());
                         clearSellection();
                     },
                     () =>
@@ -410,6 +412,13 @@ namespace RumikApp.UserControls
 
                 return _GetMeThatRum;
             }
+        }
+
+        public PollViewModel(IInformationBusService informationBusService, IDatabaseConnectionService databaseConnectionService, IPanelVisibilityService panelVisibilityService)
+        {
+            PanelVisibilityService = panelVisibilityService;
+            this.databaseConnectionService = databaseConnectionService;
+            this.informationBusService = informationBusService;
         }
 
         List<string> getListOfConditions()
@@ -497,7 +506,7 @@ namespace RumikApp.UserControls
 
             PanelVisibilityService.PollVisibility = Visibility.Collapsed;
             PanelVisibilityService.DataGridViewModel2Visibility = Visibility.Visible;
-       
+
             //mainViewModel.DataGridViewModel2.Beverages = Beverages;
             ForPiratesFromCarabien = false;
             clearSellection();
@@ -577,13 +586,6 @@ namespace RumikApp.UserControls
             }
 
             return null;
-        }
-
-        public PollViewModel(IDatabaseConnectionService databaseConnectionService, IPanelVisibilityService panelVisibilityService)
-        {
-            PanelVisibilityService = panelVisibilityService;
-            this.databaseConnectionService = databaseConnectionService;
-            //this.mainViewModel = mainViewModel;
         }
     }
 }
