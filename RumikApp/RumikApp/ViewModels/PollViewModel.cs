@@ -402,6 +402,7 @@ namespace RumikApp.UserControls
                         PanelVisibilityService.DataGridViewModel2Visibility = Visibility.Visible;
 
                         informationBusService.Beverages = databaseConnectionService.GetDataFromDatabaseWithConditions(getListOfConditions());
+                        
                         clearSellection();
                     },
                     () =>

@@ -10,11 +10,12 @@ namespace RumikApp.ViewModels
     public class DataGridViewModel : ViewModelBase
     {
         private IDatabaseConnectionService databaseConnectionService;
+       
 
         private IInformationBusService _informationBusService;
         public IInformationBusService informationBusService
         {
-            get { return _informationBusService; }
+            get{return _informationBusService;}
             set
             {
                 if (_informationBusService == value)
@@ -24,7 +25,6 @@ namespace RumikApp.ViewModels
                 RaisePropertyChanged(nameof(informationBusService));
             }
         }
-
 
         private IPanelVisibilityService _PanelVisibilityService;
         public IPanelVisibilityService PanelVisibilityService
