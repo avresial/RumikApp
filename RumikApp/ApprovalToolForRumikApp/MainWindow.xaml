@@ -9,7 +9,7 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid>
       
-        <UserControls:InsertDataToDatabaseForm Grid.Row="0" Grid.ColumnSpan="2" Visibility="{Binding PanelVisibilityService.InsertDataToDatabaseFormVisibility}"  DataContext="{Binding InsertDataToDatabaseForm}"/>
+        <UserControls:InsertDataToDatabaseForm Grid.Row="0" Grid.ColumnSpan="2" DataContext="{Binding InsertDataToDatabaseForm}"/>
 
     </Grid>
 </Window>
