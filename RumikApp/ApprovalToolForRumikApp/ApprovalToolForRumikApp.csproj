@@ -184,6 +184,38 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="IMGs\MainControllPanel\Milordzie.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="IMGs\PollIMG\Carmel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="IMGs\PollIMG\Cinamon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="IMGs\PollIMG\Exclusive.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="IMGs\PollIMG\Fruits.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="IMGs\PollIMG\Honey.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="IMGs\PollIMG\Nutmeg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="IMGs\PollIMG\Nuts.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="IMGs\PollIMG\Smoked.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="IMGs\PollIMG\Spirit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="IMGs\PollIMG\Vanila.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

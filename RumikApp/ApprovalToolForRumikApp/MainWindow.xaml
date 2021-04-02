@@ -6,10 +6,9 @@
         xmlns:UserControls="clr-namespace:ApprovalToolForRumikApp.UserControls"
         xmlns:local="clr-namespace:ApprovalToolForRumikApp"
         mc:Ignorable="d"
+        WindowState="Maximized" WindowStartupLocation="CenterScreen"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-      
-        <UserControls:InsertDataToDatabaseForm Grid.Row="0" Grid.ColumnSpan="2" DataContext="{Binding InsertDataToDatabaseForm}"/>
-
+        <UserControls:InsertDataToDatabaseForm Grid.Row="0" Grid.ColumnSpan="2" DataContext="{Binding InsertDataToDatabaseFromViewModel}"/>
     </Grid>
 </Window>

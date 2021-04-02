@@ -9,9 +9,23 @@ namespace ApprovalToolForRumikApp.ViewModels
 {
     public class MainViewModel : ViewModelBase
     {
-        public MainViewModel()
+        private InsertDataToDatabaseFormViewModel _InsertDataToDatabaseFromViewModel;
+        public InsertDataToDatabaseFormViewModel InsertDataToDatabaseFromViewModel
         {
-            ;
+            get { return _InsertDataToDatabaseFromViewModel; }
+            set
+            {
+                if (_InsertDataToDatabaseFromViewModel == value)
+                    return;
+
+                _InsertDataToDatabaseFromViewModel = value;
+                RaisePropertyChanged(nameof(InsertDataToDatabaseFromViewModel));
+            }
+        }
+
+        public MainViewModel(InsertDataToDatabaseFormViewModel insertDataToDatabaseFormViewModel)
+        {
+            InsertDataToDatabaseFromViewModel = insertDataToDatabaseFormViewModel;
         }
     }
 }
