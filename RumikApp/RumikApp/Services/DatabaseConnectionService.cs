@@ -14,7 +14,7 @@ namespace RumikApp.Services
     public class DatabaseConnectionService : IDatabaseConnectionService
     {
 
-        private AvailableTables _MainDataTable = AvailableTables.RumsBase;
+        private AvailableTables _MainDataTable = AvailableTables.RumsBaseTEST;
         public AvailableTables MainDataTable
         {
             get { return _MainDataTable; }

@@ -20,6 +20,7 @@ namespace ApprovalToolForRumikApp.Services
         bool TestConnectionToDatabase();
         bool TestConnectionToTable(AvailableTables availableTables);
         string SaveBevreageToDatabase(Beverage beverage, byte[] img);
+        string DeleteBevreageFromDatabase(Beverage beverage);
         string CnnVal(string name);
     }
 }

@@ -240,7 +240,7 @@ namespace ApprovalToolForRumikApp.Services
 
             byte[] buffer = new byte[250000];
             reader.GetBytes(17, 0, buffer, 0, 250000);
-            //beverageTMP.TestIcon = ImageProcessingService.ConvertToBitMapImage(buffer);
+            beverageTMP.TestIcon = ImageProcessingService.ConvertToBitMapImage(buffer);
 
             return beverageTMP;
         }
@@ -283,6 +283,14 @@ namespace ApprovalToolForRumikApp.Services
             }
             return allBeverages;
 
+        }
+
+        public string DeleteBevreageFromDatabase(Beverage beverage)
+        {
+            string Query= $"DELETE FROM {MainDataTable.ToString()} WHERE NotYetApprovedTEST.ID = {beverage.ID.ToString()}";
+
+            getData(Query);
+            return "done";
         }
     }
 }

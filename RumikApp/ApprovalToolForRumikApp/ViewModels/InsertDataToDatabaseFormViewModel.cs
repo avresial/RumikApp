@@ -110,17 +110,8 @@ namespace ApprovalToolForRumikApp.ViewModels
                     {
                         saveToDatabase();
 
-                        Beverage = new Beverage();
-                        byte[] TMPArray = loadImage(null);
+                        Beverage = databaseConnectionService.GetRandomRow();
 
-                        //BitmapImage CheckSize = ImageProcessingService.ConvertToBitMapImage(TMPArray);
-
-                        //if (CheckSize.PixelWidth <= 500 && CheckSize.PixelHeight <= 500)
-                        //{
-                        //    img = TMPArray;
-                        //    Beverage.TestIcon = CheckSize;
-                        //}
-                        Beverage.Color = ColorsList[0];
                     },
                     () =>
                     {
@@ -180,13 +171,13 @@ namespace ApprovalToolForRumikApp.ViewModels
 
             byte[] TMPArray = loadImage(null);
 
-            //BitmapImage CheckSize = ImageProcessingService.ConvertToBitMapImage(TMPArray);
+            BitmapImage CheckSize = ImageProcessingService.ConvertToBitMapImage(TMPArray);
 
-            //if (CheckSize.PixelWidth <= 500 && CheckSize.PixelHeight <= 500)
-            //{
-            //    img = TMPArray;
-            //    Beverage.TestIcon = CheckSize;
-            //}
+            if (CheckSize.PixelWidth <= 500 && CheckSize.PixelHeight <= 500)
+            {
+                img = TMPArray;
+                Beverage.TestIcon = CheckSize;
+            }
 
             ColorsList.Add("Złoty");
             ColorsList.Add("Miedziany");
@@ -195,27 +186,29 @@ namespace ApprovalToolForRumikApp.ViewModels
             ColorsList.Add("Czarny");
 
             Beverage.Color = ColorsList[0];
+            Beverage = databaseConnectionService.GetRandomRow();
         }
 
         void saveToDatabase()
         {
             byte[] Image = new byte[250000];
+            databaseConnectionService.DeleteBevreageFromDatabase(Beverage);
+            Output = databaseConnectionService.SaveBevreageToDatabase(Beverage, img);
 
-            //Output = databaseConnectionService.SaveBevreageToDatabase(Beverage, img);
         }
 
         byte[] loadImage(string imagePath)
         {
             if (imagePath == null || imagePath == "")
-                imagePath = "../../IMGs/Bottles/UnknownBottle.png";
+                imagePath = "../../IMGs/UnknownBottle.png";
 
-            //return ImageProcessingService.FileToByteArray(imagePath);
-
-            return new byte[1];
-
+            return ImageProcessingService.FileToByteArray(imagePath);
         }
         bool doesFormContainsNewData()
         {
+            if (Beverage == null)
+                return false;
+
             bool formContainsNewData = false;
             int controlSum = 0;
 

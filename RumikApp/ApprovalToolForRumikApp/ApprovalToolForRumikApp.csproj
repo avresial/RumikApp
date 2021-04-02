@@ -131,10 +131,20 @@
     </ApplicationDefinition>
     <Compile Include="Beverage.cs" />
     <Compile Include="ContainerConfig.cs" />
+    <Compile Include="Converters\FlavourToIMGSrcConverter.cs" />
+    <Compile Include="Converters\StringToFloatWithValidation.cs" />
+    <Compile Include="Converters\StringToIntWithValidation.cs" />
+    <Compile Include="Converters\TinyIntToBoolConverter.cs" />
+    <Compile Include="Converters\ValueCapacityToString.cs" />
+    <Compile Include="Converters\ValueGradeToStringConverter.cs" />
+    <Compile Include="Converters\ValuePrecentageToStringConverter.cs" />
+    <Compile Include="Converters\ValuePricePer100mlToStringConverter.cs" />
+    <Compile Include="Converters\ValuePriceToStringConverter.cs" />
     <Compile Include="Enums\AvailableTables.cs" />
     <Compile Include="Flavour.cs" />
     <Compile Include="Services\DatabaseConnectionService.cs" />
     <Compile Include="Services\IDatabaseConnectionService.cs" />
+    <Compile Include="Services\ImageProcessingService.cs" />
     <Compile Include="ViewModels\InsertDataToDatabaseFormViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Page Include="UserControls\InsertDataToDatabaseForm.xaml">
@@ -219,6 +229,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="IMGs\PollIMG\BeAPirate.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="IMGs\UnknownBottle.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

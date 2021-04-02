@@ -131,8 +131,8 @@ namespace ApprovalToolForRumikApp
             }
         }
 
-        private string _Color;
-        public string Color
+        private String _Color;
+        public String Color
         {
             get { return _Color; }
             set
