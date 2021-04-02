@@ -25,9 +25,23 @@ namespace ApprovalToolForRumikApp.ViewModels
             {
                 if (_Beverage == value)
                     return;
-
+                AmountOfRows = databaseConnectionService.GetNumberOfRows();
                 _Beverage = value;
                 RaisePropertyChanged(nameof(Beverage));
+            }
+        }
+
+        private int _AmountOfRows;
+        public int AmountOfRows
+        {
+            get { return _AmountOfRows; }
+            set
+            {
+                if (_AmountOfRows == value)
+                    return;
+
+                _AmountOfRows = value;
+                RaisePropertyChanged(nameof(AmountOfRows));
             }
         }
 
@@ -145,7 +159,6 @@ namespace ApprovalToolForRumikApp.ViewModels
             }
         }
 
-
         private String _Output;
         public String Output
         {
@@ -159,7 +172,6 @@ namespace ApprovalToolForRumikApp.ViewModels
                 RaisePropertyChanged(nameof(Output));
             }
         }
-
 
         private Random rad = new Random();
 

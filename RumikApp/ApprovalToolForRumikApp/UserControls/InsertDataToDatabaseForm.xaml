@@ -149,6 +149,9 @@
             <TextBlock  Grid.Column="0" FontFamily="Bookman Old Style" Text="{Binding Output}" TextAlignment="Center" Height="auto" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="5"/>
 
             <StackPanel Grid.Column="1" Orientation="Horizontal" Margin="5">
+                
+                <TextBlock Grid.Column="0" Grid.Row="7" FontFamily="Bookman Old Style" FontSize="20" Text="Pozostało tyle rumów do zatwierdzenia:" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Right" />
+                <TextBlock Grid.Column="0" Grid.Row="7" FontFamily="Bookman Old Style" FontSize="20" Text="{Binding AmountOfRows}" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Left" />
 
                 <Button Width="200" FontFamily="Bookman Old Style" Height="50" Command="{Binding SaveToDatabase}" Content="Zatwierdzam" VerticalAlignment="Top" Margin="5,0,5,0" />
                 <Button Width="200" FontFamily="Bookman Old Style" Height="50" Command="{Binding GetAnother}" Content="Dawaj inny" VerticalAlignment="Top" Margin="5,0,5,0" />

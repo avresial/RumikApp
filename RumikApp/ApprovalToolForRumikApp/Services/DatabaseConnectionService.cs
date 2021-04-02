@@ -287,10 +287,35 @@ namespace ApprovalToolForRumikApp.Services
 
         public string DeleteBevreageFromDatabase(Beverage beverage)
         {
-            string Query= $"DELETE FROM {MainDataTable.ToString()} WHERE NotYetApprovedTEST.ID = {beverage.ID.ToString()}";
+            string Query = $"DELETE FROM {MainDataTable.ToString()} WHERE NotYetApprovedTEST.ID = {beverage.ID.ToString()}";
 
             getData(Query);
             return "done";
+        }
+
+        public int GetNumberOfRows()
+        {
+            string Query = $"SELECT COUNT(*) FROM {MainDataTable.ToString()}";
+
+            int numberOfRows = 0;
+
+            using (MySqlConnection con = new MySqlConnection(CnnVal("sosek")))
+            {
+
+                MySqlCommand cmd0 = new MySqlCommand(Query, con);
+
+                con.Open();
+
+                using (MySqlDataReader reader = cmd0.ExecuteReader())
+                    while (reader.Read())
+                        numberOfRows = reader.GetInt32(0);
+
+                con.Close();
+            }
+
+
+            return numberOfRows;
+
         }
     }
 }

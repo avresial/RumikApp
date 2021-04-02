@@ -17,6 +17,7 @@ namespace ApprovalToolForRumikApp.Services
         ObservableCollection<Beverage> GetAllPiratesBeverages();
         ObservableCollection<Beverage> GetDataFromDatabaseWithConditions(List<string> conditions);
         Beverage GetRandomRow();
+        int GetNumberOfRows();
         bool TestConnectionToDatabase();
         bool TestConnectionToTable(AvailableTables availableTables);
         string SaveBevreageToDatabase(Beverage beverage, byte[] img);
