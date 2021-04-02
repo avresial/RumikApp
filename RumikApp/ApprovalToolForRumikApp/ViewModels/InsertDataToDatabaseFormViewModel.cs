@@ -1,4 +1,5 @@
-﻿using GalaSoft.MvvmLight;
+﻿using ApprovalToolForRumikApp.Services;
+using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using System;
 using System.Collections.Generic;
@@ -14,21 +15,7 @@ namespace ApprovalToolForRumikApp.ViewModels
 {
     public class InsertDataToDatabaseFormViewModel : ViewModelBase
     {
-        //private IDatabaseConnectionService databaseConnectionService;
-
-        //private IPanelVisibilityService _PanelVisibilityService;
-        //public IPanelVisibilityService PanelVisibilityService
-        //{
-        //    get { return _PanelVisibilityService; }
-        //    set
-        //    {
-        //        if (_PanelVisibilityService == value)
-        //            return;
-
-        //        _PanelVisibilityService = value;
-        //        RaisePropertyChanged(nameof(PanelVisibilityService));
-        //    }
-        //}
+        private IDatabaseConnectionService databaseConnectionService;
 
         private Beverage _Beverage = new Beverage();
         public Beverage Beverage
@@ -145,18 +132,17 @@ namespace ApprovalToolForRumikApp.ViewModels
             }
         }
 
-        private RelayCommand _CloseForm;
-        public RelayCommand CloseForm
+        private RelayCommand _GetAnother;
+        public RelayCommand GetAnother
         {
             get
             {
-                if (_CloseForm == null)
+                if (_GetAnother == null)
                 {
-                    _CloseForm = new RelayCommand(
+                    _GetAnother = new RelayCommand(
                     () =>
                     {
-                        //PanelVisibilityService.InsertDataToDatabaseFormVisibility = Visibility.Collapsed;
-                        //PanelVisibilityService.MainPanelVisibility = Visibility.Visible;
+                        Beverage = databaseConnectionService.GetRandomRow();
                     },
                     () =>
                     {
@@ -164,7 +150,7 @@ namespace ApprovalToolForRumikApp.ViewModels
                     });
                 }
 
-                return _CloseForm;
+                return _GetAnother;
             }
         }
 
@@ -188,11 +174,9 @@ namespace ApprovalToolForRumikApp.ViewModels
 
         private byte[] img;
 
-       // public InsertDataToDatabaseFormViewModel(IDatabaseConnectionService databaseConnectionService, IPanelVisibilityService panelVisibilityService)
-        public InsertDataToDatabaseFormViewModel()
+        public InsertDataToDatabaseFormViewModel(IDatabaseConnectionService databaseConnectionService)
         {
-            //PanelVisibilityService = panelVisibilityService;
-            //this.databaseConnectionService = databaseConnectionService;
+            this.databaseConnectionService = databaseConnectionService;
 
             byte[] TMPArray = loadImage(null);
 

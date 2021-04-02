@@ -13,8 +13,7 @@ namespace ApprovalToolForRumikApp.Services
 {
     public class DatabaseConnectionService : IDatabaseConnectionService
     {
-
-        private AvailableTables _MainDataTable = AvailableTables.RumsBase;
+        private AvailableTables _MainDataTable = AvailableTables.NotYetApprovedTEST;
         public AvailableTables MainDataTable
         {
             get { return _MainDataTable; }
@@ -26,7 +25,7 @@ namespace ApprovalToolForRumikApp.Services
             }
         }
 
-        private AvailableTables _NotYetApprovedTESTDataTable = AvailableTables.NotYetApprovedTEST;
+        private AvailableTables _NotYetApprovedTESTDataTable = AvailableTables.RumsBaseTEST;
         public AvailableTables NotYetApprovedTESTDataTable
         {
             get { return _NotYetApprovedTESTDataTable; }
