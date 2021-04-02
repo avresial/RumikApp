@@ -7,7 +7,11 @@ using System.Threading.Tasks;
 
 namespace ApprovalToolForRumikApp.ViewModels
 {
-    class MainViewModel : ViewModelBase
+    public class MainViewModel : ViewModelBase
     {
+        public MainViewModel()
+        {
+            ;
+        }
     }
 }

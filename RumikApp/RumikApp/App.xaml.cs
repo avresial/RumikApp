@@ -22,11 +22,7 @@ namespace RumikApp
         {
             var container = ContainerConfig.Configure();
 
-            
             var scope = container.BeginLifetimeScope();
-            var MainControlPanelViewModel = scope.Resolve<MainControlPanelViewModel>();
-
-
             var mainViewModel = scope.Resolve<MainViewModel>();
             var mainWindow = new MainWindow(mainViewModel);
             mainWindow.Show();
