@@ -87,19 +87,19 @@ namespace ApprovalToolForRumikApp.ViewModels
 
                                 byte[] TMPArray = loadImage(filePath);
 
-                                //BitmapImage CheckSize = ImageProcessingService.ConvertToBitMapImage(TMPArray);
+                                BitmapImage CheckSize = ImageProcessingService.ConvertToBitMapImage(TMPArray);
 
-                                //if (CheckSize.PixelWidth <= 500 && CheckSize.PixelHeight <= 500)
-                                //{
-                                //    img = TMPArray;
-                                //    Beverage.TestIcon = CheckSize;
-                                //}
-                                //else
-                                //{
-                                //    string message = "Zdięcie wydaje się być za duże.\nPrzyjmujemy zdjęcia o 500x500 px";
-                                //    string title = "Task failed succesfully";
-                                //    System.Windows.MessageBox.Show(message, title);
-                                //}
+                                if (CheckSize.PixelWidth <= 500 && CheckSize.PixelHeight <= 500)
+                                {
+                                    img = TMPArray;
+                                    Beverage.TestIcon = CheckSize;
+                                }
+                                else
+                                {
+                                    string message = "Zdięcie wydaje się być za duże.\nPrzyjmujemy zdjęcia o 500x500 px";
+                                    string title = "Task failed succesfully";
+                                    System.Windows.MessageBox.Show(message, title);
+                                }
                             }
                         }
                     },
@@ -230,7 +230,7 @@ namespace ApprovalToolForRumikApp.ViewModels
         void saveToDatabase()
         {
             byte[] Image = new byte[250000];
-            databaseConnectionService.DeleteBevreageFromDatabase(Beverage, databaseConnectionService.DestinationDataTable);
+            databaseConnectionService.DeleteBevreageFromDatabase(Beverage, databaseConnectionService.MainDataTable);
             Output = databaseConnectionService.SaveBevreageToDatabase(Beverage, img);
 
         }
