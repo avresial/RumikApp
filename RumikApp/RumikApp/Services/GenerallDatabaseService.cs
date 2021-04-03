@@ -8,6 +8,10 @@ using System.Threading.Tasks;
 
 namespace RumikApp.Services
 {
+
+    /// <summary>
+    /// Connects data from database and disc to one stream.
+    /// </summary>
     class GenerallDatabaseService : IDatabaseConnectionService
     {
         private SQLDatabaseConnectionService sQLDatabaseConnectionService;
@@ -51,33 +55,55 @@ namespace RumikApp.Services
             }
         }
 
-        public string CnnVal(string name)
-        {
-            throw new NotImplementedException();
-        }
 
+        /// <summary>
+        /// Loads data from database and adds to it records from disc - only if they are unique 
+        /// </summary>
+        /// <returns></returns>
         public ObservableCollection<Beverage> GetAllData()
         {
-            ObservableCollection<Beverage> fromFile = fileDatabaseConnectionService.GetAllData();
+            ObservableCollection<Beverage> FinalCollection = sQLDatabaseConnectionService.GetAllData();
 
-            //return fromFile;
-            ObservableCollection<Beverage> FromSQLDatabase = sQLDatabaseConnectionService.GetAllData();
-            return FromSQLDatabase;
+            if (FinalCollection == null)
+                return fileDatabaseConnectionService.GetAllData();
+
+            foreach (Beverage fileBeverage in fileDatabaseConnectionService.GetAllData())
+            {
+                IEnumerable<Beverage> whereBeverage = FinalCollection.Where(x => x.Name == fileBeverage.Name);
+
+                if (whereBeverage.Count() == 0)
+                    FinalCollection.Add(fileBeverage);
+
+            }
+
+            return FinalCollection;
         }
 
         public ObservableCollection<Beverage> GetAllPiratesBeverages()
         {
-            return sQLDatabaseConnectionService.GetAllPiratesBeverages();
+            ObservableCollection<Beverage> FinalCollection = sQLDatabaseConnectionService.GetAllPiratesBeverages();
+
+            //here will be file data handled
+
+            return FinalCollection;
         }
 
         public ObservableCollection<Beverage> GetDataFromDatabaseWithConditions(PollPurpose pollPurpose, int pollPurposeWeight, PollMixes pollMixes, List<Flavour> Flavours, PollPricePoints pollPricePoints)
         {
-            return sQLDatabaseConnectionService.GetDataFromDatabaseWithConditions(pollPurpose, pollPurposeWeight, pollMixes, Flavours, pollPricePoints);
+            ObservableCollection<Beverage> FinalCollection = sQLDatabaseConnectionService.GetDataFromDatabaseWithConditions(pollPurpose, pollPurposeWeight, pollMixes, Flavours, pollPricePoints);
+            
+            //here will be file data handled
+
+            return FinalCollection;
         }
 
         public Beverage GetRandomRow()
         {
-            return sQLDatabaseConnectionService.GetRandomRow();
+            Beverage FinalCollection = sQLDatabaseConnectionService.GetRandomRow();
+
+            //here will be file data handled
+
+            return FinalCollection;
         }
 
         public string SaveBevreageToDatabase(Beverage beverage, byte[] img)

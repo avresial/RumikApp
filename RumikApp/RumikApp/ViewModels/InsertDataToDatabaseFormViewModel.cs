@@ -85,13 +85,13 @@ namespace RumikApp.ViewModels
 
                                 filePath = openFileDialog.FileName;
 
-                                byte[] TMPArray = loadImage(filePath);
+                                byte[] loadedIMG = loadImage(filePath);
 
-                                BitmapImage CheckSize = ImageProcessingService.ConvertToBitMapImage(TMPArray);
+                                BitmapImage CheckSize = ImageProcessingService.ConvertToBitMapImage(loadedIMG);
 
                                 if (CheckSize.PixelWidth <= 500 && CheckSize.PixelHeight <= 500)
                                 {
-                                    img = TMPArray;
+                                    img = loadedIMG;
                                     Beverage.TestIcon = CheckSize;
                                 }
                                 else

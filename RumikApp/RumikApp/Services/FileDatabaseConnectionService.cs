@@ -74,20 +74,21 @@ namespace RumikApp.Services
 
         public string SaveBevreageToDatabase(Beverage beverage, byte[] img)
         {
+            string result = "Task failed";
+
             List<JsonBeverage> jsonBeverage = GetAllJsonData().ToList();
+
             jsonBeverage.Add(JsonBeverage.TransFromBeverageToJsonBeverage(beverage, img));
 
-            //convert object to json string.
             string json = JsonConvert.SerializeObject(jsonBeverage);
 
-
-            //export data to json file. 
             using (TextWriter tw = new StreamWriter(fileName))
             {
                 tw.WriteLine(json);
+                result = "done";
             };
 
-            return "done";
+            return result;
         }
 
         public bool TestConnectionToDatabase()

@@ -29,6 +29,27 @@ namespace RumikApp.Services
 
             return image;
         }
+
+        /// <summary>
+        /// Very experimental, but happens to be working :)
+        /// </summary>
+        /// <param name="bitmapImage"></param>
+        /// <returns></returns>
+        public static byte[] ConvertBitMapImageToByteArray(BitmapImage bitmapImage)
+        {
+            string fileName = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\RumikApp" + "\\TMP.png";
+
+            BitmapEncoder encoder = new PngBitmapEncoder();
+            encoder.Frames.Add(BitmapFrame.Create(bitmapImage));
+
+            using (var fileStream = new System.IO.FileStream(fileName, System.IO.FileMode.Create))
+            {
+                encoder.Save(fileStream);
+            }
+
+            return FileToByteArray(fileName);
+        }
+
         public static byte[] FileToByteArray(string fileName)
         {
             if (!File.Exists(fileName))
