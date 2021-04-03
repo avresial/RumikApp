@@ -38,6 +38,25 @@ namespace RumikApp.Services
             return Beverages;
         }
 
+        private ObservableCollection<JsonBeverage> GetAllJsonData()
+        {
+            ObservableCollection<JsonBeverage> Beverages = new ObservableCollection<JsonBeverage>();
+
+            if (File.Exists(fileName))
+            {
+                using (StreamReader r = new StreamReader(fileName))
+                {
+                    string json2 = r.ReadToEnd();
+                    List<JsonBeverage> items = JsonConvert.DeserializeObject<List<JsonBeverage>>(json2);
+                    if (items != null)
+                        foreach (JsonBeverage item in items)
+                            Beverages.Add(item);
+                }
+            }
+
+            return Beverages;
+        }
+
         public ObservableCollection<Beverage> GetAllPiratesBeverages()
         {
             throw new NotImplementedException();
@@ -55,21 +74,11 @@ namespace RumikApp.Services
 
         public string SaveBevreageToDatabase(Beverage beverage, byte[] img)
         {
-            List<Beverage> Beverages = GetAllData().ToList();
-            Beverages.Add(beverage);
-
-            List<JsonBeverage> jsonBeverage = new List<JsonBeverage>();
-
-
-            foreach (Beverage item in Beverages)
-                jsonBeverage.Add(JsonBeverage.TransFromBeverageToJsonBeverage(item));
-
-
+            List<JsonBeverage> jsonBeverage = GetAllJsonData().ToList();
+            jsonBeverage.Add(JsonBeverage.TransFromBeverageToJsonBeverage(beverage, img));
 
             //convert object to json string.
             string json = JsonConvert.SerializeObject(jsonBeverage);
-
-
 
 
             //export data to json file. 

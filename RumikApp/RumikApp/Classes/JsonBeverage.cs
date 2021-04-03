@@ -357,7 +357,7 @@ namespace RumikApp
             return newBeverage;
         }
 
-        static public JsonBeverage TransFromBeverageToJsonBeverage(Beverage Beverage)
+        static public JsonBeverage TransFromBeverageToJsonBeverage(Beverage Beverage, byte[] img)
         {
             JsonBeverage newJsonBeverage = new JsonBeverage();
 
@@ -381,7 +381,7 @@ namespace RumikApp
             newJsonBeverage.Honey = Beverage.Honey;
             newJsonBeverage.BeAPirate = Beverage.BeAPirate;
 
-            newJsonBeverage.TestIcon = null;
+            newJsonBeverage.TestIcon = img;
 
             return newJsonBeverage;
         }

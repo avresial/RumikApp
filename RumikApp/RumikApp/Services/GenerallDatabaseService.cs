@@ -59,8 +59,9 @@ namespace RumikApp.Services
         public ObservableCollection<Beverage> GetAllData()
         {
             ObservableCollection<Beverage> fromFile = fileDatabaseConnectionService.GetAllData();
-            ObservableCollection<Beverage> FromSQLDatabase = sQLDatabaseConnectionService.GetAllData();
+
             //return fromFile;
+            ObservableCollection<Beverage> FromSQLDatabase = sQLDatabaseConnectionService.GetAllData();
             return FromSQLDatabase;
         }
 
