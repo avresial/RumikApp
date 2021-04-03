@@ -21,16 +21,21 @@ namespace RumikApp.Services
 
         public ObservableCollection<Beverage> GetAllData()
         {
+            ObservableCollection<Beverage> Beverages = new ObservableCollection<Beverage>();
+
             if (File.Exists(fileName))
             {
                 using (StreamReader r = new StreamReader(fileName))
                 {
                     string json2 = r.ReadToEnd();
-                    List<Beverage> items = JsonConvert.DeserializeObject<List<Beverage>>(json2);
+                    List<JsonBeverage> items = JsonConvert.DeserializeObject<List<JsonBeverage>>(json2);
+                    if (items != null)
+                        foreach (JsonBeverage item in items)
+                            Beverages.Add(JsonBeverage.TransFromJsonBeverageToBeverage(item));
                 }
-
             }
-            return new ObservableCollection<Beverage>();
+            
+            return Beverages;
         }
 
         public ObservableCollection<Beverage> GetAllPiratesBeverages()
@@ -50,15 +55,21 @@ namespace RumikApp.Services
 
         public string SaveBevreageToDatabase(Beverage beverage, byte[] img)
         {
+            List<Beverage> Beverages = GetAllData().ToList();
+            Beverages.Add(beverage);
 
-            List<Beverage> Beverages = new List<Beverage>();
-            Beverages.Add(beverage);
-            Beverages.Add(beverage);
-            Beverages.Add(beverage);
+            List<JsonBeverage> jsonBeverage = new List<JsonBeverage>();
+
+
+            foreach (Beverage item in Beverages)
+                jsonBeverage.Add(JsonBeverage.TransFromBeverageToJsonBeverage(item));
+
 
 
             //convert object to json string.
-            string json = JsonConvert.SerializeObject(Beverages);
+            string json = JsonConvert.SerializeObject(jsonBeverage);
+
+
 
 
             //export data to json file. 
@@ -66,14 +77,6 @@ namespace RumikApp.Services
             {
                 tw.WriteLine(json);
             };
-
-
-
-            if (!Directory.Exists(directory))
-                Directory.CreateDirectory(directory);
-
-            if (!File.Exists(fileName))
-                File.Create(fileName);
 
             return "done";
         }

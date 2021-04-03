@@ -23,8 +23,6 @@ namespace RumikApp.Services
             this.sQLDatabaseConnectionService = sQLDatabaseConnectionService;
             this.fileDatabaseConnectionService = fileDatabaseConnectionService;
 
-            fileDatabaseConnectionService.SaveBevreageToDatabase(new Beverage() { Name = "XD"},new byte[1]);
-            fileDatabaseConnectionService.GetAllData();
             MainDataTable = sQLDatabaseConnectionService.MainDataTable;
             NotYetApprovedTESTDataTable = sQLDatabaseConnectionService.NotYetApprovedTESTDataTable;
         }
@@ -60,7 +58,10 @@ namespace RumikApp.Services
 
         public ObservableCollection<Beverage> GetAllData()
         {
-            return sQLDatabaseConnectionService.GetAllData();
+            ObservableCollection<Beverage> fromFile = fileDatabaseConnectionService.GetAllData();
+            ObservableCollection<Beverage> FromSQLDatabase = sQLDatabaseConnectionService.GetAllData();
+            //return fromFile;
+            return FromSQLDatabase;
         }
 
         public ObservableCollection<Beverage> GetAllPiratesBeverages()
@@ -80,6 +81,8 @@ namespace RumikApp.Services
 
         public string SaveBevreageToDatabase(Beverage beverage, byte[] img)
         {
+            fileDatabaseConnectionService.SaveBevreageToDatabase(beverage, img);
+
             return sQLDatabaseConnectionService.SaveBevreageToDatabase(beverage, img);
         }
 
