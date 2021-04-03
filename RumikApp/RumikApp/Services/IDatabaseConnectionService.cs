@@ -15,7 +15,7 @@ namespace RumikApp.Services
         AvailableTables NotYetApprovedTESTDataTable { get; set; }
         ObservableCollection<Beverage> GetAllData();
         ObservableCollection<Beverage> GetAllPiratesBeverages();
-        ObservableCollection<Beverage> GetDataFromDatabaseWithConditions(List<string> conditions);
+        ObservableCollection<Beverage> GetDataFromDatabaseWithConditions(PollPurpose pollPurpose, int pollPurposeWeight, PollMixes pollMixes, List<Flavour> Flavours, PollPricePoints pollPricePoints);
         Beverage GetRandomRow();
         bool TestConnectionToDatabase();
         bool TestConnectionToTable(AvailableTables availableTables);

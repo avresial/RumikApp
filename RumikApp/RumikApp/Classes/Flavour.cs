@@ -9,7 +9,6 @@ namespace RumikApp
 {
     public class Flavour : ViewModelBase
     {
-
         private string _IMGSrc;
         public string IMGSrc
         {
@@ -51,7 +50,6 @@ namespace RumikApp
                 RaisePropertyChanged(nameof(Name));
             }
         }
-
 
         public Flavour(string imgSrc, string name)
         {

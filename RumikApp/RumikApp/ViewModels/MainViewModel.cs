@@ -143,7 +143,6 @@ namespace RumikApp.ViewModel
             ItemsControl = itemsControl;
             InsertDataToDatabaseForm = insertDataToDatabaseFormViewModel;
 
-
             //if (DatabaseConnectionService.TestConnectionToDatabase() && DatabaseConnectionService.TestConnectionToTable(DatabaseConnectionService.MainDataTable))
             //{
             //    loadFunctionality();

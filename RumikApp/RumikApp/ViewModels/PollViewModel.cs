@@ -1,5 +1,6 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
+using RumikApp.Enums;
 using RumikApp.Services;
 using RumikApp.ViewModel;
 using System.Collections.Generic;
@@ -31,7 +32,6 @@ namespace RumikApp.UserControls
             }
         }
 
-
         private ObservableCollection<Beverage> _Beverages = new ObservableCollection<Beverage>();
         public ObservableCollection<Beverage> Beverages
         {
@@ -43,6 +43,48 @@ namespace RumikApp.UserControls
 
                 _Beverages = value;
                 RaisePropertyChanged(nameof(Beverages));
+            }
+        }
+
+        private PollPurpose _PollPurpose;
+        public PollPurpose PollPurpose
+        {
+            get { return _PollPurpose; }
+            set
+            {
+                if (_PollPurpose == value)
+                    return;
+
+                _PollPurpose = value;
+                RaisePropertyChanged(nameof(PollPurpose));
+            }
+        }
+
+        private PollMixes _PollMixes;
+        public PollMixes PollMixes
+        {
+            get { return _PollMixes; }
+            set
+            {
+                if (_PollMixes == value)
+                    return;
+
+                _PollMixes = value;
+                RaisePropertyChanged(nameof(PollMixes));
+            }
+        }
+
+        private PollPricePoints _PollPricePoints;
+        public PollPricePoints PollPricePoints
+        {
+            get { return _PollPricePoints; }
+            set
+            {
+                if (_PollPricePoints == value)
+                    return;
+
+                _PollPricePoints = value;
+                RaisePropertyChanged(nameof(PollPricePoints));
             }
         }
 
@@ -62,6 +104,12 @@ namespace RumikApp.UserControls
                     GoodButCheap = false;
                     Exclusive = false;
                     ForPiratesFromCarabien = false;
+                    PollPurpose = PollPurpose.ForPartyBool;
+                }
+                else
+                {
+                    if (PollPurpose == PollPurpose.ForPartyBool)
+                        PollPurpose = PollPurpose.None;
                 }
 
                 _ForPartyBool = value;
@@ -83,6 +131,12 @@ namespace RumikApp.UserControls
                     ForPartyBool = false;
                     Exclusive = false;
                     ForPiratesFromCarabien = false;
+                    PollPurpose = PollPurpose.GoodButCheap;
+                }
+                else
+                {
+                    if (PollPurpose == PollPurpose.GoodButCheap)
+                        PollPurpose = PollPurpose.None;
                 }
 
                 _GoodButCheap = value;
@@ -104,6 +158,12 @@ namespace RumikApp.UserControls
                     ForPartyBool = false;
                     GoodButCheap = false;
                     ForPiratesFromCarabien = false;
+                    PollPurpose = PollPurpose.Exclusive;
+                }
+                else
+                {
+                    if (PollPurpose == PollPurpose.Exclusive)
+                        PollPurpose = PollPurpose.None;
                 }
 
                 _Exclusive = value;
@@ -125,6 +185,12 @@ namespace RumikApp.UserControls
                     ForPartyBool = false;
                     GoodButCheap = false;
                     Exclusive = false;
+                    PollPurpose = PollPurpose.ForPiratesFromCarabien;
+                }
+                else
+                {
+                    if (PollPurpose == PollPurpose.ForPiratesFromCarabien)
+                        PollPurpose = PollPurpose.None;
                 }
 
                 _ForPiratesFromCarabien = value;
@@ -144,8 +210,18 @@ namespace RumikApp.UserControls
             {
                 if (_solo == value)
                     return;
+
                 if (value)
+                {
+                    PollMixes = PollMixes.Solo;
                     WithCoke = false;
+                }
+                else
+                {
+                    if (PollMixes == PollMixes.Solo)
+                        PollMixes = PollMixes.None;
+                }
+
                 _solo = value;
                 RaisePropertyChanged(nameof(solo));
             }
@@ -160,7 +236,16 @@ namespace RumikApp.UserControls
                 if (_WithCoke == value)
                     return;
                 if (value)
+                {
+                    PollMixes = PollMixes.WithCoke;
                     solo = false;
+                }
+                else
+                {
+                    if (PollMixes == PollMixes.WithCoke)
+                        PollMixes = PollMixes.None;
+                }
+
                 _WithCoke = value;
                 RaisePropertyChanged(nameof(WithCoke));
             }
@@ -295,6 +380,12 @@ namespace RumikApp.UserControls
                     PricePoint2 = false;
                     PricePoint3 = false;
                     PricePoint4 = false;
+                    PollPricePoints = PollPricePoints.PricePoint1;
+                }
+                else
+                {
+                    if (PollPricePoints == PollPricePoints.PricePoint1)
+                        PollPricePoints = PollPricePoints.None;
                 }
 
                 _PricePoint1 = value;
@@ -316,6 +407,12 @@ namespace RumikApp.UserControls
                     PricePoint1 = false;
                     PricePoint3 = false;
                     PricePoint4 = false;
+                    PollPricePoints = PollPricePoints.PricePoint2;
+                }
+                else
+                {
+                    if (PollPricePoints == PollPricePoints.PricePoint2)
+                        PollPricePoints = PollPricePoints.None;
                 }
 
                 _PricePoint2 = value;
@@ -337,6 +434,12 @@ namespace RumikApp.UserControls
                     PricePoint1 = false;
                     PricePoint2 = false;
                     PricePoint4 = false;
+                    PollPricePoints = PollPricePoints.PricePoint3;
+                }
+                else
+                {
+                    if (PollPricePoints == PollPricePoints.PricePoint3)
+                        PollPricePoints = PollPricePoints.None;
                 }
 
                 __PricePoint3 = value;
@@ -358,6 +461,12 @@ namespace RumikApp.UserControls
                     PricePoint1 = false;
                     PricePoint2 = false;
                     PricePoint3 = false;
+                    PollPricePoints = PollPricePoints.PricePoint4;
+                }
+                else
+                {
+                    if (PollPricePoints == PollPricePoints.PricePoint4)
+                        PollPricePoints = PollPricePoints.None;
                 }
 
                 __PricePoint4 = value;
@@ -401,9 +510,29 @@ namespace RumikApp.UserControls
                         PanelVisibilityService.PollVisibility = Visibility.Collapsed;
                         PanelVisibilityService.DataGridViewModel2Visibility = Visibility.Visible;
 
-                        informationBusService.Beverages = databaseConnectionService.GetDataFromDatabaseWithConditions(getListOfConditions());
-                        
-                        clearSellection();
+                        //informationBusService.Beverages = databaseConnectionService.GetDataFromDatabaseWithConditions(getListOfConditions());
+                        List<Flavour> Flavours = new List<Flavour>();
+
+                        if (Vanila.IsSet)
+                            Flavours.Add(Vanila);
+                        if (Nuts.IsSet)
+                            Flavours.Add(Nuts);
+                        if (Carmel.IsSet)
+                            Flavours.Add(Carmel);
+                        if (Smoke.IsSet)
+                            Flavours.Add(Smoke);
+                        if (Cinnamon.IsSet)
+                            Flavours.Add(Cinnamon);
+                        if (Spirit.IsSet)
+                            Flavours.Add(Spirit);
+                        if (Fruits.IsSet)
+                            Flavours.Add(Fruits);
+                        if (Honey.IsSet)
+                            Flavours.Add(Honey);
+
+                        informationBusService.Beverages = databaseConnectionService.GetDataFromDatabaseWithConditions(PollPurpose, 5, PollMixes, Flavours, PollPricePoints);
+
+                        ClearSellection();
                     },
                     () =>
                     {
@@ -422,39 +551,7 @@ namespace RumikApp.UserControls
             this.informationBusService = informationBusService;
         }
 
-        List<string> getListOfConditions()
-        {
-            List<string> conditions = new List<string>();
-            string ForParty = GetForPartyAndCheap("4.0");
-            string GoodButCheap = GetGoodButCheap("0.8");
-            string Exclusive = GetExclusive("6", "1");
-
-            string price = getStringPrice();
-            string soloOrCoke = getSoloOrWithCoke();
-            string flavours = getFlavours();
-
-            if (ForParty != null && ForParty != "")
-                conditions.Add(ForParty);
-
-            if (GoodButCheap != null && GoodButCheap != "")
-                conditions.Add(GoodButCheap);
-
-            if (Exclusive != null && Exclusive != "")
-                conditions.Add(Exclusive);
-
-            if (price != null && price != "")
-                conditions.Add(price);
-
-            if (soloOrCoke != null && soloOrCoke != "")
-                conditions.Add(soloOrCoke);
-
-            if (flavours != null && flavours != "")
-                conditions.Add(flavours);
-
-            return conditions;
-        }
-
-        void clearSellection()
+        public void ClearSellection()
         {
             ForPartyBool = false;
             GoodButCheap = false;
@@ -479,114 +576,17 @@ namespace RumikApp.UserControls
             PricePoint4 = false;
         }
 
-        string GetForPartyAndCheap(string minimalWeight)
-        {
-            if (ForPartyBool)
-                return " AlcoholPercentage / (100 * (Price/ Capacity))  > " + minimalWeight;
-            return "";
-        }
-
-        string GetGoodButCheap(string minimalWeight)
-        {
-            if (GoodButCheap)
-                return " ((Grade+GradeWithCoke)/2)/((100 * (Price/ Capacity))) > " + minimalWeight + " and ((Grade+GradeWithCoke)/2) > 5";
-            return "";
-        }
-
-        string GetExclusive(string minimalSoloGrade, string minimalWeight)
-        {
-            if (Exclusive)
-                return " Grade > " + minimalSoloGrade + " and " + "AlcoholPercentage / (100 * (Price / Capacity)) < " + minimalWeight;
-            return "";
-        }
-
-
         void GoForPiratesFromCarabien()
         {
 
-            informationBusService.Beverages = databaseConnectionService.GetDataFromDatabaseWithConditions(new List<string>() { "BeAPirate = 1" });
+            informationBusService.Beverages = databaseConnectionService.GetDataFromDatabaseWithConditions(PollPurpose.ForPiratesFromCarabien, 5, PollMixes.None, new List<Flavour>(), PollPricePoints.None);
 
             PanelVisibilityService.PollVisibility = Visibility.Collapsed;
             PanelVisibilityService.DataGridViewModel2Visibility = Visibility.Visible;
-                        
+
             ForPiratesFromCarabien = false;
-            clearSellection();
+            ClearSellection();
         }
 
-        string getStringPrice()
-        {
-
-            if (PricePoint1)
-                return " Price < 50";
-
-            if (PricePoint2)
-                return " Price >= 50 and Price < 70";
-
-            if (PricePoint3)
-                return " Price >= 70 and Price < 90";
-
-            if (PricePoint4)
-                return " Price >= 90";
-
-            return null;
-        }
-
-        string getSoloOrWithCoke()
-        {
-            int minimalAllowedGrade = 5;
-
-            if (solo)
-                return $"grade > {minimalAllowedGrade}";
-            if (WithCoke)
-                return $"GradeWithCoke > {minimalAllowedGrade}";
-
-            return null;
-        }
-
-        string getFlavours()
-        {
-
-            List<string> flavoursList = new List<string>();
-            string flavoursString = "";
-
-            if (Vanila.IsSet)
-                flavoursList.Add("Vanilly = 1");
-
-            if (Nuts.IsSet)
-                flavoursList.Add("Nuts = 1");
-
-            if (Carmel.IsSet)
-                flavoursList.Add("Carmel = 1");
-
-            if (Smoke.IsSet)
-                flavoursList.Add("Smoky = 1");
-
-            if (Cinnamon.IsSet)
-                flavoursList.Add("Cinnamon = 1");
-
-            if (Spirit.IsSet)
-                flavoursList.Add("Spirit = 1");
-
-            if (Fruits.IsSet)
-                flavoursList.Add("Fruits = 1");
-
-            if (Honey.IsSet)
-                flavoursList.Add("Honey = 1");
-
-
-            if (flavoursList.Count > 0)
-            {
-                for (int i = 0; i < flavoursList.Count; i++)
-                {
-                    if (i != 0)
-                        flavoursString += " and ";
-
-                    flavoursString += flavoursList[i];
-                }
-                return flavoursString;
-            }
-
-            return null;
-        }
     }
 }

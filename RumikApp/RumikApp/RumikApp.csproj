@@ -149,8 +149,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Beverage.cs" />
-    <Compile Include="ContainerConfig.cs" />
+    <Compile Include="Classes\Beverage.cs" />
+    <Compile Include="Classes\ContainerConfig.cs" />
     <Compile Include="Converters\FlavourToIMGSrcConverter.cs" />
     <Compile Include="Converters\StringToFloatWithValidation.cs" />
     <Compile Include="Converters\StringToIntWithValidation.cs" />
@@ -161,8 +161,11 @@
     <Compile Include="Converters\ValuePricePer100mlToStringConverter.cs" />
     <Compile Include="Converters\ValuePriceToStringConverter.cs" />
     <Compile Include="Enums\AvailableTables.cs" />
-    <Compile Include="Flavour.cs" />
-    <Compile Include="MainViewModel.cs" />
+    <Compile Include="Classes\Flavour.cs" />
+    <Compile Include="Enums\PollMixes.cs" />
+    <Compile Include="Enums\PollPurpose.cs" />
+    <Compile Include="Enums\PollPricePoints.cs" />
+    <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="Services\DatabaseConnectionService.cs" />
     <Compile Include="Services\IDatabaseConnectionService.cs" />
     <Compile Include="Services\IInformationBusService.cs" />

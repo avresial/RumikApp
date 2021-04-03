@@ -79,6 +79,7 @@ namespace RumikApp.Services
                 RaisePropertyChanged(nameof(DataGridViewModel2Visibility));
             }
         }
+
         private Visibility _ItemsControlVisibility = Visibility.Collapsed;
         public Visibility ItemsControlVisibility
         {

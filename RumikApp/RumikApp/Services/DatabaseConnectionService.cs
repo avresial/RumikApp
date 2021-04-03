@@ -113,39 +113,126 @@ namespace RumikApp.Services
             return getData("SELECT* FROM " + MainDataTable.ToString() + " WHERE BeAPirate = 1");
         }
 
-        public ObservableCollection<Beverage> GetDataFromDatabaseWithConditions(List<string> conditions)
+        public ObservableCollection<Beverage> GetDataFromDatabaseWithConditions(PollPurpose pollPurpose, int pollPurposeWeight, PollMixes pollMixes, List<Flavour> Flavours, PollPricePoints pollPricePoints)
         {
-            string oString;
 
-            if (conditions.Count > 0)
+            List<string> conditionStrings = getListOfConditions(pollPurpose, pollPurposeWeight, pollMixes, Flavours, pollPricePoints);
+
+
+            return getDataFromDatabaseWithConditions(conditionStrings);
+        }
+
+        List<string> getListOfConditions(PollPurpose pollPurpose, int pollPurposeWeight, PollMixes pollMixes, List<Flavour> Flavours, PollPricePoints pollPricePoints)
+        {
+            List<string> conditionsPartQuery = new List<string>();
+
+            if (pollPurpose != PollPurpose.None)
+                conditionsPartQuery.Add(getPollPurpose(pollPurpose, pollPurposeWeight));
+
+            if (pollMixes != PollMixes.None)
+                conditionsPartQuery.Add(getPollMixes(pollMixes));
+
+            if (Flavours.Count > 0)
+                conditionsPartQuery.Add(getFlavours(Flavours));
+
+            if (pollPricePoints != PollPricePoints.None)
+                conditionsPartQuery.Add(getStringPrice(pollPricePoints));
+
+            return conditionsPartQuery;
+        }
+
+        string getPollPurpose(PollPurpose pollPurpose, int pollPurposeWeight)
+        {
+            if (pollPurpose == PollPurpose.ForPartyBool)
+                return " AlcoholPercentage / (100 * (Price/ Capacity))  > " + pollPurposeWeight;
+
+            if (pollPurpose == PollPurpose.GoodButCheap)
+                return " ((Grade+GradeWithCoke)/2)/((100 * (Price/ Capacity))) > " + pollPurposeWeight + " and ((Grade+GradeWithCoke)/2) > 5";
+
+            if (pollPurpose == PollPurpose.Exclusive)
+                return " Grade > 6 and AlcoholPercentage / (100 * (Price / Capacity)) < " + pollPurposeWeight;
+
+            if (pollPurpose == PollPurpose.ForPiratesFromCarabien)
+                return " BeAPirate = 1";
+
+            return null;
+        }
+
+        string getPollMixes(PollMixes pollMixes, int minimalAllowedGrade = 5)
+        {
+            if (pollMixes == PollMixes.Solo)
+                return $"Grade > {minimalAllowedGrade}";
+
+            if (pollMixes == PollMixes.WithCoke)
+                return $"GradeWithCoke > {minimalAllowedGrade}";
+
+            return null;
+        }
+
+        string getFlavours(List<Flavour> Flavours)
+        {
+
+            List<string> flavoursList = new List<string>();
+            string flavoursString = "";
+
+            foreach (Flavour flavour in Flavours)
             {
-                oString = $"SELECT * FROM " + MainDataTable.ToString() + " WHERE ";
+                if (flavour.Name == nameof(Beverage.Vanila) && flavour.IsSet)
+                    flavoursList.Add("Vanilly = 1");
 
-                for (int i = 0; i < conditions.Count; i++)
+                if (flavour.Name == nameof(Beverage.Nuts) && flavour.IsSet)
+                    flavoursList.Add("Nuts = 1");
+
+                if (flavour.Name == nameof(Beverage.Carmel) && flavour.IsSet)
+                    flavoursList.Add("Carmel = 1");
+
+                if (flavour.Name == nameof(Beverage.Smoke) && flavour.IsSet)
+                    flavoursList.Add("Smoky = 1");
+
+                if (flavour.Name == nameof(Beverage.Cinnamon) && flavour.IsSet)
+                    flavoursList.Add("Cinnamon = 1");
+
+                if (flavour.Name == nameof(Beverage.Spirit) && flavour.IsSet)
+                    flavoursList.Add("Spirit = 1");
+
+                if (flavour.Name == nameof(Beverage.Fruits) && flavour.IsSet)
+                    flavoursList.Add("Fruits = 1");
+
+                if (flavour.Name == nameof(Beverage.Honey) && flavour.IsSet)
+                    flavoursList.Add("Honey = 1");
+            }
+
+            if (flavoursList.Count > 0)
+            {
+                for (int i = 0; i < flavoursList.Count; i++)
                 {
                     if (i != 0)
-                        oString += " and ";
+                        flavoursString += " and ";
 
-                    oString += conditions[i];
+                    flavoursString += flavoursList[i];
                 }
-
-                if (conditions.Contains("grade > 5"))
-                    oString += " ORDER BY Grade DESC";
-                else if (conditions.Contains("GradeWithCoke > 5"))
-                    oString += " ORDER BY GradeWithCoke DESC";
-                //else if (conditions.Contains(" AlcoholPercentage / (100 * (Price/ Capacity))  > 4.0"))
-                //    oString += " ORDER BY AlcoholPercentage / (100 * (Price/ Capacity)) DESC";
-                //else if (conditions.Contains(" ((Grade+GradeWithCoke)/2)/((100 * (Price/ Capacity))) > 0.8 and ((Grade+GradeWithCoke)/2) > 5"))
-                //    oString += " ORDER BY ((Grade+GradeWithCoke)/2)/((100 * (Price/ Capacity))) ASC";
-                //else if (Exclusive)
-                //    oString += " ORDER BY AlcoholPercentage / (100 * (Price / Capacity)) ASC";
-            }
-            else
-            {
-                oString = $"SELECT * FROM " + MainDataTable.ToString();
+                return flavoursString;
             }
 
-            return getData(oString);
+            return null;
+        }
+
+        string getStringPrice(PollPricePoints pollPricePoints)
+        {
+
+            if (pollPricePoints == PollPricePoints.PricePoint1)
+                return " Price < 50";
+
+            if (pollPricePoints == PollPricePoints.PricePoint2)
+                return " Price >= 50 and Price < 70";
+
+            if (pollPricePoints == PollPricePoints.PricePoint3)
+                return " Price >= 70 and Price < 90";
+
+            if (pollPricePoints == PollPricePoints.PricePoint4)
+                return " Price >= 90";
+
+            return null;
         }
 
         public Beverage GetRandomRow()
@@ -179,24 +266,24 @@ namespace RumikApp.Services
 
                 MySqlCommand cmd = new MySqlCommand(query, con);
 
-                cmd.Parameters.Add("@Name"      , MySqlDbType.VarChar).Value = beverage.Name;
-                cmd.Parameters.Add("@Capacity"  , MySqlDbType.Int64).Value = beverage.Capacity;
+                cmd.Parameters.Add("@Name", MySqlDbType.VarChar).Value = beverage.Name;
+                cmd.Parameters.Add("@Capacity", MySqlDbType.Int64).Value = beverage.Capacity;
 
                 cmd.Parameters.Add("@AlcoholPercentage", MySqlDbType.Float).Value = beverage.AlcoholPercentage;
-                cmd.Parameters.Add("@Price"     , MySqlDbType.Float).Value = beverage.Price;
-                cmd.Parameters.Add("@Grade"     , MySqlDbType.Int32).Value = beverage.Grade;
+                cmd.Parameters.Add("@Price", MySqlDbType.Float).Value = beverage.Price;
+                cmd.Parameters.Add("@Grade", MySqlDbType.Int32).Value = beverage.Grade;
                 cmd.Parameters.Add("@GradeWithCoke", MySqlDbType.Int32).Value = beverage.GradeWithCoke;
-                cmd.Parameters.Add("@Color"     , MySqlDbType.VarChar).Value = beverage.Color;
+                cmd.Parameters.Add("@Color", MySqlDbType.VarChar).Value = beverage.Color;
 
-                cmd.Parameters.Add("@Vanilly"   , MySqlDbType.Int16).Value = boolToInt16(beverage.Vanila.IsSet);
-                cmd.Parameters.Add("@Nuts"      , MySqlDbType.Int16).Value = boolToInt16(beverage.Nuts.IsSet);
-                cmd.Parameters.Add("@Carmel"    , MySqlDbType.Int16).Value = boolToInt16(beverage.Carmel.IsSet);
-                cmd.Parameters.Add("@Smoky"     , MySqlDbType.Int16).Value = boolToInt16(beverage.Smoke.IsSet);
-                cmd.Parameters.Add("@Cinnamon"  , MySqlDbType.Int16).Value = boolToInt16(beverage.Cinnamon.IsSet);
-                cmd.Parameters.Add("@Spirit"    , MySqlDbType.Int16).Value = boolToInt16(beverage.Spirit.IsSet);
-                cmd.Parameters.Add("@Fruits"    , MySqlDbType.Int16).Value = boolToInt16(beverage.Fruits.IsSet);
-                cmd.Parameters.Add("@Honey"     , MySqlDbType.Int16).Value = boolToInt16(beverage.Honey.IsSet);
-                cmd.Parameters.Add("@BeAPirate" , MySqlDbType.Int16).Value = boolToInt16(beverage.BeAPirate.IsSet);
+                cmd.Parameters.Add("@Vanilly", MySqlDbType.Int16).Value = boolToInt16(beverage.Vanila.IsSet);
+                cmd.Parameters.Add("@Nuts", MySqlDbType.Int16).Value = boolToInt16(beverage.Nuts.IsSet);
+                cmd.Parameters.Add("@Carmel", MySqlDbType.Int16).Value = boolToInt16(beverage.Carmel.IsSet);
+                cmd.Parameters.Add("@Smoky", MySqlDbType.Int16).Value = boolToInt16(beverage.Smoke.IsSet);
+                cmd.Parameters.Add("@Cinnamon", MySqlDbType.Int16).Value = boolToInt16(beverage.Cinnamon.IsSet);
+                cmd.Parameters.Add("@Spirit", MySqlDbType.Int16).Value = boolToInt16(beverage.Spirit.IsSet);
+                cmd.Parameters.Add("@Fruits", MySqlDbType.Int16).Value = boolToInt16(beverage.Fruits.IsSet);
+                cmd.Parameters.Add("@Honey", MySqlDbType.Int16).Value = boolToInt16(beverage.Honey.IsSet);
+                cmd.Parameters.Add("@BeAPirate", MySqlDbType.Int16).Value = boolToInt16(beverage.BeAPirate.IsSet);
 
                 cmd.Parameters.Add("@Image", MySqlDbType.Binary).Value = img;
                 con.Open();
@@ -285,5 +372,41 @@ namespace RumikApp.Services
             return allBeverages;
 
         }
+
+        private ObservableCollection<Beverage> getDataFromDatabaseWithConditions(List<string> conditions)
+        {
+            string oString;
+
+            if (conditions.Count > 0)
+            {
+                oString = $"SELECT * FROM " + MainDataTable.ToString() + " WHERE ";
+
+                for (int i = 0; i < conditions.Count; i++)
+                {
+                    if (i != 0)
+                        oString += " and ";
+
+                    oString += conditions[i];
+                }
+
+                if (conditions.Contains("grade > 5"))
+                    oString += " ORDER BY Grade DESC";
+                else if (conditions.Contains("GradeWithCoke > 5"))
+                    oString += " ORDER BY GradeWithCoke DESC";
+                //else if (conditions.Contains(" AlcoholPercentage / (100 * (Price/ Capacity))  > 4.0"))
+                //    oString += " ORDER BY AlcoholPercentage / (100 * (Price/ Capacity)) DESC";
+                //else if (conditions.Contains(" ((Grade+GradeWithCoke)/2)/((100 * (Price/ Capacity))) > 0.8 and ((Grade+GradeWithCoke)/2) > 5"))
+                //    oString += " ORDER BY ((Grade+GradeWithCoke)/2)/((100 * (Price/ Capacity))) ASC";
+                //else if (Exclusive)
+                //    oString += " ORDER BY AlcoholPercentage / (100 * (Price / Capacity)) ASC";
+            }
+            else
+            {
+                oString = $"SELECT * FROM " + MainDataTable.ToString();
+            }
+
+            return getData(oString);
+        }
+
     }
 }
