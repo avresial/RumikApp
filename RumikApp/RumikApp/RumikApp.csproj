@@ -165,8 +165,10 @@
     <Compile Include="Enums\PollMixes.cs" />
     <Compile Include="Enums\PollPurpose.cs" />
     <Compile Include="Enums\PollPricePoints.cs" />
+    <Compile Include="Services\FileDatabaseConnectionService.cs" />
+    <Compile Include="Services\GenerallDatabaseService.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
-    <Compile Include="Services\DatabaseConnectionService.cs" />
+    <Compile Include="Services\SQLDatabaseConnectionService.cs" />
     <Compile Include="Services\IDatabaseConnectionService.cs" />
     <Compile Include="Services\IInformationBusService.cs" />
     <Compile Include="Services\ImageProcessingService.cs" />
