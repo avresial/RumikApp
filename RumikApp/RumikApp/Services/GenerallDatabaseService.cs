@@ -13,15 +13,21 @@ namespace RumikApp.Services
         private SQLDatabaseConnectionService sQLDatabaseConnectionService;
         private FileDatabaseConnectionService fileDatabaseConnectionService;
 
+        /// <summary>
+        /// Generall database service is a service that gets you required data from multiple sources at once
+        /// </summary>
+        /// <param name="sQLDatabaseConnectionService"></param>
+        /// <param name="fileDatabaseConnectionService"></param>
         public GenerallDatabaseService(SQLDatabaseConnectionService sQLDatabaseConnectionService, FileDatabaseConnectionService fileDatabaseConnectionService)
         {
             this.sQLDatabaseConnectionService = sQLDatabaseConnectionService;
             this.fileDatabaseConnectionService = fileDatabaseConnectionService;
 
+            fileDatabaseConnectionService.SaveBevreageToDatabase(new Beverage() { Name = "XD"},new byte[1]);
+            fileDatabaseConnectionService.GetAllData();
             MainDataTable = sQLDatabaseConnectionService.MainDataTable;
             NotYetApprovedTESTDataTable = sQLDatabaseConnectionService.NotYetApprovedTESTDataTable;
         }
-
 
         private AvailableTables _MainDataTable;
         public AvailableTables MainDataTable
@@ -46,7 +52,6 @@ namespace RumikApp.Services
                 _NotYetApprovedTESTDataTable = value;
             }
         }
-
 
         public string CnnVal(string name)
         {

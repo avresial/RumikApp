@@ -44,7 +44,7 @@ namespace RumikApp.Services
 
             try
             {
-                MySqlConnection con = new MySqlConnection(CnnVal("sosek"));
+                MySqlConnection con = new MySqlConnection(cnnVal("sosek"));
 
                 con.Open();
 
@@ -76,7 +76,7 @@ namespace RumikApp.Services
 
             try
             {
-                using (MySqlConnection con = new MySqlConnection(CnnVal("sosek")))
+                using (MySqlConnection con = new MySqlConnection(cnnVal("sosek")))
                 {
                     MySqlCommand cmd0 = new MySqlCommand(oString, con);
 
@@ -122,119 +122,6 @@ namespace RumikApp.Services
             return getDataFromDatabaseWithConditions(conditionStrings);
         }
 
-        List<string> getListOfConditions(PollPurpose pollPurpose, int pollPurposeWeight, PollMixes pollMixes, List<Flavour> Flavours, PollPricePoints pollPricePoints)
-        {
-            List<string> conditionsPartQuery = new List<string>();
-
-            if (pollPurpose != PollPurpose.None)
-                conditionsPartQuery.Add(getPollPurpose(pollPurpose, pollPurposeWeight));
-
-            if (pollMixes != PollMixes.None)
-                conditionsPartQuery.Add(getPollMixes(pollMixes));
-
-            if (Flavours.Count > 0)
-                conditionsPartQuery.Add(getFlavours(Flavours));
-
-            if (pollPricePoints != PollPricePoints.None)
-                conditionsPartQuery.Add(getStringPrice(pollPricePoints));
-
-            return conditionsPartQuery;
-        }
-
-        string getPollPurpose(PollPurpose pollPurpose, int pollPurposeWeight)
-        {
-            if (pollPurpose == PollPurpose.ForPartyBool)
-                return " AlcoholPercentage / (100 * (Price/ Capacity))  > " + pollPurposeWeight;
-
-            if (pollPurpose == PollPurpose.GoodButCheap)
-                return " ((Grade+GradeWithCoke)/2)/((100 * (Price/ Capacity))) > " + pollPurposeWeight + " and ((Grade+GradeWithCoke)/2) > 5";
-
-            if (pollPurpose == PollPurpose.Exclusive)
-                return " Grade > 6 and AlcoholPercentage / (100 * (Price / Capacity)) < " + pollPurposeWeight;
-
-            if (pollPurpose == PollPurpose.ForPiratesFromCarabien)
-                return " BeAPirate = 1";
-
-            return null;
-        }
-
-        string getPollMixes(PollMixes pollMixes, int minimalAllowedGrade = 5)
-        {
-            if (pollMixes == PollMixes.Solo)
-                return $"Grade > {minimalAllowedGrade}";
-
-            if (pollMixes == PollMixes.WithCoke)
-                return $"GradeWithCoke > {minimalAllowedGrade}";
-
-            return null;
-        }
-
-        string getFlavours(List<Flavour> Flavours)
-        {
-
-            List<string> flavoursList = new List<string>();
-            string flavoursString = "";
-
-            foreach (Flavour flavour in Flavours)
-            {
-                if (flavour.Name == nameof(Beverage.Vanila) && flavour.IsSet)
-                    flavoursList.Add("Vanilly = 1");
-
-                if (flavour.Name == nameof(Beverage.Nuts) && flavour.IsSet)
-                    flavoursList.Add("Nuts = 1");
-
-                if (flavour.Name == nameof(Beverage.Carmel) && flavour.IsSet)
-                    flavoursList.Add("Carmel = 1");
-
-                if (flavour.Name == nameof(Beverage.Smoke) && flavour.IsSet)
-                    flavoursList.Add("Smoky = 1");
-
-                if (flavour.Name == nameof(Beverage.Cinnamon) && flavour.IsSet)
-                    flavoursList.Add("Cinnamon = 1");
-
-                if (flavour.Name == nameof(Beverage.Spirit) && flavour.IsSet)
-                    flavoursList.Add("Spirit = 1");
-
-                if (flavour.Name == nameof(Beverage.Fruits) && flavour.IsSet)
-                    flavoursList.Add("Fruits = 1");
-
-                if (flavour.Name == nameof(Beverage.Honey) && flavour.IsSet)
-                    flavoursList.Add("Honey = 1");
-            }
-
-            if (flavoursList.Count > 0)
-            {
-                for (int i = 0; i < flavoursList.Count; i++)
-                {
-                    if (i != 0)
-                        flavoursString += " and ";
-
-                    flavoursString += flavoursList[i];
-                }
-                return flavoursString;
-            }
-
-            return null;
-        }
-
-        string getStringPrice(PollPricePoints pollPricePoints)
-        {
-
-            if (pollPricePoints == PollPricePoints.PricePoint1)
-                return " Price < 50";
-
-            if (pollPricePoints == PollPricePoints.PricePoint2)
-                return " Price >= 50 and Price < 70";
-
-            if (pollPricePoints == PollPricePoints.PricePoint3)
-                return " Price >= 70 and Price < 90";
-
-            if (pollPricePoints == PollPricePoints.PricePoint4)
-                return " Price >= 90";
-
-            return null;
-        }
-
         public Beverage GetRandomRow()
         {
             string oString = "SELECT * FROM " + MainDataTable.ToString() + " ORDER BY RAND() LIMIT 1";
@@ -247,18 +134,13 @@ namespace RumikApp.Services
                 return null;
         }
 
-        public string CnnVal(string name)
-        {
-            return ConfigurationManager.ConnectionStrings[name].ConnectionString;
-        }
-
         public string SaveBevreageToDatabase(Beverage beverage, byte[] img)
         {
             //RumsBaseTEST
 
             string result = null;
 
-            using (MySqlConnection con = new MySqlConnection(CnnVal("sosek")))
+            using (MySqlConnection con = new MySqlConnection(cnnVal("sosek")))
             {
                 string query = $"INSERT INTO {NotYetApprovedTESTDataTable.ToString()} " +
                     $"(Name, Capacity, AlcoholPercentage, Price, Grade, GradeWithCoke, Color, Vanilly, Nuts, Carmel, Smoky, Cinnamon, Spirit, Fruits, Honey, BeAPirate, Image) " +
@@ -304,7 +186,7 @@ namespace RumikApp.Services
             return result;
         }
 
-        Beverage saveReaderToBevrage(MySqlDataReader reader)
+        private Beverage saveReaderToBevrage(MySqlDataReader reader)
         {
             Beverage beverageTMP = new Beverage();
 
@@ -333,7 +215,7 @@ namespace RumikApp.Services
             return beverageTMP;
         }
 
-        Int16 boolToInt16(bool boolVariable)
+        private Int16 boolToInt16(bool boolVariable)
         {
             if (boolVariable)
                 return 1;
@@ -341,7 +223,7 @@ namespace RumikApp.Services
                 return 0;
         }
 
-        bool intToBool(Int16 Int16Variable)
+        private bool intToBool(Int16 Int16Variable)
         {
             if (Int16Variable == 1)
                 return true;
@@ -356,7 +238,7 @@ namespace RumikApp.Services
 
             ObservableCollection<Beverage> allBeverages = new ObservableCollection<Beverage>();
 
-            using (MySqlConnection con = new MySqlConnection(CnnVal("sosek")))
+            using (MySqlConnection con = new MySqlConnection(cnnVal("sosek")))
             {
 
                 MySqlCommand cmd0 = new MySqlCommand(Query, con);
@@ -408,5 +290,122 @@ namespace RumikApp.Services
             return getData(oString);
         }
 
+        private List<string> getListOfConditions(PollPurpose pollPurpose, int pollPurposeWeight, PollMixes pollMixes, List<Flavour> Flavours, PollPricePoints pollPricePoints)
+        {
+            List<string> conditionsPartQuery = new List<string>();
+
+            if (pollPurpose != PollPurpose.None)
+                conditionsPartQuery.Add(getPollPurpose(pollPurpose, pollPurposeWeight));
+
+            if (pollMixes != PollMixes.None)
+                conditionsPartQuery.Add(getPollMixes(pollMixes));
+
+            if (Flavours.Count > 0)
+                conditionsPartQuery.Add(getFlavours(Flavours));
+
+            if (pollPricePoints != PollPricePoints.None)
+                conditionsPartQuery.Add(getStringPrice(pollPricePoints));
+
+            return conditionsPartQuery;
+        }
+
+        private string getPollPurpose(PollPurpose pollPurpose, int pollPurposeWeight)
+        {
+            if (pollPurpose == PollPurpose.ForPartyBool)
+                return " AlcoholPercentage / (100 * (Price/ Capacity))  > " + pollPurposeWeight;
+
+            if (pollPurpose == PollPurpose.GoodButCheap)
+                return " ((Grade+GradeWithCoke)/2)/((100 * (Price/ Capacity))) > " + pollPurposeWeight + " and ((Grade+GradeWithCoke)/2) > 5";
+
+            if (pollPurpose == PollPurpose.Exclusive)
+                return " Grade > 6 and AlcoholPercentage / (100 * (Price / Capacity)) < " + pollPurposeWeight;
+
+            if (pollPurpose == PollPurpose.ForPiratesFromCarabien)
+                return " BeAPirate = 1";
+
+            return null;
+        }
+
+        private string getPollMixes(PollMixes pollMixes, int minimalAllowedGrade = 5)
+        {
+            if (pollMixes == PollMixes.Solo)
+                return $"Grade > {minimalAllowedGrade}";
+
+            if (pollMixes == PollMixes.WithCoke)
+                return $"GradeWithCoke > {minimalAllowedGrade}";
+
+            return null;
+        }
+
+        private string getFlavours(List<Flavour> Flavours)
+        {
+
+            List<string> flavoursList = new List<string>();
+            string flavoursString = "";
+
+            foreach (Flavour flavour in Flavours)
+            {
+                if (flavour.Name == nameof(Beverage.Vanila) && flavour.IsSet)
+                    flavoursList.Add("Vanilly = 1");
+
+                if (flavour.Name == nameof(Beverage.Nuts) && flavour.IsSet)
+                    flavoursList.Add("Nuts = 1");
+
+                if (flavour.Name == nameof(Beverage.Carmel) && flavour.IsSet)
+                    flavoursList.Add("Carmel = 1");
+
+                if (flavour.Name == nameof(Beverage.Smoke) && flavour.IsSet)
+                    flavoursList.Add("Smoky = 1");
+
+                if (flavour.Name == nameof(Beverage.Cinnamon) && flavour.IsSet)
+                    flavoursList.Add("Cinnamon = 1");
+
+                if (flavour.Name == nameof(Beverage.Spirit) && flavour.IsSet)
+                    flavoursList.Add("Spirit = 1");
+
+                if (flavour.Name == nameof(Beverage.Fruits) && flavour.IsSet)
+                    flavoursList.Add("Fruits = 1");
+
+                if (flavour.Name == nameof(Beverage.Honey) && flavour.IsSet)
+                    flavoursList.Add("Honey = 1");
+            }
+
+            if (flavoursList.Count > 0)
+            {
+                for (int i = 0; i < flavoursList.Count; i++)
+                {
+                    if (i != 0)
+                        flavoursString += " and ";
+
+                    flavoursString += flavoursList[i];
+                }
+                return flavoursString;
+            }
+
+            return null;
+        }
+
+        private string getStringPrice(PollPricePoints pollPricePoints)
+        {
+
+            if (pollPricePoints == PollPricePoints.PricePoint1)
+                return " Price < 50";
+
+            if (pollPricePoints == PollPricePoints.PricePoint2)
+                return " Price >= 50 and Price < 70";
+
+            if (pollPricePoints == PollPricePoints.PricePoint3)
+                return " Price >= 70 and Price < 90";
+
+            if (pollPricePoints == PollPricePoints.PricePoint4)
+                return " Price >= 90";
+
+            return null;
+        }
+
+        private string cnnVal(string name)
+        {
+            return ConfigurationManager.ConnectionStrings[name].ConnectionString;
+        }
     }
 }

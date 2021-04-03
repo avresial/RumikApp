@@ -20,7 +20,6 @@ namespace RumikApp.Services
         bool TestConnectionToDatabase();
         bool TestConnectionToTable(AvailableTables availableTables);
         string SaveBevreageToDatabase(Beverage beverage, byte[] img);
-        string CnnVal(string name);
     }
 }
 
