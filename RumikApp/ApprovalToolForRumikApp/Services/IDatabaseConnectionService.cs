@@ -12,7 +12,7 @@ namespace ApprovalToolForRumikApp.Services
     public interface IDatabaseConnectionService
     {
         AvailableTables MainDataTable { get; set; }
-        AvailableTables NotYetApprovedTESTDataTable { get; set; }
+        AvailableTables DestinationDataTable { get; set; }
         ObservableCollection<Beverage> GetAllData();
         ObservableCollection<Beverage> GetAllPiratesBeverages();
         ObservableCollection<Beverage> GetDataFromDatabaseWithConditions(List<string> conditions);
@@ -21,7 +21,7 @@ namespace ApprovalToolForRumikApp.Services
         bool TestConnectionToDatabase();
         bool TestConnectionToTable(AvailableTables availableTables);
         string SaveBevreageToDatabase(Beverage beverage, byte[] img);
-        string DeleteBevreageFromDatabase(Beverage beverage);
+        string DeleteBevreageFromDatabase(Beverage beverage, AvailableTables Table);
         string CnnVal(string name);
     }
 }

@@ -25,15 +25,15 @@ namespace ApprovalToolForRumikApp.Services
             }
         }
 
-        private AvailableTables _NotYetApprovedTESTDataTable = AvailableTables.RumsBaseTEST;
-        public AvailableTables NotYetApprovedTESTDataTable
+        private AvailableTables _DestinationDataTable = AvailableTables.RumsBaseTEST;
+        public AvailableTables DestinationDataTable
         {
-            get { return _NotYetApprovedTESTDataTable; }
+            get { return _DestinationDataTable; }
             set
             {
-                if (_NotYetApprovedTESTDataTable == value)
+                if (_DestinationDataTable == value)
                     return;
-                _NotYetApprovedTESTDataTable = value;
+                _DestinationDataTable = value;
             }
         }
 
@@ -172,7 +172,7 @@ namespace ApprovalToolForRumikApp.Services
 
             using (MySqlConnection con = new MySqlConnection(CnnVal("sosek")))
             {
-                string query = $"INSERT INTO {NotYetApprovedTESTDataTable.ToString()} " +
+                string query = $"INSERT INTO {DestinationDataTable.ToString()} " +
                     $"(Name, Capacity, AlcoholPercentage, Price, Grade, GradeWithCoke, Color, Vanilly, Nuts, Carmel, Smoky, Cinnamon, Spirit, Fruits, Honey, BeAPirate, Image) " +
                     $"VALUES(@Name, @Capacity, @AlcoholPercentage, @Price, @Grade, @GradeWithCoke, @Color, @Vanilly, @Nuts, @Carmel, @Smoky, @Cinnamon, @Spirit, @Fruits, @Honey, @BeAPirate, @Image)";
 
@@ -285,9 +285,9 @@ namespace ApprovalToolForRumikApp.Services
 
         }
 
-        public string DeleteBevreageFromDatabase(Beverage beverage)
+        public string DeleteBevreageFromDatabase(Beverage beverage, AvailableTables Table)
         {
-            string Query = $"DELETE FROM {MainDataTable.ToString()} WHERE NotYetApprovedTEST.ID = {beverage.ID.ToString()}";
+            string Query = $"DELETE FROM {Table.ToString()} WHERE ID = {beverage.ID.ToString()}";
 
             getData(Query);
             return "done";

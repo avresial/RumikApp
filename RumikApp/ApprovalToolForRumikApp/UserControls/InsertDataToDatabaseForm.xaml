@@ -74,7 +74,7 @@
                 <TextBlock Grid.Row="3" Grid.RowSpan="2" FontFamily="Bookman Old Style" FontSize="20" Text="Kolor" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Left" />
                 <TextBlock Grid.Column="1" Grid.Row="3" Text="{Binding Beverage.Color}" Width="150" Height="25" />
                 <ComboBox Grid.Column="1" Grid.Row="4" SelectedItem="{Binding Beverage.Color}" Height="25" ItemsSource="{Binding ColorsList}" Width="150"/>
-                
+
                 <TextBlock Grid.Column="0" Grid.Row="5" FontFamily="Bookman Old Style" FontSize="20" Text="Ocena solo [x/10]" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Left" />
                 <TextBox Grid.Column="1" Grid.Row="5" Text="{Binding Beverage.Grade, Converter={StaticResource StringToIntWithValidation}}" Width="150" Height="25" MaxLength="2" />
 
@@ -139,22 +139,28 @@
         </Grid>
 
         <Grid Grid.Row="2" HorizontalAlignment="Center">
-            <Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
 
-                <ColumnDefinition Width="auto"/>
-                <ColumnDefinition Width="auto"/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
 
-            </Grid.ColumnDefinitions>
+            </Grid.RowDefinitions>
 
-            <TextBlock  Grid.Column="0" FontFamily="Bookman Old Style" Text="{Binding Output}" TextAlignment="Center" Height="auto" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="5"/>
+            <TextBlock  Grid.Row="0" FontFamily="Bookman Old Style" Text="{Binding Output}" TextAlignment="Center" Height="auto" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="5"/>
 
-            <StackPanel Grid.Column="1" Orientation="Horizontal" Margin="5">
-                
+            <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="5">
                 <TextBlock Grid.Column="0" Grid.Row="7" FontFamily="Bookman Old Style" FontSize="20" Text="Pozostało tyle rumów do zatwierdzenia:" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Right" />
                 <TextBlock Grid.Column="0" Grid.Row="7" FontFamily="Bookman Old Style" FontSize="20" Text="{Binding AmountOfRows}" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Left" />
 
+            </StackPanel>
+
+            <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="5">
+               
                 <Button Width="200" FontFamily="Bookman Old Style" Height="50" Command="{Binding SaveToDatabase}" Content="Zatwierdzam" VerticalAlignment="Top" Margin="5,0,5,0" />
                 <Button Width="200" FontFamily="Bookman Old Style" Height="50" Command="{Binding GetAnother}" Content="Dawaj inny" VerticalAlignment="Top" Margin="5,0,5,0" />
+                <Button Width="200" FontFamily="Bookman Old Style" Height="50" Command="{Binding DeleteRecord}" Content="Usuń rekord" VerticalAlignment="Top" Margin="5,0,5,0" />
 
             </StackPanel>
         </Grid>

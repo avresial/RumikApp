@@ -1,4 +1,5 @@
-﻿using ApprovalToolForRumikApp.Services;
+﻿using ApprovalToolForRumikApp.Enums;
+using ApprovalToolForRumikApp.Services;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using System;
@@ -137,6 +138,31 @@ namespace ApprovalToolForRumikApp.ViewModels
             }
         }
 
+        private RelayCommand _DeleteRecord;
+        public RelayCommand DeleteRecord
+        {
+            get
+            {
+                if (_DeleteRecord == null)
+                {
+                    _DeleteRecord = new RelayCommand(
+                    () =>
+                    {
+                        databaseConnectionService.DeleteBevreageFromDatabase(Beverage, databaseConnectionService.MainDataTable);
+                        Beverage = databaseConnectionService.GetRandomRow();
+                    },
+                    () =>
+                    {
+                        return doesFormContainsNewData();
+                    });
+                }
+
+                return _DeleteRecord;
+            }
+        }
+
+
+
         private RelayCommand _GetAnother;
         public RelayCommand GetAnother
         {
@@ -204,7 +230,7 @@ namespace ApprovalToolForRumikApp.ViewModels
         void saveToDatabase()
         {
             byte[] Image = new byte[250000];
-            databaseConnectionService.DeleteBevreageFromDatabase(Beverage);
+            databaseConnectionService.DeleteBevreageFromDatabase(Beverage, databaseConnectionService.DestinationDataTable);
             Output = databaseConnectionService.SaveBevreageToDatabase(Beverage, img);
 
         }
