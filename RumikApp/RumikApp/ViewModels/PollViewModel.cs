@@ -510,27 +510,7 @@ namespace RumikApp.UserControls
                         PanelVisibilityService.PollVisibility = Visibility.Collapsed;
                         PanelVisibilityService.DataGridViewModel2Visibility = Visibility.Visible;
 
-                        //informationBusService.Beverages = databaseConnectionService.GetDataFromDatabaseWithConditions(getListOfConditions());
-                        List<Flavour> Flavours = new List<Flavour>();
-
-                        if (Vanila.IsSet)
-                            Flavours.Add(Vanila);
-                        if (Nuts.IsSet)
-                            Flavours.Add(Nuts);
-                        if (Carmel.IsSet)
-                            Flavours.Add(Carmel);
-                        if (Smoke.IsSet)
-                            Flavours.Add(Smoke);
-                        if (Cinnamon.IsSet)
-                            Flavours.Add(Cinnamon);
-                        if (Spirit.IsSet)
-                            Flavours.Add(Spirit);
-                        if (Fruits.IsSet)
-                            Flavours.Add(Fruits);
-                        if (Honey.IsSet)
-                            Flavours.Add(Honey);
-
-                        informationBusService.Beverages = databaseConnectionService.GetDataFromDatabaseWithConditions(PollPurpose, 5, PollMixes, Flavours, PollPricePoints);
+                        informationBusService.Beverages = databaseConnectionService.GetDataFromDatabaseWithConditions(PollPurpose, 5, PollMixes, getListWithSetFlavours(), PollPricePoints);
 
                         ClearSellection();
                     },
@@ -574,6 +554,29 @@ namespace RumikApp.UserControls
             PricePoint2 = false;
             PricePoint3 = false;
             PricePoint4 = false;
+        }
+
+        List<Flavour> getListWithSetFlavours() 
+        {
+            List<Flavour> Flavours = new List<Flavour>();
+
+            if (Vanila.IsSet)
+                Flavours.Add(Vanila);
+            if (Nuts.IsSet)
+                Flavours.Add(Nuts);
+            if (Carmel.IsSet)
+                Flavours.Add(Carmel);
+            if (Smoke.IsSet)
+                Flavours.Add(Smoke);
+            if (Cinnamon.IsSet)
+                Flavours.Add(Cinnamon);
+            if (Spirit.IsSet)
+                Flavours.Add(Spirit);
+            if (Fruits.IsSet)
+                Flavours.Add(Fruits);
+            if (Honey.IsSet)
+                Flavours.Add(Honey);
+            return Flavours;
         }
 
         void GoForPiratesFromCarabien()
