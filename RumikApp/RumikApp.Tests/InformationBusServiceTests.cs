@@ -32,5 +32,26 @@ namespace RumikApp.Tests
             Assert.Equal(expectedVisibilityIsBeverageEmpty, actualVisibilityIsBeverageEmpty);
             Assert.Equal(expectedVisibilityIsBeverageNotEmpty, actualVisibilityIsBeverageNotEmpty);
         }
+
+        [Fact]
+        public void Beverages_IsNotEmpty()
+        {
+            // Arrange
+            Visibility expectedVisibilityIsBeverageEmpty = Visibility.Collapsed;
+            Visibility expectedVisibilityIsBeverageNotEmpty = Visibility.Visible;
+
+            // Act
+            InformationBusService informationBusService = new InformationBusService();
+            informationBusService.Beverages = new ObservableCollection<Beverage>() { new Beverage()};
+            
+
+            Visibility actualVisibilityIsBeverageEmpty = informationBusService.IsBeverageEmpty;
+            Visibility actualVisibilityIsBeverageNotEmpty = informationBusService.IsBeverageNotEmpty;
+
+
+            // Assert
+            Assert.Equal(expectedVisibilityIsBeverageEmpty, actualVisibilityIsBeverageEmpty);
+            Assert.Equal(expectedVisibilityIsBeverageNotEmpty, actualVisibilityIsBeverageNotEmpty);
+        }
     }
 }
