@@ -55,7 +55,6 @@ namespace RumikApp.Services
             }
         }
 
-
         /// <summary>
         /// Loads data from database and adds to it records from disc - only if they are unique 
         /// </summary>
@@ -67,16 +66,7 @@ namespace RumikApp.Services
             if (FinalCollection == null)
                 return fileDatabaseConnectionService.GetAllData();
 
-            foreach (Beverage fileBeverage in fileDatabaseConnectionService.GetAllData())
-            {
-                IEnumerable<Beverage> whereBeverage = FinalCollection.Where(x => x.Name == fileBeverage.Name);
-
-                if (whereBeverage.Count() == 0)
-                    FinalCollection.Add(fileBeverage);
-
-            }
-
-            return FinalCollection;
+            return getUniqueBeverages(FinalCollection, fileDatabaseConnectionService.GetAllData());
         }
 
         public ObservableCollection<Beverage> GetAllPiratesBeverages()
@@ -90,19 +80,19 @@ namespace RumikApp.Services
 
         public ObservableCollection<Beverage> GetDataFromDatabaseWithConditions(PollPurpose pollPurpose, int pollPurposeWeight, PollMixes pollMixes, List<Flavour> Flavours, PollPricePoints pollPricePoints)
         {
-            ObservableCollection<Beverage> FinalCollection = sQLDatabaseConnectionService.GetDataFromDatabaseWithConditions(pollPurpose, pollPurposeWeight, pollMixes, Flavours, pollPricePoints);
-            
-            //here will be file data handled
+            ObservableCollection<Beverage> SQLDataCollection = sQLDatabaseConnectionService.GetDataFromDatabaseWithConditions(pollPurpose, pollPurposeWeight, pollMixes, Flavours, pollPricePoints);
+            ObservableCollection<Beverage> FileDataCollection = fileDatabaseConnectionService.GetDataFromDatabaseWithConditions(pollPurpose, pollPurposeWeight, pollMixes, Flavours, pollPricePoints);
 
-            return FinalCollection;
+            return getUniqueBeverages(SQLDataCollection, FileDataCollection);
         }
 
         public Beverage GetRandomRow()
         {
             Beverage FinalCollection = sQLDatabaseConnectionService.GetRandomRow();
-
-            //here will be file data handled
-
+           
+            if (FinalCollection == null)
+                return FinalCollection = fileDatabaseConnectionService.GetRandomRow();
+           
             return FinalCollection;
         }
 
@@ -122,5 +112,23 @@ namespace RumikApp.Services
         {
             return sQLDatabaseConnectionService.TestConnectionToTable(availableTables);
         }
+
+        private ObservableCollection<Beverage> getUniqueBeverages(ObservableCollection<Beverage> mainList, ObservableCollection<Beverage> aditionalList)
+        {
+
+            ObservableCollection<Beverage> UniqueBeverages = mainList;
+
+            foreach (Beverage fileBeverage in aditionalList)
+            {
+                IEnumerable<Beverage> whereBeverage = mainList.Where(x => x.Name == fileBeverage.Name);
+
+                if (whereBeverage.Count() == 0)
+                    UniqueBeverages.Add(fileBeverage);
+
+            }
+
+            return UniqueBeverages;
+        }
+
     }
 }

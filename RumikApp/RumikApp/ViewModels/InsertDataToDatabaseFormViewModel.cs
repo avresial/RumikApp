@@ -170,7 +170,6 @@ namespace RumikApp.ViewModels
             }
         }
 
-
         private String _Output;
         public String Output
         {
@@ -184,7 +183,6 @@ namespace RumikApp.ViewModels
                 RaisePropertyChanged(nameof(Output));
             }
         }
-
 
         private Random rad = new Random();
 

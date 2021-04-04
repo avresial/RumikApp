@@ -69,7 +69,12 @@ namespace RumikApp.ViewModels
                         PanelVisibilityService.MainPanelVisibility = Visibility.Collapsed;
                         PanelVisibilityService.DataGridViewModel2Visibility = Visibility.Visible;
 
-                        informationBusService.Beverages = new ObservableCollection<Beverage>() { databaseConnectionService.GetRandomRow() };
+                        Beverage randomOne = databaseConnectionService.GetRandomRow();
+
+                        if (randomOne == null)
+                            informationBusService.Beverages.Clear();
+                        else
+                            informationBusService.Beverages = new ObservableCollection<Beverage>() { randomOne };
                     },
                     () =>
                     {
