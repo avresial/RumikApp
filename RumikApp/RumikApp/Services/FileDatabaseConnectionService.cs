@@ -11,7 +11,7 @@ using Newtonsoft.Json;
 
 namespace RumikApp.Services
 {
-    class FileDatabaseConnectionService : IDatabaseConnectionService
+    public class FileDatabaseConnectionService : IDatabaseConnectionService
     {
         private string _MainDataDirectory = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\RumikApp";
         public string MainDataDirectory
@@ -103,16 +103,16 @@ namespace RumikApp.Services
 
             foreach (Beverage beverage in GetAllData())
             {
-                Beverage TMPBeverage = doesBeverageFulfillSetPurposeRequirement(pollPurpose, pollPurposeWeight, beverage);
+                Beverage TMPBeverage = DoesBeverageFulfillSetPurposeRequirement(pollPurpose, pollPurposeWeight, beverage);
 
                 if (TMPBeverage != null)
-                    TMPBeverage = doesBeverageFulfillSetMixesRequirement(pollMixes, beverage);
+                    TMPBeverage = DoesBeverageFulfillSetMixesRequirement(pollMixes, beverage);
 
                 if (TMPBeverage != null)
-                    TMPBeverage = doesBeverageFulfillSetFlavoursRequirement(Flavours, beverage);
+                    TMPBeverage = DoesBeverageFulfillSetFlavoursRequirement(Flavours, beverage);
 
                 if (TMPBeverage != null)
-                    TMPBeverage = doesBeverageFulfillSetPriceRequirement(pollPricePoints, beverage);
+                    TMPBeverage = DoesBeverageFulfillSetPriceRequirement(pollPricePoints, beverage);
 
                 if (TMPBeverage != null)
                     finallList.Add(TMPBeverage);
@@ -121,7 +121,7 @@ namespace RumikApp.Services
             return finallList;
         }
 
-        private Beverage doesBeverageFulfillSetPurposeRequirement(PollPurpose pollPurpose, int pollPurposeWeight, Beverage beverage)
+        public Beverage DoesBeverageFulfillSetPurposeRequirement(PollPurpose pollPurpose, int pollPurposeWeight, Beverage beverage)
         {
             switch (pollPurpose)
             {
@@ -153,7 +153,7 @@ namespace RumikApp.Services
             return null;
         }
 
-        private Beverage doesBeverageFulfillSetMixesRequirement(PollMixes pollMixes, Beverage beverage, int minimalAllowedGrade = 5)
+        public Beverage DoesBeverageFulfillSetMixesRequirement(PollMixes pollMixes, Beverage beverage, int minimalAllowedGrade = 5)
         {
 
             switch (pollMixes)
@@ -178,7 +178,7 @@ namespace RumikApp.Services
             return null;
         }
 
-        private Beverage doesBeverageFulfillSetFlavoursRequirement(List<Flavour> Flavours, Beverage beverage)
+        public Beverage DoesBeverageFulfillSetFlavoursRequirement(List<Flavour> Flavours, Beverage beverage)
         {
             if (Flavours.Count < 1)
                 return beverage;
@@ -234,7 +234,7 @@ namespace RumikApp.Services
 
         }
 
-        private Beverage doesBeverageFulfillSetPriceRequirement(PollPricePoints pollPricePoints, Beverage beverage)
+        public Beverage DoesBeverageFulfillSetPriceRequirement(PollPricePoints pollPricePoints, Beverage beverage)
         {
             switch (pollPricePoints)
             {
@@ -270,6 +270,7 @@ namespace RumikApp.Services
         public Beverage GetRandomRow()
         {
             ObservableCollection<Beverage> alldata = GetAllData();
+
             if (alldata == null || alldata.Count == 0)
                 return null;
 
