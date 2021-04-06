@@ -256,6 +256,13 @@ namespace RumikApp.Services
 
         public string SaveBevreageToDatabase(Beverage beverage, byte[] img)
         {
+            if (!Directory.Exists(directory))
+                Directory.CreateDirectory(directory);
+
+            if (!File.Exists(fileName))
+                File.Create(fileName);
+
+
             string result = "Task failed";
 
             List<JsonBeverage> jsonBeverage = getAllJsonData().ToList();
