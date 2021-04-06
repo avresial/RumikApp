@@ -315,7 +315,7 @@ namespace RumikApp.Services
                 return " AlcoholPercentage / (100 * (Price/ Capacity))  > " + pollPurposeWeight;
 
             if (pollPurpose == PollPurpose.GoodButCheap)
-                return " ((Grade+GradeWithCoke)/2)/((100 * (Price/ Capacity))) > " + pollPurposeWeight + " and ((Grade+GradeWithCoke)/2) > 5";
+                return " ((Grade+GradeWithCoke)/2)/((100 * (Price/ Capacity))) > 0.8 and ((Grade+GradeWithCoke)/2) > 5";
 
             if (pollPurpose == PollPurpose.Exclusive)
                 return " Grade > 6 and AlcoholPercentage / (100 * (Price / Capacity)) < " + pollPurposeWeight;

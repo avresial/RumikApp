@@ -65,26 +65,7 @@ namespace RumikApp.Services
             return Beverages;
         }
 
-        private ObservableCollection<JsonBeverage> getAllJsonData()
-        {
-            ObservableCollection<JsonBeverage> Beverages = new ObservableCollection<JsonBeverage>();
-
-            if (File.Exists(FileName))
-            {
-                using (StreamReader r = new StreamReader(FileName))
-                {
-                    string json2 = r.ReadToEnd();
-                    List<JsonBeverage> items = JsonConvert.DeserializeObject<List<JsonBeverage>>(json2);
-                    if (items != null)
-                        foreach (JsonBeverage item in items)
-                            Beverages.Add(item);
-
-                    r.Close();
-                }
-            }
-
-            return Beverages;
-        }
+       
 
         public ObservableCollection<Beverage> GetAllPiratesBeverages()
         {
@@ -136,7 +117,7 @@ namespace RumikApp.Services
                     break;
 
                 case PollPurpose.GoodButCheap:
-                    if (((beverage.Grade + beverage.GradeWithCoke) / 2) / (100 * (beverage.Price / beverage.Capacity)) > pollPurposeWeight && (beverage.Grade + beverage.GradeWithCoke) / 2 > 5)
+                    if (((beverage.Grade + beverage.GradeWithCoke) / 2) / (100 * (beverage.Price / beverage.Capacity)) > 0.8 && (beverage.Grade + beverage.GradeWithCoke) / 2 > 5)
                         return beverage;
                     break;
 
@@ -227,11 +208,7 @@ namespace RumikApp.Services
             if (flavoursFound == Flavours.Count)
                 return beverage;
 
-
-
             return null;
-
-
         }
 
         public Beverage DoesBeverageFulfillSetPriceRequirement(PollPricePoints pollPricePoints, Beverage beverage)
@@ -314,6 +291,27 @@ namespace RumikApp.Services
         public bool TestConnectionToTable(AvailableTables availableTables)
         {
             return File.Exists(FileName);
+        }
+
+        private ObservableCollection<JsonBeverage> getAllJsonData()
+        {
+            ObservableCollection<JsonBeverage> Beverages = new ObservableCollection<JsonBeverage>();
+
+            if (File.Exists(FileName))
+            {
+                using (StreamReader r = new StreamReader(FileName))
+                {
+                    string json2 = r.ReadToEnd();
+                    List<JsonBeverage> items = JsonConvert.DeserializeObject<List<JsonBeverage>>(json2);
+                    if (items != null)
+                        foreach (JsonBeverage item in items)
+                            Beverages.Add(item);
+
+                    r.Close();
+                }
+            }
+
+            return Beverages;
         }
     }
 }

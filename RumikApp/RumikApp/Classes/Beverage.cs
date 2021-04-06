@@ -258,7 +258,7 @@ namespace RumikApp
             }
         }
 
-        private Flavour _BeAPirate = new Flavour("/IMGs/PollIMG/BeAPirate.png", "Honey");
+        private Flavour _BeAPirate = new Flavour("/IMGs/PollIMG/BeAPirate.png", "BeAPirate");
         public Flavour BeAPirate
         {
             get { return _BeAPirate; }
