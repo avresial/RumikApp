@@ -203,7 +203,7 @@ namespace RumikApp.Tests
             // Act
             PollPurpose pollPurpose = PollPurpose.ForPartyBool;
 
-            Beverage beverage = new Beverage() { Name = "ForPartyBoolTest", AlcoholPercentage = 500,Price = 5, Capacity = 6 };
+            Beverage beverage = new Beverage() { Name = "ForPartyBoolTest", AlcoholPercentage = 500, Price = 5, Capacity = 6 };
 
             Beverage actuallResult = FileDatabaseConnectionService.DoesBeverageFulfillSetPurposeRequirement(pollPurpose, 5, beverage);
             // Assert
@@ -224,7 +224,7 @@ namespace RumikApp.Tests
             Beverage actuallResult = FileDatabaseConnectionService.DoesBeverageFulfillSetPurposeRequirement(pollPurpose, 5, beverage);
             // Assert
 
-            Assert.Equal(null, actuallResult);
+            Assert.Null(actuallResult);
         }
 
 
@@ -237,7 +237,7 @@ namespace RumikApp.Tests
             // Act
             PollPurpose pollPurpose = PollPurpose.GoodButCheap;
 
-            Beverage beverage = new Beverage() { Name = "GoodButCheapTest", Price = 60, Capacity = 700,Grade = 9,GradeWithCoke=9 };
+            Beverage beverage = new Beverage() { Name = "GoodButCheapTest", Price = 60, Capacity = 700, Grade = 9, GradeWithCoke = 9 };
 
             Beverage actuallResult = FileDatabaseConnectionService.DoesBeverageFulfillSetPurposeRequirement(pollPurpose, 5, beverage);
             // Assert
@@ -258,7 +258,7 @@ namespace RumikApp.Tests
             Beverage actuallResult = FileDatabaseConnectionService.DoesBeverageFulfillSetPurposeRequirement(pollPurpose, 5, beverage);
             // Assert
 
-            Assert.Equal(null, actuallResult);
+            Assert.Null(actuallResult);
         }
 
 
@@ -291,7 +291,7 @@ namespace RumikApp.Tests
             Beverage actuallResult = FileDatabaseConnectionService.DoesBeverageFulfillSetPurposeRequirement(pollPurpose, 5, beverage);
             // Assert
 
-            Assert.Equal(null, actuallResult);
+            Assert.Null(actuallResult);
         }
 
 
@@ -330,7 +330,7 @@ namespace RumikApp.Tests
             Beverage actuallResult = FileDatabaseConnectionService.DoesBeverageFulfillSetPurposeRequirement(pollPurpose, 5, beverage);
             // Assert
 
-            Assert.Equal(null, actuallResult);
+            Assert.Null(actuallResult);
         }
 
 
@@ -361,7 +361,7 @@ namespace RumikApp.Tests
 
             PollMixes pollMixes = PollMixes.Solo;
 
-            Beverage beverage = new Beverage() { Name = "SoloTest", Grade = 6};
+            Beverage beverage = new Beverage() { Name = "SoloTest", Grade = 6 };
 
             // Act
 
@@ -379,17 +379,17 @@ namespace RumikApp.Tests
 
             PollMixes pollMixes = PollMixes.Solo;
 
-            Beverage beverage = new Beverage() { Name = "SoloTest", Grade = 4};
+            Beverage beverage = new Beverage() { Name = "SoloTest", Grade = 4 };
 
             // Act
 
-            Beverage actuallResult = FileDatabaseConnectionService.DoesBeverageFulfillSetMixesRequirement(pollMixes,  beverage);
+            Beverage actuallResult = FileDatabaseConnectionService.DoesBeverageFulfillSetMixesRequirement(pollMixes, beverage);
             // Assert
 
-            Assert.Equal(null, actuallResult);
+            Assert.Null(actuallResult);
         }
 
-     
+
         [Fact]
         public void DoesBeverageFulfillSetMixesRequirement_When_It_Does_Make_WithCoke_Purpose()
         {
@@ -416,13 +416,86 @@ namespace RumikApp.Tests
 
             PollMixes pollMixes = PollMixes.WithCoke;
 
-            Beverage beverage = new Beverage() { Name = "WithCokeTest", GradeWithCoke = 4};
+            Beverage beverage = new Beverage() { Name = "WithCokeTest", GradeWithCoke = 4 };
             // Act
 
             Beverage actuallResult = FileDatabaseConnectionService.DoesBeverageFulfillSetMixesRequirement(pollMixes, beverage);
             // Assert
 
-            Assert.Equal(null, actuallResult);
+            Assert.Null(actuallResult);
+        }
+
+
+        [Fact]
+        public void DoesBeverageFulfillSetFlavoursRequirement_No_Flavours()
+        {
+            // Arrange
+            FileDatabaseConnectionService FileDatabaseConnectionService = new FileDatabaseConnectionService();
+
+            Beverage beverage = new Beverage() { Name = "NoFlavoursTest" };
+
+            // Act
+
+            Beverage actuallResult = FileDatabaseConnectionService.DoesBeverageFulfillSetFlavoursRequirement(new List<Flavour>(), beverage);
+            // Assert
+
+            Assert.Equal(beverage, actuallResult);
+        }
+
+        [Fact]
+        public void DoesBeverageFulfillSetFlavoursRequirement_All_Flavours()
+        {
+            // Arrange
+            FileDatabaseConnectionService FileDatabaseConnectionService = new FileDatabaseConnectionService();
+
+            Beverage beverage = new Beverage() { Name = "AllFlavoursTest" };
+
+            beverage.Vanila.IsSet = true;
+            beverage.Nuts.IsSet = true;
+            beverage.Caramel.IsSet = true;
+            beverage.Smoke.IsSet = true;
+            beverage.Cinnamon.IsSet = true;
+            beverage.Spirit.IsSet = true;
+            beverage.Fruits.IsSet = true;
+            beverage.Honey.IsSet = true;
+            beverage.BeAPirate.IsSet = true;
+
+
+            List<Flavour> Flavours = new List<Flavour>();
+
+            Flavours.Add(new Flavour("/IMGs/PollIMG/Vanila.png", "Vanila"));
+            Flavours.Add(new Flavour("/IMGs/PollIMG/Nuts.png", "Nuts"));
+            Flavours.Add(new Flavour("/IMGs/PollIMG/Carmel.png", "Caramel"));
+            Flavours.Add(new Flavour("/IMGs/PollIMG/Smoked.png", "Smoke"));
+            Flavours.Add(new Flavour("/IMGs/PollIMG/Cinamon.png", "Cinnamon"));
+            Flavours.Add(new Flavour("/IMGs/PollIMG/Spirit.png", "Spirit"));
+            Flavours.Add(new Flavour("/IMGs/PollIMG/Fruits.png", "Fruits"));
+            Flavours.Add(new Flavour("/IMGs/PollIMG/Honey.png", "Honey"));
+            Flavours.Add(new Flavour("/IMGs/PollIMG/BeAPirate.png", "BeAPirate"));
+                                           
+            // Act
+
+            Beverage actuallResult = FileDatabaseConnectionService.DoesBeverageFulfillSetFlavoursRequirement(Flavours, beverage);
+
+            // Assert
+
+            Assert.Equal(beverage, actuallResult);
+        }
+
+        [Fact]
+        public void DoesBeverageFulfillSetFlavoursRequirement_Beverage_Is_Null()
+        {
+            // Arrange
+            FileDatabaseConnectionService FileDatabaseConnectionService = new FileDatabaseConnectionService();
+
+            Beverage beverage = null;
+
+            // Act
+
+            Beverage actuallResult = FileDatabaseConnectionService.DoesBeverageFulfillSetFlavoursRequirement(new List<Flavour>(), beverage);
+            // Assert
+
+            Assert.Null(actuallResult);
         }
 
 

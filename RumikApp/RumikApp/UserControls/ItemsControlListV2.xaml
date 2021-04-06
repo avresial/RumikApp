@@ -102,7 +102,7 @@
                              
                                 <Image Width="100" Source="{Binding Vanila, Converter={StaticResource FlavourToIMGSrcConverter}}" ToolTip="Wanila"/>
                                 <Image Width="100" Source="{Binding Nuts, Converter={StaticResource FlavourToIMGSrcConverter}}" ToolTip="Orzeszki"/>
-                                <Image Width="100" Source="{Binding Carmel, Converter={StaticResource FlavourToIMGSrcConverter}}" ToolTip="Karmel"/>
+                                <Image Width="100" Source="{Binding Caramel, Converter={StaticResource FlavourToIMGSrcConverter}}" ToolTip="Karmel"/>
                                               
                                 <Image Width="100" Source="{Binding Smoke, Converter={StaticResource FlavourToIMGSrcConverter}}" ToolTip="Dymione"/>
                                 <Image Width="100" Source="{Binding Cinnamon, Converter={StaticResource FlavourToIMGSrcConverter}}" ToolTip="Cynamonik"/>

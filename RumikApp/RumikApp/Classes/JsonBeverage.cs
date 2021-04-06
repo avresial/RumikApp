@@ -51,7 +51,7 @@ namespace RumikApp
                 if (_Capacity == value)
                     return;
 
-                if (value != null && value != 0)
+                if (/*value != null && */value != 0)
                     PricePer100ml = (Price / value) * 100;
 
                 _Capacity = value;
@@ -82,7 +82,7 @@ namespace RumikApp
                 if (_Price == value)
                     return;
 
-                if (value != null)
+                //if (value != null)
                     PricePer100ml = (value / Capacity) * 100;
 
                 _Price = value;
@@ -174,17 +174,17 @@ namespace RumikApp
             }
         }
 
-        private Flavour _Carmel = new Flavour("/IMGs/PollIMG/Carmel.png", "Caramel");
-        public Flavour Carmel
+        private Flavour _Caramel = new Flavour("/IMGs/PollIMG/Carmel.png", "Caramel");
+        public Flavour Caramel
         {
-            get { return _Carmel; }
+            get { return _Caramel; }
             set
             {
-                if (_Carmel == value)
+                if (_Caramel == value)
                     return;
 
-                _Carmel = value;
-                RaisePropertyChanged(nameof(Carmel));
+                _Caramel = value;
+                RaisePropertyChanged(nameof(Caramel));
             }
         }
 
@@ -308,7 +308,7 @@ namespace RumikApp
             if (((int)rand.Next(0, 20)) % 2 == 0)
                 _Nuts.IsSet = true;
             if (((int)rand.Next(0, 20)) % 2 == 0)
-                _Carmel.IsSet = true;
+                _Caramel.IsSet = true;
             if (((int)rand.Next(0, 20)) % 2 == 0)
                 _Smoke.IsSet = true;
             if (((int)rand.Next(0, 20)) % 2 == 0)
@@ -342,7 +342,7 @@ namespace RumikApp
 
             newBeverage.Vanila = jsonBeverage.Vanila;
             newBeverage.Nuts = jsonBeverage.Nuts;
-            newBeverage.Carmel = jsonBeverage.Carmel;
+            newBeverage.Caramel = jsonBeverage.Caramel;
             newBeverage.Smoke = jsonBeverage.Smoke;
             newBeverage.Cinnamon = jsonBeverage.Cinnamon;
             newBeverage.Spirit = jsonBeverage.Spirit;
@@ -373,7 +373,7 @@ namespace RumikApp
          
             newJsonBeverage.Vanila = Beverage.Vanila;
             newJsonBeverage.Nuts = Beverage.Nuts;
-            newJsonBeverage.Carmel = Beverage.Carmel;
+            newJsonBeverage.Caramel = Beverage.Caramel;
             newJsonBeverage.Smoke = Beverage.Smoke;
             newJsonBeverage.Cinnamon = Beverage.Cinnamon;
             newJsonBeverage.Spirit = Beverage.Spirit;

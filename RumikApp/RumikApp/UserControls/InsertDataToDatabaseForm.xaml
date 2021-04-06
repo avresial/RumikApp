@@ -106,8 +106,8 @@
                     <Image Source="{Binding Beverage.Nuts.IMGSrc}" VerticalAlignment="Center" HorizontalAlignment="Center" />
                 </ToggleButton>
 
-                <ToggleButton Grid.Column="2" Grid.Row="0" IsChecked="{Binding Beverage.Carmel.IsSet}" HorizontalAlignment="Center" Background="Transparent" BorderBrush="Transparent" Margin="5">
-                    <Image Source="{Binding Beverage.Carmel.IMGSrc}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <ToggleButton Grid.Column="2" Grid.Row="0" IsChecked="{Binding Beverage.Caramel.IsSet}" HorizontalAlignment="Center" Background="Transparent" BorderBrush="Transparent" Margin="5">
+                    <Image Source="{Binding Beverage.Caramel.IMGSrc}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                 </ToggleButton>
 
                 <ToggleButton Grid.Column="0" Grid.Row="1" IsChecked="{Binding Beverage.Smoke.IsSet}" HorizontalAlignment="Center" Background="Transparent" BorderBrush="Transparent" Margin="5">

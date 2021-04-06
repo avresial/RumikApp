@@ -120,9 +120,9 @@
                         <TextBlock TextAlignment="Center" TextWrapping="Wrap" Text="Orzeszki"/>
                     </StackPanel>
                 </ToggleButton>
-                <ToggleButton Grid.Column="2" Margin="15,5,15,5" Width="150" HorizontalAlignment="Center" IsChecked="{Binding Carmel.IsSet}" Background="Transparent" BorderBrush="Transparent">
+                <ToggleButton Grid.Column="2" Margin="15,5,15,5" Width="150" HorizontalAlignment="Center" IsChecked="{Binding Caramel.IsSet}" Background="Transparent" BorderBrush="Transparent">
                     <StackPanel Orientation="Vertical">
-                        <Image Source="{Binding Carmel.IMGSrc}"/>
+                        <Image Source="{Binding Caramel.IMGSrc}"/>
                         <TextBlock TextAlignment="Center" TextWrapping="Wrap" Text="Karmel"/>
                     </StackPanel>
                 </ToggleButton>

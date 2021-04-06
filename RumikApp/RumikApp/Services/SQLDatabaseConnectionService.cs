@@ -143,8 +143,8 @@ namespace RumikApp.Services
             using (MySqlConnection con = new MySqlConnection(cnnVal("sosek")))
             {
                 string query = $"INSERT INTO {NotYetApprovedTESTDataTable.ToString()} " +
-                    $"(Name, Capacity, AlcoholPercentage, Price, Grade, GradeWithCoke, Color, Vanilly, Nuts, Carmel, Smoky, Cinnamon, Spirit, Fruits, Honey, BeAPirate, Image) " +
-                    $"VALUES(@Name, @Capacity, @AlcoholPercentage, @Price, @Grade, @GradeWithCoke, @Color, @Vanilly, @Nuts, @Carmel, @Smoky, @Cinnamon, @Spirit, @Fruits, @Honey, @BeAPirate, @Image)";
+                    $"(Name, Capacity, AlcoholPercentage, Price, Grade, GradeWithCoke, Color, Vanilly, Nuts, Caramel, Smoky, Cinnamon, Spirit, Fruits, Honey, BeAPirate, Image) " +
+                    $"VALUES(@Name, @Capacity, @AlcoholPercentage, @Price, @Grade, @GradeWithCoke, @Color, @Vanilly, @Nuts, @Caramel, @Smoky, @Cinnamon, @Spirit, @Fruits, @Honey, @BeAPirate, @Image)";
 
                 MySqlCommand cmd = new MySqlCommand(query, con);
 
@@ -159,7 +159,7 @@ namespace RumikApp.Services
 
                 cmd.Parameters.Add("@Vanilly", MySqlDbType.Int16).Value = boolToInt16(beverage.Vanila.IsSet);
                 cmd.Parameters.Add("@Nuts", MySqlDbType.Int16).Value = boolToInt16(beverage.Nuts.IsSet);
-                cmd.Parameters.Add("@Carmel", MySqlDbType.Int16).Value = boolToInt16(beverage.Carmel.IsSet);
+                cmd.Parameters.Add("@Caramel", MySqlDbType.Int16).Value = boolToInt16(beverage.Caramel.IsSet);
                 cmd.Parameters.Add("@Smoky", MySqlDbType.Int16).Value = boolToInt16(beverage.Smoke.IsSet);
                 cmd.Parameters.Add("@Cinnamon", MySqlDbType.Int16).Value = boolToInt16(beverage.Cinnamon.IsSet);
                 cmd.Parameters.Add("@Spirit", MySqlDbType.Int16).Value = boolToInt16(beverage.Spirit.IsSet);
@@ -201,7 +201,7 @@ namespace RumikApp.Services
 
             beverageTMP.Vanila.IsSet = intToBool(reader.GetInt16(8));
             beverageTMP.Nuts.IsSet = intToBool(reader.GetInt16(9));
-            beverageTMP.Carmel.IsSet = intToBool(reader.GetInt16(10));
+            beverageTMP.Caramel.IsSet = intToBool(reader.GetInt16(10));
             beverageTMP.Smoke.IsSet = intToBool(reader.GetInt16(11));
             beverageTMP.Cinnamon.IsSet = intToBool(reader.GetInt16(12));
             beverageTMP.Spirit.IsSet = intToBool(reader.GetInt16(13));
@@ -351,8 +351,8 @@ namespace RumikApp.Services
                 if (flavour.Name == nameof(Beverage.Nuts) && flavour.IsSet)
                     flavoursList.Add("Nuts = 1");
 
-                if (flavour.Name == nameof(Beverage.Carmel) && flavour.IsSet)
-                    flavoursList.Add("Carmel = 1");
+                if (flavour.Name == nameof(Beverage.Caramel) && flavour.IsSet)
+                    flavoursList.Add("Caramel = 1");
 
                 if (flavour.Name == nameof(Beverage.Smoke) && flavour.IsSet)
                     flavoursList.Add("Smoky = 1");

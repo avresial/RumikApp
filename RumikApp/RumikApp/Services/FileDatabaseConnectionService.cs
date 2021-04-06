@@ -65,8 +65,6 @@ namespace RumikApp.Services
             return Beverages;
         }
 
-       
-
         public ObservableCollection<Beverage> GetAllPiratesBeverages()
         {
             ObservableCollection<Beverage> finallList = new ObservableCollection<Beverage>();
@@ -161,6 +159,9 @@ namespace RumikApp.Services
 
         public Beverage DoesBeverageFulfillSetFlavoursRequirement(List<Flavour> Flavours, Beverage beverage)
         {
+            if (beverage == null)
+                return null;
+
             if (Flavours.Count < 1)
                 return beverage;
 
@@ -176,8 +177,8 @@ namespace RumikApp.Services
                     if (beverage.Nuts.IsSet)
                         flavoursFound++;
 
-                if (flavour.Name == nameof(beverage.Carmel))
-                    if (beverage.Carmel.IsSet)
+                if (flavour.Name == nameof(beverage.Caramel))
+                    if (beverage.Caramel.IsSet)
                         flavoursFound++;
 
                 if (flavour.Name == nameof(beverage.Smoke))
