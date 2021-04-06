@@ -13,12 +13,36 @@ namespace RumikApp.Services
 {
     class FileDatabaseConnectionService : IDatabaseConnectionService
     {
+        private string _MainDataDirectory = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\RumikApp";
+        public string MainDataDirectory
+        {
+            get { return _MainDataDirectory; }
+            set
+            {
+                if (_MainDataDirectory == value)
+                    return;
 
-        private string directory = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\RumikApp";
+                _MainDataDirectory = value;
 
-        private string fileName = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\RumikApp" + "\\LocalDatabase.json";
+            }
+        }
+
+        private string _FileName = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\RumikApp" + "\\LocalDatabase.json";
+        public string FileName
+        {
+            get { return _FileName; }
+            set
+            {
+                if (_FileName == value)
+                    return;
+
+                _FileName = value;
+
+            }
+        }
 
         Random rand = new Random();
+
         public AvailableTables MainDataTable { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public AvailableTables NotYetApprovedTESTDataTable { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
@@ -26,9 +50,9 @@ namespace RumikApp.Services
         {
             ObservableCollection<Beverage> Beverages = new ObservableCollection<Beverage>();
 
-            if (File.Exists(fileName))
+            if (File.Exists(FileName))
             {
-                using (StreamReader r = new StreamReader(fileName))
+                using (StreamReader r = new StreamReader(FileName))
                 {
                     string json2 = r.ReadToEnd();
                     List<JsonBeverage> items = JsonConvert.DeserializeObject<List<JsonBeverage>>(json2);
@@ -45,15 +69,17 @@ namespace RumikApp.Services
         {
             ObservableCollection<JsonBeverage> Beverages = new ObservableCollection<JsonBeverage>();
 
-            if (File.Exists(fileName))
+            if (File.Exists(FileName))
             {
-                using (StreamReader r = new StreamReader(fileName))
+                using (StreamReader r = new StreamReader(FileName))
                 {
                     string json2 = r.ReadToEnd();
                     List<JsonBeverage> items = JsonConvert.DeserializeObject<List<JsonBeverage>>(json2);
                     if (items != null)
                         foreach (JsonBeverage item in items)
                             Beverages.Add(item);
+
+                    r.Close();
                 }
             }
 
@@ -208,7 +234,6 @@ namespace RumikApp.Services
 
         }
 
-
         private Beverage doesBeverageFulfillSetPriceRequirement(PollPricePoints pollPricePoints, Beverage beverage)
         {
             switch (pollPricePoints)
@@ -256,12 +281,11 @@ namespace RumikApp.Services
 
         public string SaveBevreageToDatabase(Beverage beverage, byte[] img)
         {
-            if (!Directory.Exists(directory))
-                Directory.CreateDirectory(directory);
+            if (!Directory.Exists(MainDataDirectory))
+                Directory.CreateDirectory(MainDataDirectory);
 
-            if (!File.Exists(fileName))
-                File.Create(fileName);
-
+            if (!File.Exists(FileName))
+                File.Create(FileName).Close();
 
             string result = "Task failed";
 
@@ -271,10 +295,11 @@ namespace RumikApp.Services
 
             string json = JsonConvert.SerializeObject(jsonBeverage);
 
-            using (TextWriter tw = new StreamWriter(fileName))
+            using (TextWriter tw = new StreamWriter(FileName))
             {
                 tw.WriteLine(json);
                 result = "done";
+                tw.Close();
             };
 
             return result;
@@ -282,12 +307,12 @@ namespace RumikApp.Services
 
         public bool TestConnectionToDatabase()
         {
-            return Directory.Exists(directory);
+            return Directory.Exists(MainDataDirectory);
         }
 
         public bool TestConnectionToTable(AvailableTables availableTables)
         {
-            return File.Exists(fileName);
+            return File.Exists(FileName);
         }
     }
 }
