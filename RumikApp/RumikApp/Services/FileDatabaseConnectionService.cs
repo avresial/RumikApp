@@ -245,8 +245,11 @@ namespace RumikApp.Services
             return null;
         }
 
-        public Beverage GetRandomRow()
+        public Beverage GetRandomRow(Random random = null)
         {
+            if (random == null)
+                random = rand;
+
             ObservableCollection<Beverage> alldata = GetAllData();
 
             if (alldata == null || alldata.Count == 0)
@@ -255,7 +258,7 @@ namespace RumikApp.Services
             if (alldata.Count == 1)
                 return alldata[0];
 
-            return alldata[rand.Next(0, alldata.Count - 1)];
+            return alldata[random.Next(0, alldata.Count - 1)];
         }
 
         public string SaveBevreageToDatabase(Beverage beverage, byte[] img)

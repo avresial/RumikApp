@@ -122,7 +122,7 @@ namespace RumikApp.Services
             return getDataFromDatabaseWithConditions(conditionStrings);
         }
 
-        public Beverage GetRandomRow()
+        public Beverage GetRandomRow(Random random = null)
         {
             string oString = "SELECT * FROM " + MainDataTable.ToString() + " ORDER BY RAND() LIMIT 1";
 

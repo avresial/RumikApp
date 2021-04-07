@@ -86,7 +86,7 @@ namespace RumikApp.Services
             return getUniqueBeverages(SQLDataCollection, FileDataCollection);
         }
 
-        public Beverage GetRandomRow()
+        public Beverage GetRandomRow(Random random = null)
         {
             Beverage FinalCollection = sQLDatabaseConnectionService.GetRandomRow();
            

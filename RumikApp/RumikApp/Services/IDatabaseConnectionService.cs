@@ -16,7 +16,7 @@ namespace RumikApp.Services
         ObservableCollection<Beverage> GetAllData();
         ObservableCollection<Beverage> GetAllPiratesBeverages();
         ObservableCollection<Beverage> GetDataFromDatabaseWithConditions(PollPurpose pollPurpose, int pollPurposeWeight, PollMixes pollMixes, List<Flavour> Flavours, PollPricePoints pollPricePoints);
-        Beverage GetRandomRow();
+        Beverage GetRandomRow(Random random = null);
         bool TestConnectionToDatabase();
         bool TestConnectionToTable(AvailableTables availableTables);
         string SaveBevreageToDatabase(Beverage beverage, byte[] img);
