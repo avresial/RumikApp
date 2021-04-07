@@ -9,9 +9,25 @@ using System.Windows.Media.Imaging;
 
 namespace RumikApp.Services
 {
-    static class ImageProcessingService
+    public static class ImageProcessingService
     {
         public static int MaxSupportedImageSize = 30000;
+
+        public static byte[] FileToByteArray(string fileName)
+        {
+            if (!File.Exists(fileName))
+                return null;
+
+            byte[] fileData = null;
+
+            using (FileStream fs = File.OpenRead(fileName))
+            {
+                var binaryReader = new BinaryReader(fs);
+                fileData = binaryReader.ReadBytes((int)fs.Length);
+            }
+            return fileData;
+        }
+
         public static BitmapImage ConvertToBitMapImage(byte[] bytes)
         {
             if (bytes == null || bytes.Length == 0) return null;
@@ -50,19 +66,5 @@ namespace RumikApp.Services
             return FileToByteArray(fileName);
         }
 
-        public static byte[] FileToByteArray(string fileName)
-        {
-            if (!File.Exists(fileName))
-                return null;
-
-            byte[] fileData = null;
-
-            using (FileStream fs = File.OpenRead(fileName))
-            {
-                var binaryReader = new BinaryReader(fs);
-                fileData = binaryReader.ReadBytes((int)fs.Length);
-            }
-            return fileData;
-        }
     }
 }
