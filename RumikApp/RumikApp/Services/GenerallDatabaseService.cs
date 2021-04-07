@@ -16,6 +16,7 @@ namespace RumikApp.Services
     {
         private SQLDatabaseConnectionService sQLDatabaseConnectionService;
         private FileDatabaseConnectionService fileDatabaseConnectionService;
+        private bool doesSQLDatabaseConnectionServiceWasWarkingAtStart = false;
 
         /// <summary>
         /// Generall database service is a service that gets you required data from multiple sources at once
@@ -29,6 +30,9 @@ namespace RumikApp.Services
 
             MainDataTable = sQLDatabaseConnectionService.MainDataTable;
             NotYetApprovedTESTDataTable = sQLDatabaseConnectionService.NotYetApprovedTESTDataTable;
+
+            doesSQLDatabaseConnectionServiceWasWarkingAtStart = sQLDatabaseConnectionService.TestConnectionToTable(MainDataTable);
+
         }
 
         private AvailableTables _MainDataTable;
@@ -61,6 +65,9 @@ namespace RumikApp.Services
         /// <returns></returns>
         public ObservableCollection<Beverage> GetAllData()
         {
+            if (!doesSQLDatabaseConnectionServiceWasWarkingAtStart)
+                return fileDatabaseConnectionService.GetAllData();
+
             ObservableCollection<Beverage> FinalCollection = sQLDatabaseConnectionService.GetAllData();
 
             if (FinalCollection == null)
@@ -71,15 +78,21 @@ namespace RumikApp.Services
 
         public ObservableCollection<Beverage> GetAllPiratesBeverages()
         {
+            if (!doesSQLDatabaseConnectionServiceWasWarkingAtStart)
+                return fileDatabaseConnectionService.GetAllPiratesBeverages();
+
             ObservableCollection<Beverage> FinalCollection = sQLDatabaseConnectionService.GetAllPiratesBeverages();
 
             //here will be file data handled
 
-            return FinalCollection;
+            return getUniqueBeverages(FinalCollection, fileDatabaseConnectionService.GetAllPiratesBeverages());
         }
 
         public ObservableCollection<Beverage> GetDataFromDatabaseWithConditions(PollPurpose pollPurpose, int pollPurposeWeight, PollMixes pollMixes, List<Flavour> Flavours, PollPricePoints pollPricePoints)
         {
+            if (!doesSQLDatabaseConnectionServiceWasWarkingAtStart)
+                return fileDatabaseConnectionService.GetDataFromDatabaseWithConditions(pollPurpose, pollPurposeWeight, pollMixes, Flavours, pollPricePoints);
+
             ObservableCollection<Beverage> SQLDataCollection = sQLDatabaseConnectionService.GetDataFromDatabaseWithConditions(pollPurpose, pollPurposeWeight, pollMixes, Flavours, pollPricePoints);
             ObservableCollection<Beverage> FileDataCollection = fileDatabaseConnectionService.GetDataFromDatabaseWithConditions(pollPurpose, pollPurposeWeight, pollMixes, Flavours, pollPricePoints);
 
@@ -88,18 +101,23 @@ namespace RumikApp.Services
 
         public Beverage GetRandomRow(Random random = null)
         {
+            if (!doesSQLDatabaseConnectionServiceWasWarkingAtStart)
+                return fileDatabaseConnectionService.GetRandomRow();
+
             Beverage FinalCollection = sQLDatabaseConnectionService.GetRandomRow();
-           
+
             if (FinalCollection == null)
                 return FinalCollection = fileDatabaseConnectionService.GetRandomRow();
-           
+
             return FinalCollection;
         }
 
         public string SaveBevreageToDatabase(Beverage beverage, byte[] img)
         {
-            fileDatabaseConnectionService.SaveBevreageToDatabase(beverage, img);
+            if (!doesSQLDatabaseConnectionServiceWasWarkingAtStart)
+                return fileDatabaseConnectionService.SaveBevreageToDatabase(beverage, img);
 
+            fileDatabaseConnectionService.SaveBevreageToDatabase(beverage, img);
             return sQLDatabaseConnectionService.SaveBevreageToDatabase(beverage, img);
         }
 
