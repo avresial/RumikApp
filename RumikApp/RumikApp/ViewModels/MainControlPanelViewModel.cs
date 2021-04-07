@@ -66,7 +66,6 @@ namespace RumikApp.ViewModels
                     _ImFeelingLucky = new RelayCommand(
                     () =>
                     {
-                        PanelVisibilityService.MainPanelVisibility = Visibility.Collapsed;
                         PanelVisibilityService.DataGridViewModel2Visibility = Visibility.Visible;
 
                         Beverage randomOne = databaseConnectionService.GetRandomRow();
@@ -96,7 +95,6 @@ namespace RumikApp.ViewModels
                     _LetMeChoose = new RelayCommand(
                     () =>
                     {
-                        PanelVisibilityService.MainPanelVisibility = Visibility.Collapsed;
                         PanelVisibilityService.PollVisibility = Visibility.Visible;
                     },
                     () =>
@@ -119,7 +117,6 @@ namespace RumikApp.ViewModels
                     _GoStraightToDatabase = new RelayCommand(
                     () =>
                     {
-                        PanelVisibilityService.MainPanelVisibility = Visibility.Collapsed;
                         PanelVisibilityService.DataGridViewModelVisibility = Visibility.Visible;
                         informationBusService.Beverages = databaseConnectionService.GetAllData();
                     },

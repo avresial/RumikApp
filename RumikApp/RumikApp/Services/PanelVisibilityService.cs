@@ -19,6 +19,9 @@ namespace RumikApp.Services
                 if (_MainPanelVisibility == value)
                     return;
 
+                if (value == Visibility.Visible)
+                    collapseAllViews();
+
                 _MainPanelVisibility = value;
                 RaisePropertyChanged(nameof(MainPanelVisibility));
             }
@@ -32,6 +35,9 @@ namespace RumikApp.Services
             {
                 if (_PollVisibility == value)
                     return;
+
+                if (value == Visibility.Visible)
+                    collapseAllViews();
 
                 _PollVisibility = value;
                 RaisePropertyChanged(nameof(PollVisibility));
@@ -47,6 +53,9 @@ namespace RumikApp.Services
                 if (_InsertDataToDatabaseFormVisibility == value)
                     return;
 
+                if (value == Visibility.Visible)
+                    collapseAllViews();
+
                 _InsertDataToDatabaseFormVisibility = value;
                 RaisePropertyChanged(nameof(InsertDataToDatabaseFormVisibility));
             }
@@ -60,6 +69,9 @@ namespace RumikApp.Services
             {
                 if (_DataGridViewModelVisibility == value)
                     return;
+
+                if (value == Visibility.Visible)
+                    collapseAllViews();
 
                 _DataGridViewModelVisibility = value;
                 RaisePropertyChanged(nameof(DataGridViewModelVisibility));
@@ -75,6 +87,9 @@ namespace RumikApp.Services
                 if (_DataGridViewModel2Visibility == value)
                     return;
 
+                if (value == Visibility.Visible)
+                    collapseAllViews();
+
                 _DataGridViewModel2Visibility = value;
                 RaisePropertyChanged(nameof(DataGridViewModel2Visibility));
             }
@@ -89,9 +104,22 @@ namespace RumikApp.Services
                 if (_ItemsControlVisibility == value)
                     return;
 
+                if (value == Visibility.Visible)
+                    collapseAllViews();
+
                 _ItemsControlVisibility = value;
                 RaisePropertyChanged(nameof(ItemsControlVisibility));
             }
+        }
+
+        private void collapseAllViews()
+        {
+            MainPanelVisibility = Visibility.Collapsed;
+            PollVisibility = Visibility.Collapsed;
+            InsertDataToDatabaseFormVisibility = Visibility.Collapsed;
+            DataGridViewModelVisibility = Visibility.Collapsed;
+            DataGridViewModel2Visibility = Visibility.Collapsed;
+            ItemsControlVisibility = Visibility.Collapsed;
         }
     }
 }

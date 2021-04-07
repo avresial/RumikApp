@@ -487,7 +487,6 @@ namespace RumikApp.UserControls
                     () =>
                     {
                         PanelVisibilityService.MainPanelVisibility = Visibility.Visible;
-                        PanelVisibilityService.PollVisibility = Visibility.Collapsed;
                     },
                     () =>
                     {
@@ -509,7 +508,6 @@ namespace RumikApp.UserControls
                     _GetMeThatRum = new RelayCommand(
                     () =>
                     {
-                        PanelVisibilityService.PollVisibility = Visibility.Collapsed;
                         PanelVisibilityService.DataGridViewModel2Visibility = Visibility.Visible;
 
                         informationBusService.Beverages = databaseConnectionService.GetDataFromDatabaseWithConditions(PollPurpose, 5, PollMixes, getListWithSetFlavours(), PollPricePoints);

@@ -157,7 +157,6 @@ namespace RumikApp.ViewModels
                     _CloseForm = new RelayCommand(
                     () =>
                     {
-                        PanelVisibilityService.InsertDataToDatabaseFormVisibility = Visibility.Collapsed;
                         PanelVisibilityService.MainPanelVisibility = Visibility.Visible;
                     },
                     () =>

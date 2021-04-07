@@ -9,13 +9,10 @@ namespace RumikApp.ViewModels
 {
     public class DataGridViewModel : ViewModelBase
     {
-        private IDatabaseConnectionService databaseConnectionService;
-       
-
         private IInformationBusService _informationBusService;
         public IInformationBusService informationBusService
         {
-            get{return _informationBusService;}
+            get { return _informationBusService; }
             set
             {
                 if (_informationBusService == value)
@@ -79,9 +76,6 @@ namespace RumikApp.ViewModels
                     () =>
                     {
                         PanelVisibilityService.MainPanelVisibility = Visibility.Visible;
-                        PanelVisibilityService.DataGridViewModel2Visibility = Visibility.Collapsed;
-                        PanelVisibilityService.DataGridViewModelVisibility = Visibility.Collapsed;
-
                     },
                     () =>
                     {
@@ -104,8 +98,6 @@ namespace RumikApp.ViewModels
                     () =>
                     {
                         PanelVisibilityService.InsertDataToDatabaseFormVisibility = Visibility.Visible;
-                        PanelVisibilityService.DataGridViewModel2Visibility = Visibility.Collapsed;
-                        PanelVisibilityService.DataGridViewModelVisibility = Visibility.Collapsed;
                     },
                     () =>
                     {
@@ -118,10 +110,9 @@ namespace RumikApp.ViewModels
         }
 
 
-        public DataGridViewModel(IDatabaseConnectionService databaseConnectionService, IPanelVisibilityService panelVisibilityService, IInformationBusService informationBusService)
+        public DataGridViewModel(IPanelVisibilityService panelVisibilityService, IInformationBusService informationBusService)
         {
             PanelVisibilityService = panelVisibilityService;
-            this.databaseConnectionService = databaseConnectionService;
             this.informationBusService = informationBusService;
         }
     }
