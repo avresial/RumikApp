@@ -262,521 +262,391 @@ namespace RumikApp.Tests
             Assert.Null(actuallResult);
         }
 
+        [Theory]
+        [InlineData(120, 700, 9, 9, 40, 5)]
+        public void DoesBeverageFulfillSetPurposeRequirement_When_It_Does_Make_Exclusive_Purpose(int price, int capacity, int grade, int gradeWithCoke, int alcoholPercentage, int pollPurposeWeight)
+        {
+            // Arrange
+            Beverage beverage = new Beverage() { Name = "GoodButCheapTest", Price = price, Capacity = capacity, Grade = grade, GradeWithCoke = gradeWithCoke, AlcoholPercentage = alcoholPercentage };
 
-        //    [Fact]
-        //    public void DoesBeverageFulfillSetPurposeRequirement_When_It_Does_Make_Exclusive_Purpose()
-        //    {
-        //        // Arrange
-        //        FileDatabaseConnectionService FileDatabaseConnectionService = new FileDatabaseConnectionService();
-        //        // Act
-        //        PollPurpose pollPurpose = PollPurpose.Exclusive;
+            // Act
+            Beverage actuallResult = sut.DoesBeverageFulfillSetPurposeRequirement(PollPurpose.Exclusive, pollPurposeWeight, beverage);
 
-        //        Beverage beverage = new Beverage() { Name = "GoodButCheapTest", Price = 120, Capacity = 700, Grade = 9, GradeWithCoke = 9, AlcoholPercentage = 40 };
+            // Assert
+            Assert.Equal(beverage, actuallResult);
+        }
 
-        //        Beverage actuallResult = FileDatabaseConnectionService.DoesBeverageFulfillSetPurposeRequirement(pollPurpose, 5, beverage);
-        //        // Assert
+        [Theory]
+        [InlineData(60, 700, 6, 6, 40, 5)]
 
-        //        Assert.Equal(beverage, actuallResult);
-        //    }
+        public void DoesBeverageFulfillSetPurposeRequirement_When_It_Does_Not_Make_Exclusive_Purpose(int price, int capacity, int grade, int gradeWithCoke, int alcoholPercentage, int pollPurposeWeight)
+        {
+            // Arrange
+            Beverage beverage = new Beverage() { Name = "GoodButCheapTest", Price = price, Capacity = capacity, Grade = grade, GradeWithCoke = gradeWithCoke, AlcoholPercentage = alcoholPercentage };
 
-        //    [Fact]
-        //    public void DoesBeverageFulfillSetPurposeRequirement_When_It_Does_Not_Make_Exclusive_Purpose()
-        //    {
-        //        // Arrange
-        //        FileDatabaseConnectionService FileDatabaseConnectionService = new FileDatabaseConnectionService();
-        //        // Act
-        //        PollPurpose pollPurpose = PollPurpose.Exclusive;
+            // Act
+            Beverage actuallResult = sut.DoesBeverageFulfillSetPurposeRequirement(PollPurpose.Exclusive, pollPurposeWeight, beverage);
 
-        //        Beverage beverage = new Beverage() { Name = "GoodButCheapTest", Price = 60, Capacity = 700, Grade = 6, GradeWithCoke = 6, AlcoholPercentage = 40 };
+            // Assert
+            Assert.Null(actuallResult);
+        }
 
-        //        Beverage actuallResult = FileDatabaseConnectionService.DoesBeverageFulfillSetPurposeRequirement(pollPurpose, 5, beverage);
-        //        // Assert
 
-        //        Assert.Null(actuallResult);
-        //    }
+        [Theory]
+        [InlineData(120, 700, 9, 9, 40, 5)]
+        public void DoesBeverageFulfillSetPurposeRequirement_When_It_Does_Make_ForPiratesFromCarabien_Purpose(int price, int capacity, int grade, int gradeWithCoke, int alcoholPercentage, int pollPurposeWeight)
+        {
+            // Arrange
+            PollPurpose pollPurpose = PollPurpose.ForPiratesFromCarabien;
 
+            Flavour BeAPirate = new Flavour("/IMGs/PollIMG/BeAPirate.png", "BeAPirate") { IsSet = true };
+            Beverage beverage = new Beverage() { Name = "ForPiratesFromCarabienTest", Price = price, Capacity = capacity, Grade = grade, GradeWithCoke = gradeWithCoke, AlcoholPercentage = alcoholPercentage, BeAPirate = BeAPirate };
 
-        //    [Fact]
-        //    public void DoesBeverageFulfillSetPurposeRequirement_When_It_Does_Make_ForPiratesFromCarabien_Purpose()
-        //    {
-        //        // Arrange
-        //        FileDatabaseConnectionService FileDatabaseConnectionService = new FileDatabaseConnectionService();
+            // Act
+            Beverage actuallResult = sut.DoesBeverageFulfillSetPurposeRequirement(pollPurpose, pollPurposeWeight, beverage);
 
-        //        PollPurpose pollPurpose = PollPurpose.ForPiratesFromCarabien;
+            // Assert
+            Assert.Equal(beverage, actuallResult);
+        }
 
-        //        Flavour BeAPirate = new Flavour("/IMGs/PollIMG/BeAPirate.png", "BeAPirate");
-        //        BeAPirate.IsSet = true;
+        [Theory]
+        [InlineData(60, 700, 6, 6, 40, 5)]
+        public void DoesBeverageFulfillSetPurposeRequirement_When_It_Does_Not_Make_ForPiratesFromCarabien_Purpose(int price, int capacity, int grade, int gradeWithCoke, int alcoholPercentage, int pollPurposeWeight)
+        {
+            // Arrange
+            PollPurpose pollPurpose = PollPurpose.ForPiratesFromCarabien;
 
-        //        Beverage beverage = new Beverage() { Name = "ForPiratesFromCarabienTest", Price = 120, Capacity = 700, Grade = 9, GradeWithCoke = 9, AlcoholPercentage = 40, BeAPirate = BeAPirate };
+            Beverage beverage = new Beverage() { Name = "ForPiratesFromCarabienTest", Price = price, Capacity = capacity, Grade = grade, GradeWithCoke = gradeWithCoke, AlcoholPercentage = alcoholPercentage };
 
+            // Act
+            Beverage actuallResult = sut.DoesBeverageFulfillSetPurposeRequirement(pollPurpose, pollPurposeWeight, beverage);
 
-        //        // Act
+            // Assert
 
-        //        Beverage actuallResult = FileDatabaseConnectionService.DoesBeverageFulfillSetPurposeRequirement(pollPurpose, 5, beverage);
-        //        // Assert
+            Assert.Null(actuallResult);
+        }
 
-        //        Assert.Equal(beverage, actuallResult);
-        //    }
 
-        //    [Fact]
-        //    public void DoesBeverageFulfillSetPurposeRequirement_When_It_Does_Not_Make_ForPiratesFromCarabien_Purpose()
-        //    {
-        //        // Arrange
-        //        FileDatabaseConnectionService FileDatabaseConnectionService = new FileDatabaseConnectionService();
-        //        // Act
-        //        PollPurpose pollPurpose = PollPurpose.ForPiratesFromCarabien;
+        [Fact]
+        public void DoesBeverageFulfillSetMixesRequirement_When_It_Does_Make_None_Purpose()
+        {
+            // Arrange
+            Beverage beverage = new Beverage() { Name = "NoneTest" };
+
+            // Act
+            Beverage actuallResult = sut.DoesBeverageFulfillSetMixesRequirement(PollMixes.None, beverage);
+
+            // Assert
+            Assert.Equal(beverage, actuallResult);
+        }
+
+
+        [Theory]
+        [InlineData(6)]
+        public void DoesBeverageFulfillSetMixesRequirement_When_It_Does_Make_Solo_Purpose(int grade)
+        {
+            // Arrange
+            Beverage beverage = new Beverage() { Name = "SoloTest", Grade = grade };
+
+            // Act
+            Beverage actuallResult = sut.DoesBeverageFulfillSetMixesRequirement(PollMixes.Solo, beverage);
 
-        //        Beverage beverage = new Beverage() { Name = "ForPiratesFromCarabienTest", Price = 60, Capacity = 700, Grade = 6, GradeWithCoke = 6, AlcoholPercentage = 40 };
-
-        //        Beverage actuallResult = FileDatabaseConnectionService.DoesBeverageFulfillSetPurposeRequirement(pollPurpose, 5, beverage);
-        //        // Assert
-
-        //        Assert.Null(actuallResult);
-        //    }
-
-
-        //    [Fact]
-        //    public void DoesBeverageFulfillSetMixesRequirement_When_It_Does_Make_None_Purpose()
-        //    {
-        //        // Arrange
-        //        FileDatabaseConnectionService FileDatabaseConnectionService = new FileDatabaseConnectionService();
-
-        //        PollMixes pollMixes = PollMixes.None;
-
-        //        Beverage beverage = new Beverage() { Name = "NoneTest" };
-
-        //        // Act
-
-        //        Beverage actuallResult = FileDatabaseConnectionService.DoesBeverageFulfillSetMixesRequirement(pollMixes, beverage);
-        //        // Assert
-
-        //        Assert.Equal(beverage, actuallResult);
-        //    }
-
-
-        //    [Fact]
-        //    public void DoesBeverageFulfillSetMixesRequirement_When_It_Does_Make_Solo_Purpose()
-        //    {
-        //        // Arrange
-        //        FileDatabaseConnectionService FileDatabaseConnectionService = new FileDatabaseConnectionService();
-
-        //        PollMixes pollMixes = PollMixes.Solo;
-
-        //        Beverage beverage = new Beverage() { Name = "SoloTest", Grade = 6 };
-
-        //        // Act
-
-        //        Beverage actuallResult = FileDatabaseConnectionService.DoesBeverageFulfillSetMixesRequirement(pollMixes, beverage);
-        //        // Assert
-
-        //        Assert.Equal(beverage, actuallResult);
-        //    }
-
-        //    [Fact]
-        //    public void DoesBeverageFulfillSetMixesRequirement_When_It_Does_Not_Make_Solo_Purpose()
-        //    {
-        //        // Arrange
-        //        FileDatabaseConnectionService FileDatabaseConnectionService = new FileDatabaseConnectionService();
-
-        //        PollMixes pollMixes = PollMixes.Solo;
-
-        //        Beverage beverage = new Beverage() { Name = "SoloTest", Grade = 4 };
-
-        //        // Act
-
-        //        Beverage actuallResult = FileDatabaseConnectionService.DoesBeverageFulfillSetMixesRequirement(pollMixes, beverage);
-        //        // Assert
-
-        //        Assert.Null(actuallResult);
-        //    }
-
-
-        //    [Fact]
-        //    public void DoesBeverageFulfillSetMixesRequirement_When_It_Does_Make_WithCoke_Purpose()
-        //    {
-        //        // Arrange
-        //        FileDatabaseConnectionService FileDatabaseConnectionService = new FileDatabaseConnectionService();
-
-        //        PollMixes pollMixes = PollMixes.WithCoke;
-
-        //        Beverage beverage = new Beverage() { Name = "WithCokeTest", GradeWithCoke = 6, };
-
-        //        // Act
-
-        //        Beverage actuallResult = FileDatabaseConnectionService.DoesBeverageFulfillSetMixesRequirement(pollMixes, beverage);
-        //        // Assert
-
-        //        Assert.Equal(beverage, actuallResult);
-        //    }
-
-        //    [Fact]
-        //    public void DoesBeverageFulfillSetMixesRequirement_When_It_Does_Not_Make_WithCoke_Purpose()
-        //    {
-        //        // Arrange
-        //        FileDatabaseConnectionService FileDatabaseConnectionService = new FileDatabaseConnectionService();
-
-        //        PollMixes pollMixes = PollMixes.WithCoke;
-
-        //        Beverage beverage = new Beverage() { Name = "WithCokeTest", GradeWithCoke = 4 };
-        //        // Act
-
-        //        Beverage actuallResult = FileDatabaseConnectionService.DoesBeverageFulfillSetMixesRequirement(pollMixes, beverage);
-        //        // Assert
-
-        //        Assert.Null(actuallResult);
-        //    }
-
-
-        //    [Fact]
-        //    public void DoesBeverageFulfillSetFlavoursRequirement_No_Flavours()
-        //    {
-        //        // Arrange
-        //        FileDatabaseConnectionService FileDatabaseConnectionService = new FileDatabaseConnectionService();
-
-        //        Beverage beverage = new Beverage() { Name = "NoFlavoursTest" };
-
-        //        // Act
-
-        //        Beverage actuallResult = FileDatabaseConnectionService.DoesBeverageFulfillSetFlavoursRequirement(new List<Flavour>(), beverage);
-        //        // Assert
-
-        //        Assert.Equal(beverage, actuallResult);
-        //    }
-
-        //    [Fact]
-        //    public void DoesBeverageFulfillSetFlavoursRequirement_All_Flavours()
-        //    {
-        //        // Arrange
-        //        FileDatabaseConnectionService FileDatabaseConnectionService = new FileDatabaseConnectionService();
-
-        //        Beverage beverage = new Beverage() { Name = "AllFlavoursTest" };
-
-        //        beverage.Vanila.IsSet = true;
-        //        beverage.Nuts.IsSet = true;
-        //        beverage.Caramel.IsSet = true;
-        //        beverage.Smoke.IsSet = true;
-        //        beverage.Cinnamon.IsSet = true;
-        //        beverage.Spirit.IsSet = true;
-        //        beverage.Fruits.IsSet = true;
-        //        beverage.Honey.IsSet = true;
-        //        beverage.BeAPirate.IsSet = true;
-
-
-        //        List<Flavour> Flavours = new List<Flavour>();
-
-        //        Flavours.Add(new Flavour("/IMGs/PollIMG/Vanila.png", "Vanila"));
-        //        Flavours.Add(new Flavour("/IMGs/PollIMG/Nuts.png", "Nuts"));
-        //        Flavours.Add(new Flavour("/IMGs/PollIMG/Carmel.png", "Caramel"));
-        //        Flavours.Add(new Flavour("/IMGs/PollIMG/Smoked.png", "Smoke"));
-        //        Flavours.Add(new Flavour("/IMGs/PollIMG/Cinamon.png", "Cinnamon"));
-        //        Flavours.Add(new Flavour("/IMGs/PollIMG/Spirit.png", "Spirit"));
-        //        Flavours.Add(new Flavour("/IMGs/PollIMG/Fruits.png", "Fruits"));
-        //        Flavours.Add(new Flavour("/IMGs/PollIMG/Honey.png", "Honey"));
-        //        Flavours.Add(new Flavour("/IMGs/PollIMG/BeAPirate.png", "BeAPirate"));
-
-        //        // Act
-
-        //        Beverage actuallResult = FileDatabaseConnectionService.DoesBeverageFulfillSetFlavoursRequirement(Flavours, beverage);
-
-        //        // Assert
-
-        //        Assert.Equal(beverage, actuallResult);
-        //    }
-
-        //    [Fact]
-        //    public void DoesBeverageFulfillSetFlavoursRequirement_Beverage_Is_Null()
-        //    {
-        //        // Arrange
-        //        FileDatabaseConnectionService FileDatabaseConnectionService = new FileDatabaseConnectionService();
-
-        //        Beverage beverage = null;
-
-        //        // Act
-
-        //        Beverage actuallResult = FileDatabaseConnectionService.DoesBeverageFulfillSetFlavoursRequirement(new List<Flavour>(), beverage);
-        //        // Assert
-
-        //        Assert.Null(actuallResult);
-        //    }
-
-        //    [Fact]
-        //    public void DoesBeverageFulfillSetPriceRequirement_When_It_Does_Make_None_Purpose()
-        //    {
-        //        // Arrange
-
-
-        //        FileDatabaseConnectionService FileDatabaseConnectionService = new FileDatabaseConnectionService();
-
-        //        PollPricePoints pollPricePoints = PollPricePoints.None;
-
-        //        Beverage beverage = new Beverage() { Name = "NoneTest" };
-
-        //        // Act
-
-        //        Beverage actuallResult = FileDatabaseConnectionService.DoesBeverageFulfillSetPriceRequirement(pollPricePoints, beverage);
-        //        // Assert
-
-        //        Assert.Equal(beverage, actuallResult);
-        //    }
-
-        //    [Theory]
-        //    [InlineData(int.MinValue)]
-        //    [InlineData(49)]
-        //    public void DoesBeverageFulfillSetPriceRequirement_When_It_Does_Make_PricePoint1_Purpose(int price)
-        //    {
-        //        // Arrange
-
-        //        FileDatabaseConnectionService FileDatabaseConnectionService = new FileDatabaseConnectionService();
-
-        //        PollPricePoints pollPricePoints = PollPricePoints.PricePoint1;
-
-        //        Beverage beverage = new Beverage() { Name = "PricePoint1Test", Price = price };
-
-        //        // Act
-
-        //        Beverage actuallResult = FileDatabaseConnectionService.DoesBeverageFulfillSetPriceRequirement(pollPricePoints, beverage);
-        //        // Assert
-
-        //        Assert.Equal(beverage, actuallResult);
-        //    }
-
-        //    [Theory]
-        //    [InlineData(51)]
-        //    [InlineData(int.MaxValue)]
-        //    public void DoesBeverageFulfillSetPriceRequirement_When_It_Does_Not_Make_PricePoint1_Purpose(int price)
-        //    {
-        //        // Arrange
-        //        FileDatabaseConnectionService FileDatabaseConnectionService = new FileDatabaseConnectionService();
-
-        //        PollPricePoints pollPricePoints = PollPricePoints.PricePoint1;
-
-        //        Beverage beverage = new Beverage() { Name = "PricePoint1Test", Price = price };
-
-        //        // Act
-
-        //        Beverage actuallResult = FileDatabaseConnectionService.DoesBeverageFulfillSetPriceRequirement(pollPricePoints, beverage);
-        //        // Assert
-
-        //        Assert.Null(actuallResult);
-        //    }
-
-
-        //    [Theory]
-        //    [InlineData(50)]
-        //    [InlineData(69)]
-        //    public void DoesBeverageFulfillSetPriceRequirement_When_It_Does_Make_PricePoint2_Purpose(int price)
-        //    {
-        //        // Arrange
-
-        //        FileDatabaseConnectionService FileDatabaseConnectionService = new FileDatabaseConnectionService();
-
-        //        PollPricePoints pollPricePoints = PollPricePoints.PricePoint2;
-
-        //        Beverage beverage = new Beverage() { Name = "PricePoint2Test", Price = price };
-
-        //        // Act
-        //        Beverage actuallResult = FileDatabaseConnectionService.DoesBeverageFulfillSetPriceRequirement(pollPricePoints, beverage);
-
-        //        // Assert
-        //        Assert.Equal(beverage, actuallResult);
-        //    }
-
-
-        //    [Theory]
-        //    [InlineData(int.MinValue)]
-        //    [InlineData(49)]
-        //    [InlineData(70)]
-        //    [InlineData(int.MaxValue)]
-        //    public void DoesBeverageFulfillSetPriceRequirement_When_It_Does_Not_Make_PricePoint2_Purpose(int price)
-        //    {
-        //        // Arrange
-        //        FileDatabaseConnectionService FileDatabaseConnectionService = new FileDatabaseConnectionService();
-
-        //        PollPricePoints pollPricePoints = PollPricePoints.PricePoint2;
-
-        //        Beverage beverage = new Beverage() { Name = "PricePoint2Test", Price = price };
-
-        //        // Act
-
-        //        Beverage actuallResult = FileDatabaseConnectionService.DoesBeverageFulfillSetPriceRequirement(pollPricePoints, beverage);
-        //        // Assert
-
-        //        Assert.Null(actuallResult);
-        //    }
-
-        //    [Theory]
-        //    [InlineData(70)]
-        //    [InlineData(89)]
-        //    public void DoesBeverageFulfillSetPriceRequirement_When_It_Does_Make_PricePoint3_Purpose(int price)
-        //    {
-        //        // Arrange
-
-        //        FileDatabaseConnectionService FileDatabaseConnectionService = new FileDatabaseConnectionService();
-
-        //        PollPricePoints pollPricePoints = PollPricePoints.PricePoint3;
-
-        //        Beverage beverage = new Beverage() { Name = "PricePoint3Test", Price = price };
-
-        //        // Act
-        //        Beverage actuallResult = FileDatabaseConnectionService.DoesBeverageFulfillSetPriceRequirement(pollPricePoints, beverage);
-
-        //        // Assert
-        //        Assert.Equal(beverage, actuallResult);
-        //    }
-
-
-        //    [Theory]
-        //    [InlineData(int.MinValue)]
-        //    [InlineData(69)]
-        //    [InlineData(90)]
-        //    [InlineData(int.MaxValue)]
-        //    public void DoesBeverageFulfillSetPriceRequirement_When_It_Does_Not_Make_PricePoint3_Purpose(int price)
-        //    {
-        //        // Arrange
-        //        FileDatabaseConnectionService FileDatabaseConnectionService = new FileDatabaseConnectionService();
-
-        //        PollPricePoints pollPricePoints = PollPricePoints.PricePoint3;
-
-        //        Beverage beverage = new Beverage() { Name = "PricePoint3Test", Price = price };
-
-        //        // Act
-
-        //        Beverage actuallResult = FileDatabaseConnectionService.DoesBeverageFulfillSetPriceRequirement(pollPricePoints, beverage);
-        //        // Assert
-
-        //        Assert.Null(actuallResult);
-        //    }
-
-        //    [Theory]
-        //    [InlineData(90)]
-        //    [InlineData(900)]
-        //    [InlineData(int.MaxValue)]
-        //    public void DoesBeverageFulfillSetPriceRequirement_When_It_Does_Make_PricePoint4_Purpose(int price)
-        //    {
-        //        // Arrange
-
-        //        FileDatabaseConnectionService FileDatabaseConnectionService = new FileDatabaseConnectionService();
-
-        //        PollPricePoints pollPricePoints = PollPricePoints.PricePoint4;
-
-        //        Beverage beverage = new Beverage() { Name = "PricePoint4Test", Price = price };
-
-        //        // Act
-        //        Beverage actuallResult = FileDatabaseConnectionService.DoesBeverageFulfillSetPriceRequirement(pollPricePoints, beverage);
-
-        //        // Assert
-        //        Assert.Equal(beverage, actuallResult);
-        //    }
-
-
-        //    [Theory]
-        //    [InlineData(int.MinValue)]
-        //    [InlineData(1)]
-        //    [InlineData(89)]
-        //    public void DoesBeverageFulfillSetPriceRequirement_When_It_Does_Not_Make_PricePoint4_Purpose(int price)
-        //    {
-        //        // Arrange
-        //        FileDatabaseConnectionService FileDatabaseConnectionService = new FileDatabaseConnectionService();
-
-        //        PollPricePoints pollPricePoints = PollPricePoints.PricePoint4;
-
-        //        Beverage beverage = new Beverage() { Name = "PricePoint4Test", Price = price };
-
-        //        // Act
-
-        //        Beverage actuallResult = FileDatabaseConnectionService.DoesBeverageFulfillSetPriceRequirement(pollPricePoints, beverage);
-        //        // Assert
-
-        //        Assert.Null(actuallResult);
-        //    }
-
-        //    [Fact]
-        //    public void GetRandomRow_When_There_Is_No_Data_To_Randomize()
-        //    {
-        //        // Arrange
-        //        string newMainDirectory = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\RumikApp\\GetRandomRowTest";
-        //        string newMainFile = newMainDirectory + "\\GetRandomRowFileTest.json";
-
-        //        if (File.Exists(newMainFile))
-        //            File.Delete(newMainFile);
-
-        //        if (Directory.Exists(newMainDirectory))
-        //            Directory.Delete(newMainDirectory);
-
-
-        //        FileDatabaseConnectionService FileDatabaseConnectionService = new FileDatabaseConnectionService();
-        //        FileDatabaseConnectionService.MainDataDirectory = newMainDirectory;
-        //        FileDatabaseConnectionService.FileName = newMainFile;
-
-        //        // Act
-        //        Beverage actuallResule = FileDatabaseConnectionService.GetRandomRow();
-
-        //        // Assert
-        //        Assert.Null(actuallResule);
-        //    }
-
-        //    [Fact]
-        //    public void GetRandomRow_When_There_Is_Data_To_Randomize()
-        //    {
-        //        // Arrange
-        //        Random random = new Random(1);
-
-        //        string newMainDirectory = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\RumikApp\\GetAllDataTest";
-        //        string newMainFile = newMainDirectory + "\\GetAllDataFileTest.json";
-
-        //        if (File.Exists(newMainFile))
-        //            File.Delete(newMainFile);
-
-        //        if (Directory.Exists(newMainDirectory))
-        //            Directory.Delete(newMainDirectory);
-
-
-        //        FileDatabaseConnectionService FileDatabaseConnectionService = new FileDatabaseConnectionService();
-        //        FileDatabaseConnectionService.MainDataDirectory = newMainDirectory;
-        //        FileDatabaseConnectionService.FileName = newMainFile;
-
-        //        Beverage expectedResult = new Beverage() { Name = "ThatOne" };
-
-        //        ObservableCollection<Beverage> ListOfBeverages = new ObservableCollection<Beverage>();
-        //        ListOfBeverages.Add(new Beverage() { Name = "NotThisOne" });
-        //        ListOfBeverages.Add(expectedResult);
-        //        ListOfBeverages.Add(new Beverage() { Name = "NotThisOne" });
-        //        ListOfBeverages.Add(new Beverage() { Name = "NotThisOne" });
-        //        ListOfBeverages.Add(new Beverage() { Name = "NotThisOne" });
-        //        ListOfBeverages.Add(new Beverage() { Name = "NotThisOne" });
-
-        //        foreach (Beverage beverage in ListOfBeverages)
-        //            FileDatabaseConnectionService.SaveBevreageToDatabase(beverage, null);
-
-        //        // Act
-        //        Beverage actuallResule = FileDatabaseConnectionService.GetRandomRow(random);
-
-        //        // Assert
-        //        Assert.Equal(expectedResult.Name, actuallResule.Name);
-        //    }
-
-        //    [Fact]
-        //    public void TestConnectionToDatabase_When_There_Is_No_Directory()
-        //    {
-        //        // Arrange
-
-        //        string newMainDirectory = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\RumikApp\\DirectoryTest1";
-
-        //        if (Directory.Exists(newMainDirectory))
-        //            Directory.Delete(newMainDirectory);
-
-        //        FileDatabaseConnectionService FileDatabaseConnectionService = new FileDatabaseConnectionService();
-        //        FileDatabaseConnectionService.MainDataDirectory = newMainDirectory;
-
-        //        bool expectedResult = false;
-
-        //        // Act
-
-        //        bool actuallResule = FileDatabaseConnectionService.TestConnectionToDatabase();
-
-        //        // Assert
-        //        Assert.Equal(expectedResult, actuallResule);
-        //    }
+            // Assert
+            Assert.Equal(beverage, actuallResult);
+        }
+
+        [Theory]
+        [InlineData(4)]
+        public void DoesBeverageFulfillSetMixesRequirement_When_It_Does_Not_Make_Solo_Purpose(int grade)
+        {
+            // Arrange
+            Beverage beverage = new Beverage() { Name = "SoloTest", Grade = grade };
+
+            // Act
+            Beverage actuallResult = sut.DoesBeverageFulfillSetMixesRequirement(PollMixes.Solo, beverage);
+
+            // Assert
+            Assert.Null(actuallResult);
+        }
+
+
+        [Fact]
+        public void DoesBeverageFulfillSetMixesRequirement_When_It_Does_Make_WithCoke_Purpose()
+        {
+            // Arrange
+            Beverage beverage = new Beverage() { Name = "WithCokeTest", GradeWithCoke = 6, };
+
+            // Act
+            Beverage actuallResult = sut.DoesBeverageFulfillSetMixesRequirement(PollMixes.WithCoke, beverage);
+
+            // Assert
+            Assert.Equal(beverage, actuallResult);
+        }
+
+        [Theory]
+        [InlineData(4)]
+        public void DoesBeverageFulfillSetMixesRequirement_When_It_Does_Not_Make_WithCoke_Purpose(int gradeWithCoke)
+        {
+            // Arrange
+            Beverage beverage = new Beverage() { Name = "WithCokeTest", GradeWithCoke = gradeWithCoke };
+
+            // Act
+            Beverage actuallResult = sut.DoesBeverageFulfillSetMixesRequirement(PollMixes.WithCoke, beverage);
+
+            // Assert
+            Assert.Null(actuallResult);
+        }
+
+
+        [Fact]
+        public void DoesBeverageFulfillSetFlavoursRequirement_No_Flavours()
+        {
+            // Arrange
+            Beverage beverage = new Beverage() { Name = "NoFlavoursTest" };
+
+            // Act
+            Beverage actuallResult = sut.DoesBeverageFulfillSetFlavoursRequirement(new List<Flavour>(), beverage);
+
+            // Assert
+            Assert.Equal(beverage, actuallResult);
+        }
+
+        [Fact]
+        public void DoesBeverageFulfillSetFlavoursRequirement_All_Flavours()
+        {
+            // Arrange
+            Beverage beverage = JsonBeverage.TransFromJsonBeverageToBeverage(getFullFlavourJsonBeverage());
+            beverage.Name = "AllFlavoursTest";
+
+            List<Flavour> Flavours = new List<Flavour>();
+
+            Flavours.Add(new Flavour("/IMGs/PollIMG/Vanila.png", "Vanila"));
+            Flavours.Add(new Flavour("/IMGs/PollIMG/Nuts.png", "Nuts"));
+            Flavours.Add(new Flavour("/IMGs/PollIMG/Carmel.png", "Caramel"));
+            Flavours.Add(new Flavour("/IMGs/PollIMG/Smoked.png", "Smoke"));
+            Flavours.Add(new Flavour("/IMGs/PollIMG/Cinamon.png", "Cinnamon"));
+            Flavours.Add(new Flavour("/IMGs/PollIMG/Spirit.png", "Spirit"));
+            Flavours.Add(new Flavour("/IMGs/PollIMG/Fruits.png", "Fruits"));
+            Flavours.Add(new Flavour("/IMGs/PollIMG/Honey.png", "Honey"));
+            Flavours.Add(new Flavour("/IMGs/PollIMG/BeAPirate.png", "BeAPirate"));
+
+            // Act
+            Beverage actuallResult = sut.DoesBeverageFulfillSetFlavoursRequirement(Flavours, beverage);
+
+            // Assert
+            Assert.Equal(beverage, actuallResult);
+        }
+
+        [Fact]
+        public void DoesBeverageFulfillSetFlavoursRequirement_Beverage_Is_Null()
+        {
+            // Arrange
+            Beverage beverage = null;
+
+            // Act
+            Beverage actuallResult = sut.DoesBeverageFulfillSetFlavoursRequirement(new List<Flavour>(), beverage);
+
+            // Assert
+            Assert.Null(actuallResult);
+        }
+
+        [Fact]
+        public void DoesBeverageFulfillSetPriceRequirement_When_It_Does_Make_None_Purpose()
+        {
+            // Arrange
+            Beverage beverage = new Beverage() { Name = "NoneTest" };
+
+            // Act
+            Beverage actuallResult = sut.DoesBeverageFulfillSetPriceRequirement(PollPricePoints.None, beverage);
+
+            // Assert
+            Assert.Equal(beverage, actuallResult);
+        }
+
+        [Theory]
+        [InlineData(int.MinValue)]
+        [InlineData(49)]
+        public void DoesBeverageFulfillSetPriceRequirement_When_It_Does_Make_PricePoint1_Purpose(int price)
+        {
+            // Arrange
+            Beverage beverage = new Beverage() { Name = "PricePoint1Test", Price = price };
+
+            // Act
+            Beverage actuallResult = sut.DoesBeverageFulfillSetPriceRequirement(PollPricePoints.PricePoint1, beverage);
+
+            // Assert
+            Assert.Equal(beverage, actuallResult);
+        }
+
+        [Theory]
+        [InlineData(51)]
+        [InlineData(int.MaxValue)]
+        public void DoesBeverageFulfillSetPriceRequirement_When_It_Does_Not_Make_PricePoint1_Purpose(int price)
+        {
+            // Arrange
+            Beverage beverage = new Beverage() { Name = "PricePoint1Test", Price = price };
+
+            // Act
+            Beverage actuallResult = sut.DoesBeverageFulfillSetPriceRequirement(PollPricePoints.PricePoint1, beverage);
+
+            // Assert
+            Assert.Null(actuallResult);
+        }
+
+
+        [Theory]
+        [InlineData(50)]
+        [InlineData(69)]
+        public void DoesBeverageFulfillSetPriceRequirement_When_It_Does_Make_PricePoint2_Purpose(int price)
+        {
+            // Arrange
+            Beverage beverage = new Beverage() { Name = "PricePoint2Test", Price = price };
+
+            // Act
+            Beverage actuallResult = sut.DoesBeverageFulfillSetPriceRequirement(PollPricePoints.PricePoint2, beverage);
+
+            // Assert
+            Assert.Equal(beverage, actuallResult);
+        }
+
+
+        [Theory]
+        [InlineData(int.MinValue)]
+        [InlineData(49)]
+        [InlineData(70)]
+        [InlineData(int.MaxValue)]
+        public void DoesBeverageFulfillSetPriceRequirement_When_It_Does_Not_Make_PricePoint2_Purpose(int price)
+        {
+            // Arrange
+            Beverage beverage = new Beverage() { Name = "PricePoint2Test", Price = price };
+
+            // Act
+            Beverage actuallResult = sut.DoesBeverageFulfillSetPriceRequirement(PollPricePoints.PricePoint2, beverage);
+
+            // Assert
+            Assert.Null(actuallResult);
+        }
+
+        [Theory]
+        [InlineData(70)]
+        [InlineData(89)]
+        public void DoesBeverageFulfillSetPriceRequirement_When_It_Does_Make_PricePoint3_Purpose(int price)
+        {
+            // Arrange
+            Beverage beverage = new Beverage() { Name = "PricePoint3Test", Price = price };
+
+            // Act
+            Beverage actuallResult = sut.DoesBeverageFulfillSetPriceRequirement(PollPricePoints.PricePoint3, beverage);
+
+            // Assert
+            Assert.Equal(beverage, actuallResult);
+        }
+
+
+        [Theory]
+        [InlineData(int.MinValue)]
+        [InlineData(69)]
+        [InlineData(90)]
+        [InlineData(int.MaxValue)]
+        public void DoesBeverageFulfillSetPriceRequirement_When_It_Does_Not_Make_PricePoint3_Purpose(int price)
+        {
+            // Arrange
+            Beverage beverage = new Beverage() { Name = "PricePoint3Test", Price = price };
+
+            // Act
+
+            Beverage actuallResult = sut.DoesBeverageFulfillSetPriceRequirement(PollPricePoints.PricePoint3, beverage);
+            // Assert
+
+            Assert.Null(actuallResult);
+        }
+
+        [Theory]
+        [InlineData(90)]
+        [InlineData(900)]
+        [InlineData(int.MaxValue)]
+        public void DoesBeverageFulfillSetPriceRequirement_When_It_Does_Make_PricePoint4_Purpose(int price)
+        {
+            // Arrange
+            Beverage beverage = new Beverage() { Name = "PricePoint4Test", Price = price };
+
+            // Act
+            Beverage actuallResult = sut.DoesBeverageFulfillSetPriceRequirement(PollPricePoints.PricePoint4, beverage);
+
+            // Assert
+            Assert.Equal(beverage, actuallResult);
+        }
+
+
+        [Theory]
+        [InlineData(int.MinValue)]
+        [InlineData(1)]
+        [InlineData(89)]
+        public void DoesBeverageFulfillSetPriceRequirement_When_It_Does_Not_Make_PricePoint4_Purpose(int price)
+        {
+            // Arrange
+            Beverage beverage = new Beverage() { Name = "PricePoint4Test", Price = price };
+
+            // Act
+            Beverage actuallResult = sut.DoesBeverageFulfillSetPriceRequirement(PollPricePoints.PricePoint4, beverage);
+
+            // Assert
+            Assert.Null(actuallResult);
+        }
+
+        [Fact]
+        public void GetRandomRow_When_There_Is_No_Data_To_Randomize()
+        {
+            // Arrange
+            fileService.Setup(x => x.FileExists(It.IsAny<string>())).Returns(true);
+            streamReaderService.Setup(x => x.ReadToEnd()).Returns("");
+
+            // Act
+            Beverage actuallResule = sut.GetRandomRow();
+
+            // Assert
+            Assert.Null(actuallResule);
+        }
+
+        [Fact]
+        public void GetRandomRow_When_There_Is_Data_To_Randomize()
+        {
+            // Arrange
+            Random random = new Random(1);
+                       
+            Beverage expectedResult = new Beverage() { Name = "ThatOne" };
+
+            ObservableCollection<Beverage> ListOfBeverages = new ObservableCollection<Beverage>();
+            ListOfBeverages.Add(new Beverage() { Name = "NotThisOne" });
+            ListOfBeverages.Add(expectedResult);
+            ListOfBeverages.Add(new Beverage() { Name = "NotThisOne" });
+            ListOfBeverages.Add(new Beverage() { Name = "NotThisOne" });
+            ListOfBeverages.Add(new Beverage() { Name = "NotThisOne" });
+            ListOfBeverages.Add(new Beverage() { Name = "NotThisOne" });
+
+            fileService.Setup(x => x.FileExists(It.IsAny<string>())).Returns(true);
+            streamReaderService.Setup(x => x.ReadToEnd()).Returns(JsonConvert.SerializeObject(ListOfBeverages));
+
+            // Act
+            Beverage actuallResule = sut.GetRandomRow(random);
+
+            // Assert
+            Assert.Equal(expectedResult.Name, actuallResule.Name);
+        }
+
+        //[Fact]
+        //public void TestConnectionToDatabase_When_There_Is_No_Directory()
+        //{
+        //    // Arrange
+        //    bool expectedResult = false;
+        //    fileService.Setup(x => x.FileExists(It.IsAny<string>())).Returns(false);
+
+        //    // Act
+        //    bool actuallResule = sut.TestConnectionToDatabase();
+
+        //    // Assert
+        //    Assert.Equal(expectedResult, actuallResule);
+        //}
 
         //    [Fact]
         //    public void TestConnectionToDatabase_When_There_Is_A_Directory()
