@@ -35,18 +35,14 @@ namespace RumikApp.Tests
         void FileToByteArray_When_There_Is_No_File()
         {
             // Arrange
-
             byte[] actualResult = null;
             string FileLocation = "../../IMGS/404ThereIsNotSuchAFile.png";
-
 
             // Act
             actualResult = ImageProcessingService.FileToByteArray(FileLocation);
 
-
             // Assert
             Assert.Null(actualResult);
-
         }
 
 

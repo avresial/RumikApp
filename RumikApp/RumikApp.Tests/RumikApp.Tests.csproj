@@ -93,6 +93,7 @@
     <Compile Include="FileDatabaseConnectionServiceTests.cs" />
     <Compile Include="ImageProcessingServiceTests.cs" />
     <Compile Include="InformationBusServiceTests.cs" />
+    <Compile Include="PanelVisibilityServiceTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
