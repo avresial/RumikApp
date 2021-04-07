@@ -290,7 +290,7 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="IMGs\PollIMG\Honey.png" />
-    <Resource Include="IMGs\PollIMG\Smoked.png" />
+    <Resource Include="IMGs\PollIMG\Smoke.png" />
     <Resource Include="IMGs\PollIMG\Solo.png" />
     <Resource Include="IMGs\PollIMG\Vanila.png" />
     <Resource Include="IMGs\PollIMG\WithCoke.png" />
@@ -314,8 +314,8 @@
     <Resource Include="IMGs\PollIMG\Nuts.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="IMGs\PollIMG\Carmel.png" />
-    <Resource Include="IMGs\PollIMG\Cinamon.png" />
+    <Resource Include="IMGs\PollIMG\Caramel.png" />
+    <Resource Include="IMGs\PollIMG\Cinnamon.png" />
     <Resource Include="IMGs\PollIMG\Fruits.png" />
     <Resource Include="IMGs\PollIMG\Nutmeg.png" />
   </ItemGroup>
