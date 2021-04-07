@@ -614,8 +614,6 @@ namespace RumikApp.Tests
             Assert.Null(actuallResult);
         }
 
-
-
         [Fact]
         public void DoesBeverageFulfillSetPriceRequirement_When_It_Does_Make_None_Purpose()
         {
@@ -636,17 +634,18 @@ namespace RumikApp.Tests
             Assert.Equal(beverage, actuallResult);
         }
 
-        [Fact]
-        public void DoesBeverageFulfillSetPriceRequirement_When_It_Does_Make_PricePoint1_Purpose()
+        [Theory]
+        [InlineData(int.MinValue)]
+        [InlineData(49)]
+        public void DoesBeverageFulfillSetPriceRequirement_When_It_Does_Make_PricePoint1_Purpose(int price)
         {
             // Arrange
-
 
             FileDatabaseConnectionService FileDatabaseConnectionService = new FileDatabaseConnectionService();
 
             PollPricePoints pollPricePoints = PollPricePoints.PricePoint1;
 
-            Beverage beverage = new Beverage() { Name = "PricePoint1Test", Price = 49 };
+            Beverage beverage = new Beverage() { Name = "PricePoint1Test", Price = price };
 
             // Act
 
@@ -656,15 +655,17 @@ namespace RumikApp.Tests
             Assert.Equal(beverage, actuallResult);
         }
 
-        [Fact]
-        public void DoesBeverageFulfillSetPriceRequirement_When_It_Does_Not_Make_PricePoint1_Purpose()
+        [Theory]
+        [InlineData(51)]
+        [InlineData(int.MaxValue)]
+        public void DoesBeverageFulfillSetPriceRequirement_When_It_Does_Not_Make_PricePoint1_Purpose(int price)
         {
             // Arrange
             FileDatabaseConnectionService FileDatabaseConnectionService = new FileDatabaseConnectionService();
 
             PollPricePoints pollPricePoints = PollPricePoints.PricePoint1;
 
-            Beverage beverage = new Beverage() { Name = "PricePoint1Test", Price = 51 };
+            Beverage beverage = new Beverage() { Name = "PricePoint1Test", Price = price };
 
             // Act
 
@@ -697,8 +698,10 @@ namespace RumikApp.Tests
 
 
         [Theory]
+        [InlineData(int.MinValue)]
         [InlineData(49)]
         [InlineData(70)]
+        [InlineData(int.MaxValue)]
         public void DoesBeverageFulfillSetPriceRequirement_When_It_Does_Not_Make_PricePoint2_Purpose(int price)
         {
             // Arrange
@@ -738,8 +741,10 @@ namespace RumikApp.Tests
 
 
         [Theory]
+        [InlineData(int.MinValue)]
         [InlineData(69)]
         [InlineData(90)]
+        [InlineData(int.MaxValue)]
         public void DoesBeverageFulfillSetPriceRequirement_When_It_Does_Not_Make_PricePoint3_Purpose(int price)
         {
             // Arrange
@@ -760,6 +765,7 @@ namespace RumikApp.Tests
         [Theory]
         [InlineData(90)]
         [InlineData(900)]
+        [InlineData(int.MaxValue)]
         public void DoesBeverageFulfillSetPriceRequirement_When_It_Does_Make_PricePoint4_Purpose(int price)
         {
             // Arrange
@@ -779,6 +785,7 @@ namespace RumikApp.Tests
 
 
         [Theory]
+        [InlineData(int.MinValue)]
         [InlineData(1)]
         [InlineData(89)]
         public void DoesBeverageFulfillSetPriceRequirement_When_It_Does_Not_Make_PricePoint4_Purpose(int price)
