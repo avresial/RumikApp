@@ -50,7 +50,7 @@ namespace ApprovalToolForRumikApp
                 if (_Capacity == value)
                     return;
 
-                if (value != null && value != 0)
+                if (/*value != null &&*/ value != 0)
                     PricePer100ml = (Price / value) * 100;
 
                 _Capacity = value;
@@ -81,7 +81,7 @@ namespace ApprovalToolForRumikApp
                 if (_Price == value)
                     return;
 
-                if (value != null)
+               // if (value != null)
                     PricePer100ml = (value / Capacity) * 100;
 
                 _Price = value;

@@ -14,6 +14,8 @@ namespace RumikApp.UserControls
     {
         //private MainViewModel mainViewModel;
 
+        const string imagesLocalization = "/IMGs/PollIMG/";
+
         private IDatabaseConnectionService databaseConnectionService;
 
         private IInformationBusService informationBusService;
@@ -253,7 +255,7 @@ namespace RumikApp.UserControls
 
         // third section - chce poczuc smak
 
-        private Flavour _Vanila = new Flavour("/IMGs/PollIMG/Vanila.png", "Vanila");
+        private Flavour _Vanila = new Flavour($"{imagesLocalization + nameof(Vanila)}.png", nameof(Vanila));
         public Flavour Vanila
         {
             get { return _Vanila; }
@@ -267,7 +269,7 @@ namespace RumikApp.UserControls
             }
         }
 
-        private Flavour _Nuts = new Flavour("/IMGs/PollIMG/Nuts.png", "Nuts");
+        private Flavour _Nuts = new Flavour($"{imagesLocalization + nameof(Nuts)}.png", nameof(Nuts));
         public Flavour Nuts
         {
             get { return _Nuts; }
@@ -281,7 +283,7 @@ namespace RumikApp.UserControls
             }
         }
 
-        private Flavour _Caramel = new Flavour("/IMGs/PollIMG/Carmel.png", "Caramel");
+        private Flavour _Caramel = new Flavour($"{imagesLocalization + nameof(Caramel)}.png", nameof(Caramel));
         public Flavour Caramel
         {
             get { return _Caramel; }
@@ -295,7 +297,7 @@ namespace RumikApp.UserControls
             }
         }
 
-        private Flavour _Smoke = new Flavour("/IMGs/PollIMG/Smoked.png", "Smoke");
+        private Flavour _Smoke = new Flavour($"{imagesLocalization + nameof(Smoke)}.png", nameof(Smoke));
         public Flavour Smoke
         {
             get { return _Smoke; }
@@ -309,7 +311,7 @@ namespace RumikApp.UserControls
             }
         }
 
-        private Flavour _Cinnamon = new Flavour("/IMGs/PollIMG/Cinamon.png", "Cinnamon");
+        private Flavour _Cinnamon = new Flavour($"{imagesLocalization + nameof(Cinnamon)}.png", nameof(Cinnamon));
         public Flavour Cinnamon
         {
             get { return _Cinnamon; }
@@ -323,7 +325,7 @@ namespace RumikApp.UserControls
             }
         }
 
-        private Flavour _Spirit = new Flavour("/IMGs/PollIMG/Spirit.png", "Spirit");
+        private Flavour _Spirit = new Flavour($"{imagesLocalization + nameof(Spirit)}.png", nameof(Spirit));
         public Flavour Spirit
         {
             get { return _Spirit; }
@@ -337,7 +339,7 @@ namespace RumikApp.UserControls
             }
         }
 
-        private Flavour _Fruits = new Flavour("/IMGs/PollIMG/Fruits.png", "Fruits");
+        private Flavour _Fruits = new Flavour($"{imagesLocalization + nameof(Fruits)}.png", nameof(Fruits));
         public Flavour Fruits
         {
             get { return _Fruits; }
@@ -351,7 +353,7 @@ namespace RumikApp.UserControls
             }
         }
 
-        private Flavour _Honey = new Flavour("/IMGs/PollIMG/Honey.png", "Honey");
+        private Flavour _Honey = new Flavour($"{imagesLocalization + nameof(Honey)}.png", nameof(Honey));
         public Flavour Honey
         {
             get { return _Honey; }
@@ -556,7 +558,7 @@ namespace RumikApp.UserControls
             PricePoint4 = false;
         }
 
-        List<Flavour> getListWithSetFlavours() 
+        List<Flavour> getListWithSetFlavours()
         {
             List<Flavour> Flavours = new List<Flavour>();
 
