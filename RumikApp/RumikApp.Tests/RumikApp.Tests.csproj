@@ -90,10 +90,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FileDatabaseConnectionServiceTests.cs" />
-    <Compile Include="ImageProcessingServiceTests.cs" />
-    <Compile Include="InformationBusServiceTests.cs" />
-    <Compile Include="PanelVisibilityServiceTests.cs" />
+    <Compile Include="Tests\FileDatabaseConnectionServiceTests.cs" />
+    <Compile Include="Tests\ImageProcessingServiceTests.cs" />
+    <Compile Include="Tests\InformationBusServiceTests.cs" />
+    <Compile Include="Tests\PanelVisibilityServiceTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
