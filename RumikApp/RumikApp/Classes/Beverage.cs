@@ -13,6 +13,9 @@ namespace RumikApp
 {
     public class Beverage : ViewModelBase
     {
+        const string imagesLocalization = "/IMGs/PollIMG/";
+        const string fileExtension = ".png";
+
         private int _ID;
         public int ID
         {
@@ -82,7 +85,7 @@ namespace RumikApp
                     return;
 
                 //if (value != null)
-                    PricePer100ml = (value / Capacity) * 100;
+                PricePer100ml = (value / Capacity) * 100;
 
                 _Price = value;
                 RaisePropertyChanged(nameof(Price));
@@ -145,7 +148,7 @@ namespace RumikApp
             }
         }
 
-        private Flavour _Vanila = new Flavour($"/IMGs/PollIMG/{nameof(Vanila)}.png", nameof(Vanila));
+        private Flavour _Vanila = new Flavour(imagesLocalization + nameof(Vanila) + fileExtension, nameof(Vanila));
         public Flavour Vanila
         {
             get { return _Vanila; }
@@ -159,7 +162,7 @@ namespace RumikApp
             }
         }
 
-        private Flavour _Nuts = new Flavour($"/IMGs/PollIMG/{nameof(Nuts)}.png", nameof(Nuts));
+        private Flavour _Nuts = new Flavour(imagesLocalization + nameof(Nuts) + fileExtension, nameof(Nuts));
         public Flavour Nuts
         {
             get { return _Nuts; }
@@ -173,7 +176,7 @@ namespace RumikApp
             }
         }
 
-        private Flavour _Caramel = new Flavour($"/IMGs/PollIMG/{nameof(Caramel)}.png", nameof(Caramel));
+        private Flavour _Caramel = new Flavour(imagesLocalization + nameof(Caramel) + fileExtension, nameof(Caramel));
         public Flavour Caramel
         {
             get { return _Caramel; }
@@ -187,7 +190,7 @@ namespace RumikApp
             }
         }
 
-        private Flavour _Smoke = new Flavour($"/IMGs/PollIMG/{nameof(Smoke)}.png", nameof(Smoke));
+        private Flavour _Smoke = new Flavour(imagesLocalization + nameof(Smoke) + fileExtension, nameof(Smoke));
         public Flavour Smoke
         {
             get { return _Smoke; }
@@ -201,7 +204,7 @@ namespace RumikApp
             }
         }
 
-        private Flavour _Cinnamon = new Flavour($"/IMGs/PollIMG/{nameof(Cinnamon)}.png", nameof(Cinnamon));
+        private Flavour _Cinnamon = new Flavour(imagesLocalization + nameof(Cinnamon) + fileExtension, nameof(Cinnamon));
         public Flavour Cinnamon
         {
             get { return _Cinnamon; }
@@ -215,7 +218,7 @@ namespace RumikApp
             }
         }
 
-        private Flavour _Spirit = new Flavour($"/IMGs/PollIMG/{nameof(Spirit)}.png", nameof(Spirit));
+        private Flavour _Spirit = new Flavour(imagesLocalization + nameof(Spirit) + fileExtension, nameof(Spirit));
         public Flavour Spirit
         {
             get { return _Spirit; }
@@ -229,7 +232,7 @@ namespace RumikApp
             }
         }
 
-        private Flavour _Fruits = new Flavour($"/IMGs/PollIMG/{nameof(Fruits)}.png", nameof(Fruits));
+        private Flavour _Fruits = new Flavour(imagesLocalization + nameof(Fruits) + fileExtension, nameof(Fruits));
         public Flavour Fruits
         {
             get { return _Fruits; }
@@ -243,7 +246,7 @@ namespace RumikApp
             }
         }
 
-        private Flavour _Honey = new Flavour($"/IMGs/PollIMG/{nameof(Honey)}.png", nameof(Honey));
+        private Flavour _Honey = new Flavour(imagesLocalization + nameof(Honey) + fileExtension, nameof(Honey));
         public Flavour Honey
         {
             get { return _Honey; }
@@ -258,7 +261,7 @@ namespace RumikApp
             }
         }
 
-        private Flavour _BeAPirate = new Flavour($"/IMGs/PollIMG/{nameof(BeAPirate)}.png", nameof(BeAPirate));
+        private Flavour _BeAPirate = new Flavour(imagesLocalization + nameof(BeAPirate) + fileExtension, nameof(BeAPirate));
         public Flavour BeAPirate
         {
             get { return _BeAPirate; }
