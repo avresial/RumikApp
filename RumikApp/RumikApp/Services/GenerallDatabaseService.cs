@@ -12,10 +12,10 @@ namespace RumikApp.Services
     /// <summary>
     /// Connects data from database and disc to one stream.
     /// </summary>
-    class GenerallDatabaseService : IDatabaseConnectionService
+    class GenerallDatabaseService :  IGenerallDatabaseService
     {
-        private SQLDatabaseConnectionService sQLDatabaseConnectionService;
-        private FileDatabaseConnectionService fileDatabaseConnectionService;
+        private ISQLDatabaseConnectionService sQLDatabaseConnectionService;
+        private IFileDatabaseConnectionService fileDatabaseConnectionService;
         private bool doesSQLDatabaseConnectionServiceWasWarkingAtStart = false;
 
         /// <summary>
@@ -23,7 +23,7 @@ namespace RumikApp.Services
         /// </summary>
         /// <param name="sQLDatabaseConnectionService"></param>
         /// <param name="fileDatabaseConnectionService"></param>
-        public GenerallDatabaseService(SQLDatabaseConnectionService sQLDatabaseConnectionService, FileDatabaseConnectionService fileDatabaseConnectionService)
+        public GenerallDatabaseService(ISQLDatabaseConnectionService sQLDatabaseConnectionService, IFileDatabaseConnectionService fileDatabaseConnectionService)
         {
             this.sQLDatabaseConnectionService = sQLDatabaseConnectionService;
             this.fileDatabaseConnectionService = fileDatabaseConnectionService;

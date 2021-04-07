@@ -170,7 +170,14 @@
     <Compile Include="Enums\PollPurpose.cs" />
     <Compile Include="Enums\PollPricePoints.cs" />
     <Compile Include="Services\FileDatabaseConnectionService.cs" />
+    <Compile Include="Services\FileService.cs" />
     <Compile Include="Services\GenerallDatabaseService.cs" />
+    <Compile Include="Services\IFileDatabaseConnectionService.cs" />
+    <Compile Include="Services\IFileService.cs" />
+    <Compile Include="Services\IGenerallDatabaseService.cs" />
+    <Compile Include="Services\ISQLDatabaseConnectionService.cs" />
+    <Compile Include="Services\IStreamReaderService.cs" />
+    <Compile Include="Services\StreamReaderService.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="Services\SQLDatabaseConnectionService.cs" />
     <Compile Include="Services\IDatabaseConnectionService.cs" />

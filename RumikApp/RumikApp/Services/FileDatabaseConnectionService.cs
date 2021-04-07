@@ -11,8 +11,18 @@ using Newtonsoft.Json;
 
 namespace RumikApp.Services
 {
-    public class FileDatabaseConnectionService : IDatabaseConnectionService
+    public class FileDatabaseConnectionService : IFileDatabaseConnectionService
     {
+        private readonly IFileService fileService;
+        private readonly IStreamReaderService streamReader;
+        #region CTOR
+        public FileDatabaseConnectionService(IFileService fileService, IStreamReaderService streamReader)
+        {
+            this.fileService = fileService;
+            this.streamReader = streamReader;
+        }
+        #endregion
+
         private string _MainDataDirectory = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\RumikApp";
         public string MainDataDirectory
         {
@@ -50,11 +60,11 @@ namespace RumikApp.Services
         {
             ObservableCollection<Beverage> Beverages = new ObservableCollection<Beverage>();
 
-            if (File.Exists(FileName))
+            if (fileService.FileExists(FileName))
             {
-                using (StreamReader r = new StreamReader(FileName))
+                using (streamReader.Create(FileName))
                 {
-                    string json2 = r.ReadToEnd();
+                    string json2 = streamReader.ReadToEnd();
                     List<JsonBeverage> items = JsonConvert.DeserializeObject<List<JsonBeverage>>(json2);
                     if (items != null)
                         foreach (JsonBeverage item in items)

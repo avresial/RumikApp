@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace RumikApp.Services
 {
-    public class SQLDatabaseConnectionService : IDatabaseConnectionService
+    public class SQLDatabaseConnectionService : ISQLDatabaseConnectionService
     {
 
         private AvailableTables _MainDataTable = AvailableTables.RumsBaseTEST;

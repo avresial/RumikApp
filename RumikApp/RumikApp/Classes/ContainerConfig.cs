@@ -26,10 +26,16 @@ namespace RumikApp
             builder.RegisterType<GenerallDatabaseService>().As<IDatabaseConnectionService>().SingleInstance();
 
             builder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly())
-           .Where(t => t.Name.EndsWith("ViewModel")).SingleInstance();
+                                       .Where(t => t.Name.EndsWith("ViewModel"))
+                                       .SingleInstance();
 
+            builder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly())
+                           .Where(t => t.Name.EndsWith("Service"))
+                           .AsImplementedInterfaces()
+                           .SingleInstance();
             //builder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly())
-            //.Where(t => t.Name.EndsWith("Service")).As(t=> t.GetInterfaces().FirstOrDefault(i=>i.Name=="I"+t.Name)).SingleInstance();
+            //.Where(t => t.Name.EndsWith("Service"))
+            //.As(t=> t.GetInterfaces().FirstOrDefault(i=>i.Name=="I"+t.Name)).SingleInstance();
 
             return builder.Build();
         }
