@@ -273,11 +273,11 @@ namespace RumikApp.Services
 
         public string SaveBevreageToDatabase(Beverage beverage, byte[] img)
         {
-            if (!Directory.Exists(MainDataDirectory))
-                Directory.CreateDirectory(MainDataDirectory);
+            if (!fileService.DirectoryExists(MainDataDirectory))
+                fileService.CreateDirectory(MainDataDirectory);
 
-            if (!File.Exists(FileName))
-                File.Create(FileName).Close();
+            if (!fileService.FileExists(FileName))
+                fileService.FileCreate(FileName);
 
             string result = "Task failed";
 
@@ -299,12 +299,12 @@ namespace RumikApp.Services
 
         public bool TestConnectionToDatabase()
         {
-            return Directory.Exists(MainDataDirectory);
+            return fileService.DirectoryExists(MainDataDirectory);
         }
 
         public bool TestConnectionToTable(AvailableTables availableTables)
         {
-            return File.Exists(FileName);
+            return fileService.FileExists(FileName);
         }
 
         private ObservableCollection<JsonBeverage> getAllJsonData()

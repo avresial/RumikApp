@@ -24,8 +24,7 @@ namespace RumikApp.Tests
         private Mock<IStreamReaderService> streamReaderService;
 
         private FileDatabaseConnectionService sut;
-
-        //setup
+              
         #region Setup 
 
         public FileDatabaseConnectionServiceTests()
@@ -74,6 +73,7 @@ namespace RumikApp.Tests
 
         #endregion
 
+        #region GetAllData 
         [Fact]
         public void GetAllData_When_There_Are_No_File_To_Load()
         {
@@ -118,6 +118,7 @@ namespace RumikApp.Tests
             Assert.True(JSONListOfBeveragesCountInTotal == actuallResule.Count);
 
         }
+        #endregion
 
         [Fact]
         public void GetAllPiratesBeverages_When_There_Is_Data_To_Load()
@@ -134,6 +135,7 @@ namespace RumikApp.Tests
 
         }
 
+        #region GetDataFromDatabaseWithConditions
         [Fact]
         public void GetDataFromDatabaseWithConditions_When_There_Are_No_Conditions()
         {
@@ -152,7 +154,7 @@ namespace RumikApp.Tests
         [Theory]
         [InlineData(2, 1)]
         [InlineData(2, 2)]
-        public void GetAllData_When_There_Are_All_Conditions(int NumberOfElements, int NumberOfMatchingElements)
+        public void GetDataFromDatabaseWithConditions_When_There_Are_All_Conditions(int NumberOfElements, int NumberOfMatchingElements)
         {
             // Arrange
             int expectedResult = NumberOfMatchingElements;
@@ -186,8 +188,9 @@ namespace RumikApp.Tests
             // Assert
             Assert.Equal(expectedResult, actuallResule.Count);
         }
+        #endregion
 
-
+        #region DoesBeverageFulfillSetPurposeRequirement
         [Fact]
         public void DoesBeverageFulfillSetPurposeRequirement_When_It_Does_Make_None_Purpose()
         {
@@ -325,8 +328,9 @@ namespace RumikApp.Tests
 
             Assert.Null(actuallResult);
         }
+        #endregion
 
-
+        #region DoesBeverageFulfillSetMixesRequirement
         [Fact]
         public void DoesBeverageFulfillSetMixesRequirement_When_It_Does_Make_None_Purpose()
         {
@@ -396,8 +400,9 @@ namespace RumikApp.Tests
             // Assert
             Assert.Null(actuallResult);
         }
+        #endregion
 
-
+        #region DoesBeverageFulfillSetFlavoursRequirement
         [Fact]
         public void DoesBeverageFulfillSetFlavoursRequirement_No_Flavours()
         {
@@ -449,7 +454,9 @@ namespace RumikApp.Tests
             // Assert
             Assert.Null(actuallResult);
         }
+        #endregion
 
+        #region DoesBeverageFulfillSetPriceRequirement
         [Fact]
         public void DoesBeverageFulfillSetPriceRequirement_When_It_Does_Make_None_Purpose()
         {
@@ -554,10 +561,9 @@ namespace RumikApp.Tests
             Beverage beverage = new Beverage() { Name = "PricePoint3Test", Price = price };
 
             // Act
-
             Beverage actuallResult = sut.DoesBeverageFulfillSetPriceRequirement(PollPricePoints.PricePoint3, beverage);
-            // Assert
 
+            // Assert
             Assert.Null(actuallResult);
         }
 
@@ -593,7 +599,9 @@ namespace RumikApp.Tests
             // Assert
             Assert.Null(actuallResult);
         }
+        #endregion
 
+        #region GetRandomRow
         [Fact]
         public void GetRandomRow_When_There_Is_No_Data_To_Randomize()
         {
@@ -613,7 +621,7 @@ namespace RumikApp.Tests
         {
             // Arrange
             Random random = new Random(1);
-                       
+
             Beverage expectedResult = new Beverage() { Name = "ThatOne" };
 
             ObservableCollection<Beverage> ListOfBeverages = new ObservableCollection<Beverage>();
@@ -633,115 +641,65 @@ namespace RumikApp.Tests
             // Assert
             Assert.Equal(expectedResult.Name, actuallResule.Name);
         }
+        #endregion
 
-        //[Fact]
-        //public void TestConnectionToDatabase_When_There_Is_No_Directory()
-        //{
-        //    // Arrange
-        //    bool expectedResult = false;
-        //    fileService.Setup(x => x.FileExists(It.IsAny<string>())).Returns(false);
+        #region TestConnection
+        [Fact]
+        public void TestConnectionToDatabase_When_There_Is_No_Directory()
+        {
+            // Arrange
+            bool expectedResult = false;
+            fileService.Setup(x => x.DirectoryExists(It.IsAny<string>())).Returns(false);
 
-        //    // Act
-        //    bool actuallResule = sut.TestConnectionToDatabase();
+            // Act
+            bool actuallResult = sut.TestConnectionToDatabase();
 
-        //    // Assert
-        //    Assert.Equal(expectedResult, actuallResule);
-        //}
+            // Assert
+            Assert.Equal(expectedResult, actuallResult);
+        }
 
-        //    [Fact]
-        //    public void TestConnectionToDatabase_When_There_Is_A_Directory()
-        //    {
-        //        // Arrange
+        [Fact]
+        public void TestConnectionToDatabase_When_There_Is_A_Directory()
+        {
+            // Arrange
+            bool expectedResult = true;
+            fileService.Setup(x => x.DirectoryExists(It.IsAny<string>())).Returns(true);
 
-        //        string newMainDirectory = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\RumikApp\\DirectoryTest2";
+            // Act
+            bool actuallResule = sut.TestConnectionToDatabase();
 
-        //        if (!Directory.Exists(newMainDirectory))
-        //            Directory.CreateDirectory(newMainDirectory);
+            // Assert
+            Assert.Equal(expectedResult, actuallResule);
 
-        //        FileDatabaseConnectionService FileDatabaseConnectionService = new FileDatabaseConnectionService();
-        //        FileDatabaseConnectionService.MainDataDirectory = newMainDirectory;
+        }
 
-        //        bool expectedResult = true;
+        [Fact]
+        public void TestConnectionToTable_There_Is_No_File()
+        {
+            // Arrange
+            bool expectedResult = false;
+            fileService.Setup(x => x.FileExists(It.IsAny<string>())).Returns(false);
 
-        //        // Act
+            // Act
+            bool actuallResule = sut.TestConnectionToTable(AvailableTables.RumsBase);
 
-        //        bool actuallResule = FileDatabaseConnectionService.TestConnectionToDatabase();
+            // Assert
+            Assert.Equal(expectedResult, actuallResule);
+        }
 
-        //        // Assert
-        //        Assert.Equal(expectedResult, actuallResule);
+        [Fact]
+        public void TestConnectionToTable_There_Is_A_File()
+        {
+            // Arrange
+            bool expectedResult = true;
+            fileService.Setup(x => x.FileExists(It.IsAny<string>())).Returns(true);
 
-        //        if (Directory.Exists(newMainDirectory))
-        //            Directory.Delete(newMainDirectory);
-        //    }
+            // Act
+            bool actuallResule = sut.TestConnectionToTable(Enums.AvailableTables.RumsBase);
 
-        //    [Fact]
-        //    public void TestConnectionToTable_There_Is_No_File()
-        //    {
-        //        // Arrange
-
-        //        string newMainDirectory = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\RumikApp\\FileTest1";
-        //        string newMainFile = newMainDirectory + "\\FileTest1.json";
-
-        //        if (!Directory.Exists(newMainDirectory))
-        //            Directory.CreateDirectory(newMainDirectory);
-
-        //        if (!File.Exists(newMainFile))
-        //            File.Delete(newMainFile);
-
-        //        FileDatabaseConnectionService FileDatabaseConnectionService = new FileDatabaseConnectionService();
-
-        //        FileDatabaseConnectionService.MainDataDirectory = newMainDirectory;
-        //        FileDatabaseConnectionService.FileName = newMainFile;
-
-        //        bool expectedResult = false;
-
-        //        // Act
-
-        //        bool actuallResule = FileDatabaseConnectionService.TestConnectionToTable(Enums.AvailableTables.RumsBase);
-
-        //        // Assert
-        //        Assert.Equal(expectedResult, actuallResule);
-
-        //        if (Directory.Exists(newMainDirectory))
-        //            Directory.Delete(newMainDirectory);
-        //    }
-
-        //    [Fact]
-        //    public void TestConnectionToTable_There_Is_A_File()
-        //    {
-        //        // Arrange
-
-        //        string newMainDirectory = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\RumikApp\\FileTest2";
-        //        string newMainFile = newMainDirectory + "\\FileTest2.json";
-
-        //        if (!Directory.Exists(newMainDirectory))
-        //            Directory.CreateDirectory(newMainDirectory);
-
-        //        if (!File.Exists(newMainFile))
-        //            File.Create(newMainFile).Close();
-
-        //        FileDatabaseConnectionService FileDatabaseConnectionService = new FileDatabaseConnectionService();
-
-        //        FileDatabaseConnectionService.MainDataDirectory = newMainDirectory;
-        //        FileDatabaseConnectionService.FileName = newMainFile;
-
-        //        bool expectedResult = true;
-
-        //        // Act
-
-        //        bool actuallResule = FileDatabaseConnectionService.TestConnectionToTable(Enums.AvailableTables.RumsBase);
-
-        //        // Assert
-
-        //        if (File.Exists(newMainFile))
-        //            File.Delete(newMainFile);
-
-        //        if (Directory.Exists(newMainDirectory))
-        //            Directory.Delete(newMainDirectory);
-
-        //        Assert.Equal(expectedResult, actuallResule);
-        //    }
-
-        //}
+            // Assert
+            Assert.Equal(expectedResult, actuallResule);
+        }
+        #endregion
     }
 }
