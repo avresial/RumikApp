@@ -152,6 +152,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Classes\FlavoursSet.cs" />
     <Compile Include="Classes\JsonBeverage.cs" />
     <Compile Include="Classes\Beverage.cs" />
     <Compile Include="Classes\ContainerConfig.cs" />
