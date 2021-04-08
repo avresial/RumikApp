@@ -133,8 +133,10 @@ namespace RumikApp.Services
 
         private ObservableCollection<Beverage> getUniqueBeverages(ObservableCollection<Beverage> mainList, ObservableCollection<Beverage> aditionalList)
         {
+            if (mainList == null)
+                return aditionalList;
 
-            ObservableCollection<Beverage> UniqueBeverages = mainList;
+                 ObservableCollection <Beverage> UniqueBeverages = mainList;
 
             foreach (Beverage fileBeverage in aditionalList)
             {

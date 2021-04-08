@@ -124,6 +124,9 @@ namespace RumikApp.Services
 
         public Beverage GetRandomRow(Random random = null)
         {
+            if (!TestConnectionToDatabase())
+                return null;
+
             string oString = "SELECT * FROM " + MainDataTable.ToString() + " ORDER BY RAND() LIMIT 1";
 
             ObservableCollection<Beverage> possibleOneBeverages = getData(oString);
@@ -137,6 +140,9 @@ namespace RumikApp.Services
         public string SaveBevreageToDatabase(Beverage beverage, byte[] img)
         {
             //RumsBaseTEST
+
+            if (!TestConnectionToDatabase())
+                return null;
 
             string result = null;
 
@@ -233,6 +239,9 @@ namespace RumikApp.Services
 
         private ObservableCollection<Beverage> getData(string Query)
         {
+            if (!TestConnectionToDatabase())
+                return null;
+
             if (Query == null || Query == "")
                 return null;
 
