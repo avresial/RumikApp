@@ -23,14 +23,13 @@
             <UserControls:MainControlPanel Visibility="{Binding PanelVisibilityService.MainPanelVisibility}" DataContext="{Binding MainControlPanelViewModel}"/>
             <UserControls:Poll Visibility="{Binding PanelVisibilityService.PollVisibility}" DataContext="{Binding PollViewModel}"/>
 
-            <UserControls:ItemsControlListV2 Visibility="{Binding PanelVisibilityService.DataGridViewModelVisibility}"  DataContext="{Binding DataGridViewModel}" />
-            <UserControls:ItemsControlListV2 Visibility="{Binding PanelVisibilityService.DataGridViewModel2Visibility}"  DataContext="{Binding DataGridViewModel2}" />
+            <UserControls:ItemsControlList Visibility="{Binding PanelVisibilityService.DataGridViewModelVisibility}"  DataContext="{Binding DataGridViewModel}" />
+            <UserControls:ItemsControlList Visibility="{Binding PanelVisibilityService.DataGridViewModel2Visibility}"  DataContext="{Binding DataGridViewModel2}" />
 
         </Grid>
 
 
         <UserControls:InsertDataToDatabaseForm Grid.Row="0" Grid.ColumnSpan="2" Visibility="{Binding PanelVisibilityService.InsertDataToDatabaseFormVisibility}"  DataContext="{Binding InsertDataToDatabaseForm}"/>
-            
-        <!--<UserControls:ItemsControlListV2 Grid.Row="0" Grid.ColumnSpan="2" Visibility="Visible"  DataContext="{Binding ItemsControl}" />-->
+    
     </Grid>
 </Window>

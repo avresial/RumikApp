@@ -187,17 +187,11 @@
     <Compile Include="Services\InformationBusService.cs" />
     <Compile Include="Services\IPanelVisibilityService.cs" />
     <Compile Include="Services\PanelVisibilityService.cs" />
-    <Compile Include="UserControls\DataGrid.xaml.cs">
-      <DependentUpon>DataGrid.xaml</DependentUpon>
-    </Compile>
     <Compile Include="UserControls\InsertDataToDatabaseForm.xaml.cs">
       <DependentUpon>InsertDataToDatabaseForm.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\ItemsControlList.xaml.cs">
       <DependentUpon>ItemsControlList.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UserControls\ItemsControlListV2.xaml.cs">
-      <DependentUpon>ItemsControlListV2.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\MainControlPanel.xaml.cs">
       <DependentUpon>MainControlPanel.xaml</DependentUpon>
@@ -221,19 +215,11 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="UserControls\DataGrid.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="UserControls\InsertDataToDatabaseForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\ItemsControlList.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UserControls\ItemsControlListV2.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
