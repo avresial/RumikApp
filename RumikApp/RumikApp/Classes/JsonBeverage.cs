@@ -146,135 +146,7 @@ namespace RumikApp
                 RaisePropertyChanged(nameof(Color));
             }
         }
-
-        //private Flavour _Vanila = new Flavour("/IMGs/PollIMG/Vanila.png", "Vanila");
-        //public Flavour Vanila
-        //{
-        //    get { return _Vanila; }
-        //    set
-        //    {
-        //        if (_Vanila == value)
-        //            return;
-
-        //        _Vanila = value;
-        //        RaisePropertyChanged(nameof(Vanila));
-        //    }
-        //}
-
-        //private Flavour _Nuts = new Flavour("/IMGs/PollIMG/Nuts.png", "Nuts");
-        //public Flavour Nuts
-        //{
-        //    get { return _Nuts; }
-        //    set
-        //    {
-        //        if (_Nuts == value)
-        //            return;
-
-        //        _Nuts = value;
-        //        RaisePropertyChanged(nameof(Nuts));
-        //    }
-        //}
-
-        //private Flavour _Caramel = new Flavour("/IMGs/PollIMG/Caramel.png", "Caramel");
-        //public Flavour Caramel
-        //{
-        //    get { return _Caramel; }
-        //    set
-        //    {
-        //        if (_Caramel == value)
-        //            return;
-
-        //        _Caramel = value;
-        //        RaisePropertyChanged(nameof(Caramel));
-        //    }
-        //}
-
-        //private Flavour _Smoke = new Flavour("/IMGs/PollIMG/Smoked.png", "Smoke");
-        //public Flavour Smoke
-        //{
-        //    get { return _Smoke; }
-        //    set
-        //    {
-        //        if (_Smoke == value)
-        //            return;
-
-        //        _Smoke = value;
-        //        RaisePropertyChanged(nameof(Smoke));
-        //    }
-        //}
-
-        //private Flavour _Cinnamon = new Flavour("/IMGs/PollIMG/Cinamon.png", "Cinnamon");
-        //public Flavour Cinnamon
-        //{
-        //    get { return _Cinnamon; }
-        //    set
-        //    {
-        //        if (_Cinnamon == value)
-        //            return;
-
-        //        _Cinnamon = value;
-        //        RaisePropertyChanged(nameof(Cinnamon));
-        //    }
-        //}
-
-        //private Flavour _Spirit = new Flavour("/IMGs/PollIMG/Spirit.png", "Spirit");
-        //public Flavour Spirit
-        //{
-        //    get { return _Spirit; }
-        //    set
-        //    {
-        //        if (_Spirit == value)
-        //            return;
-
-        //        _Spirit = value;
-        //        RaisePropertyChanged(nameof(Spirit));
-        //    }
-        //}
-
-        //private Flavour _Fruits = new Flavour("/IMGs/PollIMG/Fruits.png", "Fruits");
-        //public Flavour Fruits
-        //{
-        //    get { return _Fruits; }
-        //    set
-        //    {
-        //        if (_Fruits == value)
-        //            return;
-
-        //        _Fruits = value;
-        //        RaisePropertyChanged(nameof(Fruits));
-        //    }
-        //}
-
-        //private Flavour _Honey = new Flavour("/IMGs/PollIMG/Honey.png", "Honey");
-        //public Flavour Honey
-        //{
-        //    get { return _Honey; }
-        //    set
-        //    {
-        //        if (_Honey == value)
-        //            return;
-
-        //        _Honey = value;
-
-        //        RaisePropertyChanged(nameof(Honey));
-        //    }
-        //}
-
-        //private Flavour _BeAPirate = new Flavour("/IMGs/PollIMG/BeAPirate.png", "Honey");
-        //public Flavour BeAPirate
-        //{
-        //    get { return _BeAPirate; }
-        //    set
-        //    {
-        //        if (_BeAPirate == value)
-        //            return;
-
-        //        _BeAPirate = value;
-
-        //        RaisePropertyChanged(nameof(BeAPirate));
-        //    }
-        //}
-
+          
         private byte[] _TestIcon;
         public byte[] TestIcon
         {
@@ -383,6 +255,35 @@ namespace RumikApp
             newJsonBeverage.BeAPirate = Beverage.BeAPirate;
 
             newJsonBeverage.TestIcon = img;
+
+            return newJsonBeverage;
+        }
+
+        static public JsonBeverage TransFromBeverageToJsonBeverage(Beverage Beverage)
+        {
+            JsonBeverage newJsonBeverage = new JsonBeverage();
+
+            newJsonBeverage.ID = Beverage.ID;
+            newJsonBeverage.Name = Beverage.Name;
+            newJsonBeverage.Capacity = Beverage.Capacity;
+            newJsonBeverage.AlcoholPercentage = Beverage.AlcoholPercentage;
+            newJsonBeverage.Price = Beverage.Price;
+            newJsonBeverage.PricePer100ml = Beverage.PricePer100ml;
+            newJsonBeverage.Grade = Beverage.Grade;
+            newJsonBeverage.GradeWithCoke = Beverage.GradeWithCoke;
+            newJsonBeverage.Color = Beverage.Color;
+
+            newJsonBeverage.Vanila = Beverage.Vanila;
+            newJsonBeverage.Nuts = Beverage.Nuts;
+            newJsonBeverage.Caramel = Beverage.Caramel;
+            newJsonBeverage.Smoke = Beverage.Smoke;
+            newJsonBeverage.Cinnamon = Beverage.Cinnamon;
+            newJsonBeverage.Spirit = Beverage.Spirit;
+            newJsonBeverage.Fruits = Beverage.Fruits;
+            newJsonBeverage.Honey = Beverage.Honey;
+            newJsonBeverage.BeAPirate = Beverage.BeAPirate;
+
+            newJsonBeverage.TestIcon = ImageProcessingService.ConvertBitMapImageToByteArray(Beverage.TestIcon);
 
             return newJsonBeverage;
         }

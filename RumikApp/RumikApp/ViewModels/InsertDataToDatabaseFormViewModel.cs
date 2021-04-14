@@ -1,5 +1,6 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
+using RumikApp.Enums;
 using RumikApp.Services;
 using RumikApp.ViewModel;
 using System;
@@ -16,6 +17,7 @@ namespace RumikApp.ViewModels
 {
     public class InsertDataToDatabaseFormViewModel : ViewModelBase
     {
+        private FileDatabaseConnectionService fileDatabaseConnectionService;
         private IDatabaseConnectionService databaseConnectionService;
 
         private IPanelVisibilityService _PanelVisibilityService;
@@ -123,6 +125,10 @@ namespace RumikApp.ViewModels
                     _SaveToDatabase = new RelayCommand(
                     () =>
                     {
+                        //var lol = ;
+                        if (fileDatabaseConnectionService.TestConnectionToTable(AvailableTables.NotYetApprovedTEST))
+                            Beverage.ID = (int)fileDatabaseConnectionService.GetAllData().Max(x => x.ID) + 1;
+
                         saveToDatabase();
 
                         Beverage = new Beverage();
@@ -187,8 +193,9 @@ namespace RumikApp.ViewModels
 
         private byte[] img;
 
-        public InsertDataToDatabaseFormViewModel(IDatabaseConnectionService databaseConnectionService, IPanelVisibilityService panelVisibilityService)
+        public InsertDataToDatabaseFormViewModel(IDatabaseConnectionService databaseConnectionService, IPanelVisibilityService panelVisibilityService, FileDatabaseConnectionService fileDatabaseConnectionService)
         {
+            this.fileDatabaseConnectionService = fileDatabaseConnectionService;
             PanelVisibilityService = panelVisibilityService;
             this.databaseConnectionService = databaseConnectionService;
 

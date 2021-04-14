@@ -22,11 +22,13 @@
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition Height="100"/>
+            <RowDefinition Height="100"/>
 
         </Grid.RowDefinitions>
         
         <DataGrid Grid.Row="0" ItemsSource="{Binding IInformationBusService.Beverages}" IsReadOnly="True" SelectedItem="{Binding SelectedBeverage}" AutoGenerateColumns = "False" Name = "dataGrid" AlternatingRowBackground = "LightBlue" AlternationCount = "2"  >
             <DataGrid.Columns>
+                <DataGridTextColumn Header = "ID" Binding = "{Binding ID}" />
                 <DataGridTextColumn Header = "Nazwa" Binding = "{Binding Name}" />
                 <DataGridTextColumn Header = "Pojemność [ml]" Binding = "{Binding Capacity}" />
                 <DataGridTextColumn Header = "Alcohol Percentaż" Binding = "{Binding AlcoholPercentage}"/>
@@ -155,7 +157,14 @@
             </Grid>
         </Grid>
 
+        <DockPanel Grid.Row="2" Background="PowderBlue"  >
+            
+            <Button Content="Zapisz" Command="{Binding SaveCurrentBeverage}" DockPanel.Dock="Right" Width="500"/>
+            <Button Content="Wracam" Command="{Binding GoToMainMenu}" DockPanel.Dock="Left" />
+            
+        </DockPanel>
 
-        <Button Grid.Row="2" Content="Wracam" Command="{Binding GoToMainMenu}"/>
+        
+        
     </Grid>
 </UserControl>

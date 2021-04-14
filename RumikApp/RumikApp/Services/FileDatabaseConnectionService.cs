@@ -297,6 +297,39 @@ namespace RumikApp.Services
             return result;
         }
 
+        public string UpdateDatabase(ObservableCollection<Beverage> beverages)
+        {
+            if (!fileService.DirectoryExists(MainDataDirectory))
+                fileService.CreateDirectory(MainDataDirectory);
+
+            if (!fileService.FileExists(FileName))
+                fileService.FileCreate(FileName);
+
+            string result = "Task failed";
+
+
+
+            List<JsonBeverage> jsonBeverage = new List<JsonBeverage>();
+
+            foreach (Beverage beverage in beverages.ToList())
+            {
+                jsonBeverage.Add(JsonBeverage.TransFromBeverageToJsonBeverage(beverage)); 
+            }
+
+         
+
+            string json = JsonConvert.SerializeObject(jsonBeverage);
+
+            using (TextWriter tw = new StreamWriter(FileName))
+            {
+                tw.WriteLine(json);
+                result = "done";
+                tw.Close();
+            };
+
+            return result;
+        }
+
         public bool TestConnectionToDatabase()
         {
             return fileService.DirectoryExists(MainDataDirectory);
