@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight;
+using RumikApp.Classes;
 using RumikApp.Services;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,7 @@ using System.Windows.Media.Imaging;
 
 namespace RumikApp
 {
-    public class JsonBeverage : ViewModelBase
+    public class JsonBeverage : FlavoursSet
     {
         private int _ID;
         public int ID
@@ -146,133 +147,133 @@ namespace RumikApp
             }
         }
 
-        private Flavour _Vanila = new Flavour("/IMGs/PollIMG/Vanila.png", "Vanila");
-        public Flavour Vanila
-        {
-            get { return _Vanila; }
-            set
-            {
-                if (_Vanila == value)
-                    return;
+        //private Flavour _Vanila = new Flavour("/IMGs/PollIMG/Vanila.png", "Vanila");
+        //public Flavour Vanila
+        //{
+        //    get { return _Vanila; }
+        //    set
+        //    {
+        //        if (_Vanila == value)
+        //            return;
 
-                _Vanila = value;
-                RaisePropertyChanged(nameof(Vanila));
-            }
-        }
+        //        _Vanila = value;
+        //        RaisePropertyChanged(nameof(Vanila));
+        //    }
+        //}
 
-        private Flavour _Nuts = new Flavour("/IMGs/PollIMG/Nuts.png", "Nuts");
-        public Flavour Nuts
-        {
-            get { return _Nuts; }
-            set
-            {
-                if (_Nuts == value)
-                    return;
+        //private Flavour _Nuts = new Flavour("/IMGs/PollIMG/Nuts.png", "Nuts");
+        //public Flavour Nuts
+        //{
+        //    get { return _Nuts; }
+        //    set
+        //    {
+        //        if (_Nuts == value)
+        //            return;
 
-                _Nuts = value;
-                RaisePropertyChanged(nameof(Nuts));
-            }
-        }
+        //        _Nuts = value;
+        //        RaisePropertyChanged(nameof(Nuts));
+        //    }
+        //}
 
-        private Flavour _Caramel = new Flavour("/IMGs/PollIMG/Carmel.png", "Caramel");
-        public Flavour Caramel
-        {
-            get { return _Caramel; }
-            set
-            {
-                if (_Caramel == value)
-                    return;
+        //private Flavour _Caramel = new Flavour("/IMGs/PollIMG/Caramel.png", "Caramel");
+        //public Flavour Caramel
+        //{
+        //    get { return _Caramel; }
+        //    set
+        //    {
+        //        if (_Caramel == value)
+        //            return;
 
-                _Caramel = value;
-                RaisePropertyChanged(nameof(Caramel));
-            }
-        }
+        //        _Caramel = value;
+        //        RaisePropertyChanged(nameof(Caramel));
+        //    }
+        //}
 
-        private Flavour _Smoke = new Flavour("/IMGs/PollIMG/Smoked.png", "Smoke");
-        public Flavour Smoke
-        {
-            get { return _Smoke; }
-            set
-            {
-                if (_Smoke == value)
-                    return;
+        //private Flavour _Smoke = new Flavour("/IMGs/PollIMG/Smoked.png", "Smoke");
+        //public Flavour Smoke
+        //{
+        //    get { return _Smoke; }
+        //    set
+        //    {
+        //        if (_Smoke == value)
+        //            return;
 
-                _Smoke = value;
-                RaisePropertyChanged(nameof(Smoke));
-            }
-        }
+        //        _Smoke = value;
+        //        RaisePropertyChanged(nameof(Smoke));
+        //    }
+        //}
 
-        private Flavour _Cinnamon = new Flavour("/IMGs/PollIMG/Cinamon.png", "Cinnamon");
-        public Flavour Cinnamon
-        {
-            get { return _Cinnamon; }
-            set
-            {
-                if (_Cinnamon == value)
-                    return;
+        //private Flavour _Cinnamon = new Flavour("/IMGs/PollIMG/Cinamon.png", "Cinnamon");
+        //public Flavour Cinnamon
+        //{
+        //    get { return _Cinnamon; }
+        //    set
+        //    {
+        //        if (_Cinnamon == value)
+        //            return;
 
-                _Cinnamon = value;
-                RaisePropertyChanged(nameof(Cinnamon));
-            }
-        }
+        //        _Cinnamon = value;
+        //        RaisePropertyChanged(nameof(Cinnamon));
+        //    }
+        //}
 
-        private Flavour _Spirit = new Flavour("/IMGs/PollIMG/Spirit.png", "Spirit");
-        public Flavour Spirit
-        {
-            get { return _Spirit; }
-            set
-            {
-                if (_Spirit == value)
-                    return;
+        //private Flavour _Spirit = new Flavour("/IMGs/PollIMG/Spirit.png", "Spirit");
+        //public Flavour Spirit
+        //{
+        //    get { return _Spirit; }
+        //    set
+        //    {
+        //        if (_Spirit == value)
+        //            return;
 
-                _Spirit = value;
-                RaisePropertyChanged(nameof(Spirit));
-            }
-        }
+        //        _Spirit = value;
+        //        RaisePropertyChanged(nameof(Spirit));
+        //    }
+        //}
 
-        private Flavour _Fruits = new Flavour("/IMGs/PollIMG/Fruits.png", "Fruits");
-        public Flavour Fruits
-        {
-            get { return _Fruits; }
-            set
-            {
-                if (_Fruits == value)
-                    return;
+        //private Flavour _Fruits = new Flavour("/IMGs/PollIMG/Fruits.png", "Fruits");
+        //public Flavour Fruits
+        //{
+        //    get { return _Fruits; }
+        //    set
+        //    {
+        //        if (_Fruits == value)
+        //            return;
 
-                _Fruits = value;
-                RaisePropertyChanged(nameof(Fruits));
-            }
-        }
+        //        _Fruits = value;
+        //        RaisePropertyChanged(nameof(Fruits));
+        //    }
+        //}
 
-        private Flavour _Honey = new Flavour("/IMGs/PollIMG/Honey.png", "Honey");
-        public Flavour Honey
-        {
-            get { return _Honey; }
-            set
-            {
-                if (_Honey == value)
-                    return;
+        //private Flavour _Honey = new Flavour("/IMGs/PollIMG/Honey.png", "Honey");
+        //public Flavour Honey
+        //{
+        //    get { return _Honey; }
+        //    set
+        //    {
+        //        if (_Honey == value)
+        //            return;
 
-                _Honey = value;
+        //        _Honey = value;
 
-                RaisePropertyChanged(nameof(Honey));
-            }
-        }
+        //        RaisePropertyChanged(nameof(Honey));
+        //    }
+        //}
 
-        private Flavour _BeAPirate = new Flavour("/IMGs/PollIMG/BeAPirate.png", "Honey");
-        public Flavour BeAPirate
-        {
-            get { return _BeAPirate; }
-            set
-            {
-                if (_BeAPirate == value)
-                    return;
+        //private Flavour _BeAPirate = new Flavour("/IMGs/PollIMG/BeAPirate.png", "Honey");
+        //public Flavour BeAPirate
+        //{
+        //    get { return _BeAPirate; }
+        //    set
+        //    {
+        //        if (_BeAPirate == value)
+        //            return;
 
-                _BeAPirate = value;
+        //        _BeAPirate = value;
 
-                RaisePropertyChanged(nameof(BeAPirate));
-            }
-        }
+        //        RaisePropertyChanged(nameof(BeAPirate));
+        //    }
+        //}
 
         private byte[] _TestIcon;
         public byte[] TestIcon
@@ -304,21 +305,21 @@ namespace RumikApp
             _Color = rand.Next().ToString();
 
             if (((int)rand.Next(0, 20)) % 2 == 0)
-                _Vanila.IsSet = true;
+                Vanila.IsSet = true;
             if (((int)rand.Next(0, 20)) % 2 == 0)
-                _Nuts.IsSet = true;
+                Nuts.IsSet = true;
             if (((int)rand.Next(0, 20)) % 2 == 0)
-                _Caramel.IsSet = true;
+                Caramel.IsSet = true;
             if (((int)rand.Next(0, 20)) % 2 == 0)
-                _Smoke.IsSet = true;
+                Smoke.IsSet = true;
             if (((int)rand.Next(0, 20)) % 2 == 0)
-                _Cinnamon.IsSet = true;
+                Cinnamon.IsSet = true;
             if (((int)rand.Next(0, 20)) % 2 == 0)
-                _Spirit.IsSet = true;
+                Spirit.IsSet = true;
             if (((int)rand.Next(0, 20)) % 2 == 0)
-                _Fruits.IsSet = true;
+                Fruits.IsSet = true;
             if (((int)rand.Next(0, 20)) % 2 == 0)
-                _BeAPirate.IsSet = true;
+                BeAPirate.IsSet = true;
             if (((int)rand.Next(0, 20)) % 2 == 0)
                 Honey.IsSet = true;
 

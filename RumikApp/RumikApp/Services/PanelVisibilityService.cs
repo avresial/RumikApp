@@ -112,6 +112,26 @@ namespace RumikApp.Services
             }
         }
 
+        private Visibility _EditLocalDataVisibility = Visibility.Collapsed;
+        public Visibility EditLocalDataVisibility
+        {
+            get { return _EditLocalDataVisibility; }
+            set
+            {
+                if (_EditLocalDataVisibility == value)
+                    return;
+
+                if (value == Visibility.Visible)
+                    collapseAllViews();
+
+                _EditLocalDataVisibility = value;
+                RaisePropertyChanged(nameof(EditLocalDataVisibility));
+            }
+        }
+
+
+        
+
         private void collapseAllViews()
         {
             MainPanelVisibility = Visibility.Collapsed;
@@ -120,6 +140,7 @@ namespace RumikApp.Services
             DataGridViewModelVisibility = Visibility.Collapsed;
             DataGridViewModel2Visibility = Visibility.Collapsed;
             ItemsControlVisibility = Visibility.Collapsed;
+            EditLocalDataVisibility = Visibility.Collapsed;
         }
     }
 }

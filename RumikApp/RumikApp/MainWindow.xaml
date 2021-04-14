@@ -28,7 +28,7 @@
 
         </Grid>
 
-
+        <UserControls:EditLocalDataPanel Grid.Row="0" Grid.ColumnSpan="2" Visibility="{Binding PanelVisibilityService.EditLocalDataVisibility}" DataContext="{Binding EditLocalDataViewModel}" />
         <UserControls:InsertDataToDatabaseForm Grid.Row="0" Grid.ColumnSpan="2" Visibility="{Binding PanelVisibilityService.InsertDataToDatabaseFormVisibility}"  DataContext="{Binding InsertDataToDatabaseForm}"/>
     
     </Grid>

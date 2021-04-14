@@ -14,6 +14,7 @@ namespace RumikApp.ViewModels
 {
     public class MainControlPanelViewModel : ViewModelBase
     {
+        private FileDatabaseConnectionService fileDatabaseConnectionService;
 
         private IDatabaseConnectionService databaseConnectionService;
 
@@ -33,14 +34,6 @@ namespace RumikApp.ViewModels
             }
         }
 
-
-        public MainControlPanelViewModel(IDatabaseConnectionService databaseConnectionService, IPanelVisibilityService panelVisibilityService, IInformationBusService informationBusService)
-        {
-            this.informationBusService = informationBusService;
-            this.databaseConnectionService = databaseConnectionService;
-            PanelVisibilityService = panelVisibilityService;
-        }
-
         private Visibility _Visibility = Visibility.Visible;
         public Visibility Visibility
         {
@@ -55,6 +48,17 @@ namespace RumikApp.ViewModels
 
             }
         }
+
+
+        public MainControlPanelViewModel(IDatabaseConnectionService databaseConnectionService, IPanelVisibilityService panelVisibilityService, IInformationBusService informationBusService, FileDatabaseConnectionService fileDatabaseConnectionService)
+        {
+            this.informationBusService = informationBusService;
+            this.databaseConnectionService = databaseConnectionService;
+            this.fileDatabaseConnectionService = fileDatabaseConnectionService;
+            PanelVisibilityService = panelVisibilityService;
+        }
+
+        
 
         private RelayCommand _ImFeelingLucky;
         public RelayCommand ImFeelingLucky
@@ -129,6 +133,30 @@ namespace RumikApp.ViewModels
                 return _GoStraightToDatabase;
             }
         }
+
+        private RelayCommand _EditLocalData;
+        public RelayCommand EditLocalData
+        {
+            get
+            {
+                if (_EditLocalData == null)
+                {
+                    _EditLocalData = new RelayCommand(
+                    () =>
+                    {
+                        informationBusService.Beverages = fileDatabaseConnectionService.GetAllData();
+                        PanelVisibilityService.EditLocalDataVisibility = Visibility.Visible;
+                    },
+                    () =>
+                    {
+                        return true;
+                    });
+                }
+
+                return _EditLocalData;
+            }
+        }
+
 
     }
 }

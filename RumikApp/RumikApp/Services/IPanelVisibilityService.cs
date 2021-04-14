@@ -11,5 +11,6 @@ namespace RumikApp.Services
         Visibility DataGridViewModelVisibility { get; set; }
         Visibility DataGridViewModel2Visibility { get; set; }
         Visibility ItemsControlVisibility { get; set; }
+        Visibility EditLocalDataVisibility { get; set; }
     }
 }

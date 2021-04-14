@@ -101,6 +101,21 @@ namespace RumikApp.ViewModel
             }
         }
 
+        private EditLocalDataViewModel _EditLocalDataViewModel;
+        public EditLocalDataViewModel EditLocalDataViewModel
+        {
+            get { return _EditLocalDataViewModel; }
+            set
+            {
+                if (_EditLocalDataViewModel == value)
+                    return;
+
+                _EditLocalDataViewModel = value;
+                RaisePropertyChanged(nameof(EditLocalDataViewModel));
+            }
+        }
+
+
         private IDatabaseConnectionService _DatabaseConnectionService;
         public IDatabaseConnectionService DatabaseConnectionService
         {
@@ -131,7 +146,8 @@ namespace RumikApp.ViewModel
 
         public MainViewModel(MainControlPanelViewModel mainControlPanelViewModel, PollViewModel pollViewModel,
             DataGridViewModel dataGridViewModel, DataGridViewModel dataGridViewModel2, DataGridViewModel itemsControl,
-            InsertDataToDatabaseFormViewModel insertDataToDatabaseFormViewModel, IDatabaseConnectionService databaseConnectionService, IPanelVisibilityService panelVisibilityService)
+            InsertDataToDatabaseFormViewModel insertDataToDatabaseFormViewModel, EditLocalDataViewModel editLocalDataViewModel, 
+            IDatabaseConnectionService databaseConnectionService, IPanelVisibilityService panelVisibilityService)
         {
             PanelVisibilityService = panelVisibilityService;
 
@@ -140,6 +156,7 @@ namespace RumikApp.ViewModel
             DatabaseConnectionService = databaseConnectionService;
             DataGridViewModel = dataGridViewModel;
             DataGridViewModel2 = dataGridViewModel2;
+            EditLocalDataViewModel = editLocalDataViewModel;
             ItemsControl = itemsControl;
             InsertDataToDatabaseForm = insertDataToDatabaseFormViewModel;
 
