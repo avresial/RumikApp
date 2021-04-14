@@ -30,7 +30,7 @@
                 <RowDefinition Height="1*" />
             </Grid.RowDefinitions>
 
-            <TextBlock Grid.ColumnSpan="2" HorizontalAlignment="Center"  TextWrapping="Wrap" Text="Potrzebuję w celu" VerticalAlignment="Center" FontSize="40" Margin="0,50,0,30" />
+            <TextBlock Grid.ColumnSpan="2" HorizontalAlignment="Center"  TextWrapping="Wrap" Text="Potrzebuję w celu..." VerticalAlignment="Center" FontSize="40" Margin="0,50,0,30" />
 
             <Grid Grid.Row="1" MaxWidth="900" ToolTip="Jeszcze nie aktywne">
                 <Grid.ColumnDefinitions>
@@ -44,28 +44,28 @@
 
                     <StackPanel Orientation="Vertical">
                         <Image Source="/IMGs/PollIMG/ForPartyCheap.png"  />
-                        <TextBlock HorizontalAlignment="Center" TextAlignment="Center">Taniego upojenia się<LineBreak/>tymże trunkiem</TextBlock>
+                        <TextBlock  TextAlignment="Center" TextWrapping="Wrap" Text="...taniego upojenia się tymże trunkiem" />
                     </StackPanel>
                 </ToggleButton>
 
                 <ToggleButton Grid.Column="1" IsChecked="{Binding GoodButCheap}" Margin="15,5,15,5" Width="150" HorizontalAlignment="Center" Background="Transparent" BorderBrush="Transparent">
                     <StackPanel Orientation="Vertical">
                         <Image Source="/IMGs/PollIMG/CheapButSolid.png"  />
-                        <TextBlock HorizontalAlignment="Center" TextAlignment="Center">Zaimponowania Syrence<LineBreak/>wyśmienitym trunkiem, <LineBreak/>ale trochę bida</TextBlock>
+                        <TextBlock  TextAlignment="Center" TextWrapping="Wrap" Text="...zaimponowania Syrence wyśmienitym trunkiem, ale trochę bida"/>
                     </StackPanel>
                 </ToggleButton>
 
                 <ToggleButton Grid.Column="2" IsChecked="{Binding Exclusive}" Margin="15,5,15,5" Width="150" HorizontalAlignment="Center" Background="Transparent" BorderBrush="Transparent">
                     <StackPanel Orientation="Vertical">
                         <Image Source="/IMGs/PollIMG/Exclusive.png"  />
-                        <TextBlock HorizontalAlignment="Center" TextAlignment="Center">Eksluzywnego napitku,<LineBreak/> Milordzie <LineBreak/> bo wypłata przyszła</TextBlock>
+                        <TextBlock  TextAlignment="Center" TextWrapping="Wrap" Text="...eksluzywnego napitku, Milordzie, &#10;bo wypłata przyszła"/>
                     </StackPanel>
                 </ToggleButton>
 
                 <ToggleButton Grid.Column="3" IsChecked="{Binding ForPiratesFromCarabien}" Margin="15,5,15,5" Width="150" HorizontalAlignment="Center" Background="Transparent" BorderBrush="Transparent">
                     <StackPanel Orientation="Vertical">
                         <Image Source="/IMGs/PollIMG/ForPiratesFrocCarabien.png"  />
-                        <TextBlock TextAlignment="Center" TextWrapping="Wrap" Text="Wczucia się w Kałaibski klimat, podczas wieczołu z piłatami"/>
+                        <TextBlock TextAlignment="Center" TextWrapping="Wrap" Text="...wczucia się &#10; w Kałaibski klimat, podczas wieczołu &#10;z piłatami"/>
                     </StackPanel>
                 </ToggleButton>
             </Grid>
