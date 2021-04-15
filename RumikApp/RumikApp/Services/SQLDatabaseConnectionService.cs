@@ -14,7 +14,7 @@ namespace RumikApp.Services
     public class SQLDatabaseConnectionService : ISQLDatabaseConnectionService
     {
 
-        private AvailableTables _MainDataTable = AvailableTables.RumsBase;
+        private AvailableTables _MainDataTable = AvailableTables.RumsBaseTEST;
         public AvailableTables MainDataTable
         {
             get { return _MainDataTable; }
@@ -26,7 +26,7 @@ namespace RumikApp.Services
             }
         }
 
-        private AvailableTables _NotYetApprovedTESTDataTable = AvailableTables.NotYetApproved;
+        private AvailableTables _NotYetApprovedTESTDataTable = AvailableTables.NotYetApprovedTEST;
         public AvailableTables NotYetApprovedTESTDataTable
         {
             get { return _NotYetApprovedTESTDataTable; }
