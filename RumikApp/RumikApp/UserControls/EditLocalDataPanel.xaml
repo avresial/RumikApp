@@ -27,24 +27,27 @@
         </Grid.RowDefinitions>
         
         <DataGrid Grid.Row="0" ItemsSource="{Binding IInformationBusService.Beverages}" IsReadOnly="True" SelectedItem="{Binding SelectedBeverage}" AutoGenerateColumns = "False" Name = "dataGrid" AlternatingRowBackground = "LightBlue" AlternationCount = "2"  >
+            
             <DataGrid.Columns>
-                <DataGridTextColumn Header = "ID" Binding = "{Binding ID}" />
-                <DataGridTextColumn Header = "Nazwa" Binding = "{Binding Name}" />
+                
+                <DataGridTextColumn Header = "ID" Binding       = "{Binding ID}" />
+                <DataGridTextColumn Header = "Nazwa" Binding    = "{Binding Name}" />
                 <DataGridTextColumn Header = "Pojemność [ml]" Binding = "{Binding Capacity}" />
                 <DataGridTextColumn Header = "Alcohol Percentaż" Binding = "{Binding AlcoholPercentage}"/>
-                <DataGridTextColumn Header = "Cena" Binding = "{Binding Price}"/>
+                <DataGridTextColumn Header = "Cena" Binding     = "{Binding Price}"/>
                 <DataGridTextColumn Header = "Ocena smaku" Binding = "{Binding Grade}"/>
                 <DataGridTextColumn Header = "Ocena smaku z colą" Binding = "{Binding GradeWithCoke}"/>
-                <DataGridTextColumn Header = "Kolor" Binding = "{Binding Color}"/>
+                <DataGridTextColumn Header = "Kolor" Binding    = "{Binding Color}"/>
 
-                <DataGridCheckBoxColumn Header = "Vanila?" Binding = "{Binding Vanila.IsSet}"/>
-                <DataGridCheckBoxColumn Header = "Orzeszki?" Binding = "{Binding Nuts.IsSet}"/>
-                <DataGridCheckBoxColumn Header = "Caramel?" Binding = "{Binding Caramel.IsSet}"/>
-                <DataGridCheckBoxColumn Header = "Dymek?" Binding = "{Binding Smoke.IsSet}"/>
-                <DataGridCheckBoxColumn Header = "Cynamon?" Binding = "{Binding Cinnamon.IsSet}"/>
-                <DataGridCheckBoxColumn Header = "Spirit?" Binding = "{Binding Spirit.IsSet}"/>
-                <DataGridCheckBoxColumn Header = "Owocki?" Binding = "{Binding Fruits.IsSet}"/>
-                <DataGridCheckBoxColumn Header = "Miodek?" Binding = "{Binding Honey.IsSet}"/>
+                <DataGridCheckBoxColumn Header = "Vanila?" Binding      = "{Binding Vanila.IsSet}"/>
+                <DataGridCheckBoxColumn Header = "Orzeszki?" Binding    = "{Binding Nuts.IsSet}"/>
+                <DataGridCheckBoxColumn Header = "Caramel?" Binding     = "{Binding Caramel.IsSet}"/>
+                <DataGridCheckBoxColumn Header = "Dymek?" Binding       = "{Binding Smoke.IsSet}"/>
+                <DataGridCheckBoxColumn Header = "Cynamon?" Binding     = "{Binding Cinnamon.IsSet}"/>
+                <DataGridCheckBoxColumn Header = "Spirit?" Binding      = "{Binding Spirit.IsSet}"/>
+                <DataGridCheckBoxColumn Header = "Owocki?" Binding      = "{Binding Fruits.IsSet}"/>
+                <DataGridCheckBoxColumn Header = "Miodek?" Binding      = "{Binding Honey.IsSet}"/>
+            
             </DataGrid.Columns>
 
         </DataGrid>
@@ -158,8 +161,9 @@
         </Grid>
 
         <DockPanel Grid.Row="2" Background="PowderBlue"  >
-            
-            <Button Content="Zapisz" Command="{Binding SaveCurrentBeverage}" DockPanel.Dock="Right" Width="500"/>
+
+            <Button Content="Usuń" Command="{Binding DeleteCurrentBeverage}" DockPanel.Dock="Right" Width="500" Background="LightPink"/>
+            <Button Content="Zapisz" Command="{Binding SaveCurrentBeverage}" DockPanel.Dock="Right" Width="500" Background="LightGreen"/>
             <Button Content="Wracam" Command="{Binding GoToMainMenu}" DockPanel.Dock="Left" />
             
         </DockPanel>

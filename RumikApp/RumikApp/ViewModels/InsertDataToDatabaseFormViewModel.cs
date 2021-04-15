@@ -5,6 +5,7 @@ using RumikApp.Services;
 using RumikApp.ViewModel;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -125,9 +126,12 @@ namespace RumikApp.ViewModels
                     _SaveToDatabase = new RelayCommand(
                     () =>
                     {
-                        //var lol = ;
                         if (fileDatabaseConnectionService.TestConnectionToTable(AvailableTables.NotYetApprovedTEST))
-                            Beverage.ID = (int)fileDatabaseConnectionService.GetAllData().Max(x => x.ID) + 1;
+                        {
+                            ObservableCollection<Beverage> allBeverage = fileDatabaseConnectionService.GetAllData();
+                            if (allBeverage != null && allBeverage.Count > 0)
+                                Beverage.ID = (int)allBeverage.Max(x => x.ID) + 1;
+                        }
 
                         saveToDatabase();
 

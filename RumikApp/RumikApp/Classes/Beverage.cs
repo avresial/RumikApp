@@ -197,5 +197,27 @@ namespace RumikApp
 
             return this;
         }
+
+        public void Update(Beverage newBeverage) 
+        {
+            this.Name = newBeverage.Name;
+            Capacity = newBeverage.Capacity;
+            AlcoholPercentage = newBeverage.AlcoholPercentage;
+            Price = newBeverage.Price;
+            PricePer100ml = newBeverage.PricePer100ml;
+            Grade = newBeverage.Grade;
+            Color = newBeverage.Color;
+            TestIcon = newBeverage.TestIcon;
+
+            Vanila = newBeverage.Vanila;
+            Nuts = newBeverage.Nuts;
+            Caramel = newBeverage.Caramel;
+            Smoke = newBeverage.Smoke;
+            Cinnamon = newBeverage.Cinnamon;
+            Spirit = newBeverage.Spirit;
+            Fruits = newBeverage.Fruits;
+            Honey = newBeverage.Honey;
+            BeAPirate = newBeverage.BeAPirate;
+        }
     }
 }

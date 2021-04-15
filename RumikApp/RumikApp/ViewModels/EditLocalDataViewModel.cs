@@ -73,6 +73,7 @@ namespace RumikApp.ViewModels
             }
         }
 
+
         public EditLocalDataViewModel(IPanelVisibilityService panelVisibilityService, IInformationBusService informationBusService, FileDatabaseConnectionService fileDatabaseConnectionService)
         {
             this.fileDatabaseConnectionService = fileDatabaseConnectionService;
@@ -87,6 +88,7 @@ namespace RumikApp.ViewModels
             ColorsList.Add("Czarny");
 
         }
+
 
         private RelayCommand _GoToMainMenu;
         public RelayCommand GoToMainMenu
@@ -172,16 +174,11 @@ namespace RumikApp.ViewModels
                     _SaveCurrentBeverage = new RelayCommand(
                     () =>
                     {
-
-                        fileDatabaseConnectionService.UpdateDatabase(IInformationBusService.Beverages);
-
+                        fileDatabaseConnectionService.UpdateBeveragesDatabase(IInformationBusService.Beverages);
                     },
                     () =>
                     {
-                        if (SelectedBeverage == null)
-                            return false;
-                        else
-                            return true;
+                        return (SelectedBeverage == null) ? false : true;
                     });
                 }
 
@@ -189,6 +186,28 @@ namespace RumikApp.ViewModels
             }
         }
 
+        private RelayCommand _DeleteCurrentBeverage;
+        public RelayCommand DeleteCurrentBeverage
+        {
+            get
+            {
+                if (_DeleteCurrentBeverage == null)
+                {
+                    _DeleteCurrentBeverage = new RelayCommand(
+                    () =>
+                    {
+                        fileDatabaseConnectionService.DeleteBeverageDatabase(SelectedBeverage);
+                        IInformationBusService.Beverages = fileDatabaseConnectionService.GetAllData();
+                    },
+                    () =>
+                    {
+                        return (SelectedBeverage == null) ? false : true;
+                    });
+                }
+
+                return _DeleteCurrentBeverage;
+            }
+        }
 
         private byte[] loadImage(string imagePath)
         {

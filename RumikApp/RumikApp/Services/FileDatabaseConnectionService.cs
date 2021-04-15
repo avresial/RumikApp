@@ -297,7 +297,36 @@ namespace RumikApp.Services
             return result;
         }
 
-        public string UpdateDatabase(ObservableCollection<Beverage> beverages)
+        public string UpdateBeveragesDatabase(ObservableCollection<Beverage> updatedBeverages)
+        {
+            if (!fileService.DirectoryExists(MainDataDirectory))
+                fileService.CreateDirectory(MainDataDirectory);
+
+            if (!fileService.FileExists(FileName))
+                fileService.FileCreate(FileName);
+            
+            string result = "Task failed";
+
+            ObservableCollection<Beverage> oldBeverages = GetAllData();
+            List<JsonBeverage> jsonBeverage = new List<JsonBeverage>();
+
+            foreach (Beverage updatedBeverage in updatedBeverages) 
+                oldBeverages.Single(x => x.ID == updatedBeverage.ID).Update(updatedBeverage);
+
+            foreach (Beverage oldBeverage in oldBeverages)
+                jsonBeverage.Add(JsonBeverage.TransFromBeverageToJsonBeverage(oldBeverage));
+
+            using (TextWriter tw = new StreamWriter(FileName))
+            {
+                tw.WriteLine(JsonConvert.SerializeObject(jsonBeverage));
+                result = "done";
+                tw.Close();
+            };
+
+            return result;
+        }
+
+        public string DeleteBeverageDatabase(Beverage updatedBeverages)
         {
             if (!fileService.DirectoryExists(MainDataDirectory))
                 fileService.CreateDirectory(MainDataDirectory);
@@ -307,22 +336,14 @@ namespace RumikApp.Services
 
             string result = "Task failed";
 
-
-
+            ObservableCollection<Beverage> oldBeverages = GetAllData();
             List<JsonBeverage> jsonBeverage = new List<JsonBeverage>();
 
-            foreach (Beverage beverage in beverages.ToList())
-            {
-                jsonBeverage.Add(JsonBeverage.TransFromBeverageToJsonBeverage(beverage)); 
-            }
-
-         
-
-            string json = JsonConvert.SerializeObject(jsonBeverage);
+            oldBeverages.Remove(updatedBeverages);
 
             using (TextWriter tw = new StreamWriter(FileName))
             {
-                tw.WriteLine(json);
+                tw.WriteLine(JsonConvert.SerializeObject(jsonBeverage));
                 result = "done";
                 tw.Close();
             };
