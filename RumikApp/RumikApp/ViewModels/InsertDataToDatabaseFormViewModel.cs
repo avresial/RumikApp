@@ -12,6 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Forms;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 namespace RumikApp.ViewModels
@@ -203,9 +204,23 @@ namespace RumikApp.ViewModels
             PanelVisibilityService = panelVisibilityService;
             this.databaseConnectionService = databaseConnectionService;
 
+            ColorsList.Add("Złoty");
+            ColorsList.Add("Miedziany");
+            ColorsList.Add("Biały");
+            ColorsList.Add("Bursztynowy");
+            ColorsList.Add("Czarny");
+
+            Beverage.Color = ColorsList[0];
+
+
             byte[] TMPArray = loadImage(null);
             if (TMPArray == null)
+            {
+                BitmapImage imageSource = new BitmapImage(new Uri(@"/IMGs/Bottles/UnknownBottleCopy.png", UriKind.Relative)); // does not work for some reason :c
+
+                Beverage.TestIcon = imageSource;
                 return;
+            }
 
             BitmapImage CheckSize = ImageProcessingService.ConvertToBitMapImage(TMPArray);
 
@@ -214,14 +229,6 @@ namespace RumikApp.ViewModels
                 img = TMPArray;
                 Beverage.TestIcon = CheckSize;
             }
-
-            ColorsList.Add("Złoty");
-            ColorsList.Add("Miedziany");
-            ColorsList.Add("Biały");
-            ColorsList.Add("Bursztynowy");
-            ColorsList.Add("Czarny");
-
-            Beverage.Color = ColorsList[0];
         }
 
         void saveToDatabase()
@@ -234,7 +241,7 @@ namespace RumikApp.ViewModels
         byte[] loadImage(string imagePath)
         {
             if (imagePath == null || imagePath == "")
-                imagePath = "IMGs/Bottles/UnknownBottleCopy.png";
+                imagePath = "/IMGs/Bottles/UnknownBottleCopy.png";
 
             return ImageProcessingService.FileToByteArray(imagePath);
 

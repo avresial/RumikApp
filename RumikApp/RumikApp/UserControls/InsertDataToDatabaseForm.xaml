@@ -40,7 +40,9 @@
 
             </Grid.ColumnDefinitions>
 
-            <Button Grid.Column="0" Command="{Binding LoadNewImage}" Background="Transparent" BorderBrush="Transparent" VerticalAlignment="Top" ToolTip="Przyjmujemy zdjęcia do 30 kB">
+            <Button MinHeight="400" MinWidth="400" Grid.Column="0" Command="{Binding LoadNewImage}" HorizontalAlignment="Center" 
+                    Background="LightGray" BorderBrush="Transparent" 
+                    VerticalAlignment="Center" ToolTip="Przyjmujemy zdjęcia do 30 kB">
                 <Image Source="{Binding Beverage.TestIcon}" HorizontalAlignment="Center"/>
             </Button>
 
