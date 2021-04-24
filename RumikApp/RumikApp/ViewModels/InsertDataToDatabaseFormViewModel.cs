@@ -204,6 +204,8 @@ namespace RumikApp.ViewModels
             this.databaseConnectionService = databaseConnectionService;
 
             byte[] TMPArray = loadImage(null);
+            if (TMPArray == null)
+                return;
 
             BitmapImage CheckSize = ImageProcessingService.ConvertToBitMapImage(TMPArray);
 
@@ -232,7 +234,7 @@ namespace RumikApp.ViewModels
         byte[] loadImage(string imagePath)
         {
             if (imagePath == null || imagePath == "")
-                imagePath = "../../IMGs/Bottles/UnknownBottle.png";
+                imagePath = "IMGs/Bottles/UnknownBottleCopy.png";
 
             return ImageProcessingService.FileToByteArray(imagePath);
 
