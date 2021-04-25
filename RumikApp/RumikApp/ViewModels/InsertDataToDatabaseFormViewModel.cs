@@ -218,16 +218,8 @@ namespace RumikApp.ViewModels
 
             Beverage.Color = ColorsList[0];
 
-
             byte[] TMPArray = loadImage(null);
-            if (TMPArray == null)
-            {
-                BitmapImage imageSource = new BitmapImage(new Uri(@"/IMGs/Bottles/UnknownBottleCopy.png", UriKind.Relative)); // does not work for some reason :c
-
-                Beverage.TestIcon = imageSource;
-                return;
-            }
-
+       
             BitmapImage CheckSize = ImageProcessingService.ConvertToBitMapImage(TMPArray);
 
             if (CheckSize.PixelWidth <= 500 && CheckSize.PixelHeight <= 500)
@@ -247,8 +239,8 @@ namespace RumikApp.ViewModels
         byte[] loadImage(string imagePath)
         {
             if (imagePath == null || imagePath == "")
-                imagePath = "/IMGs/Bottles/UnknownBottleCopy.png";
-
+                imagePath = "IMGs/Bottles/UnknownBottleCopy.png";
+       
             return ImageProcessingService.FileToByteArray(imagePath);
 
         }
@@ -256,7 +248,7 @@ namespace RumikApp.ViewModels
         {
             bool formContainsNewData = false;
             int controlSum = 0;
-
+                     
             if (Beverage.Name != null)
                 if (Beverage.Name.Length > 1)
                     controlSum++;
