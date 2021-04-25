@@ -136,17 +136,23 @@ namespace RumikApp.ViewModels
 
                         saveToDatabase();
 
-                        Beverage = new Beverage();
-                        byte[] TMPArray = loadImage(null);
-
-                        BitmapImage CheckSize = ImageProcessingService.ConvertToBitMapImage(TMPArray);
-
-                        if (CheckSize.PixelWidth <= 500 && CheckSize.PixelHeight <= 500)
-                        {
-                            img = TMPArray;
-                            Beverage.TestIcon = CheckSize;
-                        }
                         Beverage.Color = ColorsList[0];
+
+                        Beverage = new Beverage();
+
+                        byte[] TMPArray = loadImage(null);
+                        if (TMPArray != null)
+                        {
+                            BitmapImage CheckSize = ImageProcessingService.ConvertToBitMapImage(TMPArray);
+
+                            if (CheckSize.PixelWidth <= 500 && CheckSize.PixelHeight <= 500)
+                            {
+                                img = TMPArray;
+                                Beverage.TestIcon = CheckSize;
+                            }
+                        }
+                       
+                        
                     },
                     () =>
                     {

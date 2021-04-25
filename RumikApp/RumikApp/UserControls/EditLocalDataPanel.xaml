@@ -14,8 +14,8 @@
         <Converters:StringToFloatWithValidation  x:Key="StringToFloatWithValidation"/>
 
     </UserControl.Resources>
-
-    <Grid>
+    <ScrollViewer HorizontalScrollBarVisibility="Visible">
+        <Grid>
 
         <Grid.RowDefinitions>
 
@@ -58,20 +58,20 @@
             <Grid.ColumnDefinitions>
 
                 <ColumnDefinition />
-                <ColumnDefinition />
+                    <ColumnDefinition MinWidth="450" />
                 <ColumnDefinition  />
 
             </Grid.ColumnDefinitions>
 
-            <Button Grid.Column="0" Command="{Binding LoadNewImage}" Background="Transparent" BorderBrush="Transparent" VerticalAlignment="Top" ToolTip="Przyjmujemy zdjęcia do 30 kB">
+            <Button MinHeight="400" MinWidth="400" Grid.Column="0" Command="{Binding LoadNewImage}" Background="Transparent" BorderBrush="Transparent" VerticalAlignment="Top" ToolTip="Przyjmujemy zdjęcia do 30 kB">
                 <Image Source="{Binding SelectedBeverage.TestIcon}" HorizontalAlignment="Center"/>
             </Button>
 
             <Grid Grid.Column="1" VerticalAlignment="Center" >
 
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="1*"/>
-                    <ColumnDefinition Width="0.5*"/>
+                    <ColumnDefinition  Width="1*"/>
+                    <ColumnDefinition  Width="0.5*"/>
                 </Grid.ColumnDefinitions>
 
                 <Grid.RowDefinitions>
@@ -167,8 +167,6 @@
             <Button Content="Wracam" Command="{Binding GoToMainMenu}" DockPanel.Dock="Left" />
             
         </DockPanel>
-
-        
-        
-    </Grid>
+        </Grid>
+    </ScrollViewer>
 </UserControl>
