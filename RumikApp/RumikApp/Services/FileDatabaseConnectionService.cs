@@ -339,7 +339,9 @@ namespace RumikApp.Services
             ObservableCollection<Beverage> oldBeverages = GetAllData();
             List<JsonBeverage> jsonBeverage = new List<JsonBeverage>();
 
-            oldBeverages.Remove(updatedBeverages);
+            oldBeverages.Remove(oldBeverages.Where(x => x.ID == updatedBeverages.ID).FirstOrDefault());
+            foreach (Beverage beverage in oldBeverages)
+                jsonBeverage.Add(JsonBeverage.TransFromBeverageToJsonBeverage(beverage));
 
             using (TextWriter tw = new StreamWriter(FileName))
             {
