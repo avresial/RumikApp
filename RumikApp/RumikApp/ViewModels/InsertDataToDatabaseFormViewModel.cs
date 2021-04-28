@@ -19,7 +19,7 @@ namespace RumikApp.ViewModels
 {
     public class InsertDataToDatabaseFormViewModel : ViewModelBase
     {
-        private FileDatabaseConnectionService fileDatabaseConnectionService;
+        private IFileDatabaseConnectionService fileDatabaseConnectionService;
         private IDatabaseConnectionService databaseConnectionService;
 
         private IPanelVisibilityService _PanelVisibilityService;
@@ -204,7 +204,7 @@ namespace RumikApp.ViewModels
 
         private byte[] img;
 
-        public InsertDataToDatabaseFormViewModel(IDatabaseConnectionService databaseConnectionService, IPanelVisibilityService panelVisibilityService, FileDatabaseConnectionService fileDatabaseConnectionService)
+        public InsertDataToDatabaseFormViewModel(IDatabaseConnectionService databaseConnectionService, IPanelVisibilityService panelVisibilityService, IFileDatabaseConnectionService fileDatabaseConnectionService)
         {
             this.fileDatabaseConnectionService = fileDatabaseConnectionService;
             PanelVisibilityService = panelVisibilityService;
