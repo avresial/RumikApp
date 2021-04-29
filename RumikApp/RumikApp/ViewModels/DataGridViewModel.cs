@@ -1,8 +1,8 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using RumikApp.Services;
+using System.Linq;
 using RumikApp.ViewModel;
-using System.Collections.ObjectModel;
 using System.Windows;
 
 namespace RumikApp.ViewModels
@@ -63,6 +63,236 @@ namespace RumikApp.ViewModels
                 _UnknownGuyVisibility = value;
                 RaisePropertyChanged(nameof(UnknownGuyVisibility));
             }
+        }
+
+        private string _SortByNameSource = "/IMGs/Icons/None.png";
+        public string SortByNameSource
+        {
+            get { return _SortByNameSource; }
+            set
+            {
+                if (_SortByNameSource == value)
+                    return;
+
+                _SortByNameSource = value;
+                RaisePropertyChanged(nameof(SortByNameSource));
+            }
+        }
+
+        private string _SortByPriceSource = "/IMGs/Icons/None.png";
+        public string SortByPriceSource
+        {
+            get { return _SortByPriceSource; }
+            set
+            {
+                if (_SortByPriceSource == value)
+                    return;
+
+                _SortByPriceSource = value;
+                RaisePropertyChanged(nameof(SortByPriceSource));
+            }
+        }
+
+        private string _SortByGradeSource = "/IMGs/Icons/None.png";
+        public string SortByGradeSource
+        {
+            get { return _SortByGradeSource; }
+            set
+            {
+                if (_SortByGradeSource == value)
+                    return;
+
+                _SortByGradeSource = value;
+                RaisePropertyChanged(nameof(SortByGradeSource));
+            }
+        }
+
+        private string _SortByGradeWithCokeSource = "/IMGs/Icons/None.png";
+        public string SortByGradeWithCokeSource
+        {
+            get { return _SortByGradeWithCokeSource; }
+            set
+            {
+                if (_SortByGradeWithCokeSource == value)
+                    return;
+
+                _SortByGradeWithCokeSource = value;
+                RaisePropertyChanged(nameof(SortByGradeWithCokeSource));
+            }
+        }
+
+        private RelayCommand _SortByName;
+        public RelayCommand SortByName
+        {
+            get
+            {
+                if (_SortByName == null)
+                {
+                    _SortByName = new RelayCommand(
+                    () =>
+                    {
+
+                        SortByNameSource = SwitchArrow(SortByNameSource);
+                        switch (SortByNameSource)
+                        {
+                            case "/IMGs/Icons/None.png":
+                                
+                                break;
+                            case "/IMGs/Icons/ArrowDown.png":
+                                informationBusService.Beverages = new System.Collections.ObjectModel.ObservableCollection<Beverage>(informationBusService.Beverages.OrderBy(x => x.Name));
+
+                                break;
+                            case "/IMGs/Icons/ArrowUp.png":
+                                informationBusService.Beverages = new System.Collections.ObjectModel.ObservableCollection<Beverage>(informationBusService.Beverages.OrderByDescending(x => x.Name));
+                                
+                                break;
+                        }
+
+
+                    },
+                    () =>
+                    {
+                        return true;
+                    });
+                }
+
+                return _SortByName;
+            }
+        }
+
+        private RelayCommand _SortByPrice;
+        public RelayCommand SortByPrice
+        {
+            get
+            {
+                if (_SortByPrice == null)
+                {
+                    _SortByPrice = new RelayCommand(
+                    () =>
+                    {
+                        SortByPriceSource = SwitchArrow(SortByPriceSource);
+                        switch (SortByPriceSource)
+                        {
+                            case "/IMGs/Icons/None.png":
+
+                                break;
+                            case "/IMGs/Icons/ArrowDown.png":
+                                informationBusService.Beverages = new System.Collections.ObjectModel.ObservableCollection<Beverage>(informationBusService.Beverages.OrderByDescending(x => x.Price));
+
+                                break;
+                            case "/IMGs/Icons/ArrowUp.png":
+                                informationBusService.Beverages = new System.Collections.ObjectModel.ObservableCollection<Beverage>(informationBusService.Beverages.OrderBy(x => x.Price));
+
+                                break;
+                        }
+                    },
+                    () =>
+                    {
+                        return true;
+                    });
+                }
+
+                return _SortByPrice;
+            }
+        }
+
+        private RelayCommand _SortByGrade;
+        public RelayCommand SortByGrade
+        {
+            get
+            {
+                if (_SortByGrade == null)
+                {
+                    _SortByGrade = new RelayCommand(
+                    () =>
+                    {
+                        SortByGradeSource = SwitchArrow(SortByGradeSource);
+                        switch (SortByGradeSource)
+                        {
+                            case "/IMGs/Icons/None.png":
+
+                                break;
+                            case "/IMGs/Icons/ArrowDown.png":
+                                informationBusService.Beverages = new System.Collections.ObjectModel.ObservableCollection<Beverage>(informationBusService.Beverages.OrderByDescending(x => x.Grade));
+
+                                break;
+                            case "/IMGs/Icons/ArrowUp.png":
+                                informationBusService.Beverages = new System.Collections.ObjectModel.ObservableCollection<Beverage>(informationBusService.Beverages.OrderBy(x => x.Grade));
+
+                                break;
+                        }
+                    },
+                    () =>
+                    {
+                        return true;
+                    });
+                }
+
+                return _SortByGrade;
+            }
+        }
+
+        private RelayCommand _SortByGradeWithCoke;
+        public RelayCommand SortByGradeWithCoke
+        {
+            get
+            {
+                if (_SortByGradeWithCoke == null)
+                {
+                    _SortByGradeWithCoke = new RelayCommand(
+                    () =>
+                    {
+                        SortByGradeWithCokeSource = SwitchArrow(SortByGradeWithCokeSource);
+                        switch (SortByGradeWithCokeSource)
+                        {
+                            case "/IMGs/Icons/None.png":
+
+                                break;
+                            case "/IMGs/Icons/ArrowDown.png":
+                                informationBusService.Beverages = new System.Collections.ObjectModel.ObservableCollection<Beverage>(informationBusService.Beverages.OrderByDescending(x => x.GradeWithCoke));
+
+                                break;
+                            case "/IMGs/Icons/ArrowUp.png":
+                                informationBusService.Beverages = new System.Collections.ObjectModel.ObservableCollection<Beverage>(informationBusService.Beverages.OrderBy(x => x.GradeWithCoke));
+
+                                break;
+                        }
+                    },
+                    () =>
+                    {
+                        return true;
+                    });
+                }
+
+                return _SortByGradeWithCoke;
+            }
+        }
+
+        void ClearAllSortingIcons()
+        {
+            SortByNameSource = "/IMGs/Icons/None.png";
+            SortByPriceSource = "/IMGs/Icons/None.png";
+            SortByGradeSource = "/IMGs/Icons/None.png";
+            SortByGradeWithCokeSource = "/IMGs/Icons/None.png";
+        }
+        string SwitchArrow(string sortingName)
+        {
+            switch (sortingName)
+            {
+                case "/IMGs/Icons/None.png":
+                    ClearAllSortingIcons();
+                    return "/IMGs/Icons/ArrowDown.png";
+                    break;
+                case "/IMGs/Icons/ArrowDown.png":
+                    ClearAllSortingIcons();
+                    return "/IMGs/Icons/ArrowUp.png";
+                    break;
+                case "/IMGs/Icons/ArrowUp.png":
+                    ClearAllSortingIcons();
+                    return "/IMGs/Icons/None.png";
+                    break;
+            }
+            return "";
         }
 
         private RelayCommand _GoToMainMenu;

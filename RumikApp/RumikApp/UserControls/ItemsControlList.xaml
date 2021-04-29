@@ -14,51 +14,69 @@
         <Converters:ValuePriceToStringConverter x:Key="ValuePriceToStringConverter"/>
         <Converters:ValueGradeToStringConverter x:Key="ValueGradeToStringConverter"/>
         <Converters:ValuePricePer100mlToStringConverter x:Key="ValuePricePer100mlToStringConverter"/>
-        
+
     </UserControl.Resources>
 
     <!--<ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">-->
-        <Grid>
+    <Grid>
 
+        <Grid.ColumnDefinitions>
+
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="auto"/>
+
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="60"/>
+        </Grid.RowDefinitions>
+
+        <!--<Grid Margin="0,0,0,5" MaxWidth="1200" Visibility="{Binding ScrollViewerVisibility}">-->
+        <Grid Margin="0,0,0,5" MaxWidth="1200" Visibility="Visible">
             <Grid.ColumnDefinitions>
-
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="auto"/>
-                
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
             </Grid.ColumnDefinitions>
-            
-            <Grid.RowDefinitions>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="60"/>
-            </Grid.RowDefinitions>
 
-            <!--<Grid Margin="0,0,0,5" MaxWidth="1200" Visibility="{Binding ScrollViewerVisibility}">-->
-            <Grid Margin="0,0,0,5" MaxWidth="1200" Visibility="Collapsed">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition MinWidth="200"    Width="1*" />                    <!--Obraz-->
-                    <ColumnDefinition MinWidth="140"    Width="2*" />                    <!--Name-->
-                    <ColumnDefinition MinWidth="50"     Width="0.2*" />                    <!--Capacity-->
-                    <ColumnDefinition MinWidth="70"     Width="0.2*" />                    <!--AlcoholPercentage-->
-                    <ColumnDefinition                   Width="0.3*" />                    <!--Grade-->
-                    <ColumnDefinition                   Width="0.3*" />                    <!--GradeWithCoke-->
-                    <ColumnDefinition                   Width="0.7*" />                    <!--Color-->
-                    <ColumnDefinition MinWidth="40"     Width="0.3*" />                    <!--Price-->
-                    <ColumnDefinition MinWidth="350"    Width="3*" />                    <!--Flavours-->
-                </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Text="Sortowanie:" VerticalAlignment="Center" HorizontalAlignment="Right" FontSize="20" />
 
-                <TextBlock Grid.Column="0" Text="Obrazek"               Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                <TextBlock Grid.Column="1" Text="Nazwa"                  Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                <TextBlock Grid.Column="2" Text="Pojemność"              Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                <TextBlock Grid.Column="3" Text="%"                     Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" TextWrapping="Wrap" />
-                <TextBlock Grid.Column="4" Text="Ocena"                 Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" />
-                <TextBlock Grid.Column="5" Text="Ocena z kolką"         Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" TextWrapping="Wrap"/>
-                <TextBlock Grid.Column="6" Text="Kolor"                 Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" />
-                <TextBlock Grid.Column="7" Text="Cena"                  Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" />
-                <TextBlock Grid.Column="8" Text="Smaczek"              Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" />
-            </Grid>
-            
-            <ScrollViewer Grid.Row="1" Grid.ColumnSpan="2" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" >
+            <Button Grid.Column="1" Width="150" Command="{Binding SortByName}" Background="Transparent" BorderThickness="0" Margin="10"  >
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Nazwa" HorizontalAlignment="Left" FontSize="20"/>
+                    <Image Source="{Binding SortByNameSource}" Height="20" Margin="10,0,0,0"/>
+                </StackPanel>
+            </Button>
+
+            <Button Grid.Column="2" Width="150" Command="{Binding SortByPrice}" Background="Transparent" BorderThickness="0" Margin="10"  >
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Cena" HorizontalAlignment="Left" FontSize="20"/>
+                    <Image Source="{Binding SortByPriceSource}" Height="20" Margin="10,0,0,0"/>
+                </StackPanel>
+            </Button>
+
+            <Button Grid.Column="3" Width="150" Command="{Binding SortByGrade}" Background="Transparent" BorderThickness="0" Margin="10"  >
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Ocena" HorizontalAlignment="Left" FontSize="20"/>
+                    <Image Source="{Binding SortByGradeSource}" Height="20" Margin="10,0,0,0"/>
+                </StackPanel>
+            </Button>
+
+            <Button Grid.Column="4" Width="150" Command="{Binding SortByGradeWithCoke}" Background="Transparent" BorderThickness="0" Margin="10"  >
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Ocena z colo" HorizontalAlignment="Left" FontSize="20"/>
+                    <Image Source="{Binding SortByGradeWithCokeSource}" Height="20" Margin="10,0,0,0"/>
+                </StackPanel>
+            </Button>
+
+
+        </Grid>
+
+        <ScrollViewer Grid.Row="1" Grid.ColumnSpan="2" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" >
             <ItemsControl   ItemsSource="{Binding informationBusService.Beverages}" Visibility="{Binding informationBusService.IsBeverageNotEmpty}" MaxWidth="1300" HorizontalAlignment="Center">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
@@ -66,18 +84,18 @@
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition MinWidth="350"    Width="auto" />
                                 <ColumnDefinition MinWidth="350"    Width="auto" />
-                                <ColumnDefinition MinWidth="350"    Width="auto" /> 
+                                <ColumnDefinition MinWidth="350"    Width="auto" />
                             </Grid.ColumnDefinitions>
-                          
+
                             <!--<Image Grid.Column="0" Source="/IMGs/Bottles/Jogaila.png" ToolTip="Tu też kiedyś każde zdjęcie innym będzie :)" />-->
                             <Image Grid.Column="0" Grid.RowSpan="3" Source="{Binding TestIcon}" HorizontalAlignment="Right" />
-                            
+
                             <Grid Grid.Column="1">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition  Width="auto" />         
                                     <ColumnDefinition  Width="auto" />
-                                    <ColumnDefinition  Width="auto" />      
-                                    
+                                    <ColumnDefinition  Width="auto" />
+                                    <ColumnDefinition  Width="auto" />
+
                                 </Grid.ColumnDefinitions>
 
                                 <Grid.RowDefinitions>
@@ -85,9 +103,9 @@
                                     <RowDefinition Height="1*"/>
                                     <RowDefinition Height="1*"/>
                                 </Grid.RowDefinitions>
-                                
+
                                 <TextBlock Grid.Column="0" Grid.ColumnSpan="4"  FontFamily="Bookman Old Style" FontWeight="Bold" FontSize="25" TextWrapping="Wrap" Text="{Binding Name}" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Left" TextAlignment="Center" />
-                                
+
                                 <TextBlock Grid.Column="0" Grid.Row="1" FontFamily="Bookman Old Style" FontSize="20" Text="{Binding Capacity, Converter={StaticResource ValueCapacityToString}}"          Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" />
                                 <TextBlock Grid.Column="1" Grid.Row="1" FontFamily="Bookman Old Style" FontSize="20" Text="{Binding AlcoholPercentage, Converter={StaticResource ValuePrecentageToStringConverter}}" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" />
                                 <TextBlock Grid.Column="2" Grid.Row="1" FontFamily="Bookman Old Style" FontSize="20" Text="{Binding Color}"             Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" />
@@ -97,17 +115,17 @@
                                 <TextBlock Grid.Column="2" Grid.Row="2" FontFamily="Bookman Old Style" FontSize="20" Text="{Binding Price, Converter={StaticResource ValuePriceToStringConverter}}"             Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" ToolTip="{Binding PricePer100ml, Converter={StaticResource ValuePricePer100mlToStringConverter}}"/>
 
                             </Grid>
-                                                       
+
                             <WrapPanel Grid.Column="2" Orientation="Vertical">
-                             
+
                                 <Image Width="100" Source="{Binding Vanila, Converter={StaticResource FlavourToIMGSrcConverter}}" ToolTip="Wanila"/>
                                 <Image Width="100" Source="{Binding Nuts, Converter={StaticResource FlavourToIMGSrcConverter}}" ToolTip="Orzeszki"/>
                                 <Image Width="100" Source="{Binding Caramel, Converter={StaticResource FlavourToIMGSrcConverter}}" ToolTip="Karmel"/>
-                                              
+
                                 <Image Width="100" Source="{Binding Smoke, Converter={StaticResource FlavourToIMGSrcConverter}}" ToolTip="Dymione"/>
                                 <Image Width="100" Source="{Binding Cinnamon, Converter={StaticResource FlavourToIMGSrcConverter}}" ToolTip="Cynamonik"/>
                                 <Image Width="100" Source="{Binding Spirit, Converter={StaticResource FlavourToIMGSrcConverter}}" ToolTip="Smak spirytusu"/>
-                                              
+
                                 <Image Width="100" Source="{Binding Fruits, Converter={StaticResource FlavourToIMGSrcConverter}}" ToolTip="Owocki"/>
                                 <Image Width="100" Source="{Binding Honey, Converter={StaticResource FlavourToIMGSrcConverter}}" ToolTip="Miodzik" />
                             </WrapPanel>
@@ -117,24 +135,26 @@
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
-            </ScrollViewer>
-        <Grid  Visibility="{Binding informationBusService.IsBeverageEmpty}" Grid.Row="1">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="6*"/>
-                    <RowDefinition Height="*"/>
-
-                </Grid.RowDefinitions>
-                <Image Source="/IMGs/Other/Unknown.png" RenderTransformOrigin="0.5,0.5" Grid.Row="0"/>
-                <TextBlock Text="Najwyraźniej takiego rumu nie ma w naszej bazie." Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="24" FontStyle="Italic" FontWeight="Bold" FontFamily="Bookman Old Style"/>
-            </Grid>
-           
-            <Button Grid.Row="2" Grid.Column="0" Content="Wróć do początku :)" Command="{Binding GoToMainMenu}" BorderBrush="Transparent" Background="LightGray" FontSize="24" FontStyle="Italic" FontWeight="Bold" FontFamily="Bookman Old Style"/>
-
-            <Button Grid.Row="2" Grid.Column="1" Content="Dodaj nowe do bazy" Command="{Binding AddNewToDatabase}" BorderBrush="Transparent" Background="WhiteSmoke" FontSize="24" FontStyle="Italic" FontWeight="Bold" FontFamily="Bookman Old Style" Padding="5"/>
-
-        </Grid>
+        </ScrollViewer>
         
-      
+        <Grid  Visibility="{Binding informationBusService.IsBeverageEmpty}" Grid.Row="1">
+            <Grid.RowDefinitions>
+
+                <RowDefinition Height="6*"/>
+                <RowDefinition Height="*"/>
+
+            </Grid.RowDefinitions>
+            <Image Source="/IMGs/Other/Unknown.png" RenderTransformOrigin="0.5,0.5" Grid.Row="0"/>
+            <TextBlock Text="Najwyraźniej takiego rumu nie ma w naszej bazie." Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="24" FontStyle="Italic" FontWeight="Bold" FontFamily="Bookman Old Style"/>
+        </Grid>
+
+        <Button Grid.Row="2" Grid.Column="0" Content="Wróć do początku :)" Command="{Binding GoToMainMenu}" BorderBrush="Transparent" Background="LightGray" FontSize="24" FontStyle="Italic" FontWeight="Bold" FontFamily="Bookman Old Style"/>
+
+        <Button Grid.Row="2" Grid.Column="1" Content="Dodaj nowe do bazy" Command="{Binding AddNewToDatabase}" BorderBrush="Transparent" Background="WhiteSmoke" FontSize="24" FontStyle="Italic" FontWeight="Bold" FontFamily="Bookman Old Style" Padding="5"/>
+
+    </Grid>
+
+
     <!--</ScrollViewer>-->
 </UserControl>
 

@@ -369,6 +369,9 @@
     <Content Include="IMGs\Bottles\UnknownBottleCopy.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Resource Include="IMGs\Icons\None.png" />
+    <Resource Include="IMGs\Icons\ArrowDown.png" />
+    <Resource Include="IMGs\Icons\ArrowUp.png" />
     <Resource Include="IMGs\PollIMG\BeAPirate.png" />
   </ItemGroup>
   <ItemGroup>
