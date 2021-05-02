@@ -66,5 +66,19 @@ namespace RumikApp.Services
                 RaisePropertyChanged(nameof(Beverages));
             }
         }
+
+        private ISortingService _SortableBeverages;
+        public ISortingService SortableBeverages
+        {
+            get { return _SortableBeverages; }
+            set
+            {
+                if (_SortableBeverages == value)
+                    return;
+
+                _SortableBeverages = value;
+                RaisePropertyChanged(nameof(SortableBeverages));
+            }
+        }
     }
 }

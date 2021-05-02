@@ -192,8 +192,10 @@
     <Compile Include="Services\IFileDatabaseConnectionService.cs" />
     <Compile Include="Services\IFileService.cs" />
     <Compile Include="Services\IGenerallDatabaseService.cs" />
+    <Compile Include="Services\ISortingService.cs" />
     <Compile Include="Services\ISQLDatabaseConnectionService.cs" />
     <Compile Include="Services\IStreamReaderService.cs" />
+    <Compile Include="Services\SortingService.cs" />
     <Compile Include="Services\StreamReaderService.cs" />
     <Compile Include="Views\EditLocalDataPanel.xaml.cs">
       <DependentUpon>EditLocalDataPanel.xaml</DependentUpon>
