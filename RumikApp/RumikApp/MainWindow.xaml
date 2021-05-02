@@ -3,8 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:RumikApp"
-        xmlns:UserControls="clr-namespace:RumikApp.UserControls"
+        xmlns:local="clr-namespace:RumikApp"  
+        xmlns:Views="clr-namespace:RumikApp.Views"
         WindowState="Maximized" WindowStartupLocation="CenterScreen"
         Icon="/IMGs/Milordzie2.png"
         mc:Ignorable="d"
@@ -20,16 +20,16 @@
 
         </Grid.RowDefinitions>
         <Grid Grid.Row="0" Grid.ColumnSpan="2">
-            <UserControls:MainControlPanel Visibility="{Binding PanelVisibilityService.MainPanelVisibility}" DataContext="{Binding MainControlPanelViewModel}"/>
-            <UserControls:Poll Visibility="{Binding PanelVisibilityService.PollVisibility}" DataContext="{Binding PollViewModel}"/>
+            <Views:MainControlPanel Visibility="{Binding PanelVisibilityService.MainPanelVisibility}" DataContext="{Binding MainControlPanelViewModel}"/>
+            <Views:Poll Visibility="{Binding PanelVisibilityService.PollVisibility}" DataContext="{Binding PollViewModel}"/>
 
-            <UserControls:ItemsControlList Visibility="{Binding PanelVisibilityService.DataGridViewModelVisibility}"  DataContext="{Binding DataGridViewModel}" />
-            <UserControls:ItemsControlList Visibility="{Binding PanelVisibilityService.DataGridViewModel2Visibility}"  DataContext="{Binding DataGridViewModel2}" />
+            <Views:ItemsControlList Visibility="{Binding PanelVisibilityService.DataGridViewModelVisibility}"  DataContext="{Binding DataGridViewModel}" />
+            <Views:ItemsControlList Visibility="{Binding PanelVisibilityService.DataGridViewModel2Visibility}"  DataContext="{Binding DataGridViewModel2}" />
 
         </Grid>
 
-        <UserControls:EditLocalDataPanel Grid.Row="0" Grid.ColumnSpan="2" Visibility="{Binding PanelVisibilityService.EditLocalDataVisibility}" DataContext="{Binding EditLocalDataViewModel}" />
-        <UserControls:InsertDataToDatabaseForm Grid.Row="0" Grid.ColumnSpan="2" Visibility="{Binding PanelVisibilityService.InsertDataToDatabaseFormVisibility}"  DataContext="{Binding InsertDataToDatabaseForm}"/>
+        <Views:EditLocalDataPanel Grid.Row="0" Grid.ColumnSpan="2" Visibility="{Binding PanelVisibilityService.EditLocalDataVisibility}" DataContext="{Binding EditLocalDataViewModel}" />
+        <Views:InsertDataToDatabaseForm Grid.Row="0" Grid.ColumnSpan="2" Visibility="{Binding PanelVisibilityService.InsertDataToDatabaseFormVisibility}"  DataContext="{Binding InsertDataToDatabaseForm}"/>
     
     </Grid>
 </Window>

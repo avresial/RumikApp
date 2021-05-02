@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 
-namespace RumikApp.UserControls
+namespace RumikApp.Views
 {
     /// <summary>
     /// Interaction logic for ItemsControllListV2.xaml

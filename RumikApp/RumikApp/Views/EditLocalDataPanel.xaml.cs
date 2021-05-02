@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace RumikApp.UserControls
+namespace RumikApp.Views
 {
     /// <summary>
-    /// Interaction logic for Poll.xaml
+    /// Interaction logic for EditLocalDataPanel.xaml
     /// </summary>
-    public partial class Poll : UserControl
+    public partial class EditLocalDataPanel : UserControl
     {
-        public Poll()
+        public EditLocalDataPanel()
         {
             InitializeComponent();
         }

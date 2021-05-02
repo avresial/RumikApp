@@ -1,6 +1,5 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
-using RumikApp.Classes;
 using RumikApp.Enums;
 using RumikApp.Services;
 using RumikApp.ViewModel;

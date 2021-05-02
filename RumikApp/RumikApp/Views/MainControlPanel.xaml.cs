@@ -13,16 +13,17 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace RumikApp.UserControls
+namespace RumikApp.Views
 {
     /// <summary>
-    /// Interaction logic for EditLocalDataPanel.xaml
+    /// Interaction logic for MainControlPanel.xaml
     /// </summary>
-    public partial class EditLocalDataPanel : UserControl
+    public partial class MainControlPanel : UserControl
     {
-        public EditLocalDataPanel()
+        public MainControlPanel()
         {
             InitializeComponent();
+            this.DataContext = this;
         }
     }
 }

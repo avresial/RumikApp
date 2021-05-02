@@ -1,5 +1,5 @@
 ﻿using GalaSoft.MvvmLight;
-using RumikApp.Classes;
+using RumikApp.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -12,7 +12,7 @@ using System.Windows.Media.Imaging;
 
 namespace RumikApp
 {
-    public class Beverage : FlavoursSet
+    public class JsonBeverage : FlavoursSet
     {
         private int _ID;
         public int ID
@@ -83,7 +83,7 @@ namespace RumikApp
                     return;
 
                 //if (value != null)
-                PricePer100ml = (value / Capacity) * 100;
+                    PricePer100ml = (value / Capacity) * 100;
 
                 _Price = value;
                 RaisePropertyChanged(nameof(Price));
@@ -145,9 +145,9 @@ namespace RumikApp
                 RaisePropertyChanged(nameof(Color));
             }
         }
-
-        private BitmapImage _TestIcon;
-        public BitmapImage TestIcon
+          
+        private byte[] _TestIcon;
+        public byte[] TestIcon
         {
             get { return _TestIcon; }
             set
@@ -165,7 +165,7 @@ namespace RumikApp
         /// </summary>
         /// <param name="rand"></param>
         /// <returns></returns>
-        public Beverage GetRandomBevrage(Random rand)
+        public JsonBeverage GetRandomBevrage(Random rand)
         {
             _Name = "XD" + rand.Next().ToString();
             _Capacity = rand.Next();
@@ -198,26 +198,93 @@ namespace RumikApp
             return this;
         }
 
-        public void Update(Beverage newBeverage) 
+        static public Beverage TransFromJsonBeverageToBeverage(JsonBeverage jsonBeverage)
         {
-            this.Name = newBeverage.Name;
-            Capacity = newBeverage.Capacity;
-            AlcoholPercentage = newBeverage.AlcoholPercentage;
-            Price = newBeverage.Price;
-            PricePer100ml = newBeverage.PricePer100ml;
-            Grade = newBeverage.Grade;
-            Color = newBeverage.Color;
-            TestIcon = newBeverage.TestIcon;
+            Beverage newBeverage = new Beverage();
 
-            Vanila = newBeverage.Vanila;
-            Nuts = newBeverage.Nuts;
-            Caramel = newBeverage.Caramel;
-            Smoke = newBeverage.Smoke;
-            Cinnamon = newBeverage.Cinnamon;
-            Spirit = newBeverage.Spirit;
-            Fruits = newBeverage.Fruits;
-            Honey = newBeverage.Honey;
-            BeAPirate = newBeverage.BeAPirate;
+            newBeverage.ID = jsonBeverage.ID;
+            newBeverage.Name = jsonBeverage.Name;
+            newBeverage.Capacity = jsonBeverage.Capacity;
+            newBeverage.AlcoholPercentage = jsonBeverage.AlcoholPercentage;
+            newBeverage.Price = jsonBeverage.Price;
+            newBeverage.PricePer100ml = jsonBeverage.PricePer100ml;
+            newBeverage.Grade = jsonBeverage.Grade;
+            newBeverage.GradeWithCoke = jsonBeverage.GradeWithCoke;
+            newBeverage.Color = jsonBeverage.Color;
+
+            newBeverage.Vanila = jsonBeverage.Vanila;
+            newBeverage.Nuts = jsonBeverage.Nuts;
+            newBeverage.Caramel = jsonBeverage.Caramel;
+            newBeverage.Smoke = jsonBeverage.Smoke;
+            newBeverage.Cinnamon = jsonBeverage.Cinnamon;
+            newBeverage.Spirit = jsonBeverage.Spirit;
+            newBeverage.Fruits = jsonBeverage.Fruits;
+            newBeverage.Honey = jsonBeverage.Honey;
+            newBeverage.BeAPirate = jsonBeverage.BeAPirate;
+                      
+
+            newBeverage.TestIcon = ImageProcessingService.ConvertToBitMapImage(jsonBeverage.TestIcon);
+
+
+            return newBeverage;
+        }
+
+        static public JsonBeverage TransFromBeverageToJsonBeverage(Beverage Beverage, byte[] img)
+        {
+            JsonBeverage newJsonBeverage = new JsonBeverage();
+
+            newJsonBeverage.ID  = Beverage.ID;
+            newJsonBeverage.Name = Beverage.Name;
+            newJsonBeverage.Capacity = Beverage.Capacity;
+            newJsonBeverage.AlcoholPercentage = Beverage.AlcoholPercentage;
+            newJsonBeverage.Price = Beverage.Price;
+            newJsonBeverage.PricePer100ml = Beverage.PricePer100ml;
+            newJsonBeverage.Grade = Beverage.Grade;
+            newJsonBeverage.GradeWithCoke = Beverage.GradeWithCoke;
+            newJsonBeverage.Color = Beverage.Color;
+         
+            newJsonBeverage.Vanila = Beverage.Vanila;
+            newJsonBeverage.Nuts = Beverage.Nuts;
+            newJsonBeverage.Caramel = Beverage.Caramel;
+            newJsonBeverage.Smoke = Beverage.Smoke;
+            newJsonBeverage.Cinnamon = Beverage.Cinnamon;
+            newJsonBeverage.Spirit = Beverage.Spirit;
+            newJsonBeverage.Fruits = Beverage.Fruits;
+            newJsonBeverage.Honey = Beverage.Honey;
+            newJsonBeverage.BeAPirate = Beverage.BeAPirate;
+
+            newJsonBeverage.TestIcon = img;
+
+            return newJsonBeverage;
+        }
+
+        static public JsonBeverage TransFromBeverageToJsonBeverage(Beverage Beverage)
+        {
+            JsonBeverage newJsonBeverage = new JsonBeverage();
+
+            newJsonBeverage.ID = Beverage.ID;
+            newJsonBeverage.Name = Beverage.Name;
+            newJsonBeverage.Capacity = Beverage.Capacity;
+            newJsonBeverage.AlcoholPercentage = Beverage.AlcoholPercentage;
+            newJsonBeverage.Price = Beverage.Price;
+            newJsonBeverage.PricePer100ml = Beverage.PricePer100ml;
+            newJsonBeverage.Grade = Beverage.Grade;
+            newJsonBeverage.GradeWithCoke = Beverage.GradeWithCoke;
+            newJsonBeverage.Color = Beverage.Color;
+
+            newJsonBeverage.Vanila = Beverage.Vanila;
+            newJsonBeverage.Nuts = Beverage.Nuts;
+            newJsonBeverage.Caramel = Beverage.Caramel;
+            newJsonBeverage.Smoke = Beverage.Smoke;
+            newJsonBeverage.Cinnamon = Beverage.Cinnamon;
+            newJsonBeverage.Spirit = Beverage.Spirit;
+            newJsonBeverage.Fruits = Beverage.Fruits;
+            newJsonBeverage.Honey = Beverage.Honey;
+            newJsonBeverage.BeAPirate = Beverage.BeAPirate;
+
+            newJsonBeverage.TestIcon = ImageProcessingService.ConvertBitMapImageToByteArray(Beverage.TestIcon);
+
+            return newJsonBeverage;
         }
     }
 }

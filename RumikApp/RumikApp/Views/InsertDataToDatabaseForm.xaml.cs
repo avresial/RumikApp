@@ -14,7 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace RumikApp.UserControls
+namespace RumikApp.Views
 {
     /// <summary>
     /// Interaction logic for InsertDataToDatabaseForm.xaml

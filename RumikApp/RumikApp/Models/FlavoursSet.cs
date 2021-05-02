@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RumikApp.Classes
+namespace RumikApp
 {
     public class FlavoursSet : ViewModelBase
     {

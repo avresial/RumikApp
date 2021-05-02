@@ -168,10 +168,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Classes\FlavoursSet.cs" />
-    <Compile Include="Classes\JsonBeverage.cs" />
-    <Compile Include="Classes\Beverage.cs" />
-    <Compile Include="Classes\ContainerConfig.cs" />
+    <Compile Include="Models\FlavoursSet.cs" />
+    <Compile Include="Models\JsonBeverage.cs" />
+    <Compile Include="Models\Beverage.cs" />
+    <Compile Include="Models\ContainerConfig.cs" />
     <Compile Include="Converters\FlavourToIMGSrcConverter.cs" />
     <Compile Include="Converters\StringToFloatWithValidation.cs" />
     <Compile Include="Converters\StringToIntWithValidation.cs" />
@@ -182,7 +182,7 @@
     <Compile Include="Converters\ValuePricePer100mlToStringConverter.cs" />
     <Compile Include="Converters\ValuePriceToStringConverter.cs" />
     <Compile Include="Enums\AvailableTables.cs" />
-    <Compile Include="Classes\Flavour.cs" />
+    <Compile Include="Models\Flavour.cs" />
     <Compile Include="Enums\PollMixes.cs" />
     <Compile Include="Enums\PollPurpose.cs" />
     <Compile Include="Enums\PollPricePoints.cs" />
@@ -195,7 +195,7 @@
     <Compile Include="Services\ISQLDatabaseConnectionService.cs" />
     <Compile Include="Services\IStreamReaderService.cs" />
     <Compile Include="Services\StreamReaderService.cs" />
-    <Compile Include="UserControls\EditLocalDataPanel.xaml.cs">
+    <Compile Include="Views\EditLocalDataPanel.xaml.cs">
       <DependentUpon>EditLocalDataPanel.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\EditLocalDataViewModel.cs" />
@@ -207,16 +207,16 @@
     <Compile Include="Services\InformationBusService.cs" />
     <Compile Include="Services\IPanelVisibilityService.cs" />
     <Compile Include="Services\PanelVisibilityService.cs" />
-    <Compile Include="UserControls\InsertDataToDatabaseForm.xaml.cs">
+    <Compile Include="Views\InsertDataToDatabaseForm.xaml.cs">
       <DependentUpon>InsertDataToDatabaseForm.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\ItemsControlList.xaml.cs">
+    <Compile Include="Views\ItemsControlList.xaml.cs">
       <DependentUpon>ItemsControlList.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\MainControlPanel.xaml.cs">
+    <Compile Include="Views\MainControlPanel.xaml.cs">
       <DependentUpon>MainControlPanel.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\Poll.xaml.cs">
+    <Compile Include="Views\Poll.xaml.cs">
       <DependentUpon>Poll.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\DataGridViewModel.cs" />
@@ -235,23 +235,23 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="UserControls\EditLocalDataPanel.xaml">
+    <Page Include="Views\EditLocalDataPanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\InsertDataToDatabaseForm.xaml">
+    <Page Include="Views\InsertDataToDatabaseForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\ItemsControlList.xaml">
+    <Page Include="Views\ItemsControlList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\MainControlPanel.xaml">
+    <Page Include="Views\MainControlPanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\Poll.xaml">
+    <Page Include="Views\Poll.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
