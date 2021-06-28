@@ -6,6 +6,7 @@ using RumikApp.ViewModel;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Configuration;
+using System.Threading.Tasks;
 using System.Windows;
 
 namespace RumikApp.UserControls
@@ -251,7 +252,7 @@ namespace RumikApp.UserControls
                 RaisePropertyChanged(nameof(WithCoke));
             }
         }
-          
+
         // fourth section - price
         private bool _PricePoint1;
         public bool PricePoint1
@@ -390,11 +391,11 @@ namespace RumikApp.UserControls
                 if (_GetMeThatRum == null)
                 {
                     _GetMeThatRum = new RelayCommand(
-                    () =>
+                    async () =>
                     {
                         PanelVisibilityService.DataGridViewModel2Visibility = Visibility.Visible;
 
-                        informationBusService.Beverages = databaseConnectionService.GetDataFromDatabaseWithConditions(PollPurpose, 5, PollMixes, getListWithSetFlavours(), PollPricePoints);
+                        informationBusService.Beverages = await databaseConnectionService.GetDataFromDatabaseWithConditions(PollPurpose, 5, PollMixes, getListWithSetFlavours(), PollPricePoints);
 
                         ClearSellection();
                     },
@@ -410,7 +411,7 @@ namespace RumikApp.UserControls
 
         public PollViewModel(IInformationBusService informationBusService, IDatabaseConnectionService databaseConnectionService, IPanelVisibilityService panelVisibilityService)
         {
-            PanelVisibilityService = panelVisibilityService;
+            this.PanelVisibilityService = panelVisibilityService;
             this.databaseConnectionService = databaseConnectionService;
             this.informationBusService = informationBusService;
         }
@@ -463,10 +464,10 @@ namespace RumikApp.UserControls
             return Flavours;
         }
 
-        void GoForPiratesFromCarabien()
+        async Task GoForPiratesFromCarabien()
         {
 
-            informationBusService.Beverages = databaseConnectionService.GetDataFromDatabaseWithConditions(PollPurpose.ForPiratesFromCarabien, 5, PollMixes.None, new List<Flavour>(), PollPricePoints.None);
+            informationBusService.Beverages = await databaseConnectionService.GetDataFromDatabaseWithConditions(PollPurpose.ForPiratesFromCarabien, 5, PollMixes.None, new List<Flavour>(), PollPricePoints.None);
 
             PanelVisibilityService.PollVisibility = Visibility.Collapsed;
             PanelVisibilityService.DataGridViewModel2Visibility = Visibility.Visible;

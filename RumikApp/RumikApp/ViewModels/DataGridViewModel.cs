@@ -174,7 +174,7 @@ namespace RumikApp.ViewModels
                         switch (SortByPriceSource)
                         {
                             case "/IMGs/Icons/None.png":
-
+                               
                                 break;
                             case "/IMGs/Icons/ArrowDown.png":
                                 informationBusService.Beverages = new System.Collections.ObjectModel.ObservableCollection<Beverage>(informationBusService.Beverages.OrderByDescending(x => x.Price));
@@ -342,7 +342,7 @@ namespace RumikApp.ViewModels
 
         public DataGridViewModel(IPanelVisibilityService panelVisibilityService, IInformationBusService informationBusService)
         {
-            PanelVisibilityService = panelVisibilityService;
+            this.PanelVisibilityService = panelVisibilityService;
             this.informationBusService = informationBusService;
         }
     }

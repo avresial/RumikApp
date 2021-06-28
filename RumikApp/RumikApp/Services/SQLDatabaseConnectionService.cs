@@ -38,8 +38,10 @@ namespace RumikApp.Services
             }
         }
 
-        public bool TestConnectionToDatabase()
+        public async Task<bool> TestConnectionToDatabase()
         {
+
+
             bool doesConnectionWork = true;
 
             try
@@ -67,6 +69,7 @@ namespace RumikApp.Services
             }
 
             return doesConnectionWork;
+
         }
 
         public bool TestConnectionToTable(AvailableTables availableTables)
@@ -103,33 +106,36 @@ namespace RumikApp.Services
 
         }
 
-        public ObservableCollection<Beverage> GetAllData()
+        public async Task<ObservableCollection<Beverage>> GetAllData()
         {
-            return getData("SELECT * FROM " + MainDataTable.ToString() + " ORDER BY Name");
+            return await getData("SELECT * FROM " + MainDataTable.ToString() + " ORDER BY Name");
         }
 
-        public ObservableCollection<Beverage> GetAllPiratesBeverages()
+        public async Task<ObservableCollection<Beverage>> GetAllPiratesBeverages()
         {
-            return getData("SELECT* FROM " + MainDataTable.ToString() + " WHERE BeAPirate = 1");
+            return await getData("SELECT* FROM " + MainDataTable.ToString() + " WHERE BeAPirate = 1");
         }
 
-        public ObservableCollection<Beverage> GetDataFromDatabaseWithConditions(PollPurpose pollPurpose, int pollPurposeWeight, PollMixes pollMixes, List<Flavour> Flavours, PollPricePoints pollPricePoints)
+        public async Task<ObservableCollection<Beverage>> GetDataFromDatabaseWithConditions(PollPurpose pollPurpose, int pollPurposeWeight, PollMixes pollMixes, List<Flavour> Flavours, PollPricePoints pollPricePoints)
         {
 
             List<string> conditionStrings = getListOfConditions(pollPurpose, pollPurposeWeight, pollMixes, Flavours, pollPricePoints);
 
 
-            return getDataFromDatabaseWithConditions(conditionStrings);
+            return await getDataFromDatabaseWithConditions(conditionStrings);
         }
 
-        public Beverage GetRandomRow(Random random = null)
+        public async Task<Beverage> GetRandomRow(Random random = null)
         {
-            if (!TestConnectionToDatabase())
+            var test = await TestConnectionToDatabase();
+
+            if (!test)
                 return null;
 
             string oString = "SELECT * FROM " + MainDataTable.ToString() + " ORDER BY RAND() LIMIT 1";
 
-            ObservableCollection<Beverage> possibleOneBeverages = getData(oString);
+
+            ObservableCollection<Beverage> possibleOneBeverages = await getData(oString);
 
             if (possibleOneBeverages.Count > 0)
                 return possibleOneBeverages[0];
@@ -137,11 +143,12 @@ namespace RumikApp.Services
                 return null;
         }
 
-        public string SaveBevreageToDatabase(Beverage beverage, byte[] img)
+        public async Task<string> SaveBevreageToDatabase(Beverage beverage, byte[] img)
         {
             //RumsBaseTEST
+            var test = await TestConnectionToDatabase();
 
-            if (!TestConnectionToDatabase())
+            if (!test)
                 return null;
 
             string result = null;
@@ -237,9 +244,11 @@ namespace RumikApp.Services
                 return false;
         }
 
-        private ObservableCollection<Beverage> getData(string Query)
+        private async Task<ObservableCollection<Beverage>> getData(string Query)
         {
-            if (!TestConnectionToDatabase())
+            var test = await TestConnectionToDatabase();
+
+            if (!test)
                 return null;
 
             if (Query == null || Query == "")
@@ -264,7 +273,7 @@ namespace RumikApp.Services
 
         }
 
-        private ObservableCollection<Beverage> getDataFromDatabaseWithConditions(List<string> conditions)
+        private async Task<ObservableCollection<Beverage>> getDataFromDatabaseWithConditions(List<string> conditions)
         {
             string oString;
 
@@ -296,7 +305,7 @@ namespace RumikApp.Services
                 oString = $"SELECT * FROM " + MainDataTable.ToString();
             }
 
-            return getData(oString);
+            return await  getData(oString);
         }
 
         private List<string> getListOfConditions(PollPurpose pollPurpose, int pollPurposeWeight, PollMixes pollMixes, List<Flavour> Flavours, PollPricePoints pollPricePoints)

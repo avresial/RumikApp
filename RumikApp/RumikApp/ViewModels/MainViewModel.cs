@@ -8,6 +8,7 @@ using RumikApp.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
 
@@ -174,9 +175,9 @@ namespace RumikApp.ViewModel
             //}
         }
 
-        private void CheckingDatabaseConnection(object sender, EventArgs e)
+        private async Task CheckingDatabaseConnection(object sender, EventArgs e)
         {
-            if (DatabaseConnectionService.TestConnectionToDatabase() && DatabaseConnectionService.TestConnectionToTable(DatabaseConnectionService.MainDataTable))
+            if (await  DatabaseConnectionService.TestConnectionToDatabase() && DatabaseConnectionService.TestConnectionToTable(DatabaseConnectionService.MainDataTable))
             {
                 loadFunctionality();
                 dispatcherTimerInCaseDatabaseDoesNotWork.Stop();

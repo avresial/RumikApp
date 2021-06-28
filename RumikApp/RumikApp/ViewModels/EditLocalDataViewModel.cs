@@ -194,10 +194,10 @@ namespace RumikApp.ViewModels
                 if (_DeleteCurrentBeverage == null)
                 {
                     _DeleteCurrentBeverage = new RelayCommand(
-                    () =>
+                    async () =>
                     {
                         fileDatabaseConnectionService.DeleteBeverageDatabase(SelectedBeverage);
-                        IInformationBusService.Beverages = fileDatabaseConnectionService.GetAllData();
+                        IInformationBusService.Beverages = await fileDatabaseConnectionService.GetAllData();
                     },
                     () =>
                     {

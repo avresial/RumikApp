@@ -13,13 +13,13 @@ namespace RumikApp.Services
     {
         AvailableTables MainDataTable { get; set; }
         AvailableTables NotYetApprovedTESTDataTable { get; set; }
-        ObservableCollection<Beverage> GetAllData();
-        ObservableCollection<Beverage> GetAllPiratesBeverages();
-        ObservableCollection<Beverage> GetDataFromDatabaseWithConditions(PollPurpose pollPurpose, int pollPurposeWeight, PollMixes pollMixes, List<Flavour> Flavours, PollPricePoints pollPricePoints);
-        Beverage GetRandomRow(Random random = null);
-        bool TestConnectionToDatabase();
+        Task<ObservableCollection<Beverage>> GetAllData();
+        Task<ObservableCollection<Beverage>> GetAllPiratesBeverages();
+        Task<ObservableCollection<Beverage>> GetDataFromDatabaseWithConditions(PollPurpose pollPurpose, int pollPurposeWeight, PollMixes pollMixes, List<Flavour> Flavours, PollPricePoints pollPricePoints);
+        Task<Beverage> GetRandomRow(Random random = null);
+        Task<bool> TestConnectionToDatabase();
         bool TestConnectionToTable(AvailableTables availableTables);
-        string SaveBevreageToDatabase(Beverage beverage, byte[] img);
+        Task<string> SaveBevreageToDatabase(Beverage beverage, byte[] img);
     }
 }
 

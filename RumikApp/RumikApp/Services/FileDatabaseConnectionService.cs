@@ -56,8 +56,10 @@ namespace RumikApp.Services
         public AvailableTables MainDataTable { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         public AvailableTables NotYetApprovedTESTDataTable { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
-        public ObservableCollection<Beverage> GetAllData()
+        public async Task<ObservableCollection<Beverage>> GetAllData()
         {
+
+
             ObservableCollection<Beverage> Beverages = new ObservableCollection<Beverage>();
 
             if (fileService.FileExists(FileName))
@@ -73,24 +75,25 @@ namespace RumikApp.Services
             }
 
             return Beverages;
+
         }
 
-        public ObservableCollection<Beverage> GetAllPiratesBeverages()
+        public async Task<ObservableCollection<Beverage>> GetAllPiratesBeverages()
         {
             ObservableCollection<Beverage> finallList = new ObservableCollection<Beverage>();
 
-            foreach (Beverage beverage in GetAllData())
+            foreach (Beverage beverage in await GetAllData())
                 if (beverage.BeAPirate.IsSet == true)
                     finallList.Add(beverage);
 
             return finallList;
         }
 
-        public ObservableCollection<Beverage> GetDataFromDatabaseWithConditions(PollPurpose pollPurpose, int pollPurposeWeight, PollMixes pollMixes, List<Flavour> Flavours, PollPricePoints pollPricePoints)
+        public async Task<ObservableCollection<Beverage>> GetDataFromDatabaseWithConditions(PollPurpose pollPurpose, int pollPurposeWeight, PollMixes pollMixes, List<Flavour> Flavours, PollPricePoints pollPricePoints)
         {
             ObservableCollection<Beverage> finallList = new ObservableCollection<Beverage>();
 
-            foreach (Beverage beverage in GetAllData())
+            foreach (Beverage beverage in await GetAllData())
             {
                 Beverage TMPBeverage = DoesBeverageFulfillSetPurposeRequirement(pollPurpose, pollPurposeWeight, beverage);
 
@@ -255,12 +258,12 @@ namespace RumikApp.Services
             return null;
         }
 
-        public Beverage GetRandomRow(Random random = null)
+        public async Task<Beverage> GetRandomRow(Random random = null)
         {
             if (random == null)
                 random = rand;
 
-            ObservableCollection<Beverage> alldata = GetAllData();
+            ObservableCollection<Beverage> alldata = await GetAllData();
 
             if (alldata == null || alldata.Count == 0)
                 return null;
@@ -271,8 +274,9 @@ namespace RumikApp.Services
             return alldata[random.Next(0, alldata.Count - 1)];
         }
 
-        public string SaveBevreageToDatabase(Beverage beverage, byte[] img)
+        public async Task<string> SaveBevreageToDatabase(Beverage beverage, byte[] img)
         {
+
             if (!fileService.DirectoryExists(MainDataDirectory))
                 fileService.CreateDirectory(MainDataDirectory);
 
@@ -295,22 +299,23 @@ namespace RumikApp.Services
             };
 
             return result;
+
         }
 
-        public string UpdateBeveragesDatabase(ObservableCollection<Beverage> updatedBeverages)
+        public async Task<string> UpdateBeveragesDatabase(ObservableCollection<Beverage> updatedBeverages)
         {
             if (!fileService.DirectoryExists(MainDataDirectory))
                 fileService.CreateDirectory(MainDataDirectory);
 
             if (!fileService.FileExists(FileName))
                 fileService.FileCreate(FileName);
-            
+
             string result = "Task failed";
 
-            ObservableCollection<Beverage> oldBeverages = GetAllData();
+            ObservableCollection<Beverage> oldBeverages = await GetAllData();
             List<JsonBeverage> jsonBeverage = new List<JsonBeverage>();
 
-            foreach (Beverage updatedBeverage in updatedBeverages) 
+            foreach (Beverage updatedBeverage in updatedBeverages)
                 oldBeverages.Single(x => x.ID == updatedBeverage.ID).Update(updatedBeverage);
 
             foreach (Beverage oldBeverage in oldBeverages)
@@ -326,7 +331,7 @@ namespace RumikApp.Services
             return result;
         }
 
-        public string DeleteBeverageDatabase(Beverage updatedBeverages)
+        public async Task<string> DeleteBeverageDatabase(Beverage updatedBeverages)
         {
             if (!fileService.DirectoryExists(MainDataDirectory))
                 fileService.CreateDirectory(MainDataDirectory);
@@ -336,7 +341,7 @@ namespace RumikApp.Services
 
             string result = "Task failed";
 
-            ObservableCollection<Beverage> oldBeverages = GetAllData();
+            ObservableCollection<Beverage> oldBeverages = await GetAllData();
             List<JsonBeverage> jsonBeverage = new List<JsonBeverage>();
 
             oldBeverages.Remove(oldBeverages.Where(x => x.ID == updatedBeverages.ID).FirstOrDefault());
@@ -353,9 +358,11 @@ namespace RumikApp.Services
             return result;
         }
 
-        public bool TestConnectionToDatabase()
+        public async Task<bool> TestConnectionToDatabase()
         {
+
             return fileService.DirectoryExists(MainDataDirectory);
+
         }
 
         public bool TestConnectionToTable(AvailableTables availableTables)

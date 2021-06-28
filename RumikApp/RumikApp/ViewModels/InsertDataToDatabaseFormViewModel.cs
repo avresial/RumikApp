@@ -125,16 +125,16 @@ namespace RumikApp.ViewModels
                 if (_SaveToDatabase == null)
                 {
                     _SaveToDatabase = new RelayCommand(
-                    () =>
+                    async () =>
                     {
                         if (fileDatabaseConnectionService.TestConnectionToTable(AvailableTables.NotYetApprovedTEST))
                         {
-                            ObservableCollection<Beverage> allBeverage = fileDatabaseConnectionService.GetAllData();
+                            ObservableCollection<Beverage> allBeverage = await fileDatabaseConnectionService.GetAllData();
                             if (allBeverage != null && allBeverage.Count > 0)
                                 Beverage.ID = (int)allBeverage.Max(x => x.ID) + 1;
                         }
 
-                        saveToDatabase();
+                        await saveToDatabase();
 
                         Beverage.Color = ColorsList[0];
 
@@ -151,8 +151,8 @@ namespace RumikApp.ViewModels
                                 Beverage.TestIcon = CheckSize;
                             }
                         }
-                       
-                        
+
+
                     },
                     () =>
                     {
@@ -219,7 +219,7 @@ namespace RumikApp.ViewModels
             Beverage.Color = ColorsList[0];
 
             byte[] TMPArray = loadImage(null);
-       
+
             BitmapImage CheckSize = ImageProcessingService.ConvertToBitMapImage(TMPArray);
 
             if (CheckSize.PixelWidth <= 500 && CheckSize.PixelHeight <= 500)
@@ -229,18 +229,18 @@ namespace RumikApp.ViewModels
             }
         }
 
-        void saveToDatabase()
+        async Task saveToDatabase()
         {
             byte[] Image = new byte[250000];
 
-            Output = databaseConnectionService.SaveBevreageToDatabase(Beverage, img);
+            Output = await databaseConnectionService.SaveBevreageToDatabase(Beverage, img);
         }
 
         byte[] loadImage(string imagePath)
         {
             if (imagePath == null || imagePath == "")
                 imagePath = "IMGs/Bottles/UnknownBottleCopy.png";
-       
+
             return ImageProcessingService.FileToByteArray(imagePath);
 
         }
@@ -248,7 +248,7 @@ namespace RumikApp.ViewModels
         {
             bool formContainsNewData = false;
             int controlSum = 0;
-                     
+
             if (Beverage.Name != null)
                 if (Beverage.Name.Length > 1)
                     controlSum++;

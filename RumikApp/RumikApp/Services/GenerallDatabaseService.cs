@@ -12,7 +12,7 @@ namespace RumikApp.Services
     /// <summary>
     /// Connects data from database and disc to one stream.
     /// </summary>
-    class GenerallDatabaseService :  IGenerallDatabaseService
+    class GenerallDatabaseService : IGenerallDatabaseService
     {
         private ISQLDatabaseConnectionService sQLDatabaseConnectionService;
         private IFileDatabaseConnectionService fileDatabaseConnectionService;
@@ -63,67 +63,67 @@ namespace RumikApp.Services
         /// Loads data from database and adds to it records from disc - only if they are unique 
         /// </summary>
         /// <returns></returns>
-        public ObservableCollection<Beverage> GetAllData()
+        public async Task<ObservableCollection<Beverage>> GetAllData()
         {
             if (!doesSQLDatabaseConnectionServiceWasWarkingAtStart)
-                return fileDatabaseConnectionService.GetAllData();
+                return await  fileDatabaseConnectionService.GetAllData();
 
-            ObservableCollection<Beverage> FinalCollection = sQLDatabaseConnectionService.GetAllData();
+            ObservableCollection<Beverage> FinalCollection = await sQLDatabaseConnectionService.GetAllData();
 
             if (FinalCollection == null)
-                return fileDatabaseConnectionService.GetAllData();
+                return await fileDatabaseConnectionService.GetAllData();
 
-            return getUniqueBeverages(FinalCollection, fileDatabaseConnectionService.GetAllData());
+            return getUniqueBeverages(FinalCollection, await fileDatabaseConnectionService.GetAllData());
         }
 
-        public ObservableCollection<Beverage> GetAllPiratesBeverages()
+        public async Task<ObservableCollection<Beverage>> GetAllPiratesBeverages()
         {
             if (!doesSQLDatabaseConnectionServiceWasWarkingAtStart)
-                return fileDatabaseConnectionService.GetAllPiratesBeverages();
+                return await fileDatabaseConnectionService.GetAllPiratesBeverages();
 
-            ObservableCollection<Beverage> FinalCollection = sQLDatabaseConnectionService.GetAllPiratesBeverages();
+            ObservableCollection<Beverage> FinalCollection = await sQLDatabaseConnectionService.GetAllPiratesBeverages();
 
             //here will be file data handled
 
-            return getUniqueBeverages(FinalCollection, fileDatabaseConnectionService.GetAllPiratesBeverages());
+            return getUniqueBeverages(FinalCollection, await fileDatabaseConnectionService.GetAllPiratesBeverages());
         }
 
-        public ObservableCollection<Beverage> GetDataFromDatabaseWithConditions(PollPurpose pollPurpose, int pollPurposeWeight, PollMixes pollMixes, List<Flavour> Flavours, PollPricePoints pollPricePoints)
+        public async Task<ObservableCollection<Beverage>> GetDataFromDatabaseWithConditions(PollPurpose pollPurpose, int pollPurposeWeight, PollMixes pollMixes, List<Flavour> Flavours, PollPricePoints pollPricePoints)
         {
             if (!doesSQLDatabaseConnectionServiceWasWarkingAtStart)
-                return fileDatabaseConnectionService.GetDataFromDatabaseWithConditions(pollPurpose, pollPurposeWeight, pollMixes, Flavours, pollPricePoints);
+                return await fileDatabaseConnectionService.GetDataFromDatabaseWithConditions(pollPurpose, pollPurposeWeight, pollMixes, Flavours, pollPricePoints);
 
-            ObservableCollection<Beverage> SQLDataCollection = sQLDatabaseConnectionService.GetDataFromDatabaseWithConditions(pollPurpose, pollPurposeWeight, pollMixes, Flavours, pollPricePoints);
-            ObservableCollection<Beverage> FileDataCollection = fileDatabaseConnectionService.GetDataFromDatabaseWithConditions(pollPurpose, pollPurposeWeight, pollMixes, Flavours, pollPricePoints);
+            ObservableCollection<Beverage> SQLDataCollection = await sQLDatabaseConnectionService.GetDataFromDatabaseWithConditions(pollPurpose, pollPurposeWeight, pollMixes, Flavours, pollPricePoints);
+            ObservableCollection<Beverage> FileDataCollection = await fileDatabaseConnectionService.GetDataFromDatabaseWithConditions(pollPurpose, pollPurposeWeight, pollMixes, Flavours, pollPricePoints);
 
             return getUniqueBeverages(SQLDataCollection, FileDataCollection);
         }
 
-        public Beverage GetRandomRow(Random random = null)
+        public async Task<Beverage> GetRandomRow(Random random = null)
         {
             if (!doesSQLDatabaseConnectionServiceWasWarkingAtStart)
-                return fileDatabaseConnectionService.GetRandomRow();
+                return await fileDatabaseConnectionService.GetRandomRow();
 
-            Beverage FinalCollection = sQLDatabaseConnectionService.GetRandomRow();
+            Beverage FinalCollection = await sQLDatabaseConnectionService.GetRandomRow();
 
             if (FinalCollection == null)
-                return FinalCollection = fileDatabaseConnectionService.GetRandomRow();
+                return FinalCollection = await  fileDatabaseConnectionService.GetRandomRow();
 
             return FinalCollection;
         }
 
-        public string SaveBevreageToDatabase(Beverage beverage, byte[] img)
+        public async Task<string> SaveBevreageToDatabase(Beverage beverage, byte[] img)
         {
             if (!doesSQLDatabaseConnectionServiceWasWarkingAtStart)
-                return fileDatabaseConnectionService.SaveBevreageToDatabase(beverage, img);
+                return await fileDatabaseConnectionService.SaveBevreageToDatabase(beverage, img);
 
             fileDatabaseConnectionService.SaveBevreageToDatabase(beverage, img);
-            return sQLDatabaseConnectionService.SaveBevreageToDatabase(beverage, img);
+            return await sQLDatabaseConnectionService.SaveBevreageToDatabase(beverage, img);
         }
 
-        public bool TestConnectionToDatabase()
+        public async Task<bool> TestConnectionToDatabase()
         {
-            return sQLDatabaseConnectionService.TestConnectionToDatabase();
+            return await sQLDatabaseConnectionService.TestConnectionToDatabase();
         }
 
         public bool TestConnectionToTable(AvailableTables availableTables)
@@ -136,7 +136,7 @@ namespace RumikApp.Services
             if (mainList == null)
                 return aditionalList;
 
-                 ObservableCollection <Beverage> UniqueBeverages = mainList;
+            ObservableCollection<Beverage> UniqueBeverages = mainList;
 
             foreach (Beverage fileBeverage in aditionalList)
             {

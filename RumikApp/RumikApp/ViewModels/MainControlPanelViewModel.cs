@@ -48,6 +48,20 @@ namespace RumikApp.ViewModels
 
             }
         }
+        
+        private ObservableCollection<Beverage> _someList;
+        public ObservableCollection<Beverage> someList
+        {
+            get { return _someList; }
+            set
+            {
+                if (_someList == value)
+                    return;
+
+                _someList = value;
+                RaisePropertyChanged(nameof(someList));
+            }
+        }
 
 
         public MainControlPanelViewModel(IDatabaseConnectionService databaseConnectionService, IPanelVisibilityService panelVisibilityService, IInformationBusService informationBusService, FileDatabaseConnectionService fileDatabaseConnectionService)
@@ -55,7 +69,7 @@ namespace RumikApp.ViewModels
             this.informationBusService = informationBusService;
             this.databaseConnectionService = databaseConnectionService;
             this.fileDatabaseConnectionService = fileDatabaseConnectionService;
-            PanelVisibilityService = panelVisibilityService;
+            this.PanelVisibilityService = panelVisibilityService;
         }
 
         
@@ -68,11 +82,12 @@ namespace RumikApp.ViewModels
                 if (_ImFeelingLucky == null)
                 {
                     _ImFeelingLucky = new RelayCommand(
-                    () =>
+                     async () =>
                     {
+
                         PanelVisibilityService.DataGridViewModel2Visibility = Visibility.Visible;
 
-                        Beverage randomOne = databaseConnectionService.GetRandomRow();
+                        Beverage randomOne = await databaseConnectionService.GetRandomRow();
 
                         if (randomOne == null)
                             informationBusService.Beverages.Clear();
@@ -119,10 +134,14 @@ namespace RumikApp.ViewModels
                 if (_GoStraightToDatabase == null)
                 {
                     _GoStraightToDatabase = new RelayCommand(
-                    () =>
+                    async () =>
                     {
-                        PanelVisibilityService.DataGridViewModelVisibility = Visibility.Visible;
-                        informationBusService.Beverages = databaseConnectionService.GetAllData();
+                        PanelVisibilityService.DataGridViewModel2Visibility = Visibility.Visible;
+
+                        var lol = await databaseConnectionService.GetAllData();
+                       
+                        informationBusService.Beverages = lol;
+                 
                     },
                     () =>
                     {
@@ -134,6 +153,8 @@ namespace RumikApp.ViewModels
             }
         }
 
+      
+
         private RelayCommand _EditLocalData;
         public RelayCommand EditLocalData
         {
@@ -142,9 +163,10 @@ namespace RumikApp.ViewModels
                 if (_EditLocalData == null)
                 {
                     _EditLocalData = new RelayCommand(
-                    () =>
+                    async () =>
                     {
-                        informationBusService.Beverages = fileDatabaseConnectionService.GetAllData();
+
+                        informationBusService.Beverages = await fileDatabaseConnectionService.GetAllData();
                         PanelVisibilityService.EditLocalDataVisibility = Visibility.Visible;
                     },
                     () =>
