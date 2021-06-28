@@ -174,7 +174,11 @@ namespace RumikApp.ViewModels
                     _SaveCurrentBeverage = new RelayCommand(
                     () =>
                     {
-                        fileDatabaseConnectionService.UpdateBeveragesDatabase(IInformationBusService.Beverages);
+                        ObservableCollection<Beverage> updatedBeverages = new ObservableCollection<Beverage>();
+                        foreach (Beverage beverage in IInformationBusService.OriginalBeverages)
+                            updatedBeverages.Add(beverage);
+
+                        fileDatabaseConnectionService.UpdateBeveragesDatabase(updatedBeverages);
                     },
                     () =>
                     {
@@ -197,7 +201,7 @@ namespace RumikApp.ViewModels
                     async () =>
                     {
                         fileDatabaseConnectionService.DeleteBeverageDatabase(SelectedBeverage);
-                        IInformationBusService.Beverages = await fileDatabaseConnectionService.GetAllData();
+                        IInformationBusService.OriginalBeverages = await fileDatabaseConnectionService.GetAllData();
                     },
                     () =>
                     {

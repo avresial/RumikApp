@@ -150,16 +150,16 @@ namespace RumikApp.ViewModel
             InsertDataToDatabaseFormViewModel insertDataToDatabaseFormViewModel, EditLocalDataViewModel editLocalDataViewModel, 
             IDatabaseConnectionService databaseConnectionService, IPanelVisibilityService panelVisibilityService)
         {
-            PanelVisibilityService = panelVisibilityService;
 
-            MainControlPanelViewModel = mainControlPanelViewModel;
-            PollViewModel = pollViewModel;
-            DatabaseConnectionService = databaseConnectionService;
-            DataGridViewModel = dataGridViewModel;
-            DataGridViewModel2 = dataGridViewModel2;
-            EditLocalDataViewModel = editLocalDataViewModel;
-            ItemsControl = itemsControl;
             InsertDataToDatabaseForm = insertDataToDatabaseFormViewModel;
+            MainControlPanelViewModel = mainControlPanelViewModel;
+            DatabaseConnectionService = databaseConnectionService;
+            EditLocalDataViewModel = editLocalDataViewModel;
+            PanelVisibilityService = panelVisibilityService;
+            DataGridViewModel2 = dataGridViewModel2;
+            DataGridViewModel = dataGridViewModel;
+            PollViewModel = pollViewModel;
+            ItemsControl = itemsControl;
 
             //if (DatabaseConnectionService.TestConnectionToDatabase() && DatabaseConnectionService.TestConnectionToTable(DatabaseConnectionService.MainDataTable))
             //{

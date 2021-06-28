@@ -90,9 +90,9 @@ namespace RumikApp.ViewModels
                         Beverage randomOne = await databaseConnectionService.GetRandomRow();
 
                         if (randomOne == null)
-                            informationBusService.Beverages.Clear();
+                            informationBusService.OriginalBeverages = new ObservableCollection<Beverage>();
                         else
-                            informationBusService.Beverages = new ObservableCollection<Beverage>() { randomOne };
+                            informationBusService.OriginalBeverages = new ObservableCollection<Beverage>() { randomOne };
                     },
                     () =>
                     {
@@ -139,8 +139,7 @@ namespace RumikApp.ViewModels
                         PanelVisibilityService.DataGridViewModel2Visibility = Visibility.Visible;
 
                         var lol = await databaseConnectionService.GetAllData();
-                       
-                        informationBusService.Beverages = lol;
+   
                         informationBusService.OriginalBeverages = lol;
 
 
@@ -168,7 +167,8 @@ namespace RumikApp.ViewModels
                     async () =>
                     {
 
-                        informationBusService.Beverages = await fileDatabaseConnectionService.GetAllData();
+                        informationBusService.OriginalBeverages = await fileDatabaseConnectionService.GetAllData();
+                        informationBusService.OriginalBeverages = await fileDatabaseConnectionService.GetAllData();
                         PanelVisibilityService.EditLocalDataVisibility = Visibility.Visible;
                     },
                     () =>

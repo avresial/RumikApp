@@ -59,7 +59,6 @@ namespace RumikApp.Services
         public async Task<ObservableCollection<Beverage>> GetAllData()
         {
 
-
             ObservableCollection<Beverage> Beverages = new ObservableCollection<Beverage>();
 
             if (fileService.FileExists(FileName))

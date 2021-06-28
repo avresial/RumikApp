@@ -75,21 +75,21 @@ namespace RumikApp.Tests
 
         #region GetAllData 
         [Fact]
-        public void GetAllData_When_There_Are_No_File_To_Load()
+        public async void GetAllData_When_There_Are_No_File_To_Load()
         {
             // Arrange
             fileService.Setup(x => x.FileExists(It.IsAny<string>())).Returns(false);
             streamReaderService.Setup(x => x.ReadToEnd()).Returns(JSONListOfBeverages);
 
             // Act
-            ObservableCollection<Beverage> actuallResule = sut.GetAllData();
+            ObservableCollection<Beverage> actuallResule =await sut.GetAllData();
 
             // Assert
             Assert.Empty(actuallResule);
         }
 
         [Fact]
-        public void GetAllData_When_There_Are_No_Data_To_Load()
+        public async void GetAllData_When_There_Are_No_Data_To_Load()
         {
             // Arrange
 
@@ -97,7 +97,7 @@ namespace RumikApp.Tests
             streamReaderService.Setup(x => x.ReadToEnd()).Returns("");
 
             // Act
-            ObservableCollection<Beverage> actuallResule = sut.GetAllData();
+            ObservableCollection<Beverage> actuallResule = await sut.GetAllData();
 
             // Assert
 
@@ -105,14 +105,14 @@ namespace RumikApp.Tests
         }
 
         [Fact]
-        public void GetAllData_When_There_Is_Some_Data_To_Load()
+        public async Task GetAllData_When_There_Is_Some_Data_To_Load()
         {
             // Arrange
             fileService.Setup(x => x.FileExists(It.IsAny<string>())).Returns(true);
             streamReaderService.Setup(x => x.ReadToEnd()).Returns(JSONListOfBeverages);
 
             // Act
-            ObservableCollection<Beverage> actuallResule = sut.GetAllData();
+            ObservableCollection<Beverage> actuallResule = await sut.GetAllData();
 
             // Assert
             Assert.True(JSONListOfBeveragesCountInTotal == actuallResule.Count);
@@ -121,14 +121,14 @@ namespace RumikApp.Tests
         #endregion
 
         [Fact]
-        public void GetAllPiratesBeverages_When_There_Is_Data_To_Load()
+        public async void GetAllPiratesBeverages_When_There_Is_Data_To_Load()
         {
             // Arrange
             fileService.Setup(x => x.FileExists(It.IsAny<string>())).Returns(true);
             streamReaderService.Setup(x => x.ReadToEnd()).Returns(JSONListOfBeverages);
 
             // Act
-            ObservableCollection<Beverage> actuallResule = sut.GetAllPiratesBeverages();
+            ObservableCollection<Beverage> actuallResule = await sut.GetAllPiratesBeverages();
 
             // Assert
             Assert.Equal(JSONListOfBeveragesCountOfPirateBeverages, actuallResule.Count);
@@ -137,14 +137,14 @@ namespace RumikApp.Tests
 
         #region GetDataFromDatabaseWithConditions
         [Fact]
-        public void GetDataFromDatabaseWithConditions_When_There_Are_No_Conditions()
+        public async void GetDataFromDatabaseWithConditions_When_There_Are_No_Conditions()
         {
             // Arrange
             fileService.Setup(x => x.FileExists(It.IsAny<string>())).Returns(true);
             streamReaderService.Setup(x => x.ReadToEnd()).Returns(JSONListOfBeverages);
 
             // Act
-            ObservableCollection<Beverage> actuallResule = sut.GetDataFromDatabaseWithConditions(PollPurpose.None, 5, PollMixes.None, new List<Flavour>(), PollPricePoints.None);
+            ObservableCollection<Beverage> actuallResule = await sut.GetDataFromDatabaseWithConditions(PollPurpose.None, 5, PollMixes.None, new List<Flavour>(), PollPricePoints.None);
 
             // Assert
 
@@ -154,7 +154,7 @@ namespace RumikApp.Tests
         [Theory]
         [InlineData(2, 1)]
         [InlineData(2, 2)]
-        public void GetDataFromDatabaseWithConditions_When_There_Are_All_Conditions(int NumberOfElements, int NumberOfMatchingElements)
+        public async void GetDataFromDatabaseWithConditions_When_There_Are_All_Conditions(int NumberOfElements, int NumberOfMatchingElements)
         {
             // Arrange
             int expectedResult = NumberOfMatchingElements;
@@ -183,7 +183,7 @@ namespace RumikApp.Tests
             Flavours.Add(new Flavour("/IMGs/PollIMG/BeAPirate.png", "BeAPirate"));
 
             // Act
-            ObservableCollection<Beverage> actuallResule = sut.GetDataFromDatabaseWithConditions(PollPurpose.Exclusive, 5, PollMixes.Solo, Flavours, PollPricePoints.PricePoint4);
+            ObservableCollection<Beverage> actuallResule = await sut.GetDataFromDatabaseWithConditions(PollPurpose.Exclusive, 5, PollMixes.Solo, Flavours, PollPricePoints.PricePoint4);
 
             // Assert
             Assert.Equal(expectedResult, actuallResule.Count);
@@ -603,21 +603,21 @@ namespace RumikApp.Tests
 
         #region GetRandomRow
         [Fact]
-        public void GetRandomRow_When_There_Is_No_Data_To_Randomize()
+        public async void GetRandomRow_When_There_Is_No_Data_To_Randomize()
         {
             // Arrange
             fileService.Setup(x => x.FileExists(It.IsAny<string>())).Returns(true);
             streamReaderService.Setup(x => x.ReadToEnd()).Returns("");
 
             // Act
-            Beverage actuallResule = sut.GetRandomRow();
+            Beverage actuallResule = await sut.GetRandomRow();
 
             // Assert
             Assert.Null(actuallResule);
         }
 
         [Fact]
-        public void GetRandomRow_When_There_Is_Data_To_Randomize()
+        public async void GetRandomRow_When_There_Is_Data_To_Randomize()
         {
             // Arrange
             Random random = new Random(1);
@@ -636,7 +636,7 @@ namespace RumikApp.Tests
             streamReaderService.Setup(x => x.ReadToEnd()).Returns(JsonConvert.SerializeObject(ListOfBeverages));
 
             // Act
-            Beverage actuallResule = sut.GetRandomRow(random);
+            Beverage actuallResule = await sut.GetRandomRow(random);
 
             // Assert
             Assert.Equal(expectedResult.Name, actuallResule.Name);
@@ -645,28 +645,28 @@ namespace RumikApp.Tests
 
         #region TestConnection
         [Fact]
-        public void TestConnectionToDatabase_When_There_Is_No_Directory()
+        public async void TestConnectionToDatabase_When_There_Is_No_Directory()
         {
             // Arrange
             bool expectedResult = false;
             fileService.Setup(x => x.DirectoryExists(It.IsAny<string>())).Returns(false);
 
             // Act
-            bool actuallResult = sut.TestConnectionToDatabase();
+            bool actuallResult = await sut.TestConnectionToDatabase();
 
             // Assert
             Assert.Equal(expectedResult, actuallResult);
         }
 
         [Fact]
-        public void TestConnectionToDatabase_When_There_Is_A_Directory()
+        public async void TestConnectionToDatabase_When_There_Is_A_Directory()
         {
             // Arrange
             bool expectedResult = true;
             fileService.Setup(x => x.DirectoryExists(It.IsAny<string>())).Returns(true);
 
             // Act
-            bool actuallResule = sut.TestConnectionToDatabase();
+            bool actuallResule = await sut.TestConnectionToDatabase();
 
             // Assert
             Assert.Equal(expectedResult, actuallResule);

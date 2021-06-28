@@ -7,6 +7,5 @@ namespace RumikApp.Services
     {
         Visibility IsBeverageEmpty { get; set; }
         Visibility IsBeverageNotEmpty { get; set; }
-        ObservableCollection<Beverage> Beverages { get; set; }
     }
 }

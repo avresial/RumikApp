@@ -395,7 +395,7 @@ namespace RumikApp.UserControls
                     {
                         PanelVisibilityService.DataGridViewModel2Visibility = Visibility.Visible;
 
-                        informationBusService.Beverages = await databaseConnectionService.GetDataFromDatabaseWithConditions(PollPurpose, 5, PollMixes, getListWithSetFlavours(), PollPricePoints);
+                        informationBusService.OriginalBeverages = await databaseConnectionService.GetDataFromDatabaseWithConditions(PollPurpose, 5, PollMixes, getListWithSetFlavours(), PollPricePoints);
 
                         ClearSellection();
                     },
@@ -467,7 +467,7 @@ namespace RumikApp.UserControls
         async Task GoForPiratesFromCarabien()
         {
 
-            informationBusService.Beverages = await databaseConnectionService.GetDataFromDatabaseWithConditions(PollPurpose.ForPiratesFromCarabien, 5, PollMixes.None, new List<Flavour>(), PollPricePoints.None);
+            informationBusService.OriginalBeverages = await databaseConnectionService.GetDataFromDatabaseWithConditions(PollPurpose.ForPiratesFromCarabien, 5, PollMixes.None, new List<Flavour>(), PollPricePoints.None);
 
             PanelVisibilityService.PollVisibility = Visibility.Collapsed;
             PanelVisibilityService.DataGridViewModel2Visibility = Visibility.Visible;

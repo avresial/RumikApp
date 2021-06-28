@@ -10,7 +10,7 @@ namespace RumikApp.Services
     public interface ISortingService
     {
         IList<Beverage> SortedBeverages { get; set; }
-        IList<Beverage> OriginalBeverages { set; }
+        IList<Beverage> OriginalBeverages { get; set; }
         void ShowDefault();
         void SortByNameAscending(); 
         void SortByNameDescending();

@@ -40,8 +40,6 @@ namespace RumikApp.Services
 
         public async Task<bool> TestConnectionToDatabase()
         {
-
-
             bool doesConnectionWork = true;
 
             try
@@ -305,7 +303,7 @@ namespace RumikApp.Services
                 oString = $"SELECT * FROM " + MainDataTable.ToString();
             }
 
-            return await  getData(oString);
+            return await getData(oString);
         }
 
         private List<string> getListOfConditions(PollPurpose pollPurpose, int pollPurposeWeight, PollMixes pollMixes, List<Flavour> Flavours, PollPricePoints pollPricePoints)

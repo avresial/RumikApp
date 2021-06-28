@@ -83,8 +83,6 @@ namespace RumikApp.Services
 
             ObservableCollection<Beverage> FinalCollection = await sQLDatabaseConnectionService.GetAllPiratesBeverages();
 
-            //here will be file data handled
-
             return getUniqueBeverages(FinalCollection, await fileDatabaseConnectionService.GetAllPiratesBeverages());
         }
 
