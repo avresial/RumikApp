@@ -66,7 +66,7 @@ namespace RumikApp.Services
         public async Task<ObservableCollection<Beverage>> GetAllData()
         {
             if (!doesSQLDatabaseConnectionServiceWasWarkingAtStart)
-                return await  fileDatabaseConnectionService.GetAllData();
+                return await fileDatabaseConnectionService.GetAllData();
 
             ObservableCollection<Beverage> FinalCollection = await sQLDatabaseConnectionService.GetAllData();
 
@@ -107,7 +107,7 @@ namespace RumikApp.Services
             Beverage FinalCollection = await sQLDatabaseConnectionService.GetRandomRow();
 
             if (FinalCollection == null)
-                return FinalCollection = await  fileDatabaseConnectionService.GetRandomRow();
+                return FinalCollection = await fileDatabaseConnectionService.GetRandomRow();
 
             return FinalCollection;
         }
@@ -117,8 +117,12 @@ namespace RumikApp.Services
             if (!doesSQLDatabaseConnectionServiceWasWarkingAtStart)
                 return await fileDatabaseConnectionService.SaveBevreageToDatabase(beverage, img);
 
-            fileDatabaseConnectionService.SaveBevreageToDatabase(beverage, img);
-            return await sQLDatabaseConnectionService.SaveBevreageToDatabase(beverage, img);
+            var task1 = fileDatabaseConnectionService.SaveBevreageToDatabase(beverage, img);
+            var task2 = sQLDatabaseConnectionService.SaveBevreageToDatabase(beverage, img);
+
+            Task.WaitAll(task1, task2);
+
+            return task2.Result;
         }
 
         public async Task<bool> TestConnectionToDatabase()

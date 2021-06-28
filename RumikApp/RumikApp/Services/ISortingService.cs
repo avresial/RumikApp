@@ -11,8 +11,14 @@ namespace RumikApp.Services
     {
         IList<Beverage> SortedBeverages { get; set; }
         IList<Beverage> OriginalBeverages { set; }
-        void SortByName();
-
-
+        void ShowDefault();
+        void SortByNameAscending(); 
+        void SortByNameDescending();
+        void SortByPriceAscending();
+        void SortByPriceDescending();
+        void SortByGradeAscending(); 
+        void SortByGradeDescending();
+        void SortByGradeWithCokeAscending();
+        void SortByGradeWithCokeDescending();
     }
 }

@@ -136,15 +136,15 @@ namespace RumikApp.ViewModels
                         switch (SortByNameSource)
                         {
                             case "/IMGs/Icons/None.png":
-                                
+                                informationBusService.ShowDefault();
                                 break;
-                            case "/IMGs/Icons/ArrowDown.png":
-                                informationBusService.Beverages = new System.Collections.ObjectModel.ObservableCollection<Beverage>(informationBusService.Beverages.OrderBy(x => x.Name));
 
+                            case "/IMGs/Icons/ArrowDown.png":
+                                informationBusService.SortByNameDescending();
                                 break;
+
                             case "/IMGs/Icons/ArrowUp.png":
-                                informationBusService.Beverages = new System.Collections.ObjectModel.ObservableCollection<Beverage>(informationBusService.Beverages.OrderByDescending(x => x.Name));
-                                
+                                informationBusService.SortByNameAscending();
                                 break;
                         }
 
@@ -174,15 +174,15 @@ namespace RumikApp.ViewModels
                         switch (SortByPriceSource)
                         {
                             case "/IMGs/Icons/None.png":
-                               
+                                informationBusService.ShowDefault();
                                 break;
+
                             case "/IMGs/Icons/ArrowDown.png":
-                                informationBusService.Beverages = new System.Collections.ObjectModel.ObservableCollection<Beverage>(informationBusService.Beverages.OrderByDescending(x => x.Price));
-
+                                informationBusService.SortByPriceDescending();
                                 break;
-                            case "/IMGs/Icons/ArrowUp.png":
-                                informationBusService.Beverages = new System.Collections.ObjectModel.ObservableCollection<Beverage>(informationBusService.Beverages.OrderBy(x => x.Price));
 
+                            case "/IMGs/Icons/ArrowUp.png":
+                                informationBusService.SortByPriceAscending();
                                 break;
                         }
                     },
@@ -210,15 +210,15 @@ namespace RumikApp.ViewModels
                         switch (SortByGradeSource)
                         {
                             case "/IMGs/Icons/None.png":
-
+                                informationBusService.ShowDefault();
                                 break;
+
                             case "/IMGs/Icons/ArrowDown.png":
-                                informationBusService.Beverages = new System.Collections.ObjectModel.ObservableCollection<Beverage>(informationBusService.Beverages.OrderByDescending(x => x.Grade));
-
+                                informationBusService.SortByGradeAscending();
                                 break;
-                            case "/IMGs/Icons/ArrowUp.png":
-                                informationBusService.Beverages = new System.Collections.ObjectModel.ObservableCollection<Beverage>(informationBusService.Beverages.OrderBy(x => x.Grade));
 
+                            case "/IMGs/Icons/ArrowUp.png":
+                                informationBusService.SortByGradeDescending();
                                 break;
                         }
                     },
@@ -246,15 +246,15 @@ namespace RumikApp.ViewModels
                         switch (SortByGradeWithCokeSource)
                         {
                             case "/IMGs/Icons/None.png":
-
+                                informationBusService.ShowDefault();
                                 break;
+
                             case "/IMGs/Icons/ArrowDown.png":
-                                informationBusService.Beverages = new System.Collections.ObjectModel.ObservableCollection<Beverage>(informationBusService.Beverages.OrderByDescending(x => x.GradeWithCoke));
-
+                                informationBusService.SortByGradeWithCokeDescending();
                                 break;
-                            case "/IMGs/Icons/ArrowUp.png":
-                                informationBusService.Beverages = new System.Collections.ObjectModel.ObservableCollection<Beverage>(informationBusService.Beverages.OrderBy(x => x.GradeWithCoke));
 
+                            case "/IMGs/Icons/ArrowUp.png":
+                                informationBusService.SortByGradeWithCokeAscending();
                                 break;
                         }
                     },

@@ -141,7 +141,9 @@ namespace RumikApp.ViewModels
                         var lol = await databaseConnectionService.GetAllData();
                        
                         informationBusService.Beverages = lol;
-                 
+                        informationBusService.OriginalBeverages = lol;
+
+
                     },
                     () =>
                     {
