@@ -201,6 +201,7 @@ namespace RumikApp.ViewModels
                     async () =>
                     {
                         await fileDatabaseConnectionService.DeleteBeverageDatabase(SelectedBeverage);
+                        IInformationBusService.OriginalBeverages.Clear();
                         IInformationBusService.OriginalBeverages = await fileDatabaseConnectionService.GetAllData();
                     },
                     () =>
