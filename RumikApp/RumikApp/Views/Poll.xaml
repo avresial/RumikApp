@@ -6,7 +6,8 @@
              xmlns:local="clr-namespace:RumikApp.Views"
              xmlns:Converters="clr-namespace:RumikApp.Converters"
              mc:Ignorable="d" 
-             d:DesignHeight="1450" d:DesignWidth="800" >
+             d:DesignHeight="1450" d:DesignWidth="800"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
     <UserControl.Resources>
         <Converters:TinyIntToBoolConverter x:Key="TinyIntToBoolConverter" />
     </UserControl.Resources>
@@ -30,7 +31,24 @@
                 <RowDefinition Height="1*" />
             </Grid.RowDefinitions>
 
-            <TextBlock Grid.ColumnSpan="2" HorizontalAlignment="Center"  TextWrapping="Wrap" Text="Potrzebuję w celu..." VerticalAlignment="Center" FontSize="40" Margin="0,50,0,30" />
+            <Grid Grid.ColumnSpan="2">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="auto" />
+                </Grid.ColumnDefinitions>
+
+                <Button Grid.Column="0" Style="{StaticResource MaterialDesignIconForegroundButton}" ToolTip="MaterialDesignIconForegroundButton" Command="{Binding GoToMainMenu}" Width="50" Height="50" Margin="20,0,0,0">
+                    <materialDesign:PackIcon Kind="ChevronDoubleLeft" Width="50" Height="50" />
+                </Button>
+
+
+                <TextBlock Grid.Column="1" HorizontalAlignment="Center"  TextWrapping="Wrap" Text="Potrzebuję w celu..." VerticalAlignment="Center" FontSize="40" Margin="0,50,0,30" />
+               
+                
+            </Grid>
+
 
             <Grid Grid.Row="1" MaxWidth="1000">
                 
