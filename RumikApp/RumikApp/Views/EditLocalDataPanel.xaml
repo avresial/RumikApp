@@ -121,52 +121,62 @@
                     <RowDefinition/>
                 </Grid.RowDefinitions>
 
-                <ToggleButton Grid.Column="0" IsChecked="{Binding SelectedBeverage.Vanila.IsSet}"  HorizontalAlignment="Center" Background="Transparent" BorderBrush="Transparent" Margin="5">
-                    <Image Source="{Binding SelectedBeverage.Vanila.IMGSrc}" VerticalAlignment="Center" HorizontalAlignment="Center"  />
-                </ToggleButton>
 
-                <ToggleButton Grid.Column="1" Grid.Row="0" IsChecked="{Binding SelectedBeverage.Nuts.IsSet}" HorizontalAlignment="Center" Background="Transparent" BorderBrush="Transparent" Margin="5">
-                    <Image Source="{Binding SelectedBeverage.Nuts.IMGSrc}" VerticalAlignment="Center" HorizontalAlignment="Center" />
-                </ToggleButton>
 
-                <ToggleButton Grid.Column="2" Grid.Row="0" IsChecked="{Binding SelectedBeverage.Caramel.IsSet}" HorizontalAlignment="Center" Background="Transparent" BorderBrush="Transparent" Margin="5">
+                    <ToggleButton Grid.Column="0" IsChecked="{Binding SelectedBeverage.Vanila.IsSet}" HorizontalAlignment="Center"  Margin="5" Style="{StaticResource MaterialDesignFlatToggleButton}" Width="90" Height="90">
+                        <Image Source="{Binding SelectedBeverage.Vanila.IMGSrc}" VerticalAlignment="Center" HorizontalAlignment="Center"  />
+                    </ToggleButton>
+
+                    <ToggleButton Grid.Column="1" Grid.Row="0" IsChecked="{Binding SelectedBeverage.Nuts.IsSet}" HorizontalAlignment="Center"  Margin="5" Style="{StaticResource MaterialDesignFlatToggleButton}" Width="90" Height="90">
+                        <Image Source="{Binding SelectedBeverage.Nuts.IMGSrc}" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                    </ToggleButton>
+
+                    <ToggleButton Grid.Column="2" Grid.Row="0" IsChecked="{Binding SelectedBeverage.Caramel.IsSet}" HorizontalAlignment="Center"  Margin="5" Style="{StaticResource MaterialDesignFlatToggleButton}" Width="90" Height="90">
                     <Image Source="{Binding SelectedBeverage.Caramel.IMGSrc}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                 </ToggleButton>
 
-                <ToggleButton Grid.Column="0" Grid.Row="1" IsChecked="{Binding SelectedBeverage.Smoke.IsSet}" HorizontalAlignment="Center" Background="Transparent" BorderBrush="Transparent" Margin="5">
+                    <ToggleButton Grid.Column="0" Grid.Row="1" IsChecked="{Binding SelectedBeverage.Smoke.IsSet}" HorizontalAlignment="Center"  Margin="5" Style="{StaticResource MaterialDesignFlatToggleButton}" Width="90" Height="90">
                     <Image Source="{Binding SelectedBeverage.Smoke.IMGSrc}" VerticalAlignment="Center" HorizontalAlignment="Center" />
                 </ToggleButton>
 
-                <ToggleButton Grid.Column="1" Grid.Row="1" IsChecked="{Binding SelectedBeverage.Cinnamon.IsSet}" HorizontalAlignment="Center" Background="Transparent" BorderBrush="Transparent" Margin="5">
+                    <ToggleButton Grid.Column="1" Grid.Row="1" IsChecked="{Binding SelectedBeverage.Cinnamon.IsSet}" HorizontalAlignment="Center"  Margin="5" Style="{StaticResource MaterialDesignFlatToggleButton}" Width="90" Height="90">
                     <Image Source="{Binding SelectedBeverage.Cinnamon.IMGSrc}" VerticalAlignment="Center" HorizontalAlignment="Center" />
                 </ToggleButton>
 
-                <ToggleButton Grid.Column="2" Grid.Row="1" IsChecked="{Binding SelectedBeverage.Spirit.IsSet}" HorizontalAlignment="Center" Background="Transparent" BorderBrush="Transparent" Margin="5">
+                    <ToggleButton Grid.Column="2" Grid.Row="1" IsChecked="{Binding SelectedBeverage.Spirit.IsSet}" HorizontalAlignment="Center" Margin="5" Style="{StaticResource MaterialDesignFlatToggleButton}" Width="90" Height="90">
                     <Image Source="{Binding SelectedBeverage.Spirit.IMGSrc}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                 </ToggleButton>
 
-                <ToggleButton Grid.Column="0" Grid.Row="2" IsChecked="{Binding SelectedBeverage.Fruits.IsSet}" HorizontalAlignment="Center" Background="Transparent" BorderBrush="Transparent" Margin="5">
+                    <ToggleButton Grid.Column="0" Grid.Row="2" IsChecked="{Binding SelectedBeverage.Fruits.IsSet}" HorizontalAlignment="Center"  Margin="5" Style="{StaticResource MaterialDesignFlatToggleButton}" Width="90" Height="90">
                     <Image Source="{Binding SelectedBeverage.Fruits.IMGSrc}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                 </ToggleButton>
 
-                <ToggleButton Grid.Column="1" Grid.Row="2" IsChecked="{Binding SelectedBeverage.Honey.IsSet}" HorizontalAlignment="Center" Background="Transparent" BorderBrush="Transparent" Margin="5">
+                    <ToggleButton Grid.Column="1" Grid.Row="2" IsChecked="{Binding SelectedBeverage.Honey.IsSet}" HorizontalAlignment="Center"  Margin="5" Style="{StaticResource MaterialDesignFlatToggleButton}" Width="90" Height="90">
                     <Image Source="{Binding SelectedBeverage.Honey.IMGSrc}" VerticalAlignment="Center" HorizontalAlignment="Center" />
                 </ToggleButton>
 
-                <ToggleButton Grid.Column="2" Grid.Row="2" IsChecked="{Binding SelectedBeverage.BeAPirate.IsSet}" HorizontalAlignment="Center" Background="Transparent" BorderBrush="Transparent" Margin="5">
-                    <Image Source="{Binding SelectedBeverage.BeAPirate.IMGSrc}" VerticalAlignment="Center" HorizontalAlignment="Center" />
-                </ToggleButton>
+                    <ToggleButton Grid.Column="2" Grid.Row="2" IsChecked="{Binding SelectedBeverage.BeAPirate.IsSet}" HorizontalAlignment="Center"  Margin="5" Style="{StaticResource MaterialDesignFlatToggleButton}" Width="90" Height="90">
+                        <Image Source="{Binding SelectedBeverage.BeAPirate.IMGSrc}" VerticalAlignment="Center" HorizontalAlignment="Center" Width="60"  />
+                    </ToggleButton>
 
             </Grid>
         </Grid>
 
-        <DockPanel Grid.Row="2" Background="PowderBlue"  >
+            <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center">
 
-            <Button Content="Usuń" Command="{Binding DeleteCurrentBeverage}" DockPanel.Dock="Right" Width="500" Background="LightPink"/>
-            <Button Content="Zapisz" Command="{Binding SaveCurrentBeverage}" DockPanel.Dock="Right" Width="500" Background="LightGreen"/>
-            <Button Content="Wracam" Command="{Binding GoToMainMenu}" DockPanel.Dock="Left" />
+                <Button Content="Usuń" Command="{Binding DeleteCurrentBeverage}"  Width="200" Background="LightPink"/>
+                <Button Content="Wracam" Command="{Binding GoToMainMenu}" Width="200"  />
+                <Button Content="Zapisz" Command="{Binding SaveCurrentBeverage}"  Width="200" Background="LightGreen"/>
+
+            </StackPanel>
             
-        </DockPanel>
+            <!--<DockPanel Grid.Row="2">
+
+                <Button Content="Usuń" Command="{Binding DeleteCurrentBeverage}"  Width="200" Background="LightPink"/>
+                <Button Content="Wracam" Command="{Binding GoToMainMenu}" Width="200"  />
+                <Button Content="Zapisz" Command="{Binding SaveCurrentBeverage}"  Width="200" Background="LightGreen"/>
+            
+            </DockPanel>-->
         </Grid>
     </ScrollViewer>
 </UserControl>

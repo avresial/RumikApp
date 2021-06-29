@@ -35,16 +35,16 @@
 
                 <Grid.ColumnDefinitions>
 
-                    <ColumnDefinition Width="1*" MaxWidth="500" />
+                    <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="450" />
-                    <ColumnDefinition Width="*" MaxWidth="500" />
+                    <ColumnDefinition Width="*" />
 
                 </Grid.ColumnDefinitions>
 
                 <Button Grid.Column="0" Command="{Binding LoadNewImage}"  
                     Background="LightGray" BorderBrush="Transparent" 
-                    VerticalAlignment="Center" ToolTip="Przyjmujemy zdjęcia do 30 kB">
-                    <Image Source="{Binding Beverage.TestIcon}" HorizontalAlignment="Center" Stretch="Uniform" />
+                    VerticalAlignment="Center" ToolTip="Przyjmujemy zdjęcia do 30 kB" Width="300" Height="300" Style="{StaticResource MaterialDesignFlatButton}">
+                    <Image Source="{Binding Beverage.TestIcon}" HorizontalAlignment="Center" Stretch="Uniform"  />
                 </Button>
 
                 <Grid Grid.Column="1" VerticalAlignment="Center">
@@ -101,40 +101,40 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
 
-                    <ToggleButton Grid.Column="0" IsChecked="{Binding Beverage.Vanila.IsSet}"  HorizontalAlignment="Center" Background="Transparent" BorderBrush="Transparent" Margin="5">
+                    <ToggleButton Grid.Column="0" IsChecked="{Binding Beverage.Vanila.IsSet}"  HorizontalAlignment="Center" Style="{StaticResource MaterialDesignFlatToggleButton}" Margin="5" Width="90" Height="90">
                         <Image Source="{Binding Beverage.Vanila.IMGSrc}" VerticalAlignment="Center" HorizontalAlignment="Center"  />
                     </ToggleButton>
 
-                    <ToggleButton Grid.Column="1" Grid.Row="0" IsChecked="{Binding Beverage.Nuts.IsSet}" HorizontalAlignment="Center" Background="Transparent" BorderBrush="Transparent" Margin="5">
+                    <ToggleButton Grid.Column="1" Grid.Row="0" IsChecked="{Binding Beverage.Nuts.IsSet}" HorizontalAlignment="Center" Style="{StaticResource MaterialDesignFlatToggleButton}" Margin="5" Width="90" Height="90">
                         <Image Source="{Binding Beverage.Nuts.IMGSrc}" VerticalAlignment="Center" HorizontalAlignment="Center" />
                     </ToggleButton>
 
-                    <ToggleButton Grid.Column="2" Grid.Row="0" IsChecked="{Binding Beverage.Caramel.IsSet}" HorizontalAlignment="Center" Background="Transparent" BorderBrush="Transparent" Margin="5">
+                    <ToggleButton Grid.Column="2" Grid.Row="0" IsChecked="{Binding Beverage.Caramel.IsSet}" HorizontalAlignment="Center" Style="{StaticResource MaterialDesignFlatToggleButton}" Margin="5" Width="90" Height="90">
                         <Image Source="{Binding Beverage.Caramel.IMGSrc}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                     </ToggleButton>
 
-                    <ToggleButton Grid.Column="0" Grid.Row="1" IsChecked="{Binding Beverage.Smoke.IsSet}" HorizontalAlignment="Center" Background="Transparent" BorderBrush="Transparent" Margin="5">
+                    <ToggleButton Grid.Column="0" Grid.Row="1" IsChecked="{Binding Beverage.Smoke.IsSet}" HorizontalAlignment="Center" Style="{StaticResource MaterialDesignFlatToggleButton}" Margin="5" Width="90" Height="90">
                         <Image Source="{Binding Beverage.Smoke.IMGSrc}" VerticalAlignment="Center" HorizontalAlignment="Center" />
                     </ToggleButton>
 
-                    <ToggleButton Grid.Column="1" Grid.Row="1" IsChecked="{Binding Beverage.Cinnamon.IsSet}" HorizontalAlignment="Center" Background="Transparent" BorderBrush="Transparent" Margin="5">
+                    <ToggleButton Grid.Column="1" Grid.Row="1" IsChecked="{Binding Beverage.Cinnamon.IsSet}" HorizontalAlignment="Center" Style="{StaticResource MaterialDesignFlatToggleButton}" Margin="5" Width="90" Height="90">
                         <Image Source="{Binding Beverage.Cinnamon.IMGSrc}" VerticalAlignment="Center" HorizontalAlignment="Center" />
                     </ToggleButton>
 
-                    <ToggleButton Grid.Column="2" Grid.Row="1" IsChecked="{Binding Beverage.Spirit.IsSet}" HorizontalAlignment="Center" Background="Transparent" BorderBrush="Transparent" Margin="5">
+                    <ToggleButton Grid.Column="2" Grid.Row="1" IsChecked="{Binding Beverage.Spirit.IsSet}" HorizontalAlignment="Center" Style="{StaticResource MaterialDesignFlatToggleButton}" Margin="5" Width="90" Height="90">
                         <Image Source="{Binding Beverage.Spirit.IMGSrc}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                     </ToggleButton>
 
-                    <ToggleButton Grid.Column="0" Grid.Row="2" IsChecked="{Binding Beverage.Fruits.IsSet}" HorizontalAlignment="Center" Background="Transparent" BorderBrush="Transparent" Margin="5">
+                    <ToggleButton Grid.Column="0" Grid.Row="2" IsChecked="{Binding Beverage.Fruits.IsSet}" HorizontalAlignment="Center" Style="{StaticResource MaterialDesignFlatToggleButton}" Margin="5" Width="90" Height="90">
                         <Image Source="{Binding Beverage.Fruits.IMGSrc}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                     </ToggleButton>
 
-                    <ToggleButton Grid.Column="1" Grid.Row="2" IsChecked="{Binding Beverage.Honey.IsSet}" HorizontalAlignment="Center" Background="Transparent" BorderBrush="Transparent" Margin="5">
+                    <ToggleButton Grid.Column="1" Grid.Row="2" IsChecked="{Binding Beverage.Honey.IsSet}" HorizontalAlignment="Center" Style="{StaticResource MaterialDesignFlatToggleButton}" Margin="5" Width="90" Height="90">
                         <Image Source="{Binding Beverage.Honey.IMGSrc}" VerticalAlignment="Center" HorizontalAlignment="Center" />
                     </ToggleButton>
 
-                    <ToggleButton Grid.Column="2" Grid.Row="2" IsChecked="{Binding Beverage.BeAPirate.IsSet}" HorizontalAlignment="Center" Background="Transparent" BorderBrush="Transparent" Margin="5">
-                        <Image Source="{Binding Beverage.BeAPirate.IMGSrc}" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                    <ToggleButton Grid.Column="2" Grid.Row="2" IsChecked="{Binding Beverage.BeAPirate.IsSet}" HorizontalAlignment="Center" Style="{StaticResource MaterialDesignFlatToggleButton}" Margin="5" Width="90" Height="90">
+                        <Image Source="{Binding Beverage.BeAPirate.IMGSrc}" VerticalAlignment="Center" HorizontalAlignment="Center" Width="60" />
                     </ToggleButton>
 
                 </Grid>
