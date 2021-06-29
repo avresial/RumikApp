@@ -214,11 +214,11 @@ namespace RumikApp.ViewModels
                                 break;
 
                             case "/IMGs/Icons/ArrowDown.png":
-                                informationBusService.SortByGradeAscending();
+                                informationBusService.SortByGradeDescending();
                                 break;
 
                             case "/IMGs/Icons/ArrowUp.png":
-                                informationBusService.SortByGradeDescending();
+                                informationBusService.SortByGradeAscending();
                                 break;
                         }
                     },

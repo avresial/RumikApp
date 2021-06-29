@@ -39,7 +39,7 @@
                     <ColumnDefinition Width="auto" />
                 </Grid.ColumnDefinitions>
 
-                <Button Grid.Column="0" Style="{StaticResource MaterialDesignIconForegroundButton}" ToolTip="MaterialDesignIconForegroundButton" Command="{Binding GoToMainMenu}" Width="50" Height="50" Margin="20,0,0,0">
+                <Button Grid.Column="0" Style="{StaticResource MaterialDesignIconForegroundButton}" ToolTip="Powrót" Command="{Binding GoToMainMenu}" Width="50" Height="50" Margin="20,0,0,0">
                     <materialDesign:PackIcon Kind="ChevronDoubleLeft" Width="50" Height="50" />
                 </Button>
 

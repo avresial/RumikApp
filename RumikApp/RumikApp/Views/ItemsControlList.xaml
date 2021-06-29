@@ -43,7 +43,7 @@
                 <ColumnDefinition Width="auto" />
             </Grid.ColumnDefinitions>
 
-            <Button Grid.Column="0" Style="{StaticResource MaterialDesignIconForegroundButton}" ToolTip="MaterialDesignIconForegroundButton" Command="{Binding GoToMainMenu}" Width="50" Height="50" Margin="20,0,0,0">
+            <Button Grid.Column="0" Style="{StaticResource MaterialDesignIconForegroundButton}" ToolTip="Powrót" Command="{Binding GoToMainMenu}" Width="50" Height="50" Margin="20,0,0,0">
                 <materialDesign:PackIcon Kind="ChevronDoubleLeft" Width="50" Height="50" />
             </Button>
 
@@ -92,7 +92,7 @@
 
         </Grid>
 
-            <Button Grid.Column="2" Style="{StaticResource MaterialDesignIconForegroundButton}" ToolTip="MaterialDesignIconForegroundButton" Command="{Binding AddNewToDatabase}" HorizontalAlignment="Left" Width="50" Height="50" Margin="0,0,20,0">
+            <Button Grid.Column="2" Style="{StaticResource MaterialDesignIconForegroundButton}" ToolTip="Dodaj nowy rum" Command="{Binding AddNewToDatabase}" HorizontalAlignment="Left" Width="50" Height="50" Margin="0,0,20,0">
                 <materialDesign:PackIcon Kind="DatabasePlus" Width="30" Height="30" />
             </Button>
         </Grid>
