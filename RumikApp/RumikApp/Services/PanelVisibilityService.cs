@@ -129,9 +129,6 @@ namespace RumikApp.Services
             }
         }
 
-
-        
-
         private void collapseAllViews()
         {
             MainPanelVisibility = Visibility.Collapsed;
