@@ -9,7 +9,7 @@ namespace RumikApp.Services
         Visibility PollVisibility { get; set; }
         Visibility InsertDataToDatabaseFormVisibility { get; set; }
         Visibility DataGridViewModelVisibility { get; set; }
-        Visibility DataGridViewModel2Visibility { get; set; }
+        Visibility RandomDataGridVisibility { get; set; }
         Visibility ItemsControlVisibility { get; set; }
         Visibility EditLocalDataVisibility { get; set; }
     }

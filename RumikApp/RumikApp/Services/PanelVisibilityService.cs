@@ -79,7 +79,7 @@ namespace RumikApp.Services
         }
 
         private Visibility _DataGridViewModel2Visibility = Visibility.Collapsed;
-        public Visibility DataGridViewModel2Visibility
+        public Visibility RandomDataGridVisibility
         {
             get { return _DataGridViewModel2Visibility; }
             set
@@ -91,7 +91,7 @@ namespace RumikApp.Services
                     collapseAllViews();
 
                 _DataGridViewModel2Visibility = value;
-                RaisePropertyChanged(nameof(DataGridViewModel2Visibility));
+                RaisePropertyChanged(nameof(RandomDataGridVisibility));
             }
         }
 
@@ -135,7 +135,7 @@ namespace RumikApp.Services
             PollVisibility = Visibility.Collapsed;
             InsertDataToDatabaseFormVisibility = Visibility.Collapsed;
             DataGridViewModelVisibility = Visibility.Collapsed;
-            DataGridViewModel2Visibility = Visibility.Collapsed;
+            RandomDataGridVisibility = Visibility.Collapsed;
             ItemsControlVisibility = Visibility.Collapsed;
             EditLocalDataVisibility = Visibility.Collapsed;
         }

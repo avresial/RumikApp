@@ -232,6 +232,9 @@
     <Compile Include="ViewModels\InsertDataToDatabaseFormViewModel.cs" />
     <Compile Include="ViewModels\MainControlPanelViewModel.cs" />
     <Compile Include="ViewModels\PollViewModel.cs" />
+    <Compile Include="Views\RandomPanel.xaml.cs">
+      <DependentUpon>RandomPanel.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -261,6 +264,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Poll.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\RandomPanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

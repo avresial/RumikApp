@@ -174,7 +174,7 @@ namespace RumikApp.ViewModels
                     _CloseForm = new RelayCommand(
                     () =>
                     {
-                        PanelVisibilityService.MainPanelVisibility = Visibility.Visible;
+                        PanelVisibilityService.RandomDataGridVisibility = Visibility.Visible;
                     },
                     () =>
                     {

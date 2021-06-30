@@ -30,7 +30,7 @@ namespace RumikApp.Tests
             Assert.True(actualResult.PollVisibility == Visibility.Collapsed);
             Assert.True(actualResult.InsertDataToDatabaseFormVisibility == Visibility.Collapsed);
             Assert.True(actualResult.DataGridViewModelVisibility == Visibility.Collapsed);
-            Assert.True(actualResult.DataGridViewModel2Visibility == Visibility.Collapsed);
+            Assert.True(actualResult.RandomDataGridVisibility == Visibility.Collapsed);
             Assert.True(actualResult.ItemsControlVisibility == Visibility.Collapsed);
             Assert.True(sut.EditLocalDataVisibility == Visibility.Collapsed);
 
@@ -49,7 +49,7 @@ namespace RumikApp.Tests
             Assert.True(sut.PollVisibility == Visibility.Collapsed);
             Assert.True(sut.InsertDataToDatabaseFormVisibility == Visibility.Collapsed);
             Assert.True(sut.DataGridViewModelVisibility == Visibility.Collapsed);
-            Assert.True(sut.DataGridViewModel2Visibility == Visibility.Collapsed);
+            Assert.True(sut.RandomDataGridVisibility == Visibility.Collapsed);
             Assert.True(sut.ItemsControlVisibility == Visibility.Collapsed);
             Assert.True(sut.EditLocalDataVisibility == Visibility.Collapsed);
         }
@@ -67,7 +67,7 @@ namespace RumikApp.Tests
             Assert.True(sut.PollVisibility == Visibility.Visible);
             Assert.True(sut.InsertDataToDatabaseFormVisibility == Visibility.Collapsed);
             Assert.True(sut.DataGridViewModelVisibility == Visibility.Collapsed);
-            Assert.True(sut.DataGridViewModel2Visibility == Visibility.Collapsed);
+            Assert.True(sut.RandomDataGridVisibility == Visibility.Collapsed);
             Assert.True(sut.ItemsControlVisibility == Visibility.Collapsed);
             Assert.True(sut.EditLocalDataVisibility == Visibility.Collapsed);
         }
@@ -85,7 +85,7 @@ namespace RumikApp.Tests
             Assert.True(sut.PollVisibility == Visibility.Collapsed);
             Assert.True(sut.InsertDataToDatabaseFormVisibility == Visibility.Visible);
             Assert.True(sut.DataGridViewModelVisibility == Visibility.Collapsed);
-            Assert.True(sut.DataGridViewModel2Visibility == Visibility.Collapsed);
+            Assert.True(sut.RandomDataGridVisibility == Visibility.Collapsed);
             Assert.True(sut.ItemsControlVisibility == Visibility.Collapsed);
             Assert.True(sut.EditLocalDataVisibility == Visibility.Collapsed);
         }
@@ -103,7 +103,7 @@ namespace RumikApp.Tests
             Assert.True(sut.PollVisibility == Visibility.Collapsed);
             Assert.True(sut.InsertDataToDatabaseFormVisibility == Visibility.Collapsed);
             Assert.True(sut.DataGridViewModelVisibility == Visibility.Visible);
-            Assert.True(sut.DataGridViewModel2Visibility == Visibility.Collapsed);
+            Assert.True(sut.RandomDataGridVisibility == Visibility.Collapsed);
             Assert.True(sut.ItemsControlVisibility == Visibility.Collapsed);
             Assert.True(sut.EditLocalDataVisibility == Visibility.Collapsed);
         }
@@ -114,14 +114,14 @@ namespace RumikApp.Tests
             // Arrange
 
             // Act
-            sut.DataGridViewModel2Visibility = Visibility.Visible;
+            sut.RandomDataGridVisibility = Visibility.Visible;
 
             // Assert
             Assert.True(sut.MainPanelVisibility == Visibility.Collapsed);
             Assert.True(sut.PollVisibility == Visibility.Collapsed);
             Assert.True(sut.InsertDataToDatabaseFormVisibility == Visibility.Collapsed);
             Assert.True(sut.DataGridViewModelVisibility == Visibility.Collapsed);
-            Assert.True(sut.DataGridViewModel2Visibility == Visibility.Visible);
+            Assert.True(sut.RandomDataGridVisibility == Visibility.Visible);
             Assert.True(sut.ItemsControlVisibility == Visibility.Collapsed);
             Assert.True(sut.EditLocalDataVisibility == Visibility.Collapsed);
         }
@@ -139,7 +139,7 @@ namespace RumikApp.Tests
             Assert.True(sut.PollVisibility == Visibility.Collapsed);
             Assert.True(sut.InsertDataToDatabaseFormVisibility == Visibility.Collapsed);
             Assert.True(sut.DataGridViewModelVisibility == Visibility.Collapsed);
-            Assert.True(sut.DataGridViewModel2Visibility == Visibility.Collapsed);
+            Assert.True(sut.RandomDataGridVisibility == Visibility.Collapsed);
             Assert.True(sut.ItemsControlVisibility == Visibility.Visible);
             Assert.True(sut.EditLocalDataVisibility == Visibility.Collapsed);
 
@@ -158,7 +158,7 @@ namespace RumikApp.Tests
             Assert.True(sut.PollVisibility == Visibility.Collapsed);
             Assert.True(sut.InsertDataToDatabaseFormVisibility == Visibility.Collapsed);
             Assert.True(sut.DataGridViewModelVisibility == Visibility.Collapsed);
-            Assert.True(sut.DataGridViewModel2Visibility == Visibility.Collapsed);
+            Assert.True(sut.RandomDataGridVisibility == Visibility.Collapsed);
             Assert.True(sut.ItemsControlVisibility == Visibility.Collapsed);
             Assert.True(sut.EditLocalDataVisibility == Visibility.Visible);
 

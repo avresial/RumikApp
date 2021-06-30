@@ -70,7 +70,7 @@ namespace RumikApp.ViewModels
                      async () =>
                     {
 
-                        PanelVisibilityService.DataGridViewModel2Visibility = Visibility.Visible;
+                        PanelVisibilityService.RandomDataGridVisibility = Visibility.Visible;
 
                         Beverage randomOne = await databaseConnectionService.GetRandomRow();
 
@@ -121,7 +121,7 @@ namespace RumikApp.ViewModels
                     _GoStraightToDatabase = new RelayCommand(
                     async () =>
                     {
-                        PanelVisibilityService.DataGridViewModel2Visibility = Visibility.Visible;
+                        PanelVisibilityService.RandomDataGridVisibility = Visibility.Visible;
 
                         var lol = await databaseConnectionService.GetAllData();
 
