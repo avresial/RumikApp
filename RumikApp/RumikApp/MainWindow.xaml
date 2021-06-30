@@ -32,7 +32,7 @@
             <Views:Poll Visibility="{Binding PanelVisibilityService.PollVisibility}" DataContext="{Binding PollViewModel}"/>
 
             <Views:ItemsControlList Visibility="{Binding PanelVisibilityService.DataGridViewModelVisibility}"  DataContext="{Binding DataGridViewModel}" />
-            <Views:RandomPanel Visibility="{Binding PanelVisibilityService.RandomDataGridVisibility}"  DataContext="{Binding DataGridViewModel2}" />
+            <Views:RandomPanel Visibility="{Binding PanelVisibilityService.RandomDataGridVisibility}"  DataContext="{Binding RandomDataGrid}" />
 
         </Grid>
 

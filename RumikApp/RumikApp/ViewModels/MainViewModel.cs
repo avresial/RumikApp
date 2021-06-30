@@ -60,17 +60,17 @@ namespace RumikApp.ViewModel
             }
         }
 
-        private DataGridViewModel _DataGridViewModel2;
-        public DataGridViewModel DataGridViewModel2
+        private DataGridViewModel _RandomDataGrid;
+        public DataGridViewModel RandomDataGrid
         {
-            get { return _DataGridViewModel2; }
+            get { return _RandomDataGrid; }
             set
             {
-                if (_DataGridViewModel2 == value)
+                if (_RandomDataGrid == value)
                     return;
 
-                _DataGridViewModel2 = value;
-                RaisePropertyChanged(nameof(DataGridViewModel2));
+                _RandomDataGrid = value;
+                RaisePropertyChanged(nameof(RandomDataGrid));
             }
         }
 
@@ -156,7 +156,7 @@ namespace RumikApp.ViewModel
             DatabaseConnectionService = databaseConnectionService;
             EditLocalDataViewModel = editLocalDataViewModel;
             PanelVisibilityService = panelVisibilityService;
-            DataGridViewModel2 = dataGridViewModel2;
+            RandomDataGrid = dataGridViewModel2;
             DataGridViewModel = dataGridViewModel;
             PollViewModel = pollViewModel;
             ItemsControl = itemsControl;

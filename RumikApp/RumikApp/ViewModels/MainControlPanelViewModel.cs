@@ -121,7 +121,7 @@ namespace RumikApp.ViewModels
                     _GoStraightToDatabase = new RelayCommand(
                     async () =>
                     {
-                        PanelVisibilityService.RandomDataGridVisibility = Visibility.Visible;
+                        PanelVisibilityService.DataGridViewModelVisibility = Visibility.Visible;
 
                         var lol = await databaseConnectionService.GetAllData();
 

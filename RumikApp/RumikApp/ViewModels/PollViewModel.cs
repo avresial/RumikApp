@@ -393,7 +393,7 @@ namespace RumikApp.UserControls
                     _GetMeThatRum = new RelayCommand(
                     async () =>
                     {
-                        PanelVisibilityService.RandomDataGridVisibility = Visibility.Visible;
+                        PanelVisibilityService.DataGridViewModelVisibility = Visibility.Visible;
 
                         informationBusService.OriginalBeverages = await databaseConnectionService.GetDataFromDatabaseWithConditions(PollPurpose, 5, PollMixes, getListWithSetFlavours(), PollPricePoints);
 
@@ -469,8 +469,7 @@ namespace RumikApp.UserControls
 
             informationBusService.OriginalBeverages = await databaseConnectionService.GetDataFromDatabaseWithConditions(PollPurpose.ForPiratesFromCarabien, 5, PollMixes.None, new List<Flavour>(), PollPricePoints.None);
 
-            PanelVisibilityService.PollVisibility = Visibility.Collapsed;
-            PanelVisibilityService.RandomDataGridVisibility = Visibility.Visible;
+            PanelVisibilityService.DataGridViewModelVisibility = Visibility.Visible;
 
             ForPiratesFromCarabien = false;
             ClearSellection();
