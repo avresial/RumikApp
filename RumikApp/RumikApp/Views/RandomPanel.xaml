@@ -48,7 +48,8 @@
             </Button>
         </Grid>
         <ScrollViewer Grid.Row="1" Grid.ColumnSpan="2" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" VerticalAlignment="Center" >
-            <ItemsControl   ItemsSource="{Binding informationBusService.SortedBeverages}" Visibility="{Binding informationBusService.IsBeverageNotEmpty}" MaxWidth="1300" HorizontalAlignment="Center">
+            <StackPanel>
+                <ItemsControl   ItemsSource="{Binding informationBusService.SortedBeverages}" Visibility="{Binding informationBusService.IsBeverageNotEmpty}" MaxWidth="1300" HorizontalAlignment="Center">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <Grid Margin="1,0,0,70" MaxHeight="300">
@@ -105,6 +106,10 @@
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
+
+                <Button Width="200" Command="{Binding ImFeelingLucky}">Losuj</Button>
+                
+            </StackPanel>
         </ScrollViewer>
 
         <Grid  Visibility="{Binding informationBusService.IsBeverageEmpty}" Grid.Row="1">

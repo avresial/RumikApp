@@ -4,11 +4,14 @@ using RumikApp.Services;
 using System.Linq;
 using RumikApp.ViewModel;
 using System.Windows;
+using System.Collections.ObjectModel;
 
 namespace RumikApp.ViewModels
 {
     public class DataGridViewModel : ViewModelBase
     {
+        private IDatabaseConnectionService databaseConnectionService;
+
         private IInformationBusService _informationBusService;
         public IInformationBusService informationBusService
         {
@@ -339,11 +342,42 @@ namespace RumikApp.ViewModels
             }
         }
 
+        private RelayCommand _ImFeelingLucky;
+        public RelayCommand ImFeelingLucky
+        {
+            get
+            {
+                if (_ImFeelingLucky == null)
+                {
+                    _ImFeelingLucky = new RelayCommand(
+                     async () =>
+                     {
 
-        public DataGridViewModel(IPanelVisibilityService panelVisibilityService, IInformationBusService informationBusService)
+                         PanelVisibilityService.RandomDataGridVisibility = Visibility.Visible;
+
+                         Beverage randomOne = await databaseConnectionService.GetRandomRow();
+
+                         if (randomOne == null)
+                             informationBusService.OriginalBeverages = new ObservableCollection<Beverage>();
+                         else
+                             informationBusService.OriginalBeverages = new ObservableCollection<Beverage>() { randomOne };
+                     },
+                    () =>
+                    {
+                        return true;
+                    });
+                }
+
+                return _ImFeelingLucky;
+            }
+        }
+
+
+        public DataGridViewModel(IDatabaseConnectionService databaseConnectionService, IPanelVisibilityService panelVisibilityService, IInformationBusService informationBusService)
         {
             this.PanelVisibilityService = panelVisibilityService;
             this.informationBusService = informationBusService;
+            this.databaseConnectionService = databaseConnectionService;
         }
     }
 }
