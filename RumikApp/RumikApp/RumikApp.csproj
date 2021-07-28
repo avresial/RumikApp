@@ -236,6 +236,9 @@
     <Compile Include="Views\RandomPanel.xaml.cs">
       <DependentUpon>RandomPanel.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\WelcomePanelView.xaml.cs">
+      <DependentUpon>WelcomePanelView.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -269,6 +272,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\RandomPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\WelcomePanelView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -386,6 +393,7 @@
     <Content Include="IMGs\Bottles\UnknownBottleCopy.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Resource Include="IMGs\WelcomePanel\WelcomePanelIMG.png" />
     <Resource Include="IMGs\Icons\None.png" />
     <Resource Include="IMGs\Icons\ArrowDown.png" />
     <Resource Include="IMGs\Icons\ArrowUp.png" />

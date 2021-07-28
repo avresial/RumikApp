@@ -33,6 +33,7 @@
 
             <Views:ItemsControlList Visibility="{Binding PanelVisibilityService.DataGridViewModelVisibility}"  DataContext="{Binding DataGridViewModel}" />
             <Views:RandomPanel Visibility="{Binding PanelVisibilityService.RandomDataGridVisibility}"  DataContext="{Binding RandomDataGrid}" />
+            <Views:WelcomePanelView Visibility="{Binding PanelVisibilityService.WelcomePanel}"  DataContext="{Binding WelcomePanelViewModel}"/>
 
         </Grid>
 

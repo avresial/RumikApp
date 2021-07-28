@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Reflection;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace RumikApp.Services
 {
@@ -19,7 +20,7 @@ namespace RumikApp.Services
     {
         private readonly IFileService fileService;
         private readonly IStreamReaderService streamReader;
-        private readonly string UserAbove18FileName = "UserAbove18.json";
+        private readonly string UserAbove18FileName = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\RumikApp" + "\\UserAbove18.json";
         #region CTOR
         public FileDatabaseConnectionService(IFileService fileService, IStreamReaderService streamReader)
         {
@@ -374,28 +375,26 @@ namespace RumikApp.Services
         }
         public bool CheckIsUserAbove18()
         {
-            string isAbove18File = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\RumikApp\\" + UserAbove18FileName;
+            string json;
 
-            CreateIsAbove18FileExists(isAbove18File);
+            CreateIsAbove18FileExists(UserAbove18FileName);
 
-            using (streamReader.Create(isAbove18File))
-            {
-                string json = streamReader.ReadToEnd();
+            using (streamReader.Create(UserAbove18FileName))
+                json = streamReader.ReadToEnd();
 
-                if (json == null || json == "")
-                    return false;
 
-                return JsonConvert.DeserializeObject<bool>(json);
+            if (json == null || !IsValidJson(json) || json == "")
+                return false;
 
-            }
+            return JsonConvert.DeserializeObject<bool>(json);
+
         }
 
-        public void ChangeIsUserAbove18State( bool state)
+        public void ChangeIsUserAbove18State(bool state)
         {
             string json = JsonConvert.SerializeObject(state);
-            string file = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\RumikApp\\" + UserAbove18FileName;
 
-            using (TextWriter tw = new StreamWriter(file))
+            using (TextWriter tw = new StreamWriter(UserAbove18FileName))
             {
                 tw.WriteLine(json);
                 tw.Close();
@@ -407,7 +406,6 @@ namespace RumikApp.Services
         {
             if (File.Exists(file))
                 return;
-
 
             File.Create(file).Close();
             ChangeIsUserAbove18State(false);
@@ -433,6 +431,41 @@ namespace RumikApp.Services
             }
 
             return Beverages;
+        }
+
+        private bool IsValidJson(string strInput)
+        {
+            if (string.IsNullOrWhiteSpace(strInput)) { return false; }
+            strInput = strInput.Trim();
+
+            bool isValid = false;
+
+            try
+            {
+                var obj = JToken.Parse(strInput);
+                return true;
+            }
+            catch (JsonReaderException jex)
+            {
+                //Exception in parsing json
+                Console.WriteLine(jex.Message);
+
+
+                isValid = false;
+            }
+            catch (Exception ex) //some other exception
+            {
+                Console.WriteLine(ex.ToString());
+                isValid = false;
+            }
+
+            if (!isValid)
+                if (File.Exists(UserAbove18FileName))
+                    File.Delete(UserAbove18FileName);
+
+            CreateIsAbove18FileExists(UserAbove18FileName);
+
+            return isValid;
         }
     }
 }

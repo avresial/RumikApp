@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel.DataAnnotations;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -10,7 +11,10 @@ using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 
 namespace RumikApp
-{
+{/// <summary>
+///  POCO class
+///  in future will implement data annotation
+/// </summary>
     public class Beverage : FlavoursSet
     {
         private int _ID;
@@ -28,6 +32,7 @@ namespace RumikApp
         }
 
         private String _Name;
+        [Required(ErrorMessage ="Pole nie może być puste")]
         public String Name
         {
             get { return _Name; }
@@ -42,6 +47,8 @@ namespace RumikApp
         }
 
         private int _Capacity;
+        [Required(ErrorMessage ="Pole nie może być puste")]
+        [Range(50,10000,ErrorMessage = "Nieprawidłowa pojemonść")]
         public int Capacity
         {
             get { return _Capacity; }
