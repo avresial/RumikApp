@@ -204,6 +204,7 @@
     <Compile Include="Services\ISQLDatabaseConnectionService.cs" />
     <Compile Include="Services\IStreamReaderService.cs" />
     <Compile Include="Services\StreamReaderService.cs" />
+    <Compile Include="ViewModels\WelcomePanelViewModel.cs" />
     <Compile Include="Views\EditLocalDataPanel.xaml.cs">
       <DependentUpon>EditLocalDataPanel.xaml</DependentUpon>
     </Compile>

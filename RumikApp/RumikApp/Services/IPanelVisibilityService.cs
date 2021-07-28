@@ -4,7 +4,7 @@ namespace RumikApp.Services
 {
     public interface IPanelVisibilityService
     {
-
+        Visibility WelcomePanel { get; set; }
         Visibility MainPanelVisibility { get; set; }
         Visibility PollVisibility { get; set; }
         Visibility InsertDataToDatabaseFormVisibility { get; set; }

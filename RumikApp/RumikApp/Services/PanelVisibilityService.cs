@@ -10,7 +10,24 @@ namespace RumikApp.Services
 {
     public class PanelVisibilityService : ViewModelBase, IPanelVisibilityService
     {
-        private Visibility _MainPanelVisibility = Visibility.Visible;
+        private Visibility _WelcomePanel = Visibility.Visible;
+        public Visibility WelcomePanel
+        {
+            get { return _WelcomePanel; }
+            set
+            {
+                if (_WelcomePanel == value)
+                    return;
+
+                if (value == Visibility.Visible)
+                    collapseAllViews();
+
+                _WelcomePanel = value;
+                RaisePropertyChanged(nameof(WelcomePanel));
+            }
+        }
+
+        private Visibility _MainPanelVisibility = Visibility.Collapsed;
         public Visibility MainPanelVisibility
         {
             get { return _MainPanelVisibility; }
@@ -131,6 +148,7 @@ namespace RumikApp.Services
 
         private void collapseAllViews()
         {
+            WelcomePanel = Visibility.Collapsed;
             MainPanelVisibility = Visibility.Collapsed;
             PollVisibility = Visibility.Collapsed;
             InsertDataToDatabaseFormVisibility = Visibility.Collapsed;

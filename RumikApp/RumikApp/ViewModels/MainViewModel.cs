@@ -18,6 +18,20 @@ namespace RumikApp.ViewModel
     {
         private DispatcherTimer dispatcherTimerInCaseDatabaseDoesNotWork = new DispatcherTimer();
 
+        private WelcomePanelViewModel _WelcomePanelViewModel;
+        public WelcomePanelViewModel WelcomePanelViewModel
+        {
+            get { return _WelcomePanelViewModel; }
+            set
+            {
+                if (_WelcomePanelViewModel == value)
+                    return;
+
+                _WelcomePanelViewModel = value;
+                RaisePropertyChanged(nameof(WelcomePanelViewModel));
+            }
+        }
+
         private MainControlPanelViewModel _MainControlPanelViewModel;
         public MainControlPanelViewModel MainControlPanelViewModel
         {
@@ -145,12 +159,12 @@ namespace RumikApp.ViewModel
             }
         }
 
-        public MainViewModel(MainControlPanelViewModel mainControlPanelViewModel, PollViewModel pollViewModel,
+        public MainViewModel(WelcomePanelViewModel welcomePanelViewModel, MainControlPanelViewModel mainControlPanelViewModel, PollViewModel pollViewModel,
             DataGridViewModel dataGridViewModel, DataGridViewModel dataGridViewModel2, DataGridViewModel itemsControl,
             InsertDataToDatabaseFormViewModel insertDataToDatabaseFormViewModel, EditLocalDataViewModel editLocalDataViewModel, 
             IDatabaseConnectionService databaseConnectionService, IPanelVisibilityService panelVisibilityService)
         {
-
+            WelcomePanelViewModel = welcomePanelViewModel;
             InsertDataToDatabaseForm = insertDataToDatabaseFormViewModel;
             MainControlPanelViewModel = mainControlPanelViewModel;
             DatabaseConnectionService = databaseConnectionService;
