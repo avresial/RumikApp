@@ -19,12 +19,12 @@
             </Grid.RowDefinitions>
 
             <StackPanel Grid.ColumnSpan="2" Orientation="Vertical" VerticalAlignment="Center" MinHeight="400" >
-                <Image Source="/IMGs/WelcomePanel/WelcomePanelIMG.png" RenderTransformOrigin="0.5,0.5" Height="300"/>
-                <TextBlock HorizontalAlignment="Center" FontSize="25" Text="Doświadczyłeś już osiemnastu wiosen?" FontFamily="Bookman Old Style" Margin="0,50,0,0"/>
+                <Image Source="/IMGs/WelcomePanel/WelcomePanelIMG.png" RenderTransformOrigin="0.5,0.5" Height="500"/>
+                <TextBlock HorizontalAlignment="Center" FontSize="20" Text="Doświadczyłeś już osiemnastu wiosen?" FontFamily="Bookman Old Style" Margin="0,50,0,0"/>
             </StackPanel>
 
-            <Button Grid.Column="0" Grid.Row="1" Background="IndianRed" Content="Tak"  Command="{Binding IAmAbove18}" Width="200" Margin="0,10,0,0"/>
-            <Button Grid.Column="1" Grid.Row="1" Background="CadetBlue" Content="Nie" Command="{Binding IAmNotAvove18}" Width="200" Margin="0,10,0,0"/>
+            <Button Grid.Column="0" Grid.Row="1" Background="IndianRed" Content="Tak"  Command="{Binding IAmAbove18}" Width="200" Margin="0,50,0,0"/>
+            <Button Grid.Column="1" Grid.Row="1" Background="CadetBlue" Content="Nie" Command="{Binding IAmNotAvove18}" Width="200" Margin="0,50,0,0"/>
         </Grid>
     </Grid>
 </UserControl>
