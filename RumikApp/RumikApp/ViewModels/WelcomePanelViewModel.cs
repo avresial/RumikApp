@@ -12,6 +12,8 @@ namespace RumikApp.ViewModels
     public class WelcomePanelViewModel : ViewModelBase
     {
 
+        private IFileDatabaseConnectionService FileDatabaseConnectionService;
+
         private IPanelVisibilityService _PanelVisibilityService;
         public IPanelVisibilityService PanelVisibilityService
         {
@@ -26,11 +28,14 @@ namespace RumikApp.ViewModels
             }
         }
 
-        public WelcomePanelViewModel(IPanelVisibilityService panelVisibilityService)
+        public WelcomePanelViewModel(IPanelVisibilityService panelVisibilityService, IFileDatabaseConnectionService fileDatabaseConnectionService)
         {
+            this.FileDatabaseConnectionService = fileDatabaseConnectionService;
             this.PanelVisibilityService = panelVisibilityService;
 
-            if (PanelVisibilityService.WelcomePanel == Visibility.Visible)
+            //FileDatabaseConnectionService.ChangeIsUserAbove18State(true);
+
+            if (fileDatabaseConnectionService.CheckIsUserAbove18())
                 PanelVisibilityService.MainPanelVisibility = Visibility.Visible;
 
         }

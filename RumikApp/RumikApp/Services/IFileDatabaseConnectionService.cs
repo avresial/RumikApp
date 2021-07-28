@@ -7,5 +7,7 @@ namespace RumikApp.Services
 {
     public interface IFileDatabaseConnectionService : IDatabaseConnectionService
     {
+        bool CheckIsUserAbove18();
+        void ChangeIsUserAbove18State(bool state);
     }
 }

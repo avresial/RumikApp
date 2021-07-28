@@ -11,10 +11,15 @@ using Newtonsoft.Json;
 
 namespace RumikApp.Services
 {
+    /// <summary>
+    /// Class is used to save and load data from file located on local machine.
+    /// Currently data is stored in Json files, maybe in future it will be changed binary files using binaryformatter
+    /// </summary>
     public class FileDatabaseConnectionService : IFileDatabaseConnectionService
     {
         private readonly IFileService fileService;
         private readonly IStreamReaderService streamReader;
+        private readonly string UserAbove18FileName = "UserAbove18.json";
         #region CTOR
         public FileDatabaseConnectionService(IFileService fileService, IStreamReaderService streamReader)
         {
@@ -275,7 +280,6 @@ namespace RumikApp.Services
 
         public async Task<string> SaveBevreageToDatabase(Beverage beverage, byte[] img)
         {
-
             if (!fileService.DirectoryExists(MainDataDirectory))
                 fileService.CreateDirectory(MainDataDirectory);
 
@@ -367,6 +371,47 @@ namespace RumikApp.Services
         public bool TestConnectionToTable(AvailableTables availableTables)
         {
             return fileService.FileExists(FileName);
+        }
+        public bool CheckIsUserAbove18()
+        {
+            string isAbove18File = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\RumikApp\\" + UserAbove18FileName;
+
+            CreateIsAbove18FileExists(isAbove18File);
+
+            using (streamReader.Create(isAbove18File))
+            {
+                string json = streamReader.ReadToEnd();
+
+                if (json == null || json == "")
+                    return false;
+
+                return JsonConvert.DeserializeObject<bool>(json);
+
+            }
+        }
+
+        public void ChangeIsUserAbove18State( bool state)
+        {
+            string json = JsonConvert.SerializeObject(state);
+            string file = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\RumikApp\\" + UserAbove18FileName;
+
+            using (TextWriter tw = new StreamWriter(file))
+            {
+                tw.WriteLine(json);
+                tw.Close();
+            };
+
+        }
+
+        private void CreateIsAbove18FileExists(string file)
+        {
+            if (File.Exists(file))
+                return;
+
+
+            File.Create(file).Close();
+            ChangeIsUserAbove18State(false);
+
         }
 
         private ObservableCollection<JsonBeverage> getAllJsonData()
