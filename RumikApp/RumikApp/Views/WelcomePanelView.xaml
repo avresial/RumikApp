@@ -18,7 +18,7 @@
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
 
-            <StackPanel Grid.ColumnSpan="2" Orientation="Vertical" VerticalAlignment="Center" MinHeight="400" >
+            <StackPanel Grid.ColumnSpan="2" Orientation="Vertical" VerticalAlignment="Center">
                 <Image Source="/IMGs/WelcomePanel/WelcomePanelIMG.png" RenderTransformOrigin="0.5,0.5" Height="500"/>
                 <TextBlock HorizontalAlignment="Center" FontSize="20" Text="Doświadczyłeś już osiemnastu wiosen?" FontFamily="Bookman Old Style" Margin="0,50,0,0"/>
             </StackPanel>
