@@ -379,6 +379,9 @@ namespace RumikApp.Services
         public Settings ReadSettings()
         {
             string json;
+            if (!fileService.DirectoryExists(MainDataDirectory))
+                fileService.CreateDirectory(MainDataDirectory);
+
             if (!File.Exists(SettingsFileName))
                 CreateSettingsFile();
 
@@ -466,6 +469,8 @@ namespace RumikApp.Services
 
         private void CreateSettingsFile()
         {
+            if (!fileService.DirectoryExists(MainDataDirectory))
+                fileService.CreateDirectory(MainDataDirectory);
 
             File.Create(SettingsFileName).Close();
 
