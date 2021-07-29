@@ -9,9 +9,9 @@ namespace RumikApp.Enums
     public enum PollPricePoints
     {
         None,
-        PricePoint1,
-        PricePoint2,
-        PricePoint3,
-        PricePoint4
+        PricePointTo50,
+        PricePoint50To70,
+        PricePoint70To90,
+        PricePointFrom90
     }
 }

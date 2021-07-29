@@ -1,5 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using RumikApp.Enums;
+using RumikApp.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -197,9 +198,15 @@ namespace RumikApp.Services
             return result;
         }
 
-        public async Task SendSearchingStatistics(Random random = null) 
+        public async Task SendSearchingStatistics(PollData pollData = null) 
         {
-        
+            var test = await TestConnectionToDatabase();
+
+            if (!test)
+                return;
+            var test2 = (int)pollData.PollPricePoints;
+            ;
+
         }
 
         private Beverage saveReaderToBevrage(MySqlDataReader reader)
@@ -409,16 +416,16 @@ namespace RumikApp.Services
         private string getStringPrice(PollPricePoints pollPricePoints)
         {
 
-            if (pollPricePoints == PollPricePoints.PricePoint1)
+            if (pollPricePoints == PollPricePoints.PricePointTo50)
                 return " Price < 50";
 
-            if (pollPricePoints == PollPricePoints.PricePoint2)
+            if (pollPricePoints == PollPricePoints.PricePoint50To70)
                 return " Price >= 50 and Price < 70";
 
-            if (pollPricePoints == PollPricePoints.PricePoint3)
+            if (pollPricePoints == PollPricePoints.PricePoint70To90)
                 return " Price >= 70 and Price < 90";
 
-            if (pollPricePoints == PollPricePoints.PricePoint4)
+            if (pollPricePoints == PollPricePoints.PricePointFrom90)
                 return " Price >= 90";
 
             return null;

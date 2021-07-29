@@ -183,7 +183,7 @@ namespace RumikApp.Tests
             Flavours.Add(new Flavour("/IMGs/PollIMG/BeAPirate.png", "BeAPirate"));
 
             // Act
-            ObservableCollection<Beverage> actuallResule = await sut.GetDataFromDatabaseWithConditions(PollPurpose.Exclusive, 5, PollMixes.Solo, Flavours, PollPricePoints.PricePoint4);
+            ObservableCollection<Beverage> actuallResule = await sut.GetDataFromDatabaseWithConditions(PollPurpose.Exclusive, 5, PollMixes.Solo, Flavours, PollPricePoints.PricePointFrom90);
 
             // Assert
             Assert.Equal(expectedResult, actuallResule.Count);
@@ -479,7 +479,7 @@ namespace RumikApp.Tests
             Beverage beverage = new Beverage() { Name = "PricePoint1Test", Price = price };
 
             // Act
-            Beverage actuallResult = sut.DoesBeverageFulfillSetPriceRequirement(PollPricePoints.PricePoint1, beverage);
+            Beverage actuallResult = sut.DoesBeverageFulfillSetPriceRequirement(PollPricePoints.PricePointTo50, beverage);
 
             // Assert
             Assert.Equal(beverage, actuallResult);
@@ -494,7 +494,7 @@ namespace RumikApp.Tests
             Beverage beverage = new Beverage() { Name = "PricePoint1Test", Price = price };
 
             // Act
-            Beverage actuallResult = sut.DoesBeverageFulfillSetPriceRequirement(PollPricePoints.PricePoint1, beverage);
+            Beverage actuallResult = sut.DoesBeverageFulfillSetPriceRequirement(PollPricePoints.PricePointTo50, beverage);
 
             // Assert
             Assert.Null(actuallResult);
@@ -510,7 +510,7 @@ namespace RumikApp.Tests
             Beverage beverage = new Beverage() { Name = "PricePoint2Test", Price = price };
 
             // Act
-            Beverage actuallResult = sut.DoesBeverageFulfillSetPriceRequirement(PollPricePoints.PricePoint2, beverage);
+            Beverage actuallResult = sut.DoesBeverageFulfillSetPriceRequirement(PollPricePoints.PricePoint50To70, beverage);
 
             // Assert
             Assert.Equal(beverage, actuallResult);
@@ -528,7 +528,7 @@ namespace RumikApp.Tests
             Beverage beverage = new Beverage() { Name = "PricePoint2Test", Price = price };
 
             // Act
-            Beverage actuallResult = sut.DoesBeverageFulfillSetPriceRequirement(PollPricePoints.PricePoint2, beverage);
+            Beverage actuallResult = sut.DoesBeverageFulfillSetPriceRequirement(PollPricePoints.PricePoint50To70, beverage);
 
             // Assert
             Assert.Null(actuallResult);
@@ -543,7 +543,7 @@ namespace RumikApp.Tests
             Beverage beverage = new Beverage() { Name = "PricePoint3Test", Price = price };
 
             // Act
-            Beverage actuallResult = sut.DoesBeverageFulfillSetPriceRequirement(PollPricePoints.PricePoint3, beverage);
+            Beverage actuallResult = sut.DoesBeverageFulfillSetPriceRequirement(PollPricePoints.PricePoint70To90, beverage);
 
             // Assert
             Assert.Equal(beverage, actuallResult);
@@ -561,7 +561,7 @@ namespace RumikApp.Tests
             Beverage beverage = new Beverage() { Name = "PricePoint3Test", Price = price };
 
             // Act
-            Beverage actuallResult = sut.DoesBeverageFulfillSetPriceRequirement(PollPricePoints.PricePoint3, beverage);
+            Beverage actuallResult = sut.DoesBeverageFulfillSetPriceRequirement(PollPricePoints.PricePoint70To90, beverage);
 
             // Assert
             Assert.Null(actuallResult);
@@ -577,7 +577,7 @@ namespace RumikApp.Tests
             Beverage beverage = new Beverage() { Name = "PricePoint4Test", Price = price };
 
             // Act
-            Beverage actuallResult = sut.DoesBeverageFulfillSetPriceRequirement(PollPricePoints.PricePoint4, beverage);
+            Beverage actuallResult = sut.DoesBeverageFulfillSetPriceRequirement(PollPricePoints.PricePointFrom90, beverage);
 
             // Assert
             Assert.Equal(beverage, actuallResult);
@@ -594,7 +594,7 @@ namespace RumikApp.Tests
             Beverage beverage = new Beverage() { Name = "PricePoint4Test", Price = price };
 
             // Act
-            Beverage actuallResult = sut.DoesBeverageFulfillSetPriceRequirement(PollPricePoints.PricePoint4, beverage);
+            Beverage actuallResult = sut.DoesBeverageFulfillSetPriceRequirement(PollPricePoints.PricePointFrom90, beverage);
 
             // Assert
             Assert.Null(actuallResult);

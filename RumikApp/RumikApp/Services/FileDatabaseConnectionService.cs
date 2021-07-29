@@ -240,22 +240,22 @@ namespace RumikApp.Services
                     return beverage;
                 //break;
 
-                case PollPricePoints.PricePoint1:
+                case PollPricePoints.PricePointTo50:
                     if (beverage.Price < 50)
                         return beverage;
                     break;
 
-                case PollPricePoints.PricePoint2:
+                case PollPricePoints.PricePoint50To70:
                     if (beverage.Price >= 50 && beverage.Price < 70)
                         return beverage;
                     break;
 
-                case PollPricePoints.PricePoint3:
+                case PollPricePoints.PricePoint70To90:
                     if (beverage.Price >= 70 && beverage.Price < 90)
                         return beverage;
                     break;
 
-                case PollPricePoints.PricePoint4:
+                case PollPricePoints.PricePointFrom90:
                     if (beverage.Price >= 90)
                         return beverage;
                     break;

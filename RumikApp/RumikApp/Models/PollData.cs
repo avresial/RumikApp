@@ -228,11 +228,11 @@ namespace RumikApp.Models
                     PricePoint2 = false;
                     PricePoint3 = false;
                     PricePoint4 = false;
-                    PollPricePoints = PollPricePoints.PricePoint1;
+                    PollPricePoints = PollPricePoints.PricePointTo50;
                 }
                 else
                 {
-                    if (PollPricePoints == PollPricePoints.PricePoint1)
+                    if (PollPricePoints == PollPricePoints.PricePointTo50)
                         PollPricePoints = PollPricePoints.None;
                 }
 
@@ -255,11 +255,11 @@ namespace RumikApp.Models
                     PricePoint1 = false;
                     PricePoint3 = false;
                     PricePoint4 = false;
-                    PollPricePoints = PollPricePoints.PricePoint2;
+                    PollPricePoints = PollPricePoints.PricePoint50To70;
                 }
                 else
                 {
-                    if (PollPricePoints == PollPricePoints.PricePoint2)
+                    if (PollPricePoints == PollPricePoints.PricePoint50To70)
                         PollPricePoints = PollPricePoints.None;
                 }
 
@@ -282,11 +282,11 @@ namespace RumikApp.Models
                     PricePoint1 = false;
                     PricePoint2 = false;
                     PricePoint4 = false;
-                    PollPricePoints = PollPricePoints.PricePoint3;
+                    PollPricePoints = PollPricePoints.PricePoint70To90;
                 }
                 else
                 {
-                    if (PollPricePoints == PollPricePoints.PricePoint3)
+                    if (PollPricePoints == PollPricePoints.PricePoint70To90)
                         PollPricePoints = PollPricePoints.None;
                 }
 
@@ -309,11 +309,11 @@ namespace RumikApp.Models
                     PricePoint1 = false;
                     PricePoint2 = false;
                     PricePoint3 = false;
-                    PollPricePoints = PollPricePoints.PricePoint4;
+                    PollPricePoints = PollPricePoints.PricePointFrom90;
                 }
                 else
                 {
-                    if (PollPricePoints == PollPricePoints.PricePoint4)
+                    if (PollPricePoints == PollPricePoints.PricePointFrom90)
                         PollPricePoints = PollPricePoints.None;
                 }
 

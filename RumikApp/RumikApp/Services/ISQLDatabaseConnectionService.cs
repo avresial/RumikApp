@@ -1,4 +1,5 @@
 ﻿using RumikApp.Enums;
+using RumikApp.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -8,6 +9,6 @@ namespace RumikApp.Services
 {
     public interface ISQLDatabaseConnectionService : IDatabaseConnectionService
     {
-        Task SendSearchingStatistics(Random random = null);
+        Task SendSearchingStatistics(PollData pollData);
     }
 }

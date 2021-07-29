@@ -18,7 +18,7 @@ namespace RumikApp.UserControls
         const string fileExtension = ".png";
 
         private IDatabaseConnectionService databaseConnectionService;
-
+        private ISQLDatabaseConnectionService sQLDatabaseConnectionService;
         private IInformationBusService informationBusService;
 
         private IPanelVisibilityService _PanelVisibilityService;
@@ -71,7 +71,8 @@ namespace RumikApp.UserControls
                         PanelVisibilityService.DataGridViewModelVisibility = Visibility.Visible;
 
                         informationBusService.OriginalBeverages = await databaseConnectionService.GetDataFromDatabaseWithConditions(PollPurpose, 5, PollMixes, getListWithSetFlavours(), PollPricePoints);
-
+                      
+                        sQLDatabaseConnectionService.SendSearchingStatistics((PollData)this);
                         ClearSellection();
                     },
                     () =>
@@ -107,10 +108,11 @@ namespace RumikApp.UserControls
         }
 
 
-        public PollViewModel(IInformationBusService informationBusService, IDatabaseConnectionService databaseConnectionService, IPanelVisibilityService panelVisibilityService)
+        public PollViewModel(IInformationBusService informationBusService, IDatabaseConnectionService databaseConnectionService, ISQLDatabaseConnectionService sQLDatabaseConnectionService, IPanelVisibilityService panelVisibilityService)
         {
             this.PanelVisibilityService = panelVisibilityService;
             this.databaseConnectionService = databaseConnectionService;
+            this.sQLDatabaseConnectionService = sQLDatabaseConnectionService;
             this.informationBusService = informationBusService;
         }
 
@@ -166,7 +168,7 @@ namespace RumikApp.UserControls
         {
 
             informationBusService.OriginalBeverages = await databaseConnectionService.GetDataFromDatabaseWithConditions(PollPurpose.ForPiratesFromCarabien, 5, PollMixes.None, new List<Flavour>(), PollPricePoints.None);
-
+            sQLDatabaseConnectionService.SendSearchingStatistics((PollData)this);
             PanelVisibilityService.DataGridViewModelVisibility = Visibility.Visible;
 
             ForPiratesFromCarabien = false;
