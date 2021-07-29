@@ -86,7 +86,7 @@
                 </ToggleButton>
                 <TextBlock Grid.Column="2" Grid.Row="1" Width="200" TextAlignment="Center" TextWrapping="Wrap" Text="...eksluzywnego napitku, Milordzie, &#10;bo wypłata przyszła"/>
 
-                <ToggleButton Grid.Column="3" IsChecked="{Binding ForPiratesFromCarabien}" Margin="15,5,15,5" Width="200" Height="200" HorizontalAlignment="Center" Style="{StaticResource MaterialDesignFlatToggleButton}">
+                <ToggleButton Grid.Column="3" IsChecked="{Binding ForPiratesFromCarabien}" Command="{Binding GoForPiratesFromCarabien}" Margin="15,5,15,5" Width="200" Height="200" HorizontalAlignment="Center" Style="{StaticResource MaterialDesignFlatToggleButton}">
                     <StackPanel Orientation="Vertical">
                         <Image Source="/IMGs/PollIMG/ForPiratesFrocCarabien.png" Width="140" />
                     </StackPanel>

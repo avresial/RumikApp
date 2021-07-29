@@ -197,6 +197,11 @@ namespace RumikApp.Services
             return result;
         }
 
+        public async Task SendSearchingStatistics(Random random = null) 
+        {
+        
+        }
+
         private Beverage saveReaderToBevrage(MySqlDataReader reader)
         {
             Beverage beverageTMP = new Beverage();
