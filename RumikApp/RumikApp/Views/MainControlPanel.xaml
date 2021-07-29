@@ -45,13 +45,13 @@
 
                 <Grid.ColumnDefinitions>
                     
-                    <ColumnDefinition Width="90*"/>
-                    <ColumnDefinition Width="10*"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
 
                 </Grid.ColumnDefinitions>
 
-                <Button Command="{Binding GoStraightToDatabase}"  Height="100" Width="900" FontSize="25" Content="Zawijam prosto do bazy... danych" Background="Transparent" BorderBrush="LightGray" Padding="40,0,40,0" Style="{StaticResource MaterialDesignFlatLightBgButton}" />
-                <Button Grid.Column="1" Command="{Binding EditLocalData}" Height="100" Width="100" FontSize="30" Content="E" Background="Transparent" BorderBrush="LightGray" VerticalAlignment="Top" Padding="20,0,20,0" Style="{StaticResource MaterialDesignFlatLightBgButton}"/>
+                <Button Command="{Binding GoStraightToDatabase}"  Height="100" Width="650" FontSize="25" Content="Zawijam prosto do bazy... danych" Background="Transparent" BorderBrush="LightGray" Padding="40,0,40,0" Style="{StaticResource MaterialDesignFlatLightBgButton}" />
+                <Button Grid.Column="1" Command="{Binding EditLocalData}" Height="100" Width="150" FontSize="20" Content="Mój barek" Background="Transparent" BorderBrush="LightGray" VerticalAlignment="Top" Padding="20,0,20,0" Style="{StaticResource MaterialDesignFlatLightBgButton}"/>
 
 
             </Grid>
