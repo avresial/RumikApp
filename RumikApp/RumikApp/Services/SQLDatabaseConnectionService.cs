@@ -15,6 +15,8 @@ namespace RumikApp.Services
     public class SQLDatabaseConnectionService : ISQLDatabaseConnectionService
     {
 
+        private string pollStatisticTable = "PollStatistics";
+
         private AvailableTables _MainDataTable = AvailableTables.RumsBaseTEST;
         public AvailableTables MainDataTable
         {
@@ -198,15 +200,54 @@ namespace RumikApp.Services
             return result;
         }
 
-        public async Task SendSearchingStatistics(PollData pollData = null) 
+        public async Task SendSearchingStatistics(Guid Guid, PollData pollData = null)
         {
             var test = await TestConnectionToDatabase();
 
             if (!test)
                 return;
-            var test2 = (int)pollData.PollPricePoints;
-            ;
 
+            var test2 = pollData;
+            //pollStatisticTable
+
+            string result = null;
+
+            using (MySqlConnection con = new MySqlConnection(cnnVal("sosek")))
+            {
+                string query = $"INSERT INTO {pollStatisticTable} " +
+                    $"(Guid, PollPurpose, PollMixes, Vanilly, Nuts, Caramel, Smoky, Cinnamon, Spirit, Fruits, Honey, PollPricePoints) " +
+                    $"VALUES(@Guid, @PollPurpose, @PollMixes, @Vanilly, @Nuts, @Caramel, @Smoky, @Cinnamon, @Spirit, @Fruits, @Honey, @PollPricePoints)";
+
+                MySqlCommand cmd = new MySqlCommand(query, con);
+
+                cmd.Parameters.Add("@Guid", MySqlDbType.String).Value = Guid.ToString();
+                cmd.Parameters.Add("@PollPurpose", MySqlDbType.String).Value = pollData.PollPurpose.ToString();
+
+                cmd.Parameters.Add("@PollMixes", MySqlDbType.String).Value = pollData.PollMixes.ToString();
+             
+                cmd.Parameters.Add("@Vanilly", MySqlDbType.Int16).Value = boolToInt16(pollData.Vanila.IsSet);
+                cmd.Parameters.Add("@Nuts", MySqlDbType.Int16).Value = boolToInt16(pollData.Nuts.IsSet);
+                cmd.Parameters.Add("@Caramel", MySqlDbType.Int16).Value = boolToInt16(pollData.Caramel.IsSet);
+                cmd.Parameters.Add("@Smoky", MySqlDbType.Int16).Value = boolToInt16(pollData.Smoke.IsSet);
+                cmd.Parameters.Add("@Cinnamon", MySqlDbType.Int16).Value = boolToInt16(pollData.Cinnamon.IsSet);
+                cmd.Parameters.Add("@Spirit", MySqlDbType.Int16).Value = boolToInt16(pollData.Spirit.IsSet);
+                cmd.Parameters.Add("@Fruits", MySqlDbType.Int16).Value = boolToInt16(pollData.Fruits.IsSet);
+                cmd.Parameters.Add("@Honey", MySqlDbType.Int16).Value = boolToInt16(pollData.Honey.IsSet);
+                cmd.Parameters.Add("@PollPricePoints", MySqlDbType.String).Value = pollData.PollPricePoints.ToString() ;
+
+                con.Open();
+
+                if (cmd.ExecuteNonQuery() == 1)
+                {
+                    int id = (int)cmd.LastInsertedId;
+                    result = "Dodano nowy rekord o Id - " + id + ".";
+                }
+                else
+                {
+                    result = "Coś poszło nie tak jak powinno \ndodawanie rekordu nie powiodło się;";
+                }
+                con.Close();
+            }
         }
 
         private Beverage saveReaderToBevrage(MySqlDataReader reader)

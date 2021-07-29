@@ -19,6 +19,7 @@ namespace RumikApp.UserControls
 
         private IDatabaseConnectionService databaseConnectionService;
         private ISQLDatabaseConnectionService sQLDatabaseConnectionService;
+        private IFileDatabaseConnectionService fileDatabaseConnectionService;
         private IInformationBusService informationBusService;
 
         private IPanelVisibilityService _PanelVisibilityService;
@@ -71,8 +72,8 @@ namespace RumikApp.UserControls
                         PanelVisibilityService.DataGridViewModelVisibility = Visibility.Visible;
 
                         informationBusService.OriginalBeverages = await databaseConnectionService.GetDataFromDatabaseWithConditions(PollPurpose, 5, PollMixes, getListWithSetFlavours(), PollPricePoints);
-                      
-                        sQLDatabaseConnectionService.SendSearchingStatistics((PollData)this);
+                        Settings settings = fileDatabaseConnectionService.ReadSettings();
+                        sQLDatabaseConnectionService.SendSearchingStatistics(settings.UserID,(PollData)this);
                         ClearSellection();
                     },
                     () =>
@@ -108,11 +109,12 @@ namespace RumikApp.UserControls
         }
 
 
-        public PollViewModel(IInformationBusService informationBusService, IDatabaseConnectionService databaseConnectionService, ISQLDatabaseConnectionService sQLDatabaseConnectionService, IPanelVisibilityService panelVisibilityService)
+        public PollViewModel(IInformationBusService informationBusService, IDatabaseConnectionService databaseConnectionService, ISQLDatabaseConnectionService sQLDatabaseConnectionService,IFileDatabaseConnectionService fileDatabaseConnectionService, IPanelVisibilityService panelVisibilityService)
         {
             this.PanelVisibilityService = panelVisibilityService;
             this.databaseConnectionService = databaseConnectionService;
             this.sQLDatabaseConnectionService = sQLDatabaseConnectionService;
+            this.fileDatabaseConnectionService = fileDatabaseConnectionService;
             this.informationBusService = informationBusService;
         }
 
@@ -168,7 +170,8 @@ namespace RumikApp.UserControls
         {
 
             informationBusService.OriginalBeverages = await databaseConnectionService.GetDataFromDatabaseWithConditions(PollPurpose.ForPiratesFromCarabien, 5, PollMixes.None, new List<Flavour>(), PollPricePoints.None);
-            sQLDatabaseConnectionService.SendSearchingStatistics((PollData)this);
+            Settings settings = fileDatabaseConnectionService.ReadSettings();
+            sQLDatabaseConnectionService.SendSearchingStatistics(settings.UserID,(PollData)this);
             PanelVisibilityService.DataGridViewModelVisibility = Visibility.Visible;
 
             ForPiratesFromCarabien = false;

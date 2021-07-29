@@ -9,6 +9,6 @@ namespace RumikApp.Services
 {
     public interface ISQLDatabaseConnectionService : IDatabaseConnectionService
     {
-        Task SendSearchingStatistics(PollData pollData);
+        Task SendSearchingStatistics(Guid Guid, PollData pollData);
     }
 }
