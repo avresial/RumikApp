@@ -18,7 +18,7 @@
                 <RowDefinition Height="0.5*" />
             </Grid.RowDefinitions>
 
-            <TextBlock Grid.ColumnSpan="2" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" TextWrapping="Wrap" FontSize="68" Text="Co chcesz zrobić, Piłacie?" Visibility="Visible" FontStyle="Italic" FontWeight="Bold" />
+            <TextBlock Grid.ColumnSpan="2" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" TextWrapping="Wrap" FontSize="68" Text="Co chcesz zrobić, piłacie?" Visibility="Visible" FontStyle="Italic" FontWeight="Bold" />
             
             <Image Grid.ColumnSpan="2" Source="/IMGs/choose_wisely.png" RenderTransformOrigin="0.5,0.5" Height="400" Visibility="Collapsed"/>
             
@@ -50,8 +50,8 @@
 
                 </Grid.ColumnDefinitions>
 
-                <Button Command="{Binding GoStraightToDatabase}"  Height="100" Width="650" FontSize="25" Content="Zawijam prosto do bazy... danych" Background="Transparent" BorderBrush="LightGray" Padding="40,0,40,0" Style="{StaticResource MaterialDesignFlatLightBgButton}" />
-                <Button Grid.Column="1" Command="{Binding EditLocalData}" Height="100" Width="150" FontSize="20" Content="Mój barek" Background="Transparent" BorderBrush="LightGray" VerticalAlignment="Top" Padding="20,0,20,0" Style="{StaticResource MaterialDesignFlatLightBgButton}"/>
+                <Button Command="{Binding GoStraightToDatabase}"  Height="100" Width="600" FontSize="25" Content="Zawijam prosto do bazy... danych" Background="Transparent" BorderBrush="LightGray" Padding="40,0,40,0" Style="{StaticResource MaterialDesignFlatLightBgButton}" />
+                <Button Grid.Column="1" Command="{Binding EditLocalData}" Height="100" Width="200" FontSize="20" Content="Mój barek" Background="Transparent" BorderBrush="LightGray" VerticalAlignment="Top" Padding="20,0,20,0" Style="{StaticResource MaterialDesignFlatLightBgButton}"/>
 
 
             </Grid>
