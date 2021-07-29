@@ -194,6 +194,7 @@
     <Compile Include="Enums\PollMixes.cs" />
     <Compile Include="Enums\PollPurpose.cs" />
     <Compile Include="Enums\PollPricePoints.cs" />
+    <Compile Include="Models\Settings.cs" />
     <Compile Include="Services\FileDatabaseConnectionService.cs" />
     <Compile Include="Services\FileService.cs" />
     <Compile Include="Services\GenerallDatabaseService.cs" />

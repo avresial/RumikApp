@@ -1,5 +1,6 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
+using RumikApp.Models;
 using RumikApp.Services;
 using System;
 using System.Collections.Generic;
@@ -34,7 +35,7 @@ namespace RumikApp.ViewModels
             this.FileDatabaseConnectionService = fileDatabaseConnectionService;
             this.PanelVisibilityService = panelVisibilityService;
 
-            if (fileDatabaseConnectionService.CheckIsUserAbove18())
+            if ((FileDatabaseConnectionService.ReadSettings()).IsUserAbove18)
                 PanelVisibilityService.MainPanelVisibility = Visibility.Visible;
 
         }
@@ -49,8 +50,9 @@ namespace RumikApp.ViewModels
                     _IAmAbove18 = new RelayCommand(
                     () =>
                     {
-                        ;
-                        FileDatabaseConnectionService.ChangeIsUserAbove18State(true);
+                        Settings newSettings = FileDatabaseConnectionService.ReadSettings();
+                        newSettings.IsUserAbove18 = true;
+                        FileDatabaseConnectionService.SaveSettings(newSettings);
                         PanelVisibilityService.MainPanelVisibility = Visibility.Visible;
                     },
                     () =>
