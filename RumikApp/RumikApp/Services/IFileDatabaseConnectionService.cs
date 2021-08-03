@@ -8,8 +8,6 @@ namespace RumikApp.Services
 {
     public interface IFileDatabaseConnectionService : IDatabaseConnectionService
     {
-        Settings ReadSettings();
-
-        void SaveSettings(Settings newSettings);
+    
     }
 }

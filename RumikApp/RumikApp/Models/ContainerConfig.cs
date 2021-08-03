@@ -35,7 +35,7 @@ namespace RumikApp
                            .SingleInstance();
 
             builder.RegisterType<GenerallDatabaseService>().As<IDatabaseConnectionService>().SingleInstance();
-
+            //builder.RegisterType<SettingsService>().As<ISettingsService>().SingleInstance();
             //builder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly())
             //.Where(t => t.Name.EndsWith("Service"))
             //.As(t=> t.GetInterfaces().FirstOrDefault(i=>i.Name=="I"+t.Name)).SingleInstance();

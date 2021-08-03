@@ -21,13 +21,15 @@ namespace RumikApp.Services
     {
         private readonly IFileService fileService;
         private readonly IStreamReaderService streamReader;
-        private readonly string SettingsFileName = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\RumikApp" + "\\Settings.json";
+        private ISettingsService settingsService;
+       
 
         #region CTOR
-        public FileDatabaseConnectionService(IFileService fileService, IStreamReaderService streamReader)
+        public FileDatabaseConnectionService(IFileService fileService, IStreamReaderService streamReader, ISettingsService settingsService)
         {
             this.fileService = fileService;
             this.streamReader = streamReader;
+            this.settingsService = settingsService;
         }
         #endregion
 
@@ -376,43 +378,7 @@ namespace RumikApp.Services
             return fileService.FileExists(FileName);
         }
 
-        public Settings ReadSettings()
-        {
-            string json;
-            if (!fileService.DirectoryExists(MainDataDirectory))
-                fileService.CreateDirectory(MainDataDirectory);
-
-            if (!File.Exists(SettingsFileName))
-                CreateSettingsFile();
-
-            using (streamReader.Create(SettingsFileName))
-                json = streamReader.ReadToEnd();
-
-
-            if (json == null || !IsValidJson(json) || json == "")
-            {
-                File.Delete(SettingsFileName);
-                CreateSettingsFile();
-                using (streamReader.Create(SettingsFileName))
-                    json = streamReader.ReadToEnd();
-            }
-
-
-            Settings test = JsonConvert.DeserializeObject<Settings>(json);
-            return test;
-
-        }
-
-        public void SaveSettings(Settings newSettings)
-        {
-            string json = JsonConvert.SerializeObject(newSettings);
-            var test = IsValidJson(json);
-            using (TextWriter tw = new StreamWriter(SettingsFileName))
-            {
-                tw.WriteLine(json);
-                tw.Close();
-            };
-        }
+       
 
         private ObservableCollection<JsonBeverage> getAllJsonData()
         {
@@ -434,48 +400,6 @@ namespace RumikApp.Services
 
             return Beverages;
         }
-        private bool IsValidJson(string strInput)
-        {
-            if (string.IsNullOrWhiteSpace(strInput)) { return false; }
-            strInput = strInput.Trim();
-
-            bool isValid;
-
-            try
-            {
-                var obj = JToken.Parse(strInput);
-                return true;
-            }
-            catch (JsonReaderException jex)
-            {
-                //Exception in parsing json
-                Console.WriteLine(jex.Message);
-
-
-                isValid = false;
-            }
-            catch (Exception ex) //some other exception
-            {
-                Console.WriteLine(ex.ToString());
-                isValid = false;
-            }
-
-            if (!isValid)
-                if (File.Exists(SettingsFileName))
-                    File.Delete(SettingsFileName);
-
-            return isValid;
-        }
-
-        private void CreateSettingsFile()
-        {
-            if (!fileService.DirectoryExists(MainDataDirectory))
-                fileService.CreateDirectory(MainDataDirectory);
-
-            File.Create(SettingsFileName).Close();
-
-            SaveSettings(new Settings());
-
-        }
+       
     }
 }

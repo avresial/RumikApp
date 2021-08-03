@@ -22,6 +22,7 @@ namespace RumikApp.Tests
 
         private Mock<IFileService> fileService;
         private Mock<IStreamReaderService> streamReaderService;
+        private Mock<ISettingsService> settingsService;
 
         private FileDatabaseConnectionService sut;
               
@@ -31,7 +32,9 @@ namespace RumikApp.Tests
         {
             fileService = new Mock<IFileService>();
             streamReaderService = new Mock<IStreamReaderService>();
-            sut = new FileDatabaseConnectionService(fileService.Object, streamReaderService.Object);
+            settingsService = new Mock<ISettingsService>();
+
+            sut = new FileDatabaseConnectionService(fileService.Object, streamReaderService.Object, settingsService.Object);
 
             List<JsonBeverage> jsonBeverage = new List<JsonBeverage>();
 

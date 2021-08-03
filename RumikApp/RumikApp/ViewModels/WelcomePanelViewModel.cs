@@ -13,8 +13,7 @@ namespace RumikApp.ViewModels
 {
     public class WelcomePanelViewModel : ViewModelBase
     {
-
-        private IFileDatabaseConnectionService FileDatabaseConnectionService;
+        private ISettingsService settingsService;
 
         private IPanelVisibilityService _PanelVisibilityService;
         public IPanelVisibilityService PanelVisibilityService
@@ -30,12 +29,12 @@ namespace RumikApp.ViewModels
             }
         }
 
-        public WelcomePanelViewModel(IPanelVisibilityService panelVisibilityService, IFileDatabaseConnectionService fileDatabaseConnectionService)
+        public WelcomePanelViewModel(IPanelVisibilityService panelVisibilityService, ISettingsService settingsService)
         {
-            this.FileDatabaseConnectionService = fileDatabaseConnectionService;
             this.PanelVisibilityService = panelVisibilityService;
+            this.settingsService = settingsService;
 
-            if ((FileDatabaseConnectionService.ReadSettings()).IsUserAbove18)
+            if ((settingsService.ReadSettings()).IsUserAbove18)
                 PanelVisibilityService.MainPanelVisibility = Visibility.Visible;
 
         }
@@ -50,9 +49,9 @@ namespace RumikApp.ViewModels
                     _IAmAbove18 = new RelayCommand(
                     () =>
                     {
-                        Settings newSettings = FileDatabaseConnectionService.ReadSettings();
+                        Settings newSettings = settingsService.ReadSettings();
                         newSettings.IsUserAbove18 = true;
-                        FileDatabaseConnectionService.SaveSettings(newSettings);
+                        settingsService.SaveSettings(newSettings);
                         PanelVisibilityService.MainPanelVisibility = Visibility.Visible;
                     },
                     () =>
