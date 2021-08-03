@@ -1,4 +1,5 @@
 ﻿using RumikApp.Enums;
+using RumikApp.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -16,6 +17,7 @@ namespace RumikApp.Services
     {
         private ISQLDatabaseConnectionService sQLDatabaseConnectionService;
         private IFileDatabaseConnectionService fileDatabaseConnectionService;
+        private ISettingsService settingsService;
         private bool doesSQLDatabaseConnectionServiceWasWarkingAtStart = false;
 
         /// <summary>
@@ -23,10 +25,11 @@ namespace RumikApp.Services
         /// </summary>
         /// <param name="sQLDatabaseConnectionService"></param>
         /// <param name="fileDatabaseConnectionService"></param>
-        public GenerallDatabaseService(ISQLDatabaseConnectionService sQLDatabaseConnectionService, IFileDatabaseConnectionService fileDatabaseConnectionService)
+        public GenerallDatabaseService(ISQLDatabaseConnectionService sQLDatabaseConnectionService, IFileDatabaseConnectionService fileDatabaseConnectionService, ISettingsService settingsService)
         {
             this.sQLDatabaseConnectionService = sQLDatabaseConnectionService;
             this.fileDatabaseConnectionService = fileDatabaseConnectionService;
+            this.settingsService = settingsService;
 
             MainDataTable = sQLDatabaseConnectionService.MainDataTable;
             NotYetApprovedTESTDataTable = sQLDatabaseConnectionService.NotYetApprovedTESTDataTable;
@@ -65,6 +68,10 @@ namespace RumikApp.Services
         /// <returns></returns>
         public async Task<ObservableCollection<Beverage>> GetAllData()
         {
+            //Settings settings = settingsService.ReadSettings();
+            //if (settings.OfflineMode)
+            //    return await fileDatabaseConnectionService.GetAllData();
+
             if (!doesSQLDatabaseConnectionServiceWasWarkingAtStart)
                 return await fileDatabaseConnectionService.GetAllData();
 
@@ -112,6 +119,10 @@ namespace RumikApp.Services
 
         public async Task<string> SaveBevreageToDatabase(Beverage beverage, byte[] img)
         {
+            Settings settings = settingsService.ReadSettings();
+            if (settings.OfflineMode)
+                return await fileDatabaseConnectionService.SaveBevreageToDatabase(beverage, img);
+
             if (!doesSQLDatabaseConnectionServiceWasWarkingAtStart)
                 return await fileDatabaseConnectionService.SaveBevreageToDatabase(beverage, img);
 

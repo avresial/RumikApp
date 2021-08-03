@@ -59,7 +59,7 @@ namespace RumikApp.Models
         public Settings()
         {
             _UserID = Guid.NewGuid();
-            _OfflineMode = false;
+            _OfflineMode = true;
             _IsUserAbove18 = false;
         }
     }
