@@ -5,9 +5,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Configuration;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ApprovalToolForRumikApp.Services
 {
@@ -178,24 +175,24 @@ namespace ApprovalToolForRumikApp.Services
 
                 MySqlCommand cmd = new MySqlCommand(query, con);
 
-                cmd.Parameters.Add("@Name"      , MySqlDbType.VarChar).Value = beverage.Name;
-                cmd.Parameters.Add("@Capacity"  , MySqlDbType.Int64).Value = beverage.Capacity;
+                cmd.Parameters.Add("@Name", MySqlDbType.VarChar).Value = beverage.Name;
+                cmd.Parameters.Add("@Capacity", MySqlDbType.Int64).Value = beverage.Capacity;
 
                 cmd.Parameters.Add("@AlcoholPercentage", MySqlDbType.Float).Value = beverage.AlcoholPercentage;
-                cmd.Parameters.Add("@Price"     , MySqlDbType.Float).Value = beverage.Price;
-                cmd.Parameters.Add("@Grade"     , MySqlDbType.Int32).Value = beverage.Grade;
+                cmd.Parameters.Add("@Price", MySqlDbType.Float).Value = beverage.Price;
+                cmd.Parameters.Add("@Grade", MySqlDbType.Int32).Value = beverage.Grade;
                 cmd.Parameters.Add("@GradeWithCoke", MySqlDbType.Int32).Value = beverage.GradeWithCoke;
-                cmd.Parameters.Add("@Color"     , MySqlDbType.VarChar).Value = beverage.Color;
+                cmd.Parameters.Add("@Color", MySqlDbType.VarChar).Value = beverage.Color;
 
-                cmd.Parameters.Add("@Vanilly"   , MySqlDbType.Int16).Value = boolToInt16(beverage.Vanila.IsSet);
-                cmd.Parameters.Add("@Nuts"      , MySqlDbType.Int16).Value = boolToInt16(beverage.Nuts.IsSet);
-                cmd.Parameters.Add("@Caramel"    , MySqlDbType.Int16).Value = boolToInt16(beverage.Caramel.IsSet);
-                cmd.Parameters.Add("@Smoky"     , MySqlDbType.Int16).Value = boolToInt16(beverage.Smoke.IsSet);
-                cmd.Parameters.Add("@Cinnamon"  , MySqlDbType.Int16).Value = boolToInt16(beverage.Cinnamon.IsSet);
-                cmd.Parameters.Add("@Spirit"    , MySqlDbType.Int16).Value = boolToInt16(beverage.Spirit.IsSet);
-                cmd.Parameters.Add("@Fruits"    , MySqlDbType.Int16).Value = boolToInt16(beverage.Fruits.IsSet);
-                cmd.Parameters.Add("@Honey"     , MySqlDbType.Int16).Value = boolToInt16(beverage.Honey.IsSet);
-                cmd.Parameters.Add("@BeAPirate" , MySqlDbType.Int16).Value = boolToInt16(beverage.BeAPirate.IsSet);
+                cmd.Parameters.Add("@Vanilly", MySqlDbType.Int16).Value = boolToInt16(beverage.Vanila.IsSet);
+                cmd.Parameters.Add("@Nuts", MySqlDbType.Int16).Value = boolToInt16(beverage.Nuts.IsSet);
+                cmd.Parameters.Add("@Caramel", MySqlDbType.Int16).Value = boolToInt16(beverage.Caramel.IsSet);
+                cmd.Parameters.Add("@Smoky", MySqlDbType.Int16).Value = boolToInt16(beverage.Smoke.IsSet);
+                cmd.Parameters.Add("@Cinnamon", MySqlDbType.Int16).Value = boolToInt16(beverage.Cinnamon.IsSet);
+                cmd.Parameters.Add("@Spirit", MySqlDbType.Int16).Value = boolToInt16(beverage.Spirit.IsSet);
+                cmd.Parameters.Add("@Fruits", MySqlDbType.Int16).Value = boolToInt16(beverage.Fruits.IsSet);
+                cmd.Parameters.Add("@Honey", MySqlDbType.Int16).Value = boolToInt16(beverage.Honey.IsSet);
+                cmd.Parameters.Add("@BeAPirate", MySqlDbType.Int16).Value = boolToInt16(beverage.BeAPirate.IsSet);
 
                 cmd.Parameters.Add("@Image", MySqlDbType.Binary).Value = img;
                 con.Open();
