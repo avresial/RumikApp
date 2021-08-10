@@ -380,6 +380,7 @@ namespace RumikApp.Services
 
         private string getPollPurpose(PollPurpose pollPurpose, int pollPurposeWeight)
         {
+            //convert to strategy pattern and to switch 
             if (pollPurpose == PollPurpose.ForPartyBool)
                 return " AlcoholPercentage / (100 * (Price/ Capacity))  > " + pollPurposeWeight;
 
