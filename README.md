@@ -8,13 +8,13 @@ At the begining I'd like to mention that it's my first personal project made at 
 
 ## Simply - **RumikApp** is the app where you go to if you are looking for a Rum
 
-App allow user:
+App allows user to:
 
 -   Find new rum depending on his current needs,
 -   Browse external and internal database,
 -   Save his own entries.
 
-## Contents page
+# Contents page
 
 1.  [Technologies](#Technologies)
 2.  [App presentation](#AppPresentation)
@@ -55,12 +55,12 @@ Below you will find couple of screens from RumikApp itself
 **Fig.3** Poll
 
 ![My place](ReadmeImages/Fig4.png)
-**Fig.4** My place (?)
+**Fig.4** My rum Cabinet
 
 
 ![Random](ReadmeImages/Fig5.png)
-**Fig.5** Random entity
+**Fig.5** Random entry
 
 
 ![Add new](ReadmeImages/Fig6.png)
-**Fig.6** Add new
+**Fig.6** Add new entry
