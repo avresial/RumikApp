@@ -1,20 +1,75 @@
 #   Hi
-At the begining i'd like to mention that it is my first personal project.
 
-![Initial image](ReadmeImages/Fig1.png)
+At the begining I'd like to mention that it's my first personal project made at that scale. Repo consists of 3 main directories:
 
-**Fig.1** Startap page
+1. RumikApp - Main app
+2. RumikApp.Tests - Tests
+3. ApprovalToolForRumikApp - Side app allowing administrator to move data between main and additional databases.
 
 ## Contents page
-1. Technologies
-2. Guidleline
 
+1.  [Technologies](#Technologies)
+2.  [Generall](#Generall)
+3.  [TestLink](#TestLink)
 
-#   Technologies
+#   Technologies <a name="Technologies"></a>
 
 ## Generall
 
 Whole app is based on .NET Framework and C#.
 
-#   Guidleline
+Below I'm listing couple of technologies that I learned during this project:
 
+-   Linq
+-   MVVM
+-   Autofac 
+-   Xunit and Moq
+-   Handling MySQL database
+-   Asynchronous programming
+
+#   App presentation
+
+![Initial image](ReadmeImages/Fig1.png)
+
+**Fig.1** Startap page
+a
+s
+s
+
+s
+
+s
+
+s
+
+s
+
+s
+
+s
+
+s
+s
+
+s
+
+s
+
+
+s
+
+s
+
+s
+
+s
+
+s
+
+s
+
+s
+s
+
+
+## TestLink <a name="TestLink"></a>
