@@ -123,9 +123,9 @@ namespace RumikApp.ViewModels
                     {
                         PanelVisibilityService.DataGridViewModelVisibility = Visibility.Visible;
 
-                        var lol = await databaseConnectionService.GetAllData();
+                        ObservableCollection<Beverage> allBeverages = await databaseConnectionService.GetAllData();
 
-                        informationBusService.OriginalBeverages = lol;
+                        informationBusService.OriginalBeverages = allBeverages;
 
 
                     },
@@ -151,6 +151,7 @@ namespace RumikApp.ViewModels
                     _EditLocalData = new RelayCommand(
                     async () =>
                     {
+                        informationBusService.OriginalBeverages.Clear();
                         informationBusService.OriginalBeverages = await fileDatabaseConnectionService.GetAllData();
                         PanelVisibilityService.EditLocalDataVisibility = Visibility.Visible;
                     },
