@@ -1,4 +1,4 @@
-#   Hi, it is **RumikApp**
+#   Hi, this is **RumikApp**
 
 At the begining I'd like to mention that it's my first personal project made at that scale. Repo consists of 3 main directories:
 
@@ -10,19 +10,19 @@ At the begining I'd like to mention that it's my first personal project made at 
 
 App allow user:
 
+-   Find new rum depending on his current needs,
 -   Browse external and internal database,
--   Save his own entries,
--   Find new rum depending on his current needs.
+-   Save his own entries.
 
 ## Contents page
 
 1.  [Technologies](#Technologies)
-2.  [Generall](#Generall)
+2.  [App presentation](#AppPresentation)
 
 
 #   Technologies <a name="Technologies"></a>
 
-## Generall <a name="Generall"></a>
+## Generall 
 
 Whole app is based on .NET Framework and C#.
 
@@ -41,8 +41,26 @@ At this point app supports only Polish language.
 
 I'm planning to implement Entity framework.
 
-#   App presentation
+#   App presentation <a name="AppPresentation"></a>
 
-![Initial image](ReadmeImages/Fig1.png)
+Below you will find couple of screens from RumikApp itself
 
+![Main window](ReadmeImages/Fig1.png)
 **Fig.1** Startap page
+
+![Database view](ReadmeImages/Fig2.png)
+**Fig.2** Database view
+
+![Poll](ReadmeImages/Fig3.png)
+**Fig.3** Poll
+
+![My place](ReadmeImages/Fig4.png)
+**Fig.4** My place (?)
+
+
+![Random](ReadmeImages/Fig5.png)
+**Fig.5** Random entity
+
+
+![Add new](ReadmeImages/Fig6.png)
+**Fig.6** Add new
