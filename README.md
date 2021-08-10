@@ -24,7 +24,7 @@ App allows user to:
 
 ## Generall 
 
-Whole app is based on .NET Framework and C#.
+Whole app is based on .NET Framework 4.7.2 and C#.
 
 Below I'm listing couple of technologies that I learned during this project:
 
