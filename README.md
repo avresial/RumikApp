@@ -46,7 +46,7 @@ I'm planning to implement Entity framework.
 Below you will find couple of screens from RumikApp itself
 
 ![Main window](ReadmeImages/Fig1.png)
-**Fig.1** Startap page
+**Fig.1** Startup page
 
 ![Database view](ReadmeImages/Fig2.png)
 **Fig.2** Database view
