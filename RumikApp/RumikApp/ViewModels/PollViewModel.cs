@@ -36,7 +36,7 @@ namespace RumikApp.UserControls
             }
         }
 
-        
+
         private RelayCommand _GoToMainMenu;
         public RelayCommand GoToMainMenu
         {
@@ -73,7 +73,7 @@ namespace RumikApp.UserControls
 
                         informationBusService.OriginalBeverages = await databaseConnectionService.GetDataFromDatabaseWithConditions(PollPurpose, 5, PollMixes, getListWithSetFlavours(), PollPricePoints);
                         Settings settings = settingsService.ReadSettings();
-                        sQLDatabaseConnectionService.SendSearchingStatistics(settings.UserID,(PollData)this);
+                        sQLDatabaseConnectionService.SendSearchingStatistics(settings.UserID, (PollData)this);
                         ClearSellection();
                     },
                     () =>
@@ -83,28 +83,6 @@ namespace RumikApp.UserControls
                 }
 
                 return _GetMeThatRum;
-            }
-        }
-
-        private RelayCommand _GoForPiratesFromCarabien;
-        public RelayCommand GoForPiratesFromCarabien
-        {
-            get
-            {
-                if (_GoForPiratesFromCarabien == null)
-                {
-                    _GoForPiratesFromCarabien = new RelayCommand(
-                    async () =>
-                    {
-                        await GoForPiratesFromCarabienMethod();
-                    },
-                    () =>
-                    {
-                        return true;
-                    });
-                }
-
-                return _GoForPiratesFromCarabien;
             }
         }
 
@@ -165,18 +143,5 @@ namespace RumikApp.UserControls
                 Flavours.Add(Honey);
             return Flavours;
         }
-
-        async Task GoForPiratesFromCarabienMethod()
-        {
-
-            informationBusService.OriginalBeverages = await databaseConnectionService.GetDataFromDatabaseWithConditions(PollPurpose.ForPiratesFromCarabien, 5, PollMixes.None, new List<Flavour>(), PollPricePoints.None);
-            Settings settings = settingsService.ReadSettings();
-            sQLDatabaseConnectionService.SendSearchingStatistics(settings.UserID,(PollData)this);
-            PanelVisibilityService.DataGridViewModelVisibility = Visibility.Visible;
-
-            ForPiratesFromCarabien = false;
-            ClearSellection();
-        }
-
     }
 }
