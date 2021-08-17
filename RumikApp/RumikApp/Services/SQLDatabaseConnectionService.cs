@@ -17,7 +17,7 @@ namespace RumikApp.Services
 
         private string pollStatisticTable = "PollStatistics";
 
-        private AvailableTables _MainDataTable = AvailableTables.RumsBaseTEST;
+        private AvailableTables _MainDataTable = AvailableTables.RumsBase;
         public AvailableTables MainDataTable
         {
             get { return _MainDataTable; }
@@ -29,7 +29,7 @@ namespace RumikApp.Services
             }
         }
 
-        private AvailableTables _NotYetApprovedTESTDataTable = AvailableTables.NotYetApprovedTEST;
+        private AvailableTables _NotYetApprovedTESTDataTable = AvailableTables.NotYetApproved;
         public AvailableTables NotYetApprovedTESTDataTable
         {
             get { return _NotYetApprovedTESTDataTable; }
