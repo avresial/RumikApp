@@ -5,13 +5,14 @@ using System.Linq;
 using RumikApp.ViewModel;
 using System.Windows;
 using System.Collections.ObjectModel;
+using RumikApp.Infrastructure.Services;
 
 namespace RumikApp.ViewModels
 {
     public class DataGridViewModel : ViewModelBase
     {
         private IDatabaseConnectionService databaseConnectionService;
-
+        private readonly IBeverageService beverageService;
         private IInformationBusService _informationBusService;
         public IInformationBusService informationBusService
         {
@@ -355,6 +356,8 @@ namespace RumikApp.ViewModels
 
                          PanelVisibilityService.RandomDataGridVisibility = Visibility.Visible;
 
+                         var randomBeverage = await this.beverageService.PickRandomBeverage();
+
                          Beverage randomOne = await databaseConnectionService.GetRandomRow();
 
                          if (randomOne == null)
@@ -373,10 +376,11 @@ namespace RumikApp.ViewModels
         }
 
 
-        public DataGridViewModel(IDatabaseConnectionService databaseConnectionService, IPanelVisibilityService panelVisibilityService, IInformationBusService informationBusService)
+        public DataGridViewModel(IDatabaseConnectionService databaseConnectionService, IPanelVisibilityService panelVisibilityService, IInformationBusService informationBusService, IBeverageService beverageService)
         {
             this.PanelVisibilityService = panelVisibilityService;
             this.informationBusService = informationBusService;
+            this.beverageService = beverageService;
             this.databaseConnectionService = databaseConnectionService;
         }
     }

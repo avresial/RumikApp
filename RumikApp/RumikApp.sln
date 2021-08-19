@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApprovalToolForRumikApp", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RumikApp.Tests", "RumikApp.Tests\RumikApp.Tests.csproj", "{9B2A297E-B8AA-4056-916C-B3992F1F2A4E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RumikApp.Infrastructure", "RumikApp.Infrastructure\RumikApp.Infrastructure.csproj", "{03B00657-7FAA-4792-B944-616F3676439D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RumikApp.Core", "RumikApp.Core\RumikApp.Core.csproj", "{97F40510-F69A-4C7D-84DE-5E28D79578BF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +31,14 @@ Global
 		{9B2A297E-B8AA-4056-916C-B3992F1F2A4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9B2A297E-B8AA-4056-916C-B3992F1F2A4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9B2A297E-B8AA-4056-916C-B3992F1F2A4E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{03B00657-7FAA-4792-B944-616F3676439D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03B00657-7FAA-4792-B944-616F3676439D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03B00657-7FAA-4792-B944-616F3676439D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03B00657-7FAA-4792-B944-616F3676439D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{97F40510-F69A-4C7D-84DE-5E28D79578BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{97F40510-F69A-4C7D-84DE-5E28D79578BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{97F40510-F69A-4C7D-84DE-5E28D79578BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{97F40510-F69A-4C7D-84DE-5E28D79578BF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
