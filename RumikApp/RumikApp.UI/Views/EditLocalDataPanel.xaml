@@ -1,0 +1,181 @@
+﻿<UserControl x:Class="RumikApp.Views.EditLocalDataPanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:RumikApp.Views"
+             xmlns:Converters="clr-namespace:RumikApp.UI.Converters"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
+
+    <UserControl.Resources>
+        
+        <Converters:StringToIntWithValidation x:Key="StringToIntWithValidation"/>
+        <Converters:StringToFloatWithValidation  x:Key="StringToFloatWithValidation"/>
+
+    </UserControl.Resources>
+    <ScrollViewer HorizontalScrollBarVisibility="Visible">
+        <Grid>
+
+            <Grid.RowDefinitions>
+
+                <RowDefinition Height="auto"/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="100"/>
+
+            </Grid.RowDefinitions>
+
+
+            <Button Grid.Column="0" Style="{StaticResource MaterialDesignIconForegroundButton}" ToolTip="Powrót" Command="{Binding GoToMainMenu}" HorizontalAlignment="Left" Width="30" Height="30" Margin="20,0,0,0">
+                <materialDesign:PackIcon Kind="ChevronDoubleLeft"/>
+            </Button>
+
+            <DataGrid Grid.Row="1" ItemsSource="{Binding IInformationBusService.OriginalBeverages}" IsReadOnly="True" SelectedItem="{Binding SelectedBeverage}" AutoGenerateColumns = "False" Name = "dataGrid" AlternatingRowBackground = "LightBlue" AlternationCount = "2" MaxHeight="500"  >
+
+                <DataGrid.Columns>
+
+                    <DataGridTextColumn Header = "ID" Binding       = "{Binding ID}" />
+                    <DataGridTextColumn Header = "Nazwa" Binding    = "{Binding Name}" />
+                    <DataGridTextColumn Header = "Pojemność [ml]" Binding       = "{Binding Capacity}" />
+                    <DataGridTextColumn Header = "Alcohol Percentaż" Binding    = "{Binding AlcoholPercentage}"/>
+                    <DataGridTextColumn Header = "Cena" Binding         = "{Binding Price}"/>
+                    <DataGridTextColumn Header = "Ocena smaku" Binding  = "{Binding Grade}"/>
+                    <DataGridTextColumn Header = "Ocena smaku z colą" Binding   = "{Binding GradeWithCoke}"/>
+                    <DataGridTextColumn Header = "Kolor" Binding        = "{Binding Color}"/>
+
+                    <DataGridCheckBoxColumn Header = "Van" Binding  = "{Binding Vanila.IsSet}"/>
+                    <DataGridCheckBoxColumn Header = "Orz" Binding  = "{Binding Nuts.IsSet}"/>
+                    <DataGridCheckBoxColumn Header = "Car" Binding  = "{Binding Caramel.IsSet}"/>
+                    <DataGridCheckBoxColumn Header = "Dym" Binding  = "{Binding Smoke.IsSet}"/>
+                    <DataGridCheckBoxColumn Header = "Cyn" Binding  = "{Binding Cinnamon.IsSet}"/>
+                    <DataGridCheckBoxColumn Header = "Spi" Binding  = "{Binding Spirit.IsSet}"/>
+                    <DataGridCheckBoxColumn Header = "Owo" Binding  = "{Binding Fruits.IsSet}"/>
+                    <DataGridCheckBoxColumn Header = "Mio" Binding  = "{Binding Honey.IsSet}"/>
+
+                </DataGrid.Columns>
+
+            </DataGrid>
+
+
+            <Grid Grid.Row="2" MaxHeight="400">
+
+                <Grid.ColumnDefinitions>
+
+                    <ColumnDefinition />
+                    <ColumnDefinition MinWidth="450" />
+                    <ColumnDefinition  />
+
+                </Grid.ColumnDefinitions>
+
+                <Button MinHeight="400" MinWidth="400" Grid.Column="0" Command="{Binding LoadNewImage}" Background="Transparent" BorderBrush="Transparent" VerticalAlignment="Top" ToolTip="Przyjmujemy zdjęcia do 30 kB">
+                    <Image Source="{Binding SelectedBeverage.TestIcon}" HorizontalAlignment="Center"/>
+                </Button>
+
+                <Grid Grid.Column="1" VerticalAlignment="Center" >
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition  Width="1*"/>
+                        <ColumnDefinition  Width="0.5*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+
+
+                    <TextBlock Grid.Column="0" Grid.Row="0"  FontFamily="Bookman Old Style" FontWeight="Bold" FontSize="25" TextWrapping="Wrap" Text="Nazwa" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                    <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding SelectedBeverage.Name}" MaxLength="30" Width="150" Height="25" />
+
+                    <TextBlock Grid.Column="0" Grid.Row="1" FontFamily="Bookman Old Style" FontSize="20" Text="Pojemność [ml]"  Margin="10" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                    <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding SelectedBeverage.Capacity, Converter={StaticResource StringToFloatWithValidation}}" Width="150" Height="25" MaxLength="9" />
+
+                    <TextBlock Grid.Row="2" FontFamily="Bookman Old Style" FontSize="20"  Text="Zawartość alkoholu [%]" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                    <TextBox Grid.Column="1" Grid.Row="2" Text="{Binding SelectedBeverage.AlcoholPercentage, Converter={StaticResource StringToFloatWithValidation}}" Width="150" Height="25" MaxLength="2" />
+
+                    <TextBlock Grid.Row="3" FontFamily="Bookman Old Style" FontSize="20" Text="Kolor" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                    <ComboBox Grid.Column="1" Grid.Row="3" SelectedItem="{Binding SelectedBeverage.Color}" Height="25" ItemsSource="{Binding ColorsList}" Width="150"/>
+
+                    <TextBlock Grid.Column="0" Grid.Row="4" FontFamily="Bookman Old Style" FontSize="20" Text="Ocena solo [x/10]" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                    <TextBox Grid.Column="1" Grid.Row="4" Text="{Binding SelectedBeverage.Grade, Converter={StaticResource StringToIntWithValidation}}" Width="150" Height="25" MaxLength="2" />
+
+                    <TextBlock Grid.Column="0" Grid.Row="5"  FontFamily="Bookman Old Style" FontSize="20" Text="Ocena z kolką [x/10]" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                    <TextBox Grid.Column="1" Grid.Row="5" Text="{Binding SelectedBeverage.GradeWithCoke, Converter={StaticResource StringToIntWithValidation}}" Width="150" Height="25" MaxLength="2" />
+
+                    <TextBlock Grid.Column="0" Grid.Row="6" FontFamily="Bookman Old Style" FontSize="20" Text="Cenka [zł]" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Left" />
+                    <TextBox Grid.Column="1" Grid.Row="6" Text="{Binding SelectedBeverage.Price, Converter={StaticResource StringToFloatWithValidation}}" Width="150" Height="25" MaxLength="4" />
+
+                </Grid>
+
+                <Grid Grid.Column="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+
+
+                    <ToggleButton Grid.Column="0" IsChecked="{Binding SelectedBeverage.Vanila.IsSet}" HorizontalAlignment="Center"  Margin="5" Style="{StaticResource MaterialDesignFlatToggleButton}" Width="90" Height="90">
+                        <Image Source="{Binding SelectedBeverage.Vanila.IMGSrc}" VerticalAlignment="Center" HorizontalAlignment="Center"  />
+                    </ToggleButton>
+
+                    <ToggleButton Grid.Column="1" Grid.Row="0" IsChecked="{Binding SelectedBeverage.Nuts.IsSet}" HorizontalAlignment="Center"  Margin="5" Style="{StaticResource MaterialDesignFlatToggleButton}" Width="90" Height="90">
+                        <Image Source="{Binding SelectedBeverage.Nuts.IMGSrc}" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                    </ToggleButton>
+
+                    <ToggleButton Grid.Column="2" Grid.Row="0" IsChecked="{Binding SelectedBeverage.Caramel.IsSet}" HorizontalAlignment="Center"  Margin="5" Style="{StaticResource MaterialDesignFlatToggleButton}" Width="90" Height="90">
+                        <Image Source="{Binding SelectedBeverage.Caramel.IMGSrc}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    </ToggleButton>
+
+                    <ToggleButton Grid.Column="0" Grid.Row="1" IsChecked="{Binding SelectedBeverage.Smoke.IsSet}" HorizontalAlignment="Center"  Margin="5" Style="{StaticResource MaterialDesignFlatToggleButton}" Width="90" Height="90">
+                        <Image Source="{Binding SelectedBeverage.Smoke.IMGSrc}" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                    </ToggleButton>
+
+                    <ToggleButton Grid.Column="1" Grid.Row="1" IsChecked="{Binding SelectedBeverage.Cinnamon.IsSet}" HorizontalAlignment="Center"  Margin="5" Style="{StaticResource MaterialDesignFlatToggleButton}" Width="90" Height="90">
+                        <Image Source="{Binding SelectedBeverage.Cinnamon.IMGSrc}" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                    </ToggleButton>
+
+                    <ToggleButton Grid.Column="2" Grid.Row="1" IsChecked="{Binding SelectedBeverage.Spirit.IsSet}" HorizontalAlignment="Center" Margin="5" Style="{StaticResource MaterialDesignFlatToggleButton}" Width="90" Height="90">
+                        <Image Source="{Binding SelectedBeverage.Spirit.IMGSrc}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    </ToggleButton>
+
+                    <ToggleButton Grid.Column="0" Grid.Row="2" IsChecked="{Binding SelectedBeverage.Fruits.IsSet}" HorizontalAlignment="Center"  Margin="5" Style="{StaticResource MaterialDesignFlatToggleButton}" Width="90" Height="90">
+                        <Image Source="{Binding SelectedBeverage.Fruits.IMGSrc}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    </ToggleButton>
+
+                    <ToggleButton Grid.Column="1" Grid.Row="2" IsChecked="{Binding SelectedBeverage.Honey.IsSet}" HorizontalAlignment="Center"  Margin="5" Style="{StaticResource MaterialDesignFlatToggleButton}" Width="90" Height="90">
+                        <Image Source="{Binding SelectedBeverage.Honey.IMGSrc}" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                    </ToggleButton>
+
+                    <ToggleButton Grid.Column="2" Grid.Row="2" IsChecked="{Binding SelectedBeverage.BeAPirate.IsSet}" HorizontalAlignment="Center"  Margin="5" Style="{StaticResource MaterialDesignFlatToggleButton}" Width="90" Height="90">
+                        <Image Source="{Binding SelectedBeverage.BeAPirate.IMGSrc}" VerticalAlignment="Center" HorizontalAlignment="Center" Width="60"  />
+                    </ToggleButton>
+
+                </Grid>
+            </Grid>
+
+            <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center">
+
+                <Button Content="Usuń" Command="{Binding DeleteCurrentBeverage}"  Width="200" Background="LightPink"/>
+                <Button Content="Wracam" Command="{Binding GoToMainMenu}" Width="200"  />
+                <Button Content="Zapisz" Command="{Binding SaveCurrentBeverage}"  Width="200" Background="LightGreen"/>
+
+            </StackPanel>
+        </Grid>
+    </ScrollViewer>
+</UserControl>

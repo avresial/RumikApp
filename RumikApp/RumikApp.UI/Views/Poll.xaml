@@ -1,0 +1,252 @@
+﻿<UserControl x:Class="RumikApp.Views.Poll"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:RumikApp.Views"
+             xmlns:Converters="clr-namespace:RumikApp.Converters"
+             mc:Ignorable="d" 
+             d:DesignHeight="1450" d:DesignWidth="800"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
+    <UserControl.Resources>
+        <Converters:TinyIntToBoolConverter x:Key="TinyIntToBoolConverter" />
+    </UserControl.Resources>
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" FontFamily="Bookman Old Style">
+        <Grid MinHeight="500">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" />
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+            </Grid.RowDefinitions>
+
+            <Grid Grid.ColumnSpan="2">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="auto" />
+                </Grid.ColumnDefinitions>
+
+                <Button Grid.Column="0" Style="{StaticResource MaterialDesignIconForegroundButton}" ToolTip="Powrót" Command="{Binding GoToMainMenu}" Width="50" Height="50" Margin="20,0,0,0">
+                    <materialDesign:PackIcon Kind="ChevronDoubleLeft" Width="50" Height="50" />
+                </Button>
+
+
+                <TextBlock Grid.Column="1" HorizontalAlignment="Center"  TextWrapping="Wrap" Text="Potrzebuję w celu..." VerticalAlignment="Center" FontSize="40" Margin="0,50,0,30" />
+               
+                
+            </Grid>
+
+
+            <Grid Grid.Row="1" MaxWidth="1000">
+                
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <ToggleButton IsChecked="{Binding ForPartyBool}" Margin="15,5,15,5" Width="200" Height="200" HorizontalAlignment="Center" Style="{StaticResource MaterialDesignFlatToggleButton}">
+
+                    <StackPanel Orientation="Vertical">
+                        <Image Source="/IMGs/PollIMG/ForPartyCheap.png" Width="150" />
+                    </StackPanel>
+                </ToggleButton>
+                <TextBlock Grid.Row="1" Width="200" TextAlignment="Center" TextWrapping="Wrap" Text="...taniego upojenia się tymże trunkiem" />
+
+                <ToggleButton Grid.Column="1" IsChecked="{Binding GoodButCheap}" Margin="15,5,15,5" Width="200" Height="200" HorizontalAlignment="Center" Style="{StaticResource MaterialDesignFlatToggleButton}">
+                    <StackPanel Orientation="Vertical">
+                        <Image Source="/IMGs/PollIMG/CheapButSolid.png" Width="150" />
+                    </StackPanel>
+                </ToggleButton>
+                <TextBlock Grid.Column="1" Grid.Row="1" Width="200" TextAlignment="Center" TextWrapping="Wrap" Text="...zaimponowania Syrence wyśmienitym trunkiem, ale trochę bida"/>
+
+                <ToggleButton Grid.Column="2" IsChecked="{Binding Exclusive}" Margin="15,5,15,5" Width="200" Height="200" HorizontalAlignment="Center" Style="{StaticResource MaterialDesignFlatToggleButton}">
+                    <StackPanel Orientation="Vertical">
+                        <Image Source="/IMGs/PollIMG/Exclusive.png" Width="140" />
+                    </StackPanel>
+                </ToggleButton>
+                <TextBlock Grid.Column="2" Grid.Row="1" Width="200" TextAlignment="Center" TextWrapping="Wrap" Text="...eksluzywnego napitku, Milordzie, &#10;bo wypłata przyszła"/>
+
+                <ToggleButton Grid.Column="3" IsChecked="{Binding ForPiratesFromCarabien}" Margin="15,5,15,5" Width="200" Height="200" HorizontalAlignment="Center" Style="{StaticResource MaterialDesignFlatToggleButton}">
+                    <StackPanel Orientation="Vertical">
+                        <Image Source="/IMGs/PollIMG/ForPiratesFrocCarabien.png" Width="140" />
+                    </StackPanel>
+                </ToggleButton>
+                <TextBlock Grid.Column="3" Grid.Row="1" Width="200" TextAlignment="Center" TextWrapping="Wrap" Text="...wczucia się w Kałaibski&#10; klimat, podczas wieczołu &#10;z piłatami"/>
+            </Grid>
+
+            <TextBlock Grid.ColumnSpan="2" Grid.Row="2" HorizontalAlignment="Center"  TextWrapping="Wrap" Text="Do picia" VerticalAlignment="Center" FontSize="40" Margin="0,50,0,30" />
+
+            <Grid Grid.Row="3" MaxWidth="1000">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <ToggleButton Margin="15,5,15,5" Width="200" Height="200" HorizontalAlignment="Center" IsChecked="{Binding solo}" Style="{StaticResource MaterialDesignFlatToggleButton}">
+                    <StackPanel Orientation="Vertical">
+                        <Image Source="/IMGs/PollIMG/Solo.png"  />
+                    </StackPanel>
+                </ToggleButton>
+                <TextBlock Grid.Column="0" Grid.Row="1" TextAlignment="Center" TextWrapping="Wrap" Text="Solo"/>
+
+                <ToggleButton Grid.Column="1" Margin="15,5,15,5" Width="200" Height="200" HorizontalAlignment="Center" IsChecked="{Binding WithCoke}" Style="{StaticResource MaterialDesignFlatToggleButton}">
+                    <StackPanel Orientation="Vertical">
+                        <Image Source="/IMGs/PollIMG/WithCoke.png"  />
+                    </StackPanel>
+                </ToggleButton>
+                <TextBlock Grid.Column="1" Grid.Row="1" TextAlignment="Center" TextWrapping="Wrap" Text="Z colo"/>
+
+            </Grid>
+
+            <TextBlock Grid.ColumnSpan="2" Grid.Row="4" HorizontalAlignment="Center"  TextWrapping="Wrap" Text="Chcę poczuć smak" VerticalAlignment="Center" FontSize="40" Margin="0,50,0,30" />
+
+            <Grid Grid.Row="5" MaxWidth="1000">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <ToggleButton Grid.Column="0" Margin="15,5,15,5" Width="200" Height="200" HorizontalAlignment="Center" IsChecked="{Binding Vanila.IsSet}" Style="{StaticResource MaterialDesignFlatToggleButton}">
+                    <StackPanel Orientation="Vertical">
+                        <Image Source="{Binding Vanila.IMGSrc}"  />
+                    </StackPanel>
+                </ToggleButton>
+                <TextBlock Grid.Column="0" Grid.Row="1" TextAlignment="Center" TextWrapping="Wrap" Text="Wanilii"/>
+
+                <ToggleButton Grid.Column="1" Margin="15,5,15,5" Width="200" Height="200" HorizontalAlignment="Center" IsChecked="{Binding Nuts.IsSet}" Style="{StaticResource MaterialDesignFlatToggleButton}">
+                    <StackPanel Orientation="Vertical">
+                        <Image Source="{Binding Nuts.IMGSrc}"  />
+                    </StackPanel>
+                </ToggleButton>
+                <TextBlock Grid.Column="1" Grid.Row="1" TextAlignment="Center" TextWrapping="Wrap" Text="Orzeszki"/>
+
+                <ToggleButton Grid.Column="2" Margin="15,5,15,5" Width="200" Height="200" HorizontalAlignment="Center" IsChecked="{Binding Caramel.IsSet}" Style="{StaticResource MaterialDesignFlatToggleButton}">
+                    <StackPanel Orientation="Vertical">
+                        <Image Source="{Binding Caramel.IMGSrc}"/>
+                    </StackPanel>
+                </ToggleButton>
+                <TextBlock Grid.Column="2" Grid.Row="1" TextAlignment="Center" TextWrapping="Wrap" Height="150" Text="Karmel"/>
+
+                <ToggleButton Grid.Column="3" Margin="15,5,15,5" Width="200" Height="200" HorizontalAlignment="Center" IsChecked="{Binding Smoke.IsSet}" Style="{StaticResource MaterialDesignFlatToggleButton}">
+                    <StackPanel Orientation="Vertical">
+                        <Image Source="{Binding Smoke.IMGSrc}"/>
+                    </StackPanel>
+                </ToggleButton>
+                <TextBlock Grid.Column="3" Grid.Row="1" TextAlignment="Center" TextWrapping="Wrap" Text="Dymiony"/>
+
+                <ToggleButton Grid.Column="0" Grid.Row="2" Margin="15,5,15,5" Width="200" Height="200" HorizontalAlignment="Center" IsChecked="{Binding Cinnamon.IsSet}" Style="{StaticResource MaterialDesignFlatToggleButton}">
+                    <StackPanel Orientation="Vertical">
+                        <Image Source="{Binding Cinnamon.IMGSrc}"  />
+                    </StackPanel>
+                </ToggleButton>
+                <TextBlock Grid.Column="0" Grid.Row="3" TextAlignment="Center" TextWrapping="Wrap" Text="CynaMoon"/>
+
+                <ToggleButton Grid.Column="1" Grid.Row="2" Margin="15,5,15,5" Width="200" Height="200" HorizontalAlignment="Center" IsChecked="{Binding Spirit.IsSet}" Style="{StaticResource MaterialDesignFlatToggleButton}">
+                    <StackPanel Orientation="Vertical">
+                        <Image Source="{Binding Spirit.IMGSrc}"  />
+                    </StackPanel>
+                </ToggleButton>
+                <TextBlock Grid.Column="1" Grid.Row="3" TextAlignment="Center" TextWrapping="Wrap" Text="Błogosławiony smak spirytusu"/>
+
+                <ToggleButton Grid.Column="2" Grid.Row="2" Margin="15,5,15,5" Width="200" Height="200" HorizontalAlignment="Center" IsChecked="{Binding Fruits.IsSet}" Style="{StaticResource MaterialDesignFlatToggleButton}">
+                    <StackPanel Orientation="Vertical">
+                        <Image Source="{Binding Fruits.IMGSrc}"/>
+                    </StackPanel>
+                </ToggleButton>
+                <TextBlock Grid.Column="2" Grid.Row="3" TextAlignment="Center" TextWrapping="Wrap" Text="Owocki"/>
+
+                <ToggleButton Grid.Column="3" Grid.Row="2" Margin="15,5,15,5" Width="200" Height="200" HorizontalAlignment="Center" IsChecked="{Binding Honey.IsSet}" Style="{StaticResource MaterialDesignFlatToggleButton}">
+                    <StackPanel Orientation="Vertical">
+                        <Image Source="{Binding Honey.IMGSrc}"/>
+                    </StackPanel>
+                </ToggleButton>
+                <TextBlock Grid.Column="3" Grid.Row="3" TextAlignment="Center" TextWrapping="Wrap" Text="Miót XD"/>
+
+            </Grid>
+
+            <TextBlock Grid.ColumnSpan="2" Grid.Row="6" HorizontalAlignment="Center"  TextWrapping="Wrap" Text="Cena" VerticalAlignment="Center" FontSize="40" Margin="0,50,0,30" />
+
+            <Grid Grid.Row="7" MaxWidth="1000">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <ToggleButton Margin="15,5,15,5" Width="200" Height="200" HorizontalAlignment="Center" IsChecked="{Binding PricePoint1}" Style="{StaticResource MaterialDesignFlatToggleButton}">
+                    <StackPanel Orientation="Vertical">
+                        <Image Source="/IMGs/PollIMG/PricePoint1.png"  />
+                    </StackPanel>
+                </ToggleButton>
+                <TextBlock Grid.Column="0" Grid.Row="1" TextAlignment="Center" TextWrapping="Wrap" Text="&#60;50"/>
+
+                <ToggleButton Grid.Column="1" Margin="15,5,15,5" Width="200" Height="200" HorizontalAlignment="Center" IsChecked="{Binding PricePoint2}" Style="{StaticResource MaterialDesignFlatToggleButton}">
+                    <StackPanel Orientation="Vertical">
+                        <Image Source="/IMGs/PollIMG/PricePoint2.png"/>
+                    </StackPanel>
+                </ToggleButton>
+                <TextBlock Grid.Column="1" Grid.Row="1" TextAlignment="Center" TextWrapping="Wrap" Text="50-70"/>
+
+                <ToggleButton Grid.Column="2" Margin="15,5,15,5" Width="200" Height="200" HorizontalAlignment="Center" IsChecked="{Binding PricePoint3}" Style="{StaticResource MaterialDesignFlatToggleButton}">
+                    <StackPanel Orientation="Vertical">
+                        <Image Source="/IMGs/PollIMG/PricePoint3.png"  />
+                    </StackPanel>
+                </ToggleButton>
+                <TextBlock Grid.Column="2" Grid.Row="1" TextAlignment="Center" TextWrapping="Wrap" Text="70-90"/>
+
+                <ToggleButton Grid.Column="3" Margin="15,5,15,5" Width="200" Height="200" HorizontalAlignment="Center" IsChecked="{Binding PricePoint4}" Style="{StaticResource MaterialDesignFlatToggleButton}">
+                    <StackPanel Orientation="Vertical">
+                        <Image Source="/IMGs/PollIMG/PricePoint4.png"  />
+                    </StackPanel>
+                </ToggleButton>
+                <TextBlock Grid.Column="3" Grid.Row="1" TextAlignment="Center" TextWrapping="Wrap" Text="&#62;90"/>
+            </Grid>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"  Grid.Row="8" Margin="0,50,0,30" >
+                <Button Content="Wróć do początku :o" Width="250" MinHeight="100" Command="{Binding GoToMainMenu}" Margin="10,5,10,5" BorderBrush="Transparent" Background="LightGray" FontSize="20" Style="{StaticResource MaterialDesignRaisedLightButton}"/>
+                <Button Content="Dej mnie ten rum :)" Width="250" MinHeight="100" Command="{Binding GetMeThatRum}" Margin="10,5,10,5" BorderBrush="Transparent" Background="LightGray" FontSize="20" Style="{StaticResource MaterialDesignRaisedLightButton}"/>
+            </StackPanel>
+
+        </Grid>
+    </ScrollViewer>
+
+</UserControl>
