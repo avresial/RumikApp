@@ -218,6 +218,61 @@
       <Name>RumikApp.Infrastructure</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="IMGs\Bottles\Jogaila.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="IMGs\Bottles\UnknownBottle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="IMGs\Bottles\UnknownBottleCopy.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="IMGs\WelcomePanel\WelcomePanelIMG.png" />
+    <Resource Include="IMGs\TanioAle.png" />
+    <Resource Include="IMGs\Tanio.png" />
+    <Resource Include="IMGs\PollIMG\WithCoke.png" />
+    <Resource Include="IMGs\PollIMG\Vanila.png" />
+    <Resource Include="IMGs\PollIMG\Spirit.png" />
+    <Resource Include="IMGs\PollIMG\Solo.png" />
+    <Resource Include="IMGs\PollIMG\Smoke.png" />
+    <Resource Include="IMGs\PollIMG\PricePoint4.png" />
+    <Resource Include="IMGs\PollIMG\PricePoint3.png" />
+    <Resource Include="IMGs\PollIMG\PricePoint2.png" />
+    <Resource Include="IMGs\PollIMG\PricePoint1.png" />
+    <Resource Include="IMGs\PollIMG\Nuts.png" />
+    <Resource Include="IMGs\PollIMG\Nutmeg.png" />
+    <Resource Include="IMGs\PollIMG\Honey.png" />
+    <Resource Include="IMGs\PollIMG\Fruits.png" />
+    <Resource Include="IMGs\PollIMG\ForPiratesFrocCarabien.png" />
+    <Resource Include="IMGs\PollIMG\ForPartyCheap.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="IMGs\PollIMG\Exclusive.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="IMGs\PollIMG\Cinnamon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="IMGs\PollIMG\CheapButSolid.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="IMGs\PollIMG\Caramel.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="IMGs\PollIMG\BeAPirate.png" />
+    <Resource Include="IMGs\Other\Unknown.png" />
+    <Resource Include="IMGs\Other\SplashScreen.png" />
+    <Resource Include="IMGs\Other\frog.gif" />
+    <Resource Include="IMGs\Milordzie2.png" />
+    <Resource Include="IMGs\MainControllPanel\Milordzie.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="IMGs\Icons\None.png" />
+    <Resource Include="IMGs\Icons\ArrowUp.png" />
+    <Resource Include="IMGs\Icons\ArrowDown.png" />
+    <Resource Include="IMGs\choose_wisely.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.4.1.0\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.4.1.0\build\MaterialDesignThemes.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
