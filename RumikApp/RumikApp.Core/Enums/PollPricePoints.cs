@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RumikApp.Infrastructure.Enums
+namespace RumikApp.Core.Enums
 {
     public enum PollPricePoints
     {

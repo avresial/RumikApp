@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace RumikApp.Views
+namespace RumikApp.UI.Views
 {
     /// <summary>
     /// Interaction logic for MainControlPanel.xaml

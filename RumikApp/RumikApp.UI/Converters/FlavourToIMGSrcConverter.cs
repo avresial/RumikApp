@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RumikApp.Core.Domain;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;

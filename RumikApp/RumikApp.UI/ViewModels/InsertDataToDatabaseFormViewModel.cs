@@ -1,8 +1,7 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
-using RumikApp.Infrastructure.Enums;
 using RumikApp.Infrastructure.Services;
-using RumikApp.ViewModel;
+using RumikApp.UI.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -15,7 +14,7 @@ using System.Windows.Forms;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
-namespace RumikApp.ViewModels
+namespace RumikApp.UI.ViewModels
 {
     public class InsertDataToDatabaseFormViewModel : ViewModelBase
     {

@@ -60,6 +60,10 @@
     <Compile Include="Domain\Flavour.cs" />
     <Compile Include="Domain\FlavoursSet.cs" />
     <Compile Include="Domain\PollData.cs" />
+    <Compile Include="Enums\AvailableTables.cs" />
+    <Compile Include="Enums\PollMixes.cs" />
+    <Compile Include="Enums\PollPricePoints.cs" />
+    <Compile Include="Enums\PollPurpose.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\IBeverageRepository.cs" />
   </ItemGroup>

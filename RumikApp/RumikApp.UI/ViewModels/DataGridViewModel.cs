@@ -1,7 +1,7 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using System.Linq;
-using RumikApp.ViewModel;
+using RumikApp.UI.ViewModel;
 using System.Windows;
 using System.Collections.ObjectModel;
 using RumikApp.Infrastructure.Services;

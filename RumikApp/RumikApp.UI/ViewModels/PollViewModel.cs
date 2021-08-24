@@ -1,9 +1,8 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
-using RumikApp.Infrastructure.Enums;
 using RumikApp.Infrastructure.Dto;
 using RumikApp.Infrastructure.Services;
-using RumikApp.ViewModel;
+using RumikApp.UI.ViewModel;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Configuration;
@@ -11,7 +10,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using RumikApp.Core.Domain;
 
-namespace RumikApp.UserControls
+namespace RumikApp.UI.UserControls
 {
     public class PollViewModel// : PollData
     {

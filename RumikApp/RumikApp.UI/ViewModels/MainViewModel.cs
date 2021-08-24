@@ -1,9 +1,7 @@
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 //using MySql.Data.MySqlClient;
-using RumikApp.Infrastructure.Enums;
 using RumikApp.Infrastructure.Services;
-using RumikApp.UserControls;
 using RumikApp.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -12,25 +10,25 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
 
-namespace RumikApp.ViewModel
+namespace RumikApp.UI.ViewModel
 {
     public class MainViewModel : ViewModelBase
     {
         private DispatcherTimer dispatcherTimerInCaseDatabaseDoesNotWork = new DispatcherTimer();
 
-        private WelcomePanelViewModel _WelcomePanelViewModel;
-        public WelcomePanelViewModel WelcomePanelViewModel
-        {
-            get { return _WelcomePanelViewModel; }
-            set
-            {
-                if (_WelcomePanelViewModel == value)
-                    return;
+        //private WelcomePanelViewModel _WelcomePanelViewModel;
+        //public WelcomePanelViewModel WelcomePanelViewModel
+        //{
+        //    get { return _WelcomePanelViewModel; }
+        //    set
+        //    {
+        //        if (_WelcomePanelViewModel == value)
+        //            return;
 
-                _WelcomePanelViewModel = value;
-                RaisePropertyChanged(nameof(WelcomePanelViewModel));
-            }
-        }
+        //        _WelcomePanelViewModel = value;
+        //        RaisePropertyChanged(nameof(WelcomePanelViewModel));
+        //    }
+        //}
 
         private MainControlPanelViewModel _MainControlPanelViewModel;
         public MainControlPanelViewModel MainControlPanelViewModel
@@ -46,19 +44,19 @@ namespace RumikApp.ViewModel
             }
         }
 
-        private PollViewModel _PollViewModel;
-        public PollViewModel PollViewModel
-        {
-            get { return _PollViewModel; }
-            set
-            {
-                if (_PollViewModel == value)
-                    return;
+        //private PollViewModel _PollViewModel;
+        //public PollViewModel PollViewModel
+        //{
+        //    get { return _PollViewModel; }
+        //    set
+        //    {
+        //        if (_PollViewModel == value)
+        //            return;
 
-                _PollViewModel = value;
-                RaisePropertyChanged(nameof(PollViewModel));
-            }
-        }
+        //        _PollViewModel = value;
+        //        RaisePropertyChanged(nameof(PollViewModel));
+        //    }
+        //}
 
         //private DataGridViewModel _DataGridViewModel;
         //public DataGridViewModel DataGridViewModel
@@ -102,19 +100,19 @@ namespace RumikApp.ViewModel
         //    }
         //}
 
-        private InsertDataToDatabaseFormViewModel _InsertDataToDatabaseForm;
-        public InsertDataToDatabaseFormViewModel InsertDataToDatabaseForm
-        {
-            get { return _InsertDataToDatabaseForm; }
-            set
-            {
-                if (_InsertDataToDatabaseForm == value)
-                    return;
+        //private InsertDataToDatabaseFormViewModel _InsertDataToDatabaseForm;
+        //public InsertDataToDatabaseFormViewModel InsertDataToDatabaseForm
+        //{
+        //    get { return _InsertDataToDatabaseForm; }
+        //    set
+        //    {
+        //        if (_InsertDataToDatabaseForm == value)
+        //            return;
 
-                _InsertDataToDatabaseForm = value;
-                RaisePropertyChanged(nameof(InsertDataToDatabaseForm));
-            }
-        }
+        //        _InsertDataToDatabaseForm = value;
+        //        RaisePropertyChanged(nameof(InsertDataToDatabaseForm));
+        //    }
+        //}
 
         private EditLocalDataViewModel _EditLocalDataViewModel;
         public EditLocalDataViewModel EditLocalDataViewModel
@@ -159,14 +157,14 @@ namespace RumikApp.ViewModel
         //    }
         //}
 
-        public MainViewModel(WelcomePanelViewModel welcomePanelViewModel, MainControlPanelViewModel mainControlPanelViewModel, PollViewModel pollViewModel,
+        public MainViewModel(/*WelcomePanelViewModel welcomePanelViewModel,*/ MainControlPanelViewModel mainControlPanelViewModel, //PollViewModel pollViewModel,
             //DataGridViewModel dataGridViewModel, DataGridViewModel dataGridViewModel2, DataGridViewModel itemsControl,
-            InsertDataToDatabaseFormViewModel insertDataToDatabaseFormViewModel, EditLocalDataViewModel editLocalDataViewModel
+            /*InsertDataToDatabaseFormViewModel insertDataToDatabaseFormViewModel,*/ EditLocalDataViewModel editLocalDataViewModel
             //,IDatabaseConnectionService databaseConnectionService, IPanelVisibilityService panelVisibilityService
             )
         {
-            WelcomePanelViewModel = welcomePanelViewModel;
-            InsertDataToDatabaseForm = insertDataToDatabaseFormViewModel;
+            //WelcomePanelViewModel = welcomePanelViewModel;
+            //InsertDataToDatabaseForm = insertDataToDatabaseFormViewModel;
             MainControlPanelViewModel = mainControlPanelViewModel;
             //DatabaseConnectionService = databaseConnectionService;
             //EditLocalDataViewModel = editLocalDataViewModel;
