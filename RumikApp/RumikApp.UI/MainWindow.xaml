@@ -16,6 +16,6 @@
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="Bookman Old Style">
     <Grid>
-        <Views:MainControlPanel Visibility="Visible"/>
+        <Views:MainControlPanel DataContext="{Binding MainControlPanelViewModel}"/>
     </Grid>
 </Window>

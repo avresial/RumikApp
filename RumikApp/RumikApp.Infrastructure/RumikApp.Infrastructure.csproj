@@ -49,7 +49,9 @@
     <Compile Include="Services\BeverageService.cs" />
     <Compile Include="Services\IBeverageService.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="app.config" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\RumikApp.Core\RumikApp.Core.csproj">
       <Project>{97F40510-F69A-4C7D-84DE-5E28D79578BF}</Project>
