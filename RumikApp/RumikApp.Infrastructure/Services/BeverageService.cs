@@ -22,9 +22,8 @@ namespace RumikApp.Infrastructure.Services
             var beverages = await this.beverageRepository.BrowseAll();
 
             return beverages.Select(b =>
-                new BeverageDto
+                new BeverageDto 
                 {
-                    Id = b.Id,
                     Name = b.Name
                 }
             );
@@ -39,7 +38,7 @@ namespace RumikApp.Infrastructure.Services
 
             return new BeverageDto
             {
-                Id = item.Id,
+                
                 Name = item.Name
             };
         }

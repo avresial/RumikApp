@@ -16,11 +16,11 @@ namespace RumikApp.Infrastructure.Respositories
         {
             this.beverages = new List<Beverage>()
             {
-               new Beverage(Guid.NewGuid(), "Rum"),
-               new Beverage(Guid.NewGuid(), "Rum"),
-               new Beverage(Guid.NewGuid(), "Rum"),
-               new Beverage(Guid.NewGuid(), "Rum"),
-               new Beverage(Guid.NewGuid(), "Rum")
+               new Beverage(),
+               new Beverage(),
+               new Beverage(),
+               new Beverage(),
+               new Beverage()
             };
         }
 

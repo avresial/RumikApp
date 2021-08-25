@@ -15,32 +15,14 @@ namespace RumikApp
     {
         public static IContainer Configure()
         {
-            var builder = new ContainerBuilder();
-
-            //builder.RegisterType<PanelVisibilityService>().As<IPanelVisibilityService>().SingleInstance();
-
-            //builder.RegisterType<InformationBusService>().As<IInformationBusService>().SingleInstance();
-
-            //builder.RegisterType<SQLDatabaseConnectionService>().AsSelf().SingleInstance();
-
-            //builder.RegisterType<FileDatabaseConnectionService>().AsSelf().SingleInstance();
-
+            ContainerBuilder builder = new ContainerBuilder();
             builder.RegisterAssemblyModules(typeof(ViewModelsModule).Assembly);
 
-            //builder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly())
-            //                           .Where(t => t.Name.EndsWith("ViewModel"))
-            //                           .SingleInstance();
-
-            builder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly())
-                           .Where(t => t.Name.EndsWith("Service"))
-                           .AsImplementedInterfaces()
-                           .SingleInstance();
-
-            //builder.RegisterType<GenerallDatabaseService>().As<IDatabaseConnectionService>().SingleInstance();
-
+         
 
             builder.RegisterType<BeverageService>().AsImplementedInterfaces();
 #if DEBUG
+
             builder.RegisterType<InMemoryBeverageRepository>().AsImplementedInterfaces();
 #endif
 
