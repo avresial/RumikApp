@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using RumikApp.Infrastructure.Respositories;
 using RumikApp.Infrastructure.Services;
+using RumikApp.UI.IoC.Modules;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,11 +25,11 @@ namespace RumikApp
 
             //builder.RegisterType<FileDatabaseConnectionService>().AsSelf().SingleInstance();
 
-            
+            builder.RegisterAssemblyModules(typeof(ViewModelsModule).Assembly);
 
-            builder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly())
-                                       .Where(t => t.Name.EndsWith("ViewModel"))
-                                       .SingleInstance();
+            //builder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly())
+            //                           .Where(t => t.Name.EndsWith("ViewModel"))
+            //                           .SingleInstance();
 
             builder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly())
                            .Where(t => t.Name.EndsWith("Service"))

@@ -103,7 +103,7 @@
     <ApplicationDefinition Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
-    <Compile Include="ContainerConfig.cs" />
+    <Compile Include="IoC\ContainerConfig.cs" />
     <Compile Include="Converters\FlavourToIMGSrcConverter.cs" />
     <Compile Include="Converters\StringToFloatWithValidation.cs" />
     <Compile Include="Converters\StringToIntWithValidation.cs" />
@@ -113,6 +113,7 @@
     <Compile Include="Converters\ValuePrecentageToStringConverter.cs" />
     <Compile Include="Converters\ValuePricePer100mlToStringConverter.cs" />
     <Compile Include="Converters\ValuePriceToStringConverter.cs" />
+    <Compile Include="IoC\Modules\ViewModelsModule.cs" />
     <Compile Include="ViewModels\DataGridViewModel.cs" />
     <Compile Include="ViewModels\EditLocalDataViewModel.cs" />
     <Compile Include="ViewModels\InsertDataToDatabaseFormViewModel.cs" />
