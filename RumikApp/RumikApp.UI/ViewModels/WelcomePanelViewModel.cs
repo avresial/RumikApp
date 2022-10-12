@@ -1,5 +1,6 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
+using RumikApp.Core.Services;
 using RumikApp.Infrastructure.Dto;
 using RumikApp.Infrastructure.Services;
 using System;
@@ -15,23 +16,23 @@ namespace RumikApp.UI.ViewModels
     {
         //private ISettingsService settingsService;
 
-        //private IPanelVisibilityService _PanelVisibilityService;
-        //public IPanelVisibilityService PanelVisibilityService
-        //{
-        //    get { return _PanelVisibilityService; }
-        //    set
-        //    {
-        //        if (_PanelVisibilityService == value)
-        //            return;
-
-        //        _PanelVisibilityService = value;
-        //        RaisePropertyChanged(nameof(PanelVisibilityService));
-        //    }
-        //}
-
-        public WelcomePanelViewModel(/*IPanelVisibilityService panelVisibilityService, ISettingsService settingsService*/)
+        private IPanelVisibilityService _PanelVisibilityService;
+        public IPanelVisibilityService PanelVisibilityService
         {
-            //this.PanelVisibilityService = panelVisibilityService;
+            get { return _PanelVisibilityService; }
+            set
+            {
+                if (_PanelVisibilityService == value)
+                    return;
+
+                _PanelVisibilityService = value;
+                RaisePropertyChanged(nameof(PanelVisibilityService));
+            }
+        }
+
+        public WelcomePanelViewModel(IPanelVisibilityService panelVisibilityService/*, ISettingsService settingsService*/)
+        {
+            this.PanelVisibilityService = panelVisibilityService;
             //this.settingsService = settingsService;
 
             //if ((settingsService.ReadSettings()).IsUserAbove18)
@@ -52,7 +53,7 @@ namespace RumikApp.UI.ViewModels
                         //Settings newSettings = settingsService.ReadSettings();
                         //newSettings.IsUserAbove18 = true;
                         //settingsService.SaveSettings(newSettings);
-                        //PanelVisibilityService.MainPanelVisibility = Visibility.Visible;
+                        PanelVisibilityService.MainPanelVisibility = Visibility.Visible;
                     },
                     () =>
                     {

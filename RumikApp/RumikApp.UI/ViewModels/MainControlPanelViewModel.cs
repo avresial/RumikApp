@@ -1,5 +1,6 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
+using RumikApp.Core.Services;
 using RumikApp.Infrastructure.Services;
 using RumikApp.UI.ViewModel;
 using System;
@@ -20,19 +21,19 @@ namespace RumikApp.ViewModels
 
         //private IInformationBusService informationBusService;
 
-        //private IPanelVisibilityService _PanelVisibilityService;
-        //public IPanelVisibilityService PanelVisibilityService
-        //{
-        //    get { return _PanelVisibilityService; }
-        //    set
-        //    {
-        //        if (_PanelVisibilityService == value)
-        //            return;
+        private IPanelVisibilityService _PanelVisibilityService;
+        public IPanelVisibilityService PanelVisibilityService
+        {
+            get { return _PanelVisibilityService; }
+            set
+            {
+                if (_PanelVisibilityService == value)
+                    return;
 
-        //        _PanelVisibilityService = value;
-        //        RaisePropertyChanged(nameof(PanelVisibilityService));
-        //    }
-        //}
+                _PanelVisibilityService = value;
+                RaisePropertyChanged(nameof(PanelVisibilityService));
+            }
+        }
 
         private Visibility _Visibility = Visibility.Visible;
         public Visibility Visibility
@@ -49,12 +50,12 @@ namespace RumikApp.ViewModels
             }
         }
 
-        public MainControlPanelViewModel(/*IDatabaseConnectionService databaseConnectionService, IPanelVisibilityService panelVisibilityService, IInformationBusService informationBusService, FileDatabaseConnectionService fileDatabaseConnectionService*/)
+        public MainControlPanelViewModel(IPanelVisibilityService panelVisibilityService)//, IDatabaseConnectionService databaseConnectionService,  IInformationBusService informationBusService, FileDatabaseConnectionService fileDatabaseConnectionService)
         {
             //this.informationBusService = informationBusService;
             //this.databaseConnectionService = databaseConnectionService;
             //this.fileDatabaseConnectionService = fileDatabaseConnectionService;
-            //this.PanelVisibilityService = panelVisibilityService;
+            this.PanelVisibilityService = panelVisibilityService;
         }
 
 
@@ -70,7 +71,7 @@ namespace RumikApp.ViewModels
                      async () =>
                     {
 
-                        //PanelVisibilityService.RandomDataGridVisibility = Visibility.Visible;
+                        PanelVisibilityService.RandomDataGridVisibility = Visibility.Visible;
 
                         //Beverage randomOne = await databaseConnectionService.GetRandomRow();
 
@@ -99,7 +100,7 @@ namespace RumikApp.ViewModels
                     _LetMeChoose = new RelayCommand(
                     () =>
                     {
-                        //PanelVisibilityService.PollVisibility = Visibility.Visible;
+                        PanelVisibilityService.PollVisibility = Visibility.Visible;
                     },
                     () =>
                     {
@@ -121,13 +122,13 @@ namespace RumikApp.ViewModels
                     _GoStraightToDatabase = new RelayCommand(
                     async () =>
                     {
-                        //PanelVisibilityService.DataGridViewModelVisibility = Visibility.Visible;
+                        PanelVisibilityService.DataGridViewModelVisibility = Visibility.Visible;
 
                         //ObservableCollection<Beverage> allBeverages = await databaseConnectionService.GetAllData();
 
                         //informationBusService.OriginalBeverages = allBeverages;
 
-
+                        ;
                     },
                     () =>
                     {
@@ -151,9 +152,9 @@ namespace RumikApp.ViewModels
                     _EditLocalData = new RelayCommand(
                     async () =>
                     {
+                        PanelVisibilityService.EditLocalDataVisibility = Visibility.Visible;
                         //informationBusService.OriginalBeverages.Clear();
                         //informationBusService.OriginalBeverages = await fileDatabaseConnectionService.GetAllData();
-                        //PanelVisibilityService.EditLocalDataVisibility = Visibility.Visible;
                     },
                     () =>
                     {

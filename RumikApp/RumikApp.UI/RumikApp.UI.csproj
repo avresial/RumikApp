@@ -113,6 +113,7 @@
     <Compile Include="Converters\ValuePrecentageToStringConverter.cs" />
     <Compile Include="Converters\ValuePricePer100mlToStringConverter.cs" />
     <Compile Include="Converters\ValuePriceToStringConverter.cs" />
+    <Compile Include="IoC\Modules\ServicesModule.cs" />
     <Compile Include="IoC\Modules\ViewModelsModule.cs" />
     <Compile Include="ViewModels\DataGridViewModel.cs" />
     <Compile Include="ViewModels\EditLocalDataViewModel.cs" />

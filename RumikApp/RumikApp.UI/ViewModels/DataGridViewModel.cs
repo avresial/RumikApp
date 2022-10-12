@@ -5,6 +5,7 @@ using RumikApp.UI.ViewModel;
 using System.Windows;
 using System.Collections.ObjectModel;
 using RumikApp.Infrastructure.Services;
+using RumikApp.Core.Services;
 
 namespace RumikApp.UI.ViewModels
 {
@@ -26,19 +27,19 @@ namespace RumikApp.UI.ViewModels
         //    }
         //}
 
-        //private IPanelVisibilityService _PanelVisibilityService;
-        //public IPanelVisibilityService PanelVisibilityService
-        //{
-        //    get { return _PanelVisibilityService; }
-        //    set
-        //    {
-        //        if (_PanelVisibilityService == value)
-        //            return;
+        private IPanelVisibilityService _PanelVisibilityService;
+        public IPanelVisibilityService PanelVisibilityService
+        {
+            get { return _PanelVisibilityService; }
+            set
+            {
+                if (_PanelVisibilityService == value)
+                    return;
 
-        //        _PanelVisibilityService = value;
-        //        RaisePropertyChanged(nameof(PanelVisibilityService));
-        //    }
-        //}
+                _PanelVisibilityService = value;
+                RaisePropertyChanged(nameof(PanelVisibilityService));
+            }
+        }
 
         private Visibility _ScrollViewerVisibility;
         public Visibility ScrollViewerVisibility
@@ -308,7 +309,7 @@ namespace RumikApp.UI.ViewModels
                     _GoToMainMenu = new RelayCommand(
                     () =>
                     {
-                        //PanelVisibilityService.MainPanelVisibility = Visibility.Visible;
+                        PanelVisibilityService.MainPanelVisibility = Visibility.Visible;
                     },
                     () =>
                     {
@@ -353,7 +354,7 @@ namespace RumikApp.UI.ViewModels
                      async () =>
                      {
 
-                         //PanelVisibilityService.RandomDataGridVisibility = Visibility.Visible;
+                         PanelVisibilityService.RandomDataGridVisibility = Visibility.Visible;
 
                          //var randomBeverage = await this.beverageService.PickRandomBeverage();
 
@@ -375,9 +376,9 @@ namespace RumikApp.UI.ViewModels
         }
 
 
-        public DataGridViewModel(/*IDatabaseConnectionService databaseConnectionService, IPanelVisibilityService panelVisibilityService, IInformationBusService informationBusService,*/ IBeverageService beverageService)
+        public DataGridViewModel(IPanelVisibilityService panelVisibilityService,/*IDatabaseConnectionService databaseConnectionService, , IInformationBusService informationBusService,*/ IBeverageService beverageService)
         {
-            //this.PanelVisibilityService = panelVisibilityService;
+            this.PanelVisibilityService = panelVisibilityService;
             //this.informationBusService = informationBusService;
             //this.beverageService = beverageService;
             //this.databaseConnectionService = databaseConnectionService;

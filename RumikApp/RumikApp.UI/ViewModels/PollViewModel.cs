@@ -9,10 +9,11 @@ using System.Configuration;
 using System.Threading.Tasks;
 using System.Windows;
 using RumikApp.Core.Domain;
+using RumikApp.Core.Services;
 
-namespace RumikApp.UI.UserControls
+namespace RumikApp.UI.ViewModels
 {
-    public class PollViewModel// : PollData
+    public class PollViewModel : ViewModelBase// : PollData
     {
         const string imagesLocalization = "/IMGs/PollIMG/";
         const string fileExtension = ".png";
@@ -22,19 +23,19 @@ namespace RumikApp.UI.UserControls
         //private IInformationBusService informationBusService;
         //private ISettingsService settingsService;
 
-        //private IPanelVisibilityService _PanelVisibilityService;
-        //public IPanelVisibilityService PanelVisibilityService
-        //{
-        //    get { return _PanelVisibilityService; }
-        //    set
-        //    {
-        //        if (_PanelVisibilityService == value)
-        //            return;
+        private IPanelVisibilityService _PanelVisibilityService;
+        public IPanelVisibilityService PanelVisibilityService
+        {
+            get { return _PanelVisibilityService; }
+            set
+            {
+                if (_PanelVisibilityService == value)
+                    return;
 
-        //        _PanelVisibilityService = value;
-        //        RaisePropertyChanged(nameof(PanelVisibilityService));
-        //    }
-        //}
+                _PanelVisibilityService = value;
+                RaisePropertyChanged(nameof(PanelVisibilityService));
+            }
+        }
 
 
         private RelayCommand _GoToMainMenu;
@@ -47,7 +48,7 @@ namespace RumikApp.UI.UserControls
                     _GoToMainMenu = new RelayCommand(
                     () =>
                     {
-                       // PanelVisibilityService.MainPanelVisibility = Visibility.Visible;
+                        PanelVisibilityService.MainPanelVisibility = Visibility.Visible;
                     },
                     () =>
                     {
@@ -69,7 +70,7 @@ namespace RumikApp.UI.UserControls
                     _GetMeThatRum = new RelayCommand(
                     async () =>
                     {
-                        //PanelVisibilityService.DataGridViewModelVisibility = Visibility.Visible;
+                        PanelVisibilityService.DataGridViewModelVisibility = Visibility.Visible;
 
                         //informationBusService.OriginalBeverages = await databaseConnectionService.GetDataFromDatabaseWithConditions(PollPurpose, 5, PollMixes, getListWithSetFlavours(), PollPricePoints);
                         //Settings settings = settingsService.ReadSettings();
@@ -87,9 +88,9 @@ namespace RumikApp.UI.UserControls
         }
 
 
-        public PollViewModel(/*IInformationBusService informationBusService, IDatabaseConnectionService databaseConnectionService, ISQLDatabaseConnectionService sQLDatabaseConnectionService, IPanelVisibilityService panelVisibilityService, ISettingsService settingsService*/)
+        public PollViewModel(IPanelVisibilityService panelVisibilityService/*IInformationBusService informationBusService, IDatabaseConnectionService databaseConnectionService, ISQLDatabaseConnectionService sQLDatabaseConnectionService, , ISettingsService settingsService*/)
         {
-            //this.PanelVisibilityService = panelVisibilityService;
+            this.PanelVisibilityService = panelVisibilityService;
             //this.databaseConnectionService = databaseConnectionService;
             //this.sQLDatabaseConnectionService = sQLDatabaseConnectionService;
             //this.informationBusService = informationBusService;

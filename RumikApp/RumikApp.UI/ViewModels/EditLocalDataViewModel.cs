@@ -1,5 +1,6 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
+using RumikApp.Core.Services;
 using RumikApp.Infrastructure.Services;
 using System;
 using System.Collections.Generic;
@@ -45,19 +46,19 @@ namespace RumikApp.ViewModels
             }
         }
 
-        //private IPanelVisibilityService _PanelVisibilityService;
-        //public IPanelVisibilityService PanelVisibilityService
-        //{
-        //    get { return _PanelVisibilityService; }
-        //    set
-        //    {
-        //        if (_PanelVisibilityService == value)
-        //            return;
+        private IPanelVisibilityService _PanelVisibilityService;
+        public IPanelVisibilityService PanelVisibilityService
+        {
+            get { return _PanelVisibilityService; }
+            set
+            {
+                if (_PanelVisibilityService == value)
+                    return;
 
-        //        _PanelVisibilityService = value;
-        //        RaisePropertyChanged(nameof(PanelVisibilityService));
-        //    }
-        //}
+                _PanelVisibilityService = value;
+                RaisePropertyChanged(nameof(PanelVisibilityService));
+            }
+        }
 
         //private Beverage _SelectedBeverage;
         //public Beverage SelectedBeverage
@@ -74,10 +75,10 @@ namespace RumikApp.ViewModels
         //}
 
 
-        public EditLocalDataViewModel(/*IPanelVisibilityService panelVisibilityService, IInformationBusService informationBusService, FileDatabaseConnectionService fileDatabaseConnectionService*/)
+        public EditLocalDataViewModel(IPanelVisibilityService panelVisibilityService/*, IInformationBusService informationBusService, FileDatabaseConnectionService fileDatabaseConnectionService*/)
         {
             //this.fileDatabaseConnectionService = fileDatabaseConnectionService;
-            //PanelVisibilityService = panelVisibilityService;
+            PanelVisibilityService = panelVisibilityService;
             //IInformationBusService = informationBusService;
 
 
@@ -100,7 +101,7 @@ namespace RumikApp.ViewModels
                     _GoToMainMenu = new RelayCommand(
                     () =>
                     {
-                        //PanelVisibilityService.MainPanelVisibility = Visibility.Visible;
+                        PanelVisibilityService.MainPanelVisibility = Visibility.Visible;
                     },
                     () =>
                     {

@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:Converters="clr-namespace:RumikApp.UI.Converters"
              xmlns:UserControls="clr-namespace:RumikApp.UI.Views"
-             xmlns:local="clr-namespace:RumikApp.UI.UserControls"
+             xmlns:local="clr-namespace:RumikApp.UI"
              mc:Ignorable="d" 
              d:DesignHeight="800" d:DesignWidth="800"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">

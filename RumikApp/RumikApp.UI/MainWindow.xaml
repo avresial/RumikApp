@@ -16,6 +16,12 @@
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="Bookman Old Style">
     <Grid>
-        <Views:MainControlPanel DataContext="{Binding MainControlPanelViewModel}"/>
+        <Views:MainControlPanel DataContext="{Binding MainControlPanelViewModel}" Visibility="{Binding PanelVisibilityService.MainPanelVisibility}"/>
+        <Views:Poll DataContext="{Binding PollViewModel}" Visibility="{Binding PanelVisibilityService.PollVisibility}"/>
+        <Views:RandomPanel DataContext="{Binding RandomDataGrid}" Visibility="{Binding PanelVisibilityService.RandomDataGridVisibility}"/>
+        <Views:WelcomePanelView DataContext="{Binding WelcomePanelViewModel}" Visibility="{Binding PanelVisibilityService.WelcomePanelVisibility}"/>
+        <Views:ItemsControlList DataContext="{Binding DataGridViewModel}" Visibility="{Binding PanelVisibilityService.DataGridViewModelVisibility}"/>
+        <Views:EditLocalDataPanel DataContext="{Binding EditLocalDataViewModel}" Visibility="{Binding PanelVisibilityService.EditLocalDataVisibility}"/>
+       
     </Grid>
 </Window>

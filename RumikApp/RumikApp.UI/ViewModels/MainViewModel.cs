@@ -1,7 +1,9 @@
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using RumikApp.Core.Services;
 //using MySql.Data.MySqlClient;
 using RumikApp.Infrastructure.Services;
+using RumikApp.UI.ViewModels;
 using RumikApp.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -16,19 +18,19 @@ namespace RumikApp.UI.ViewModel
     {
         private DispatcherTimer dispatcherTimerInCaseDatabaseDoesNotWork = new DispatcherTimer();
 
-        //private WelcomePanelViewModel _WelcomePanelViewModel;
-        //public WelcomePanelViewModel WelcomePanelViewModel
-        //{
-        //    get { return _WelcomePanelViewModel; }
-        //    set
-        //    {
-        //        if (_WelcomePanelViewModel == value)
-        //            return;
+        private WelcomePanelViewModel _WelcomePanelViewModel;
+        public WelcomePanelViewModel WelcomePanelViewModel
+        {
+            get { return _WelcomePanelViewModel; }
+            set
+            {
+                if (_WelcomePanelViewModel == value)
+                    return;
 
-        //        _WelcomePanelViewModel = value;
-        //        RaisePropertyChanged(nameof(WelcomePanelViewModel));
-        //    }
-        //}
+                _WelcomePanelViewModel = value;
+                RaisePropertyChanged(nameof(WelcomePanelViewModel));
+            }
+        }
 
         private MainControlPanelViewModel _MainControlPanelViewModel;
         public MainControlPanelViewModel MainControlPanelViewModel
@@ -44,75 +46,75 @@ namespace RumikApp.UI.ViewModel
             }
         }
 
-        //private PollViewModel _PollViewModel;
-        //public PollViewModel PollViewModel
-        //{
-        //    get { return _PollViewModel; }
-        //    set
-        //    {
-        //        if (_PollViewModel == value)
-        //            return;
+        private PollViewModel _PollViewModel;
+        public PollViewModel PollViewModel
+        {
+            get { return _PollViewModel; }
+            set
+            {
+                if (_PollViewModel == value)
+                    return;
 
-        //        _PollViewModel = value;
-        //        RaisePropertyChanged(nameof(PollViewModel));
-        //    }
-        //}
+                _PollViewModel = value;
+                RaisePropertyChanged(nameof(PollViewModel));
+            }
+        }
 
-        //private DataGridViewModel _DataGridViewModel;
-        //public DataGridViewModel DataGridViewModel
-        //{
-        //    get { return _DataGridViewModel; }
-        //    set
-        //    {
-        //        if (_DataGridViewModel == value)
-        //            return;
+        private DataGridViewModel _DataGridViewModel;
+        public DataGridViewModel DataGridViewModel
+        {
+            get { return _DataGridViewModel; }
+            set
+            {
+                if (_DataGridViewModel == value)
+                    return;
 
-        //        _DataGridViewModel = value;
-        //        RaisePropertyChanged(nameof(DataGridViewModel));
-        //    }
-        //}
+                _DataGridViewModel = value;
+                RaisePropertyChanged(nameof(DataGridViewModel));
+            }
+        }
 
-        //private DataGridViewModel _RandomDataGrid;
-        //public DataGridViewModel RandomDataGrid
-        //{
-        //    get { return _RandomDataGrid; }
-        //    set
-        //    {
-        //        if (_RandomDataGrid == value)
-        //            return;
+        private DataGridViewModel _RandomDataGrid;
+        public DataGridViewModel RandomDataGrid
+        {
+            get { return _RandomDataGrid; }
+            set
+            {
+                if (_RandomDataGrid == value)
+                    return;
 
-        //        _RandomDataGrid = value;
-        //        RaisePropertyChanged(nameof(RandomDataGrid));
-        //    }
-        //}
+                _RandomDataGrid = value;
+                RaisePropertyChanged(nameof(RandomDataGrid));
+            }
+        }
 
-        //private DataGridViewModel _ItemsControl;
-        //public DataGridViewModel ItemsControl
-        //{
-        //    get { return _ItemsControl; }
-        //    set
-        //    {
-        //        if (_ItemsControl == value)
-        //            return;
+        private DataGridViewModel _ItemsControl;
+        public DataGridViewModel ItemsControl
+        {
+            get { return _ItemsControl; }
+            set
+            {
+                if (_ItemsControl == value)
+                    return;
 
-        //        _ItemsControl = value;
-        //        RaisePropertyChanged(nameof(ItemsControl));
-        //    }
-        //}
+                _ItemsControl = value;
+                RaisePropertyChanged(nameof(ItemsControl));
+            }
+        }
 
-        //private InsertDataToDatabaseFormViewModel _InsertDataToDatabaseForm;
-        //public InsertDataToDatabaseFormViewModel InsertDataToDatabaseForm
-        //{
-        //    get { return _InsertDataToDatabaseForm; }
-        //    set
-        //    {
-        //        if (_InsertDataToDatabaseForm == value)
-        //            return;
+        private InsertDataToDatabaseFormViewModel _InsertDataToDatabaseForm;
+        public InsertDataToDatabaseFormViewModel InsertDataToDatabaseForm
+        {
+            get { return _InsertDataToDatabaseForm; }
+            set
+            {
+                if (_InsertDataToDatabaseForm == value)
+                    return;
 
-        //        _InsertDataToDatabaseForm = value;
-        //        RaisePropertyChanged(nameof(InsertDataToDatabaseForm));
-        //    }
-        //}
+                _InsertDataToDatabaseForm = value;
+                RaisePropertyChanged(nameof(InsertDataToDatabaseForm));
+            }
+        }
 
         private EditLocalDataViewModel _EditLocalDataViewModel;
         public EditLocalDataViewModel EditLocalDataViewModel
@@ -143,36 +145,36 @@ namespace RumikApp.UI.ViewModel
         //    }
         //}
 
-        //private IPanelVisibilityService _PanelVisibilityService;
-        //public IPanelVisibilityService PanelVisibilityService
-        //{
-        //    get { return _PanelVisibilityService; }
-        //    set
-        //    {
-        //        if (_PanelVisibilityService == value)
-        //            return;
-
-        //        _PanelVisibilityService = value;
-        //        RaisePropertyChanged(nameof(PanelVisibilityService));
-        //    }
-        //}
-
-        public MainViewModel(/*WelcomePanelViewModel welcomePanelViewModel,*/ MainControlPanelViewModel mainControlPanelViewModel, //PollViewModel pollViewModel,
-            //DataGridViewModel dataGridViewModel, DataGridViewModel dataGridViewModel2, DataGridViewModel itemsControl,
-            /*InsertDataToDatabaseFormViewModel insertDataToDatabaseFormViewModel,*/ EditLocalDataViewModel editLocalDataViewModel
-            //,IDatabaseConnectionService databaseConnectionService, IPanelVisibilityService panelVisibilityService
-            )
+        private IPanelVisibilityService _PanelVisibilityService;
+        public IPanelVisibilityService PanelVisibilityService
         {
-            //WelcomePanelViewModel = welcomePanelViewModel;
-            //InsertDataToDatabaseForm = insertDataToDatabaseFormViewModel;
+            get { return _PanelVisibilityService; }
+            set
+            {
+                if (_PanelVisibilityService == value)
+                    return;
+
+                _PanelVisibilityService = value;
+                RaisePropertyChanged(nameof(PanelVisibilityService));
+            }
+        }
+
+        public MainViewModel(WelcomePanelViewModel welcomePanelViewModel, MainControlPanelViewModel mainControlPanelViewModel, PollViewModel pollViewModel,
+            DataGridViewModel dataGridViewModel, DataGridViewModel dataGridViewModel2, DataGridViewModel itemsControl,
+            InsertDataToDatabaseFormViewModel insertDataToDatabaseFormViewModel, EditLocalDataViewModel editLocalDataViewModel,
+            //,IDatabaseConnectionService databaseConnectionService, 
+            IPanelVisibilityService panelVisibilityService)
+        {
+            WelcomePanelViewModel = welcomePanelViewModel;
+            InsertDataToDatabaseForm = insertDataToDatabaseFormViewModel;
             MainControlPanelViewModel = mainControlPanelViewModel;
             //DatabaseConnectionService = databaseConnectionService;
-            //EditLocalDataViewModel = editLocalDataViewModel;
-            //PanelVisibilityService = panelVisibilityService;
-            //RandomDataGrid = dataGridViewModel2;
-            //DataGridViewModel = dataGridViewModel;
-            //PollViewModel = pollViewModel;
-            //ItemsControl = itemsControl;
+            EditLocalDataViewModel = editLocalDataViewModel;
+            PanelVisibilityService = panelVisibilityService;
+            RandomDataGrid = dataGridViewModel2;
+            DataGridViewModel = dataGridViewModel;
+            PollViewModel = pollViewModel;
+            ItemsControl = itemsControl;
 
             //if (DatabaseConnectionService.TestConnectionToDatabase() && DatabaseConnectionService.TestConnectionToTable(DatabaseConnectionService.MainDataTable))
             //{

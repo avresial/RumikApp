@@ -17,6 +17,7 @@ namespace RumikApp
         {
             ContainerBuilder builder = new ContainerBuilder();
             builder.RegisterAssemblyModules(typeof(ViewModelsModule).Assembly);
+            builder.RegisterAssemblyModules(typeof(ServicesModule).Assembly);
 
          
 
