@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using RumikApp.Core.Services;
+using RumikApp.Infrastructure.Respositories;
 using System.IO.Abstractions;
 
 namespace RumikApp.UI.IoC.Modules
@@ -11,7 +12,8 @@ namespace RumikApp.UI.IoC.Modules
             builder.RegisterType<PanelVisibilityService>().As<IPanelVisibilityService>().SingleInstance();
             builder.RegisterType<FileSystem>().As<IFileSystem>().SingleInstance();
             builder.RegisterType<StreamReaderService>().As<IStreamReaderService>().SingleInstance();
-             
+            builder.RegisterType<InMemoryBeverageRepository>().AsSelf();
+            
         }
     }
 }

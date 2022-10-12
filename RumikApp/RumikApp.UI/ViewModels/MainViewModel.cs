@@ -20,7 +20,8 @@ namespace RumikApp.UI.ViewModel
     public class MainViewModel : ViewModelBase
     {
         private DispatcherTimer dispatcherTimerInCaseDatabaseDoesNotWork = new DispatcherTimer();
-        IBeverageRepository beverageRepository;
+        
+        IBeverageRepository localBeverageRepository;
 
         private WelcomePanelViewModel _WelcomePanelViewModel;
         public WelcomePanelViewModel WelcomePanelViewModel
@@ -167,7 +168,7 @@ namespace RumikApp.UI.ViewModel
             DataGridViewModel dataGridViewModel, DataGridViewModel dataGridViewModel2, DataGridViewModel itemsControl,
             InsertDataToDatabaseFormViewModel insertDataToDatabaseFormViewModel, EditLocalDataViewModel editLocalDataViewModel,
             //,IDatabaseConnectionService databaseConnectionService, 
-            IPanelVisibilityService panelVisibilityService)
+            IPanelVisibilityService panelVisibilityService, InMemoryBeverageRepository localBeverageRepository)
         {
             WelcomePanelViewModel = welcomePanelViewModel;
             InsertDataToDatabaseForm = insertDataToDatabaseFormViewModel;
@@ -180,8 +181,7 @@ namespace RumikApp.UI.ViewModel
             PollViewModel = pollViewModel;
             ItemsControl = itemsControl;
 
-            IBeverageRepository inMemory = new InMemoryBeverageRepository(new FileSystem(),new StreamReaderService());
-
+            this.localBeverageRepository = localBeverageRepository;
 
             //if (DatabaseConnectionService.TestConnectionToDatabase() && DatabaseConnectionService.TestConnectionToTable(DatabaseConnectionService.MainDataTable))
             //{
