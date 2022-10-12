@@ -1,11 +1,9 @@
-﻿using RumikApp.Core.Repositories;
-using RumikApp.Infrastructure.Dto;
-using System;
+﻿using RumikApp.Infrastructure.Dto;
+using RumikApp.Infrastructure.Repositories;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
- 
+
 namespace RumikApp.Infrastructure.Services
 {
     public class BeverageService : IBeverageService

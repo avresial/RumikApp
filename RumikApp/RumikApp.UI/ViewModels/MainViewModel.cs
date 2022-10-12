@@ -1,6 +1,8 @@
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using RumikApp.Core.Services;
+using RumikApp.Infrastructure.Repositories;
+using RumikApp.Infrastructure.Respositories;
 //using MySql.Data.MySqlClient;
 using RumikApp.Infrastructure.Services;
 using RumikApp.UI.ViewModels;
@@ -8,6 +10,7 @@ using RumikApp.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.IO.Abstractions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
@@ -17,6 +20,7 @@ namespace RumikApp.UI.ViewModel
     public class MainViewModel : ViewModelBase
     {
         private DispatcherTimer dispatcherTimerInCaseDatabaseDoesNotWork = new DispatcherTimer();
+        IBeverageRepository beverageRepository;
 
         private WelcomePanelViewModel _WelcomePanelViewModel;
         public WelcomePanelViewModel WelcomePanelViewModel
@@ -175,6 +179,9 @@ namespace RumikApp.UI.ViewModel
             DataGridViewModel = dataGridViewModel;
             PollViewModel = pollViewModel;
             ItemsControl = itemsControl;
+
+            IBeverageRepository inMemory = new InMemoryBeverageRepository(new FileSystem(),new StreamReaderService());
+
 
             //if (DatabaseConnectionService.TestConnectionToDatabase() && DatabaseConnectionService.TestConnectionToTable(DatabaseConnectionService.MainDataTable))
             //{

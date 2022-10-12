@@ -94,9 +94,11 @@
     <Compile Include="Enums\PollPricePoints.cs" />
     <Compile Include="Enums\PollPurpose.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\IBeverageRepository.cs" />
+    <Compile Include="Services\IFileService.cs" />
     <Compile Include="Services\IPanelVisibilityService.cs" />
+    <Compile Include="Services\IStreamReaderService.cs" />
     <Compile Include="Services\PanelVisibilityService.cs" />
+    <Compile Include="Services\StreamReaderService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

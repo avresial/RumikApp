@@ -77,7 +77,6 @@ namespace RumikApp.Services
         {
 
             string oString = "SELECT * FROM " + availableTables.ToString() + " LIMIT 1";
-            var test = cnnVal("sosek");
             try
             {
                 using (MySqlConnection con = new MySqlConnection(cnnVal("sosek")))
