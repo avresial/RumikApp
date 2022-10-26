@@ -10,14 +10,20 @@ using System.Threading.Tasks;
 using System.Windows;
 using RumikApp.Core.Domain;
 using RumikApp.Core.Services;
+using RumikApp.Core.Models;
+using System;
+using RumikApp.Infrastructure.Repositories;
+using RumikApp.Infrastructure.Extensions;
 
 namespace RumikApp.UI.ViewModels
 {
-    public class PollViewModel : ViewModelBase// : PollData
+    public class PollViewModel : PollData
     {
         const string imagesLocalization = "/IMGs/PollIMG/";
         const string fileExtension = ".png";
 
+        private BeverageContainer beverages;
+        private IBeverageRepository beverageRepository;
         //private IDatabaseConnectionService databaseConnectionService;
         //private ISQLDatabaseConnectionService sQLDatabaseConnectionService;
         //private IInformationBusService informationBusService;
@@ -36,6 +42,7 @@ namespace RumikApp.UI.ViewModels
                 RaisePropertyChanged(nameof(PanelVisibilityService));
             }
         }
+
 
 
         private RelayCommand _GoToMainMenu;
@@ -71,6 +78,12 @@ namespace RumikApp.UI.ViewModels
                     async () =>
                     {
                         PanelVisibilityService.DataGridViewModelVisibility = Visibility.Visible;
+                        beverages.Clear();
+
+                        foreach (BeverageDto beverageDto in await beverageRepository.BrowseAll())
+                            beverages.Add(beverageDto.BeverageDtoToBeverage());
+                                               
+
 
                         //informationBusService.OriginalBeverages = await databaseConnectionService.GetDataFromDatabaseWithConditions(PollPurpose, 5, PollMixes, getListWithSetFlavours(), PollPricePoints);
                         //Settings settings = settingsService.ReadSettings();
@@ -88,9 +101,11 @@ namespace RumikApp.UI.ViewModels
         }
 
 
-        public PollViewModel(IPanelVisibilityService panelVisibilityService/*IInformationBusService informationBusService, IDatabaseConnectionService databaseConnectionService, ISQLDatabaseConnectionService sQLDatabaseConnectionService, , ISettingsService settingsService*/)
+        public PollViewModel(IPanelVisibilityService panelVisibilityService, BeverageContainer beverages/* IDatabaseConnectionService databaseConnectionService, ISQLDatabaseConnectionService sQLDatabaseConnectionService, , ISettingsService settingsService*/, IBeverageRepository beverageRepository = null)
         {
             this.PanelVisibilityService = panelVisibilityService;
+            this.beverages = beverages;
+            this.beverageRepository = beverageRepository;
             //this.databaseConnectionService = databaseConnectionService;
             //this.sQLDatabaseConnectionService = sQLDatabaseConnectionService;
             //this.informationBusService = informationBusService;

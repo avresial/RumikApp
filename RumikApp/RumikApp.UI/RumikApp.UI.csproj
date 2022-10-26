@@ -228,7 +228,9 @@
     <Resource Include="IMGs\Bottles\Jogaila.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="IMGs\Bottles\UnknownBottle.png" />
+    <Content Include="IMGs\Bottles\UnknownBottle.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="IMGs\Bottles\UnknownBottleCopy.png">

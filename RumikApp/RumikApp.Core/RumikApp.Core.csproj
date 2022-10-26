@@ -85,6 +85,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\Beverage.cs" />
+    <Compile Include="Models\BeverageContainer.cs" />
     <Compile Include="Models\Flavour.cs" />
     <Compile Include="Models\FlavoursSet.cs" />
     <Compile Include="Models\PollData.cs" />
@@ -96,6 +97,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\IFileService.cs" />
     <Compile Include="Services\IPanelVisibilityService.cs" />
+    <Compile Include="Services\ISortingService.cs" />
     <Compile Include="Services\IStreamReaderService.cs" />
     <Compile Include="Services\PanelVisibilityService.cs" />
     <Compile Include="Services\StreamReaderService.cs" />

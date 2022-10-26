@@ -1,17 +1,17 @@
 ﻿using System.Collections.Generic;
 
-namespace RumikApp.Services
+namespace RumikApp.Core.Services
 {
     public interface ISortingService
     {
         IList<Beverage> SortedBeverages { get; set; }
         IList<Beverage> OriginalBeverages { get; set; }
         void ShowDefault();
-        void SortByNameAscending(); 
+        void SortByNameAscending();
         void SortByNameDescending();
         void SortByPriceAscending();
         void SortByPriceDescending();
-        void SortByGradeAscending(); 
+        void SortByGradeAscending();
         void SortByGradeDescending();
         void SortByGradeWithCokeAscending();
         void SortByGradeWithCokeDescending();

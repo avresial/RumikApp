@@ -97,7 +97,7 @@
             </Button>
         </Grid>
         <ScrollViewer Grid.Row="1" Grid.ColumnSpan="2" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" >
-            <ItemsControl   ItemsSource="{Binding informationBusService.SortedBeverages}" Visibility="{Binding informationBusService.IsBeverageNotEmpty}" MaxWidth="1300" HorizontalAlignment="Center">
+            <ItemsControl   ItemsSource="{Binding BeveragesCollection}" Visibility="{Binding informationBusService.IsBeverageNotEmpty}" MaxWidth="1300" HorizontalAlignment="Center">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <Grid Margin="1,0,0,70" MaxHeight="300">
@@ -156,8 +156,8 @@
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
         </ScrollViewer>
-        
-        <Grid  Visibility="{Binding informationBusService.IsBeverageEmpty}" Grid.Row="1">
+
+        <Grid  Visibility="{Binding UnknownGuyVisibility}" Grid.Row="1">
             <Grid.RowDefinitions>
 
                 <RowDefinition Height="6*"/>

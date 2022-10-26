@@ -1,5 +1,6 @@
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using RumikApp.Core.Models;
 using RumikApp.Core.Services;
 using RumikApp.Infrastructure.Repositories;
 using RumikApp.Infrastructure.Respositories;
@@ -20,7 +21,7 @@ namespace RumikApp.UI.ViewModel
     public class MainViewModel : ViewModelBase
     {
         private DispatcherTimer dispatcherTimerInCaseDatabaseDoesNotWork = new DispatcherTimer();
-        
+        private BeverageContainer beverages;
         IBeverageRepository localBeverageRepository;
 
         private WelcomePanelViewModel _WelcomePanelViewModel;
@@ -168,7 +169,7 @@ namespace RumikApp.UI.ViewModel
             DataGridViewModel dataGridViewModel, DataGridViewModel dataGridViewModel2, DataGridViewModel itemsControl,
             InsertDataToDatabaseFormViewModel insertDataToDatabaseFormViewModel, EditLocalDataViewModel editLocalDataViewModel,
             //,IDatabaseConnectionService databaseConnectionService, 
-            IPanelVisibilityService panelVisibilityService, InMemoryBeverageRepository localBeverageRepository)
+            IPanelVisibilityService panelVisibilityService, InMemoryBeverageRepository localBeverageRepository, BeverageContainer beverages)
         {
             WelcomePanelViewModel = welcomePanelViewModel;
             InsertDataToDatabaseForm = insertDataToDatabaseFormViewModel;
@@ -182,6 +183,7 @@ namespace RumikApp.UI.ViewModel
             ItemsControl = itemsControl;
 
             this.localBeverageRepository = localBeverageRepository;
+            this.beverages = beverages;
 
             //if (DatabaseConnectionService.TestConnectionToDatabase() && DatabaseConnectionService.TestConnectionToTable(DatabaseConnectionService.MainDataTable))
             //{
@@ -193,8 +195,8 @@ namespace RumikApp.UI.ViewModel
             //    dispatcherTimerInCaseDatabaseDoesNotWork.Tick += new EventHandler(CheckingDatabaseConnection);
             //    dispatcherTimerInCaseDatabaseDoesNotWork.Interval = new TimeSpan(0, 0, 1);
             //    dispatcherTimerInCaseDatabaseDoesNotWork.Start();
-
             //}
+
         }
 
         private async Task CheckingDatabaseConnection(object sender, EventArgs e)
