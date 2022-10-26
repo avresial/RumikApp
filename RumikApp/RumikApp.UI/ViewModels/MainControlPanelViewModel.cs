@@ -139,12 +139,7 @@ namespace RumikApp.ViewModels
                         beverages.Clear();
                         foreach (BeverageDto beverageDto in await beverageRepository.BrowseAll())
                             beverages.Add(beverageDto.BeverageDtoToBeverage());
-                        
-                        //ObservableCollection<Beverage> allBeverages = await databaseConnectionService.GetAllData();
 
-                        //informationBusService.OriginalBeverages = allBeverages;
-
-                        ;
                     },
                     () =>
                     {

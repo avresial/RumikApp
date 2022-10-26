@@ -16,7 +16,7 @@ namespace RumikApp.Infrastructure.Respositories
         {
             List<BeverageDto> BeverageDtos = new List<BeverageDto>();
 
-            for (int i = 0; i < random.Next(1, 15); i++)
+            for (int i = 0; i < random.Next(10, 15); i++)
             {
                 BeverageDtos.Add(new BeverageDto()
                 {
@@ -26,7 +26,17 @@ namespace RumikApp.Infrastructure.Respositories
                     Price = random.Next(1, 100),
                     Grade = random.Next(1, 100),
                     GradeWithCoke = random.Next(1, 100),
-                    Capacity = random.Next(1, 100)
+                    Capacity = random.Next(1, 100),
+
+                    Nuts = random.Next(1, 100) % 2 == 0,
+                    Vanila = random.Next(1, 100) % 2 == 0,
+                    Caramel = random.Next(1, 100) % 2 == 0,
+                    Smoke = random.Next(1, 100) % 2 == 0,
+                    Cinnamon = random.Next(1, 100) % 2 == 0,
+                    Spirit = random.Next(1, 100) % 2 == 0,
+                    Fruits = random.Next(1, 100) % 2 == 0,
+                    Honey = random.Next(1, 100) % 2 == 0,
+                    BeAPirate = random.Next(1, 100) % 2 == 0
                 });
             }
 
@@ -36,7 +46,10 @@ namespace RumikApp.Infrastructure.Respositories
         public async Task<IEnumerable<BeverageDto>> BrowseAll()
         {
             List<BeverageDto> BeverageDtos = new List<BeverageDto>();
-            for (int i = 0; i < random.Next(1, 15); i++)
+
+            int elementsCount = random.Next(1, 15);
+            elementsCount = 10;
+            for (int i = 0; i < elementsCount; i++)
             {
                 BeverageDtos.Add(new BeverageDto()
                 {
@@ -46,7 +59,17 @@ namespace RumikApp.Infrastructure.Respositories
                     Price = random.Next(1, 100),
                     Grade = random.Next(1, 100),
                     GradeWithCoke = random.Next(1, 100),
-                    Capacity = random.Next(1, 100)
+                    Capacity = random.Next(1, 100),
+
+                    Nuts = random.Next(1, 100) % 2 == 0,
+                    Vanila = random.Next(1, 100) % 2 == 0,
+                    Caramel = random.Next(1, 100) % 2 == 0,
+                    Smoke = random.Next(1, 100) % 2 == 0,
+                    Cinnamon = random.Next(1, 100) % 2 == 0,
+                    Spirit = random.Next(1, 100) % 2 == 0,
+                    Fruits = random.Next(1, 100) % 2 == 0,
+                    Honey = random.Next(1, 100) % 2 == 0,
+                    BeAPirate = random.Next(1, 100) % 2 == 0
                 });
             }
 
