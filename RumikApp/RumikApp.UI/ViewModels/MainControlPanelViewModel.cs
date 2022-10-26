@@ -1,6 +1,10 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
+using RumikApp.Core.Models;
 using RumikApp.Core.Services;
+using RumikApp.Infrastructure.Dto;
+using RumikApp.Infrastructure.Extensions;
+using RumikApp.Infrastructure.Repositories;
 using RumikApp.Infrastructure.Services;
 using RumikApp.UI.ViewModel;
 using System;
@@ -20,6 +24,8 @@ namespace RumikApp.ViewModels
         //private IDatabaseConnectionService databaseConnectionService;
 
         //private IInformationBusService informationBusService;
+        private IBeverageRepository beverageRepository;
+        private BeverageContainer beverages;
 
         private IPanelVisibilityService _PanelVisibilityService;
         public IPanelVisibilityService PanelVisibilityService
@@ -50,12 +56,14 @@ namespace RumikApp.ViewModels
             }
         }
 
-        public MainControlPanelViewModel(IPanelVisibilityService panelVisibilityService)//, IDatabaseConnectionService databaseConnectionService,  IInformationBusService informationBusService, FileDatabaseConnectionService fileDatabaseConnectionService)
+        public MainControlPanelViewModel(IPanelVisibilityService panelVisibilityService, IBeverageRepository beverageRepository, BeverageContainer beverages)//, IDatabaseConnectionService databaseConnectionService,  IInformationBusService informationBusService, FileDatabaseConnectionService fileDatabaseConnectionService)
         {
             //this.informationBusService = informationBusService;
             //this.databaseConnectionService = databaseConnectionService;
             //this.fileDatabaseConnectionService = fileDatabaseConnectionService;
             this.PanelVisibilityService = panelVisibilityService;
+            this.beverageRepository = beverageRepository;
+            this.beverages = beverages;
         }
 
 
@@ -72,6 +80,9 @@ namespace RumikApp.ViewModels
                     {
 
                         PanelVisibilityService.RandomDataGridVisibility = Visibility.Visible;
+                        
+                        beverages.Clear();
+                        beverages.Add((await beverageRepository.BrowseAll()).FirstOrDefault().BeverageDtoToBeverage());
 
                         //Beverage randomOne = await databaseConnectionService.GetRandomRow();
 
@@ -101,6 +112,7 @@ namespace RumikApp.ViewModels
                     () =>
                     {
                         PanelVisibilityService.PollVisibility = Visibility.Visible;
+                        
                     },
                     () =>
                     {
@@ -124,6 +136,10 @@ namespace RumikApp.ViewModels
                     {
                         PanelVisibilityService.DataGridViewModelVisibility = Visibility.Visible;
 
+                        beverages.Clear();
+                        foreach (BeverageDto beverageDto in await beverageRepository.BrowseAll())
+                            beverages.Add(beverageDto.BeverageDtoToBeverage());
+                        
                         //ObservableCollection<Beverage> allBeverages = await databaseConnectionService.GetAllData();
 
                         //informationBusService.OriginalBeverages = allBeverages;

@@ -6,12 +6,16 @@ using RumikApp.Infrastructure.Services;
 using RumikApp.Core.Services;
 using RumikApp.Core.Models;
 using System.Linq;
+using RumikApp.Infrastructure.Repositories;
+using RumikApp.Infrastructure.Dto;
+using RumikApp.Infrastructure.Extensions;
 
 namespace RumikApp.UI.ViewModels
 {
     public class DataGridViewModel : ViewModelBase
     {
         BeverageContainer beverages;
+        private IBeverageRepository beverageRepository;
 
         private ObservableCollection<Beverage> _BeveragesCollection;
         public ObservableCollection<Beverage> BeveragesCollection
@@ -355,7 +359,10 @@ namespace RumikApp.UI.ViewModels
                      async () =>
                      {
 
-                         PanelVisibilityService.RandomDataGridVisibility = Visibility.Visible;
+                         //PanelVisibilityService.RandomDataGridVisibility = Visibility.Visible;
+
+                         beverages.Clear();
+                         beverages.Add((await beverageRepository.BrowseAll()).FirstOrDefault().BeverageDtoToBeverage());
 
                          //var randomBeverage = await this.beverageService.PickRandomBeverage();
 
@@ -377,13 +384,14 @@ namespace RumikApp.UI.ViewModels
         }
 
 
-        public DataGridViewModel(IPanelVisibilityService panelVisibilityService, BeverageContainer beverages)
+        public DataGridViewModel(IPanelVisibilityService panelVisibilityService, BeverageContainer beverages, IBeverageRepository beverageRepository)
         {
             BeveragesCollection = new ObservableCollection<Beverage>();
             this.PanelVisibilityService = panelVisibilityService;
             this.beverages = beverages;
 
             beverages.BveragesUpdated += Beverages_BveragesUpdated;
+            this.beverageRepository = beverageRepository;
         }
 
         private void Beverages_BveragesUpdated(object sender, System.EventArgs e)
