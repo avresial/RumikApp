@@ -9,18 +9,19 @@ namespace RumikApp.Infrastructure.Extensions
         {
             Beverage beverage = new Beverage();
 
-            beverage.AlcoholPercentage = beverageDto.AlcoholPercentage;
-            beverage.Grade = beverageDto.Grade;
+            beverage.ID = beverageDto.ID;
             beverage.Name = beverageDto.Name;
-            beverage.GradeWithCoke = beverageDto.GradeWithCoke;
+            beverage.Capacity = beverageDto.Capacity;
+            beverage.AlcoholPercentage = beverageDto.AlcoholPercentage;
             beverage.Price = beverageDto.Price;
             beverage.PricePer100ml = beverageDto.PricePer100ml;
-            beverage.Capacity = beverageDto.Capacity;
+            beverage.Grade = beverageDto.Grade;
+            beverage.GradeWithCoke = beverageDto.GradeWithCoke;
+            beverage.Color = beverageDto.Color;
             beverage.TestIcon = beverageDto.TestIcon;
 
-            beverage.Nuts.IsSet = beverageDto.Nuts;
             beverage.Vanila.IsSet = beverageDto.Vanila;
-
+            beverage.Nuts.IsSet = beverageDto.Nuts;
             beverage.Caramel.IsSet = beverageDto.Caramel;
             beverage.Smoke.IsSet = beverageDto.Smoke;
             beverage.Cinnamon.IsSet = beverageDto.Cinnamon;
@@ -28,8 +29,6 @@ namespace RumikApp.Infrastructure.Extensions
             beverage.Fruits.IsSet = beverageDto.Fruits;
             beverage.Honey.IsSet = beverageDto.Honey;
             beverage.BeAPirate.IsSet = beverageDto.BeAPirate;
-
-            Debug.WriteLine("WARNING - BeverageExtension is not finished");
 
             return beverage;
         }

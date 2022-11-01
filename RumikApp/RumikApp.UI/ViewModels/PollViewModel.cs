@@ -80,7 +80,7 @@ namespace RumikApp.UI.ViewModels
                         PanelVisibilityService.DataGridViewModelVisibility = Visibility.Visible;
                         beverages.Clear();
 
-                        IEnumerable<BeverageDto> BeverageDtos = await beverageRepository.Browse(x => BeverageDtoIsValid(x)); 
+                        IEnumerable<BeverageDto> BeverageDtos = await beverageRepository.Browse(x => BeverageDtoIsValid(x));
 
                         foreach (BeverageDto beverageDto in BeverageDtos)
                             beverages.Add(beverageDto.BeverageDtoToBeverage());
@@ -151,21 +151,21 @@ namespace RumikApp.UI.ViewModels
             if (Spirit.IsSet) Flavours.Add(Spirit);
             if (Fruits.IsSet) Flavours.Add(Fruits);
             if (Honey.IsSet) Flavours.Add(Honey);
-            
+
             return Flavours;
         }
 
-        private bool BeverageDtoIsValid(BeverageDto beverageDto) 
+        private bool BeverageDtoIsValid(BeverageDto beverageDto)
         {
-            if (beverageDto.Vanila!= Vanila.IsSet) return false;
-            if (beverageDto.Nuts != Nuts.IsSet) return false;
-            if (beverageDto.Caramel != Caramel.IsSet) return false;
-            if (beverageDto.Smoke != Smoke.IsSet) return false;
-            if (beverageDto.Cinnamon != Cinnamon.IsSet) return false;
-            if (beverageDto.Spirit != Spirit.IsSet) return false;
-            if (beverageDto.Fruits != Fruits.IsSet) return false;
-            if (beverageDto.Honey != Honey.IsSet) return false;
-            
+            if (beverageDto.Vanila != Vanila.IsSet && Vanila.IsSet) return false;
+            if (beverageDto.Nuts != Nuts.IsSet && Nuts.IsSet) return false;
+            if (beverageDto.Caramel != Caramel.IsSet && Caramel.IsSet) return false;
+            if (beverageDto.Smoke != Smoke.IsSet && Smoke.IsSet) return false;
+            if (beverageDto.Cinnamon != Cinnamon.IsSet && Cinnamon.IsSet) return false;
+            if (beverageDto.Spirit != Spirit.IsSet && Spirit.IsSet) return false;
+            if (beverageDto.Fruits != Fruits.IsSet && Fruits.IsSet) return false;
+            if (beverageDto.Honey != Honey.IsSet && Honey.IsSet) return false;
+
             return true;
         }
     }
