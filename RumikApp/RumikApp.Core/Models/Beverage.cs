@@ -145,17 +145,17 @@ namespace RumikApp
             }
         }
 
-        private BitmapImage _TestIcon;
-        public BitmapImage TestIcon
+        private BitmapImage _Icon;
+        public BitmapImage Icon
         {
-            get { return _TestIcon; }
+            get { return _Icon; }
             set
             {
-                if (_TestIcon == value)
+                if (_Icon == value)
                     return;
 
-                _TestIcon = value;
-                RaisePropertyChanged(nameof(TestIcon));
+                _Icon = value;
+                RaisePropertyChanged(nameof(Icon));
             }
         }
 
@@ -207,7 +207,7 @@ namespace RumikApp
             PricePer100ml = newBeverage.PricePer100ml;
             Grade = newBeverage.Grade;
             Color = newBeverage.Color;
-            TestIcon = newBeverage.TestIcon;
+            Icon = newBeverage.Icon;
 
             Vanila = newBeverage.Vanila;
             Nuts = newBeverage.Nuts;

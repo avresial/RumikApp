@@ -152,7 +152,7 @@ namespace RumikApp.ViewModels
 
                                 if (CheckSize.PixelWidth <= 500 && CheckSize.PixelHeight <= 500)
                                 {
-                                    SelectedBeverage.TestIcon = CheckSize;
+                                    SelectedBeverage.Icon = CheckSize;
                                 }
                                 else
                                 {
@@ -223,8 +223,7 @@ namespace RumikApp.ViewModels
                     () =>
                     {
 
-                        return true;
-                        //return (SelectedBeverage == null) ? false : true;
+                        return SelectedBeverage != null;
                     });
                 }
 

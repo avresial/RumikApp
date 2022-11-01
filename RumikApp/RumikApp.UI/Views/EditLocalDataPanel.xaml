@@ -71,7 +71,7 @@
                 </Grid.ColumnDefinitions>
 
                 <Button MinHeight="400" MinWidth="400" Grid.Column="0" Command="{Binding LoadNewImage}" Background="Transparent" BorderBrush="Transparent" VerticalAlignment="Top" ToolTip="Przyjmujemy zdjęcia do 30 kB">
-                    <Image Source="{Binding SelectedBeverage.TestIcon}" HorizontalAlignment="Center"/>
+                    <Image Source="{Binding SelectedBeverage.Icon}" HorizontalAlignment="Center"/>
                 </Button>
 
                 <Grid Grid.Column="1" VerticalAlignment="Center" >

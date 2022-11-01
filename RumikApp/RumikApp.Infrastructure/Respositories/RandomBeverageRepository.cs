@@ -22,7 +22,7 @@ namespace RumikApp.Infrastructure.Respositories
             {
                 BeverageDtos.Add(new BeverageDto()
                 {
-                    TestIcon = new BitmapImage(new Uri(Path.Combine(Environment.CurrentDirectory, "IMGs\\Bottles\\UnknownBottle.png"))).ConvertBitMapImageToByteArray(),
+                    Icon = new BitmapImage(new Uri(Path.Combine(Environment.CurrentDirectory, "IMGs\\Bottles\\UnknownBottle.png"))).ConvertBitMapImageToByteArray(),
                     Name = $"Test Name{ random.Next(0, 100)}",
                     AlcoholPercentage = (float)random.NextDouble(),
                     Price = random.Next(1, 100),
@@ -55,7 +55,7 @@ namespace RumikApp.Infrastructure.Respositories
             {
                 BeverageDtos.Add(new BeverageDto()
                 {
-                    TestIcon = new BitmapImage(new Uri(Path.Combine(Environment.CurrentDirectory, "IMGs\\Bottles\\UnknownBottle.png"))).ConvertBitMapImageToByteArray(),
+                    Icon = new BitmapImage(new Uri(Path.Combine(Environment.CurrentDirectory, "IMGs\\Bottles\\UnknownBottle.png"))).ConvertBitMapImageToByteArray(),
                     Name = $"Test Name{ random.Next(0, 100)}",
                     AlcoholPercentage = (float)random.NextDouble(),
                     Price = random.Next(1, 100),

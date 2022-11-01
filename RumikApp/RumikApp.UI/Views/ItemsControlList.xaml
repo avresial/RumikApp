@@ -108,7 +108,7 @@
                             </Grid.ColumnDefinitions>
 
                             <!--<Image Grid.Column="0" Source="/IMGs/Bottles/Jogaila.png" ToolTip="Tu też kiedyś każde zdjęcie innym będzie :)" />-->
-                            <Image Grid.Column="0" Grid.RowSpan="3" Source="{Binding TestIcon}" HorizontalAlignment="Right" />
+                            <Image Grid.Column="0" Grid.RowSpan="3" Source="{Binding Icon}" HorizontalAlignment="Right" />
 
                             <Grid Grid.Column="1">
                                 <Grid.ColumnDefinitions>

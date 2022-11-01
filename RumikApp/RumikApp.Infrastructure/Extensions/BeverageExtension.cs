@@ -18,7 +18,7 @@ namespace RumikApp.Infrastructure.Extensions
             beverage.Grade = beverageDto.Grade;
             beverage.GradeWithCoke = beverageDto.GradeWithCoke;
             beverage.Color = beverageDto.Color;
-            beverage.TestIcon = beverageDto.TestIcon.ConvertToBitMapImage();
+            beverage.Icon = beverageDto.Icon.ConvertToBitMapImage();
 
             beverage.Vanila.IsSet = beverageDto.Vanila;
             beverage.Nuts.IsSet = beverageDto.Nuts;
@@ -46,7 +46,7 @@ namespace RumikApp.Infrastructure.Extensions
             BeverageDto.Grade = beverage.Grade;
             BeverageDto.GradeWithCoke = beverage.GradeWithCoke;
             BeverageDto.Color = beverage.Color;
-            BeverageDto.TestIcon = beverage.TestIcon.ConvertBitMapImageToByteArray();
+            BeverageDto.Icon = beverage.Icon.ConvertBitMapImageToByteArray();
             
             BeverageDto.Vanila = beverage.Vanila.IsSet;
             BeverageDto.Nuts = beverage.Nuts.IsSet;
