@@ -96,6 +96,7 @@
     <Compile Include="Enums\PollPurpose.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\IFileService.cs" />
+    <Compile Include="Extensions\ImageExtensions.cs" />
     <Compile Include="Services\IPanelVisibilityService.cs" />
     <Compile Include="Services\ISortingService.cs" />
     <Compile Include="Services\IStreamReaderService.cs" />

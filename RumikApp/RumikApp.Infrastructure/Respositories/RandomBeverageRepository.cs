@@ -1,5 +1,6 @@
 ﻿using RumikApp.Infrastructure.Dto;
 using RumikApp.Infrastructure.Repositories;
+using RumikApp.Core.Extensions;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -14,13 +15,14 @@ namespace RumikApp.Infrastructure.Respositories
         Random random = new Random();
         public async Task<IEnumerable<BeverageDto>> Browse(Func<BeverageDto, bool> selector)
         {
+            
             List<BeverageDto> BeverageDtos = new List<BeverageDto>();
 
             for (int i = 0; i < random.Next(10, 15); i++)
             {
                 BeverageDtos.Add(new BeverageDto()
                 {
-                    TestIcon = new BitmapImage(new Uri(Path.Combine(Environment.CurrentDirectory, "IMGs\\Bottles\\UnknownBottle.png"))),
+                    TestIcon = new BitmapImage(new Uri(Path.Combine(Environment.CurrentDirectory, "IMGs\\Bottles\\UnknownBottle.png"))).ConvertBitMapImageToByteArray(),
                     Name = $"Test Name{ random.Next(0, 100)}",
                     AlcoholPercentage = (float)random.NextDouble(),
                     Price = random.Next(1, 100),
@@ -53,7 +55,7 @@ namespace RumikApp.Infrastructure.Respositories
             {
                 BeverageDtos.Add(new BeverageDto()
                 {
-                    TestIcon = new BitmapImage(new Uri(Path.Combine(Environment.CurrentDirectory, "IMGs\\Bottles\\UnknownBottle.png"))),
+                    TestIcon = new BitmapImage(new Uri(Path.Combine(Environment.CurrentDirectory, "IMGs\\Bottles\\UnknownBottle.png"))).ConvertBitMapImageToByteArray(),
                     Name = $"Test Name{ random.Next(0, 100)}",
                     AlcoholPercentage = (float)random.NextDouble(),
                     Price = random.Next(1, 100),

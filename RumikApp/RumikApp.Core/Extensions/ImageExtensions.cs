@@ -2,13 +2,13 @@
 using System.IO;
 using System.Windows.Media.Imaging;
 
-namespace RumikApp.Services
+namespace RumikApp.Core.Extensions
 {
-    public static class ImageProcessingService
+    public static class ImageExtensions
     {
         public static int MaxSupportedImageSize = 30000;
 
-        public static byte[] FileToByteArray(string fileName)
+        public static byte[] FileToByteArray(this string fileName)
         {
             if (!File.Exists(fileName))
                 return null;
@@ -23,7 +23,7 @@ namespace RumikApp.Services
             return fileData;
         }
 
-        public static BitmapImage ConvertToBitMapImage(byte[] bytes)
+        public static BitmapImage ConvertToBitMapImage(this byte[] bytes)
         {
             if (bytes == null || bytes.Length == 0) return null;
             var image = new BitmapImage();
@@ -46,7 +46,7 @@ namespace RumikApp.Services
         /// </summary>
         /// <param name="bitmapImage"></param>
         /// <returns></returns>
-        public static byte[] ConvertBitMapImageToByteArray(BitmapImage bitmapImage)
+        public static byte[] ConvertBitMapImageToByteArray(this BitmapImage bitmapImage)
         {
             string fileName = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\RumikApp" + "\\TMP.png";
 

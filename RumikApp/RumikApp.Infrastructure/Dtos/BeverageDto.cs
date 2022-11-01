@@ -13,6 +13,6 @@ namespace RumikApp.Infrastructure.Dto
         public int Grade { get; set; }
         public int GradeWithCoke { get; set; }
         public string Color { get; set; }
-        public BitmapImage TestIcon { get; set; }
+        public byte[] TestIcon { get; set; }
     }
 }

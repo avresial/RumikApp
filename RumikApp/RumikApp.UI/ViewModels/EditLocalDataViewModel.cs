@@ -1,5 +1,6 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
+using RumikApp.Core.Extensions;
 using RumikApp.Core.Services;
 using RumikApp.Infrastructure.Dto;
 using RumikApp.Infrastructure.Extensions;
@@ -9,6 +10,8 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
+using System.Windows.Forms;
+using System.Windows.Media.Imaging;
 
 namespace RumikApp.ViewModels
 {
@@ -128,37 +131,37 @@ namespace RumikApp.ViewModels
                     _LoadNewImage = new RelayCommand(
                     () =>
                     {
-                        //var fileContent = string.Empty;
-                        //var filePath = string.Empty;
+                        var fileContent = string.Empty;
+                        var filePath = string.Empty;
 
-                        //using (OpenFileDialog openFileDialog = new OpenFileDialog())
-                        //{
-                        //    openFileDialog.InitialDirectory = "c:\\";
-                        //    openFileDialog.Filter = "png files (*.png)|*.png";
-                        //    openFileDialog.FilterIndex = 2;
-                        //    openFileDialog.RestoreDirectory = true;
+                        using (OpenFileDialog openFileDialog = new OpenFileDialog())
+                        {
+                            openFileDialog.InitialDirectory = "c:\\";
+                            openFileDialog.Filter = "png files (*.png)|*.png";
+                            openFileDialog.FilterIndex = 2;
+                            openFileDialog.RestoreDirectory = true;
 
-                        //    if (openFileDialog.ShowDialog() == DialogResult.OK)
-                        //    {
+                            if (openFileDialog.ShowDialog() == DialogResult.OK)
+                            {
 
-                        //        filePath = openFileDialog.FileName;
+                                filePath = openFileDialog.FileName;
 
-                        //        byte[] loadedIMG = loadImage(filePath);
+                                byte[] loadedIMG = loadImage(filePath);
 
-                        //        BitmapImage CheckSize = ImageProcessingService.ConvertToBitMapImage(loadedIMG);
+                                BitmapImage CheckSize = loadedIMG.ConvertToBitMapImage();
 
-                        //        if (CheckSize.PixelWidth <= 500 && CheckSize.PixelHeight <= 500)
-                        //        {
-                        //            SelectedBeverage.TestIcon = CheckSize;
-                        //        }
-                        //        else
-                        //        {
-                        //            string message = "Zdięcie wydaje się być za duże.\nPrzyjmujemy zdjęcia o 500x500 px";
-                        //            string title = "Task failed succesfully";
-                        //            System.Windows.MessageBox.Show(message, title);
-                        //        }
-                        //    }
-                        //}
+                                if (CheckSize.PixelWidth <= 500 && CheckSize.PixelHeight <= 500)
+                                {
+                                    SelectedBeverage.TestIcon = CheckSize;
+                                }
+                                else
+                                {
+                                    string message = "Zdięcie wydaje się być za duże.\nPrzyjmujemy zdjęcia o 500x500 px";
+                                    string title = "Task failed succesfully";
+                                    System.Windows.MessageBox.Show(message, title);
+                                }
+                            }
+                        }
                     },
                     () =>
                     {
@@ -178,19 +181,24 @@ namespace RumikApp.ViewModels
                 if (_SaveCurrentBeverage == null)
                 {
                     _SaveCurrentBeverage = new RelayCommand(
-                   async () =>
+                    async () =>
                     {
                         BeverageDto BeverageDto = SelectedBeverage.BeverageoToBeverageDto();
-                        int maxId = (await LocalBeverageRepository.BrowseAll()).Max(x=>x.ID);
-                        BeverageDto.ID = maxId++;
+                        IEnumerable<BeverageDto> databaseBeverages = await LocalBeverageRepository.BrowseAll();
+
+                        if (!databaseBeverages.Where(x => x.ID == BeverageDto.ID).Any())
+                        {
+                            int maxId = databaseBeverages.Max(x => x.ID);
+                            BeverageDto.ID = ++maxId;
+                        }
+
 
                         await LocalBeverageRepository.SaveToRepository(BeverageDto);
                         UpdateList();
                     },
                     () =>
                     {
-                        return true;
-                        // return (SelectedBeverage == null) ? false : true;
+                        return SelectedBeverage != null;
                     });
                 }
 
@@ -229,17 +237,19 @@ namespace RumikApp.ViewModels
             if (imagePath == null || imagePath == "")
                 imagePath = "../../IMGs/Bottles/UnknownBottle.png";
 
-            //return ImageProcessingService.FileToByteArray(imagePath);
-            return null;
-
+            return imagePath.FileToByteArray();
         }
+
         private void UpdateList()
         {
             BeveragesCollection.Clear();
-            IEnumerable<BeverageDto> databaseBeverages = LocalBeverageRepository.BrowseAll().Result;
+            IEnumerable<BeverageDto> databaseBeverages = LocalBeverageRepository.BrowseAll().Result.OrderByDescending(x => x.ID);
 
             foreach (BeverageDto databaseBeverage in databaseBeverages)
                 BeveragesCollection.Add(databaseBeverage.BeverageDtoToBeverage());
+
+            BeveragesCollection.Insert(0, new Beverage() { Name = "Add new", ID = -1 });
+
         }
 
     }
