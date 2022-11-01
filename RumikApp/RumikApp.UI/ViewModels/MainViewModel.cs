@@ -168,13 +168,11 @@ namespace RumikApp.UI.ViewModel
         public MainViewModel(WelcomePanelViewModel welcomePanelViewModel, MainControlPanelViewModel mainControlPanelViewModel, PollViewModel pollViewModel,
             DataGridViewModel dataGridViewModel, DataGridViewModel dataGridViewModel2, DataGridViewModel itemsControl,
             InsertDataToDatabaseFormViewModel insertDataToDatabaseFormViewModel, EditLocalDataViewModel editLocalDataViewModel,
-            //,IDatabaseConnectionService databaseConnectionService, 
-            IPanelVisibilityService panelVisibilityService, InMemoryBeverageRepository localBeverageRepository, BeverageContainer beverages)
+            IPanelVisibilityService panelVisibilityService, IBeverageRepository localBeverageRepository, BeverageContainer beverages)
         {
             WelcomePanelViewModel = welcomePanelViewModel;
             InsertDataToDatabaseForm = insertDataToDatabaseFormViewModel;
             MainControlPanelViewModel = mainControlPanelViewModel;
-            //DatabaseConnectionService = databaseConnectionService;
             EditLocalDataViewModel = editLocalDataViewModel;
             PanelVisibilityService = panelVisibilityService;
             RandomDataGrid = dataGridViewModel2;
@@ -209,21 +207,6 @@ namespace RumikApp.UI.ViewModel
 
         }
 
-        void loadFunctionality()
-        {
-            //PollViewModel = new PollViewModel(this);
-            //MainControlPanelViewModel = new MainControlPanelViewModel(this);
-            //DataGridViewModel = new DataGridViewModel(this);
-            //DataGridViewModel2 = new DataGridViewModel(this);
-            //InsertDataToDatabaseForm = new InsertDataToDatabaseFormViewModel(this);
-
-            //ItemsControl = new DataGridViewModel(this);
-
-            //Random rand = new Random();
-            //for (int i = 0; i < 15; i++)
-            //    ItemsControl.Beverages.Add(new Beverage().GetRandomBevrage(rand));
-
-        }
 
     }
 }

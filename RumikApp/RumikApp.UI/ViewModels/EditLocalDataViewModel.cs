@@ -1,36 +1,35 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using RumikApp.Core.Services;
-using RumikApp.Infrastructure.Services;
+using RumikApp.Infrastructure.Dto;
+using RumikApp.Infrastructure.Extensions;
+using RumikApp.Infrastructure.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Forms;
-using System.Windows.Media.Imaging;
 
 namespace RumikApp.ViewModels
 {
     public class EditLocalDataViewModel : ViewModelBase
     {
-        //private FileDatabaseConnectionService fileDatabaseConnectionService;
 
-        //private IInformationBusService _IInformationBusService;
-        //public IInformationBusService IInformationBusService
-        //{
-        //    get { return _IInformationBusService; }
-        //    set
-        //    {
-        //        if (_IInformationBusService == value)
-        //            return;
+        public IBeverageRepository LocalBeverageRepository { get; set; }
 
-        //        _IInformationBusService = value;
-        //        RaisePropertyChanged(nameof(IInformationBusService));
-        //    }
-        //}
+        private ObservableCollection<Beverage> _BeveragesCollection;
+        public ObservableCollection<Beverage> BeveragesCollection
+        {
+            get { return _BeveragesCollection; }
+            set
+            {
+                if (_BeveragesCollection == value)
+                    return;
+
+                _BeveragesCollection = value;
+                RaisePropertyChanged();
+            }
+        }
 
         private List<String> _ColorsList = new List<string>();
         public List<String> ColorsList
@@ -60,27 +59,30 @@ namespace RumikApp.ViewModels
             }
         }
 
-        //private Beverage _SelectedBeverage;
-        //public Beverage SelectedBeverage
-        //{
-        //    get { return _SelectedBeverage; }
-        //    set
-        //    {
-        //        if (_SelectedBeverage == value)
-        //            return;
-
-        //        _SelectedBeverage = value;
-        //        RaisePropertyChanged(nameof(SelectedBeverage));
-        //    }
-        //}
 
 
-        public EditLocalDataViewModel(IPanelVisibilityService panelVisibilityService/*, IInformationBusService informationBusService, FileDatabaseConnectionService fileDatabaseConnectionService*/)
+        private Beverage _SelectedBeverage = new Beverage() { ID = -1 };
+        public Beverage SelectedBeverage
         {
-            //this.fileDatabaseConnectionService = fileDatabaseConnectionService;
-            PanelVisibilityService = panelVisibilityService;
-            //IInformationBusService = informationBusService;
+            get { return _SelectedBeverage; }
+            set
+            {
+                if (_SelectedBeverage == value)
+                    return;
 
+                _SelectedBeverage = value;
+                RaisePropertyChanged(nameof(SelectedBeverage));
+            }
+        }
+
+
+        public EditLocalDataViewModel(IPanelVisibilityService panelVisibilityService, IBeverageRepository localBeverageRepository)
+        {
+            BeveragesCollection = new ObservableCollection<Beverage>();
+            PanelVisibilityService = panelVisibilityService;
+            LocalBeverageRepository = localBeverageRepository;
+
+            UpdateList();
 
             ColorsList.Add("Złoty");
             ColorsList.Add("Miedziany");
@@ -101,7 +103,10 @@ namespace RumikApp.ViewModels
                     _GoToMainMenu = new RelayCommand(
                     () =>
                     {
+
+
                         PanelVisibilityService.MainPanelVisibility = Visibility.Visible;
+                        UpdateList();
                     },
                     () =>
                     {
@@ -173,18 +178,19 @@ namespace RumikApp.ViewModels
                 if (_SaveCurrentBeverage == null)
                 {
                     _SaveCurrentBeverage = new RelayCommand(
-                    () =>
+                   async () =>
                     {
-                        //ObservableCollection<Beverage> updatedBeverages = new ObservableCollection<Beverage>();
-                        //foreach (Beverage beverage in IInformationBusService.OriginalBeverages)
-                        //    updatedBeverages.Add(beverage);
+                        BeverageDto BeverageDto = SelectedBeverage.BeverageoToBeverageDto();
+                        int maxId = (await LocalBeverageRepository.BrowseAll()).Max(x=>x.ID);
+                        BeverageDto.ID = maxId++;
 
-                        //fileDatabaseConnectionService.UpdateBeveragesDatabase(updatedBeverages);
+                        await LocalBeverageRepository.SaveToRepository(BeverageDto);
+                        UpdateList();
                     },
                     () =>
                     {
                         return true;
-                       // return (SelectedBeverage == null) ? false : true;
+                        // return (SelectedBeverage == null) ? false : true;
                     });
                 }
 
@@ -202,9 +208,9 @@ namespace RumikApp.ViewModels
                     _DeleteCurrentBeverage = new RelayCommand(
                     async () =>
                     {
-                        //await fileDatabaseConnectionService.DeleteBeverageDatabase(SelectedBeverage);
-                        //IInformationBusService.OriginalBeverages.Clear();
-                        //IInformationBusService.OriginalBeverages = await fileDatabaseConnectionService.GetAllData();
+                        BeverageDto BeverageDto = SelectedBeverage.BeverageoToBeverageDto();
+                        await LocalBeverageRepository.RemoveFromRepository(BeverageDto);
+                        UpdateList();
                     },
                     () =>
                     {
@@ -223,9 +229,17 @@ namespace RumikApp.ViewModels
             if (imagePath == null || imagePath == "")
                 imagePath = "../../IMGs/Bottles/UnknownBottle.png";
 
-           //return ImageProcessingService.FileToByteArray(imagePath);
+            //return ImageProcessingService.FileToByteArray(imagePath);
             return null;
 
+        }
+        private void UpdateList()
+        {
+            BeveragesCollection.Clear();
+            IEnumerable<BeverageDto> databaseBeverages = LocalBeverageRepository.BrowseAll().Result;
+
+            foreach (BeverageDto databaseBeverage in databaseBeverages)
+                BeveragesCollection.Add(databaseBeverage.BeverageDtoToBeverage());
         }
 
     }

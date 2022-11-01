@@ -1,5 +1,4 @@
 ﻿using RumikApp.Infrastructure.Dto;
-using System.Diagnostics;
 
 namespace RumikApp.Infrastructure.Extensions
 {
@@ -31,6 +30,34 @@ namespace RumikApp.Infrastructure.Extensions
             beverage.BeAPirate.IsSet = beverageDto.BeAPirate;
 
             return beverage;
+        }
+
+        public static BeverageDto BeverageoToBeverageDto(this Beverage beverage)
+        {
+            BeverageDto BeverageDto = new BeverageDto();
+
+            BeverageDto.ID = beverage.ID;
+            BeverageDto.Name = beverage.Name;
+            BeverageDto.Capacity = beverage.Capacity;
+            BeverageDto.AlcoholPercentage = beverage.AlcoholPercentage;
+            BeverageDto.Price = beverage.Price;
+            BeverageDto.PricePer100ml = beverage.PricePer100ml;
+            BeverageDto.Grade = beverage.Grade;
+            BeverageDto.GradeWithCoke = beverage.GradeWithCoke;
+            BeverageDto.Color = beverage.Color;
+            BeverageDto.TestIcon = beverage.TestIcon;
+            
+            BeverageDto.Vanila = beverage.Vanila.IsSet;
+            BeverageDto.Nuts = beverage.Nuts.IsSet;
+            BeverageDto.Caramel = beverage.Caramel.IsSet;
+            BeverageDto.Smoke = beverage.Smoke.IsSet;
+            BeverageDto.Cinnamon = beverage.Cinnamon.IsSet;
+            BeverageDto.Spirit = beverage.Spirit.IsSet;
+            BeverageDto.Fruits = beverage.Fruits.IsSet;
+            BeverageDto.Honey = beverage.Honey.IsSet;
+            BeverageDto.BeAPirate = beverage.BeAPirate.IsSet;
+
+            return BeverageDto;
         }
     }
 }

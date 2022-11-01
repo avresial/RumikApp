@@ -14,13 +14,14 @@ namespace RumikApp.UI.IoC.Modules
             builder.RegisterType<PanelVisibilityService>().As<IPanelVisibilityService>().SingleInstance();
             builder.RegisterType<FileSystem>().As<IFileSystem>().SingleInstance();
             builder.RegisterType<StreamReaderService>().As<IStreamReaderService>().SingleInstance();
-            builder.RegisterType<InMemoryBeverageRepository>().AsSelf();
             builder.RegisterType<BeverageContainer>().AsSelf().SingleInstance();
 
 
 #if DEBUG
 
-            builder.RegisterType<RandomBeverageRepository>().AsImplementedInterfaces();
+           // builder.RegisterType<RandomBeverageRepository>().AsImplementedInterfaces();
+            builder.RegisterType<InMemoryBeverageRepository>().AsImplementedInterfaces();
+          
 #endif
 
 #if RELEASE

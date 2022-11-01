@@ -33,7 +33,7 @@
                 <materialDesign:PackIcon Kind="ChevronDoubleLeft"/>
             </Button>
 
-            <DataGrid Grid.Row="1" ItemsSource="{Binding IInformationBusService.OriginalBeverages}" IsReadOnly="True" SelectedItem="{Binding SelectedBeverage}" AutoGenerateColumns = "False" Name = "dataGrid" AlternatingRowBackground = "LightBlue" AlternationCount = "2" MaxHeight="500"  >
+            <DataGrid Grid.Row="1" ItemsSource="{Binding BeveragesCollection}" IsReadOnly="True" SelectedItem="{Binding SelectedBeverage}" AutoGenerateColumns = "False" Name = "dataGrid" AlternatingRowBackground = "LightBlue" AlternationCount = "2" MaxHeight="500"  >
 
                 <DataGrid.Columns>
 

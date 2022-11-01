@@ -22,5 +22,15 @@ namespace RumikApp.Infrastructure.Respositories
         {
             throw new NotImplementedException();
         }
+
+        public Task<bool> RemoveFromRepository(BeverageDto beverageDto)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task SaveToRepository(BeverageDto beverageDto)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -9,6 +9,8 @@ namespace RumikApp.Infrastructure.Repositories
     {
         Task<IEnumerable<BeverageDto>> BrowseAll();
         Task<IEnumerable<BeverageDto>> Browse(Func<BeverageDto, bool> selector);
+        Task SaveToRepository(BeverageDto beverageDto);
+        Task<bool> RemoveFromRepository(BeverageDto beverageDto);
 
     }
 }
