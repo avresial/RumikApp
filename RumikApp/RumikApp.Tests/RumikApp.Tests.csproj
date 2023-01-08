@@ -104,12 +104,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\RumikApp\RumikApp.csproj">
-      <Project>{600a1c70-df5f-41a6-b071-e4f8829a26e8}</Project>
-      <Name>RumikApp</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
