@@ -7,7 +7,6 @@ using RumikApp.Core.Services;
 using RumikApp.Core.Models;
 using RumikApp.Infrastructure.Repositories;
 using RumikApp.Infrastructure.Extensions;
-using System.Linq;
 
 namespace RumikApp.UI.ViewModels
 {

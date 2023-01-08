@@ -19,13 +19,9 @@ namespace RumikApp.ViewModels
 {
     public class MainControlPanelViewModel : ViewModelBase
     {
-        //private FileDatabaseConnectionService fileDatabaseConnectionService;
-
-        //private IDatabaseConnectionService databaseConnectionService;
-
-        //private IInformationBusService informationBusService;
+        private Random random = new Random();
         private IBeverageRepository beverageRepository;
-        private BeverageContainer beverages;
+        private BeverageContainer beverageContainer;
 
         private IPanelVisibilityService _PanelVisibilityService;
         public IPanelVisibilityService PanelVisibilityService
@@ -56,14 +52,14 @@ namespace RumikApp.ViewModels
             }
         }
 
-        public MainControlPanelViewModel(IPanelVisibilityService panelVisibilityService, IBeverageRepository beverageRepository, BeverageContainer beverages)//, IDatabaseConnectionService databaseConnectionService,  IInformationBusService informationBusService, FileDatabaseConnectionService fileDatabaseConnectionService)
+        public MainControlPanelViewModel(IPanelVisibilityService panelVisibilityService, IBeverageRepository beverageRepository, BeverageContainer beverages)
         {
             //this.informationBusService = informationBusService;
             //this.databaseConnectionService = databaseConnectionService;
             //this.fileDatabaseConnectionService = fileDatabaseConnectionService;
             this.PanelVisibilityService = panelVisibilityService;
             this.beverageRepository = beverageRepository;
-            this.beverages = beverages;
+            this.beverageContainer = beverages;
         }
 
 
@@ -78,18 +74,12 @@ namespace RumikApp.ViewModels
                     _ImFeelingLucky = new RelayCommand(
                      async () =>
                     {
-
                         PanelVisibilityService.RandomDataGridVisibility = Visibility.Visible;
-                        
-                        beverages.Clear();
-                        beverages.Add((await beverageRepository.BrowseAll()).FirstOrDefault().BeverageDtoToBeverage());
 
-                        //Beverage randomOne = await databaseConnectionService.GetRandomRow();
+                        beverageContainer.Clear();
 
-                        //if (randomOne == null)
-                        //    informationBusService.OriginalBeverages = new ObservableCollection<Beverage>();
-                        //else
-                        //    informationBusService.OriginalBeverages = new ObservableCollection<Beverage>() { randomOne };
+                        var newBeverages = await beverageRepository.BrowseAll();
+                        beverageContainer.Add(newBeverages.ElementAt(random.Next(0, newBeverages.Count())).BeverageDtoToBeverage());
                     },
                     () =>
                     {
@@ -112,7 +102,7 @@ namespace RumikApp.ViewModels
                     () =>
                     {
                         PanelVisibilityService.PollVisibility = Visibility.Visible;
-                        
+
                     },
                     () =>
                     {
@@ -136,9 +126,9 @@ namespace RumikApp.ViewModels
                     {
                         PanelVisibilityService.DataGridViewModelVisibility = Visibility.Visible;
 
-                        beverages.Clear();
+                        beverageContainer.Clear();
                         foreach (BeverageDto beverageDto in await beverageRepository.BrowseAll())
-                            beverages.Add(beverageDto.BeverageDtoToBeverage());
+                            beverageContainer.Add(beverageDto.BeverageDtoToBeverage());
 
                     },
                     () =>
