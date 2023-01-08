@@ -316,7 +316,5 @@ namespace RumikApp.Core.Domain
                 RaisePropertyChanged(nameof(PricePoint4));
             }
         }
-
-
     }
 }

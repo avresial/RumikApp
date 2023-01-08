@@ -7,6 +7,7 @@ using RumikApp.Core.Services;
 using RumikApp.Core.Models;
 using RumikApp.Infrastructure.Repositories;
 using RumikApp.Infrastructure.Extensions;
+using System.Linq;
 
 namespace RumikApp.UI.ViewModels
 {
@@ -136,6 +137,7 @@ namespace RumikApp.UI.ViewModels
         {
             if (WithCoke && beverageDto.GradeWithCoke < 5) return false;
             if (solo && beverageDto.Grade < 5) return false;
+            if (!IsBeverageInAnyActivePricePoint(beverageDto)) return false;
 
             if (beverageDto.Vanila != Vanila.IsSet && Vanila.IsSet) return false;
             if (beverageDto.Nuts != Nuts.IsSet && Nuts.IsSet) return false;
@@ -147,6 +149,20 @@ namespace RumikApp.UI.ViewModels
             if (beverageDto.Honey != Honey.IsSet && Honey.IsSet) return false;
 
             return true;
+        }
+
+        private bool IsBeverageInAnyActivePricePoint(BeverageDto beverageDto)
+        {
+            bool result = false;
+
+            if (!PricePoint1 && !PricePoint2 && !PricePoint3 && !PricePoint4) return true;
+
+            if (PricePoint1 && beverageDto.Price < 50) result = true;
+            if (PricePoint2 && beverageDto.Price >= 50 && beverageDto.Price < 70) result = true;
+            if (PricePoint3 && beverageDto.Price >= 70 && beverageDto.Price < 90) result = true;
+            if (PricePoint4 && beverageDto.Price >= 90) result = true;
+
+            return result;
         }
     }
 }
