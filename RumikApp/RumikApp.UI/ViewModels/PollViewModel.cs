@@ -1,17 +1,10 @@
-﻿using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.CommandWpf;
+﻿using GalaSoft.MvvmLight.CommandWpf;
 using RumikApp.Infrastructure.Dto;
-using RumikApp.Infrastructure.Services;
-using RumikApp.UI.ViewModel;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Configuration;
-using System.Threading.Tasks;
 using System.Windows;
 using RumikApp.Core.Domain;
 using RumikApp.Core.Services;
 using RumikApp.Core.Models;
-using System;
 using RumikApp.Infrastructure.Repositories;
 using RumikApp.Infrastructure.Extensions;
 
@@ -19,15 +12,8 @@ namespace RumikApp.UI.ViewModels
 {
     public class PollViewModel : PollData
     {
-        const string imagesLocalization = "/IMGs/PollIMG/";
-        const string fileExtension = ".png";
-
         private BeverageContainer beverages;
         private IBeverageRepository beverageRepository;
-        //private IDatabaseConnectionService databaseConnectionService;
-        //private ISQLDatabaseConnectionService sQLDatabaseConnectionService;
-        //private IInformationBusService informationBusService;
-        //private ISettingsService settingsService;
 
         private IPanelVisibilityService _PanelVisibilityService;
         public IPanelVisibilityService PanelVisibilityService
@@ -85,11 +71,6 @@ namespace RumikApp.UI.ViewModels
                         foreach (BeverageDto beverageDto in BeverageDtos)
                             beverages.Add(beverageDto.BeverageDtoToBeverage());
 
-
-
-                        //informationBusService.OriginalBeverages = await databaseConnectionService.GetDataFromDatabaseWithConditions(PollPurpose, 5, PollMixes, getListWithSetFlavours(), PollPricePoints);
-                        //Settings settings = settingsService.ReadSettings();
-                        //sQLDatabaseConnectionService.SendSearchingStatistics(settings.UserID, (PollData)this);
                         ClearSellection();
                     },
                     () =>
@@ -103,15 +84,11 @@ namespace RumikApp.UI.ViewModels
         }
 
 
-        public PollViewModel(IPanelVisibilityService panelVisibilityService, BeverageContainer beverages/* IDatabaseConnectionService databaseConnectionService, ISQLDatabaseConnectionService sQLDatabaseConnectionService, , ISettingsService settingsService*/, IBeverageRepository beverageRepository = null)
+        public PollViewModel(IPanelVisibilityService panelVisibilityService, BeverageContainer beverages, IBeverageRepository beverageRepository = null)
         {
             this.PanelVisibilityService = panelVisibilityService;
             this.beverages = beverages;
             this.beverageRepository = beverageRepository;
-            //this.databaseConnectionService = databaseConnectionService;
-            //this.sQLDatabaseConnectionService = sQLDatabaseConnectionService;
-            //this.informationBusService = informationBusService;
-            //this.settingsService = settingsService;
         }
 
         public void ClearSellection()
@@ -157,6 +134,9 @@ namespace RumikApp.UI.ViewModels
 
         private bool BeverageDtoIsValid(BeverageDto beverageDto)
         {
+            if (WithCoke && beverageDto.GradeWithCoke < 5) return false;
+            if (solo && beverageDto.Grade < 5) return false;
+
             if (beverageDto.Vanila != Vanila.IsSet && Vanila.IsSet) return false;
             if (beverageDto.Nuts != Nuts.IsSet && Nuts.IsSet) return false;
             if (beverageDto.Caramel != Caramel.IsSet && Caramel.IsSet) return false;

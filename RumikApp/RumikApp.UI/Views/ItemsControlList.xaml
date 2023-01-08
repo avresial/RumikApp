@@ -36,7 +36,7 @@
 
         <!--<Grid Margin="0,0,0,5" MaxWidth="1200" Visibility="{Binding ScrollViewerVisibility}">-->
         <Grid Grid.ColumnSpan="2">
-            
+
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto" />
                 <ColumnDefinition Width="*"/>
@@ -49,53 +49,48 @@
 
 
             <Grid Grid.Column="1" Margin="0,0,0,5" Visibility="Visible" HorizontalAlignment="Center">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*" />
-                <ColumnDefinition Width="1*" />
-                <ColumnDefinition Width="1*" />
-                <ColumnDefinition Width="1*" />
-                <ColumnDefinition Width="1*" />
-                <ColumnDefinition Width="1*" />
-            </Grid.ColumnDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1*" />
+                </Grid.ColumnDefinitions>
 
-            
-            <TextBlock Grid.Column="0" Text="Sortowanie:" VerticalAlignment="Center" HorizontalAlignment="Right" FontSize="20" />
 
-            <Button Grid.Column="1" Width="125" Command="{Binding SortByName}" Background="Transparent" BorderThickness="0" Margin="10"  >
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="Nazwa" HorizontalAlignment="Left" FontSize="20"/>
-                    <Image Source="{Binding SortByNameSource}" Height="20" Margin="10,0,0,0"/>
-                </StackPanel>
-            </Button>
+                <TextBlock Grid.Column="0" Text="Sortowanie:" VerticalAlignment="Center" HorizontalAlignment="Right" FontSize="20" />
 
-            <Button Grid.Column="2" Width="120" Command="{Binding SortByPrice}" Background="Transparent" BorderThickness="0" Margin="10"  >
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="Cena" HorizontalAlignment="Left" FontSize="20"/>
-                    <Image Source="{Binding SortByPriceSource}" Height="20" Margin="10,0,0,0"/>
-                </StackPanel>
-            </Button>
+                <Button Grid.Column="1" Width="125" Command="{Binding SortByName}" Background="Transparent" BorderThickness="0" Margin="10"  >
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Nazwa" HorizontalAlignment="Left" FontSize="20"/>
+                        <Image Source="{Binding SortByNameSource}" Height="20" Margin="10,0,0,0"/>
+                    </StackPanel>
+                </Button>
+
+                <Button Grid.Column="2" Width="120" Command="{Binding SortByPrice}" Background="Transparent" BorderThickness="0" Margin="10"  >
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Cena" HorizontalAlignment="Left" FontSize="20"/>
+                        <Image Source="{Binding SortByPriceSource}" Height="20" Margin="10,0,0,0"/>
+                    </StackPanel>
+                </Button>
 
                 <Button Grid.Column="3" Width="130" Command="{Binding SortByGrade}" Background="Transparent" BorderThickness="0" Margin="10"  >
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="Ocena" HorizontalAlignment="Left" FontSize="20"/>
-                    <Image Source="{Binding SortByGradeSource}" Height="20" Margin="10,0,0,0"/>
-                </StackPanel>
-            </Button>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Ocena" HorizontalAlignment="Left" FontSize="20"/>
+                        <Image Source="{Binding SortByGradeSource}" Height="20" Margin="10,0,0,0"/>
+                    </StackPanel>
+                </Button>
 
                 <Button Grid.Column="4" Width="200" Command="{Binding SortByGradeWithCoke}" Background="Transparent" BorderThickness="0" Margin="10"  >
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="Ocena z colo" HorizontalAlignment="Left" FontSize="20"/>
-                    <Image Source="{Binding SortByGradeWithCokeSource}" Height="20" Margin="10,0,0,0"/>
-                </StackPanel>
-            </Button>
-
-
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Ocena z colo" HorizontalAlignment="Left" FontSize="20"/>
+                        <Image Source="{Binding SortByGradeWithCokeSource}" Height="20" Margin="10,0,0,0"/>
+                    </StackPanel>
+                </Button>
+            </Grid>
         </Grid>
 
-            <Button Grid.Column="2" Style="{StaticResource MaterialDesignIconForegroundButton}" ToolTip="Dodaj nowy rum" Command="{Binding AddNewToDatabase}" HorizontalAlignment="Left" Width="50" Height="50" Margin="0,0,20,0">
-                <materialDesign:PackIcon Kind="DatabasePlus" Width="30" Height="30" />
-            </Button>
-        </Grid>
         <ScrollViewer Grid.Row="1" Grid.ColumnSpan="2" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" >
             <ItemsControl   ItemsSource="{Binding BeveragesCollection}" Visibility="{Binding informationBusService.IsBeverageNotEmpty}" MaxWidth="1300" HorizontalAlignment="Center">
                 <ItemsControl.ItemTemplate>

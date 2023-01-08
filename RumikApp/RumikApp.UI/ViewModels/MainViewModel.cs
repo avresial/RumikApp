@@ -166,7 +166,7 @@ namespace RumikApp.UI.ViewModel
         }
 
         public MainViewModel(WelcomePanelViewModel welcomePanelViewModel, MainControlPanelViewModel mainControlPanelViewModel, PollViewModel pollViewModel,
-            DataGridViewModel dataGridViewModel, DataGridViewModel dataGridViewModel2, DataGridViewModel itemsControl,
+            DataGridViewModel dataGridViewModel, DataGridViewModel randomDataGrid, DataGridViewModel itemsControl,
             InsertDataToDatabaseFormViewModel insertDataToDatabaseFormViewModel, EditLocalDataViewModel editLocalDataViewModel,
             IPanelVisibilityService panelVisibilityService, IBeverageRepository localBeverageRepository, BeverageContainer beverages)
         {
@@ -175,7 +175,7 @@ namespace RumikApp.UI.ViewModel
             MainControlPanelViewModel = mainControlPanelViewModel;
             EditLocalDataViewModel = editLocalDataViewModel;
             PanelVisibilityService = panelVisibilityService;
-            RandomDataGrid = dataGridViewModel2;
+            RandomDataGrid = randomDataGrid;
             DataGridViewModel = dataGridViewModel;
             PollViewModel = pollViewModel;
             ItemsControl = itemsControl;

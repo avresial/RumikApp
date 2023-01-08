@@ -42,73 +42,70 @@
             <Button Grid.Column="0" Style="{StaticResource MaterialDesignIconForegroundButton}" ToolTip="Powrót" Command="{Binding GoToMainMenu}" Width="50" Height="50" Margin="20,0,0,0">
                 <materialDesign:PackIcon Kind="ChevronDoubleLeft" Width="50" Height="50" />
             </Button>
-
-            <Button Grid.Column="2" Style="{StaticResource MaterialDesignIconForegroundButton}" ToolTip="Dodaj nowy rum" Command="{Binding AddNewToDatabase}" HorizontalAlignment="Left" Width="50" Height="50" Margin="0,0,20,0">
-                <materialDesign:PackIcon Kind="DatabasePlus" Width="30" Height="30" />
-            </Button>
+            
         </Grid>
         <ScrollViewer Grid.Row="1" Grid.ColumnSpan="2" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" VerticalAlignment="Center" >
             <StackPanel>
                 <ItemsControl   ItemsSource="{Binding BeveragesCollection}" Visibility="{Binding informationBusService.IsBeverageNotEmpty}" MaxWidth="1300" HorizontalAlignment="Center">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <Grid Margin="1,0,0,70" MaxHeight="300">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition MinWidth="350"    Width="auto" />
-                                <ColumnDefinition MinWidth="350"    Width="auto" />
-                                <ColumnDefinition MinWidth="350"    Width="auto" />
-                            </Grid.ColumnDefinitions>
-
-                            <Image Grid.Column="0" Grid.RowSpan="3" Source="{Binding TestIcon}" HorizontalAlignment="Right" />
-
-                            <Grid Grid.Column="1">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Margin="1,0,0,70" MaxHeight="300">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition  Width="auto" />
-                                    <ColumnDefinition  Width="auto" />
-                                    <ColumnDefinition  Width="auto" />
-
+                                    <ColumnDefinition MinWidth="350"    Width="auto" />
+                                    <ColumnDefinition MinWidth="350"    Width="auto" />
+                                    <ColumnDefinition MinWidth="350"    Width="auto" />
                                 </Grid.ColumnDefinitions>
 
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="1*"/>
-                                    <RowDefinition Height="1*"/>
-                                    <RowDefinition Height="1*"/>
-                                </Grid.RowDefinitions>
+                                <Image Grid.Column="0" Grid.RowSpan="3" Source="{Binding Icon}" HorizontalAlignment="Right" />
 
-                                <TextBlock Grid.Column="0" Grid.ColumnSpan="4"  FontFamily="Bookman Old Style" FontWeight="Bold" FontSize="25" TextWrapping="Wrap" Text="{Binding Name}" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Left" TextAlignment="Center" />
+                                <Grid Grid.Column="1">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition  Width="auto" />
+                                        <ColumnDefinition  Width="auto" />
+                                        <ColumnDefinition  Width="auto" />
 
-                                <TextBlock Grid.Column="0" Grid.Row="1" FontFamily="Bookman Old Style" FontSize="20" Text="{Binding Capacity, Converter={StaticResource ValueCapacityToString}}"          Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" />
-                                <TextBlock Grid.Column="1" Grid.Row="1" FontFamily="Bookman Old Style" FontSize="20" Text="{Binding AlcoholPercentage, Converter={StaticResource ValuePrecentageToStringConverter}}" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" />
-                                <TextBlock Grid.Column="2" Grid.Row="1" FontFamily="Bookman Old Style" FontSize="20" Text="{Binding Color}"             Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                    </Grid.ColumnDefinitions>
 
-                                <TextBlock Grid.Column="0" Grid.Row="2" FontFamily="Bookman Old Style" FontSize="20" Text="{Binding Grade, Converter={StaticResource ValueGradeToStringConverter}}"             Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" ToolTip="Ocena dla drinka rum + rum" />
-                                <TextBlock Grid.Column="1" Grid.Row="2" FontFamily="Bookman Old Style" FontSize="20" Text="{Binding GradeWithCoke, Converter={StaticResource ValueGradeToStringConverter}}"     Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" ToolTip="Ocena dla drinka z colą" />
-                                <TextBlock Grid.Column="2" Grid.Row="2" FontFamily="Bookman Old Style" FontSize="20" Text="{Binding Price, Converter={StaticResource ValuePriceToStringConverter}}"             Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" ToolTip="{Binding PricePer100ml, Converter={StaticResource ValuePricePer100mlToStringConverter}}"/>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="1*"/>
+                                        <RowDefinition Height="1*"/>
+                                        <RowDefinition Height="1*"/>
+                                    </Grid.RowDefinitions>
+
+                                    <TextBlock Grid.Column="0" Grid.ColumnSpan="4"  FontFamily="Bookman Old Style" FontWeight="Bold" FontSize="25" TextWrapping="Wrap" Text="{Binding Name}" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Left" TextAlignment="Center" />
+
+                                    <TextBlock Grid.Column="0" Grid.Row="1" FontFamily="Bookman Old Style" FontSize="20" Text="{Binding Capacity, Converter={StaticResource ValueCapacityToString}}"          Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                    <TextBlock Grid.Column="1" Grid.Row="1" FontFamily="Bookman Old Style" FontSize="20" Text="{Binding AlcoholPercentage, Converter={StaticResource ValuePrecentageToStringConverter}}" Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                    <TextBlock Grid.Column="2" Grid.Row="1" FontFamily="Bookman Old Style" FontSize="20" Text="{Binding Color}"             Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" />
+
+                                    <TextBlock Grid.Column="0" Grid.Row="2" FontFamily="Bookman Old Style" FontSize="20" Text="{Binding Grade, Converter={StaticResource ValueGradeToStringConverter}}"             Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" ToolTip="Ocena dla drinka rum + rum" />
+                                    <TextBlock Grid.Column="1" Grid.Row="2" FontFamily="Bookman Old Style" FontSize="20" Text="{Binding GradeWithCoke, Converter={StaticResource ValueGradeToStringConverter}}"     Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" ToolTip="Ocena dla drinka z colą" />
+                                    <TextBlock Grid.Column="2" Grid.Row="2" FontFamily="Bookman Old Style" FontSize="20" Text="{Binding Price, Converter={StaticResource ValuePriceToStringConverter}}"             Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" ToolTip="{Binding PricePer100ml, Converter={StaticResource ValuePricePer100mlToStringConverter}}"/>
+
+                                </Grid>
+
+                                <WrapPanel Grid.Column="2" Orientation="Vertical">
+
+                                    <Image Width="100" Source="{Binding Vanila, Converter={StaticResource FlavourToIMGSrcConverter}}" ToolTip="Wanila"/>
+                                    <Image Width="100" Source="{Binding Nuts, Converter={StaticResource FlavourToIMGSrcConverter}}" ToolTip="Orzeszki"/>
+                                    <Image Width="100" Source="{Binding Caramel, Converter={StaticResource FlavourToIMGSrcConverter}}" ToolTip="Karmel"/>
+
+                                    <Image Width="100" Source="{Binding Smoke, Converter={StaticResource FlavourToIMGSrcConverter}}" ToolTip="Dymione"/>
+                                    <Image Width="100" Source="{Binding Cinnamon, Converter={StaticResource FlavourToIMGSrcConverter}}" ToolTip="Cynamonik"/>
+                                    <Image Width="100" Source="{Binding Spirit, Converter={StaticResource FlavourToIMGSrcConverter}}" ToolTip="Smak spirytusu"/>
+
+                                    <Image Width="100" Source="{Binding Fruits, Converter={StaticResource FlavourToIMGSrcConverter}}" ToolTip="Owocki"/>
+                                    <Image Width="100" Source="{Binding Honey, Converter={StaticResource FlavourToIMGSrcConverter}}" ToolTip="Miodzik" />
+                                </WrapPanel>
+
 
                             </Grid>
-
-                            <WrapPanel Grid.Column="2" Orientation="Vertical">
-
-                                <Image Width="100" Source="{Binding Vanila, Converter={StaticResource FlavourToIMGSrcConverter}}" ToolTip="Wanila"/>
-                                <Image Width="100" Source="{Binding Nuts, Converter={StaticResource FlavourToIMGSrcConverter}}" ToolTip="Orzeszki"/>
-                                <Image Width="100" Source="{Binding Caramel, Converter={StaticResource FlavourToIMGSrcConverter}}" ToolTip="Karmel"/>
-
-                                <Image Width="100" Source="{Binding Smoke, Converter={StaticResource FlavourToIMGSrcConverter}}" ToolTip="Dymione"/>
-                                <Image Width="100" Source="{Binding Cinnamon, Converter={StaticResource FlavourToIMGSrcConverter}}" ToolTip="Cynamonik"/>
-                                <Image Width="100" Source="{Binding Spirit, Converter={StaticResource FlavourToIMGSrcConverter}}" ToolTip="Smak spirytusu"/>
-
-                                <Image Width="100" Source="{Binding Fruits, Converter={StaticResource FlavourToIMGSrcConverter}}" ToolTip="Owocki"/>
-                                <Image Width="100" Source="{Binding Honey, Converter={StaticResource FlavourToIMGSrcConverter}}" ToolTip="Miodzik" />
-                            </WrapPanel>
-
-
-                        </Grid>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
 
                 <Button Width="200" Command="{Binding ImFeelingLucky}">Losuj</Button>
-                
+
             </StackPanel>
         </ScrollViewer>
 

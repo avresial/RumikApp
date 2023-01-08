@@ -9,12 +9,14 @@ using System.Linq;
 using RumikApp.Infrastructure.Repositories;
 using RumikApp.Infrastructure.Dto;
 using RumikApp.Infrastructure.Extensions;
+using System;
 
 namespace RumikApp.UI.ViewModels
 {
     public class DataGridViewModel : ViewModelBase
     {
-        BeverageContainer beverages;
+        private BeverageContainer beverages;
+        private Random random = new Random();
         private IBeverageRepository beverageRepository;
 
         private ObservableCollection<Beverage> _BeveragesCollection;
@@ -362,7 +364,9 @@ namespace RumikApp.UI.ViewModels
                          //PanelVisibilityService.RandomDataGridVisibility = Visibility.Visible;
 
                          beverages.Clear();
-                         beverages.Add((await beverageRepository.BrowseAll()).FirstOrDefault().BeverageDtoToBeverage());
+                         
+                         var newBeverages = await beverageRepository.BrowseAll();
+                         beverages.Add(newBeverages.ElementAt(random.Next(0, newBeverages.Count())).BeverageDtoToBeverage());
 
                          //var randomBeverage = await this.beverageService.PickRandomBeverage();
 
