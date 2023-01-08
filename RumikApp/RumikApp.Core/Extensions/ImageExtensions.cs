@@ -48,6 +48,7 @@ namespace RumikApp.Core.Extensions
         /// <returns></returns>
         public static byte[] ConvertBitMapImageToByteArray(this BitmapImage bitmapImage)
         {
+            if (bitmapImage == null) return null;
             string fileName = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\RumikApp" + "\\TMP.png";
 
             BitmapEncoder encoder = new PngBitmapEncoder();
