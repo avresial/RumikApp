@@ -1,18 +1,19 @@
 #   Hi, this is **RumikApp**
 
-At the begining I'd like to mention that it's my first personal project made at that scale. Repo consists of 3 main directories:
+At the begining I'd like to mention that it's my first personal project. Repository consists of 3 main directories:
 
-1. RumikApp - Main app
-2. RumikApp.Tests - Unit tests
-3. ApprovalToolForRumikApp - Side app allowing administrator to move data between main and additional databases.
+1. RumikApp.UI - UI of the application
+2. RumikApp.Core - All main logic
+3. RumikApp.Infrastructure - All logic used to load or save database entries
+4. RumikApp.Tests - Unit tests
 
 ## Simply - **RumikApp** is the app where you go to if you are looking for a Rum
 
 App allows user to:
 
--   Find new rum depending on his current needs,
--   Browse external and internal database,
--   Save his own entries.
+-   Find a rum depending on his current needs,
+-   Browse internal database,
+-   Save new entries.
 
 # Contents page
 
@@ -32,14 +33,13 @@ Below I'm listing couple of technologies that I learned during this project:
 -   MVVM
 -   Autofac 
 -   Xunit and Moq
--   Handling MySQL database
 -   Asynchronous programming
 
 At this point app supports only Polish language.
 
 ## Future plans
 
-I'm planning to implement Entity framework.
+I'm planning to implement Entity framework and SQlite.
 
 #   App presentation <a name="AppPresentation"></a>
 
@@ -57,10 +57,8 @@ Below you will find couple of screens from RumikApp itself
 ![My place](ReadmeImages/Fig4.png)
 **Fig.4** My rum Cabinet
 
-
 ![Random](ReadmeImages/Fig5.png)
 **Fig.5** Random entry
-
 
 ![Add new](ReadmeImages/Fig6.png)
 **Fig.6** Add new entry
