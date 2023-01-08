@@ -1,4 +1,4 @@
-﻿using RumikApp.Services;
+﻿using RumikApp.Core.Services;
 using System.Windows;
 using Xunit;
 
@@ -127,7 +127,7 @@ namespace RumikApp.Tests
         }
 
         [Fact]
-        void ItemsControlVisibility_Goes_Visible()
+        void ItemsControlVisibility_ItemsControlVisibilityGoesVisible_AllOtherPanelsVisibilityChangesToCollapsed()
         {
             // Arrange
 
