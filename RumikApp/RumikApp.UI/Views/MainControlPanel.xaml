@@ -1,0 +1,62 @@
+﻿<UserControl x:Class="RumikApp.UI.Views.MainControlPanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:RumikApp.UI.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+        <Grid MaxWidth="1400">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="2*" />
+                <RowDefinition Height="0.5*" />
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.ColumnSpan="2" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" TextWrapping="Wrap" FontSize="68" Text="Co chcesz zrobić, piłacie?" Visibility="Visible" FontStyle="Italic" FontWeight="Bold" />
+            
+            <Image Grid.ColumnSpan="2" Source="/IMGs/choose_wisely.png" RenderTransformOrigin="0.5,0.5" Height="400" Visibility="Collapsed"/>
+            
+            <Button Grid.Column="0" Grid.Row="1" Command="{Binding ImFeelingLucky}" Width="310" Height="350" Background="Transparent" BorderBrush="Transparent" VerticalAlignment="Top">
+                <StackPanel Orientation="Vertical">
+                    <Image Source="/IMGs/MainControllPanel/Milordzie.png" RenderTransformOrigin="0.5,0.5"/>
+                    <TextBlock HorizontalAlignment="Center" FontSize="25" Text="Zdam się na ślepy los" FontFamily="Bookman Old Style" />
+                </StackPanel>
+            </Button>
+
+            <Button Grid.Column="1" Grid.Row="1" Command="{Binding LetMeChoose}" Width="310" Height="350" Background="Transparent" BorderBrush="Transparent" VerticalAlignment="Top">
+                <StackPanel Orientation="Vertical">
+                    <Image Source="/IMGs/MainControllPanel/Milordzie.png" RenderTransformOrigin="0.5,0.5">
+                        <Image.RenderTransform>
+                            <ScaleTransform ScaleX="-1"/>
+                        </Image.RenderTransform>
+                    </Image>
+                    <TextBlock HorizontalAlignment="Center" FontSize="25" Text="Dobierz mi rum" FontFamily="Bookman Old Style"/>
+                </StackPanel>
+            </Button>
+
+
+            <Grid Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2" VerticalAlignment="Top" HorizontalAlignment="Center">
+
+                <Grid.ColumnDefinitions>
+                    
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+
+                </Grid.ColumnDefinitions>
+
+                <Button Command="{Binding GoStraightToDatabase}"  Height="100" Width="600" FontSize="25" Content="Zawijam prosto do bazy... danych" Background="Transparent" BorderBrush="LightGray" Padding="40,0,40,0" Style="{StaticResource MaterialDesignFlatLightBgButton}" />
+                <Button Grid.Column="1" Command="{Binding EditLocalData}" Height="100" Width="200" FontSize="20" Content="Mój barek" Background="Transparent" BorderBrush="LightGray" VerticalAlignment="Top" Padding="20,0,20,0" Style="{StaticResource MaterialDesignFlatLightBgButton}"/>
+
+
+            </Grid>
+      
+            
+            </Grid>
+    </ScrollViewer>
+</UserControl>

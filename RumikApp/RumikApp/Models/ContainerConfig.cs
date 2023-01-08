@@ -1,4 +1,6 @@
 ﻿using Autofac;
+using RumikApp.Infrastructure.Respositories;
+using RumikApp.Infrastructure.Services;
 using RumikApp.Services;
 using System;
 using System.Collections.Generic;
@@ -35,6 +37,16 @@ namespace RumikApp
                            .SingleInstance();
 
             builder.RegisterType<GenerallDatabaseService>().As<IDatabaseConnectionService>().SingleInstance();
+
+
+            builder.RegisterType<BeverageService>().AsImplementedInterfaces();
+#if DEBUG
+            builder.RegisterType<InMemoryBeverageRepository>().AsImplementedInterfaces();
+#endif
+
+#if RELEASE
+            builder.RegisterType<MySql>().AsImplementedInterfaces();
+#endif
             //builder.RegisterType<SettingsService>().As<ISettingsService>().SingleInstance();
             //builder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly())
             //.Where(t => t.Name.EndsWith("Service"))
