@@ -31,12 +31,11 @@ namespace RumikApp.Infrastructure.Services
         {
             var beverages = await this.beverageRepository.BrowseAll();
 
-            // Logika losowania rumu
+            // Randomising logic
             var item = beverages.First();
 
             return new BeverageDto
             {
-                
                 Name = item.Name
             };
         }

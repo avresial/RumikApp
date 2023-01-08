@@ -2,12 +2,10 @@
 using GalaSoft.MvvmLight.CommandWpf;
 using System.Windows;
 using System.Collections.ObjectModel;
-using RumikApp.Infrastructure.Services;
 using RumikApp.Core.Services;
 using RumikApp.Core.Models;
 using System.Linq;
 using RumikApp.Infrastructure.Repositories;
-using RumikApp.Infrastructure.Dto;
 using RumikApp.Infrastructure.Extensions;
 using System;
 
@@ -15,8 +13,8 @@ namespace RumikApp.UI.ViewModels
 {
     public class DataGridViewModel : ViewModelBase
     {
-        private BeverageContainer beverages;
         private Random random = new Random();
+        private BeverageContainer beverageContainer;
         private IBeverageRepository beverageRepository;
 
         private ObservableCollection<Beverage> _BeveragesCollection;
@@ -147,15 +145,15 @@ namespace RumikApp.UI.ViewModels
                         switch (SortByNameSource)
                         {
                             case "/IMGs/Icons/None.png":
-                                BeveragesCollection = new ObservableCollection<Beverage>(beverages.Bverages);
+                                BeveragesCollection = new ObservableCollection<Beverage>(beverageContainer.Bverages);
                                 break;
 
                             case "/IMGs/Icons/ArrowDown.png":
-                                BeveragesCollection = new ObservableCollection<Beverage>(beverages.Bverages.OrderByDescending(x => x.Name));
+                                BeveragesCollection = new ObservableCollection<Beverage>(beverageContainer.Bverages.OrderByDescending(x => x.Name));
                                 break;
 
                             case "/IMGs/Icons/ArrowUp.png":
-                                BeveragesCollection = new ObservableCollection<Beverage>(beverages.Bverages.OrderBy(x => x.Name));
+                                BeveragesCollection = new ObservableCollection<Beverage>(beverageContainer.Bverages.OrderBy(x => x.Name));
                                 break;
                         }
 
@@ -185,15 +183,15 @@ namespace RumikApp.UI.ViewModels
                         switch (SortByPriceSource)
                         {
                             case "/IMGs/Icons/None.png":
-                                BeveragesCollection = new ObservableCollection<Beverage>(beverages.Bverages);
+                                BeveragesCollection = new ObservableCollection<Beverage>(beverageContainer.Bverages);
                                 break;
 
                             case "/IMGs/Icons/ArrowDown.png":
-                                BeveragesCollection = new ObservableCollection<Beverage>(BeveragesCollection.OrderByDescending(x => x.Price));
+                                BeveragesCollection = new ObservableCollection<Beverage>(beverageContainer.Bverages.OrderByDescending(x => x.Price));
                                 break;
 
                             case "/IMGs/Icons/ArrowUp.png":
-                                BeveragesCollection = new ObservableCollection<Beverage>(BeveragesCollection.OrderBy(x => x.Price));
+                                BeveragesCollection = new ObservableCollection<Beverage>(beverageContainer.Bverages.OrderBy(x => x.Price));
                                 break;
                         }
                     },
@@ -221,15 +219,15 @@ namespace RumikApp.UI.ViewModels
                         switch (SortByGradeSource)
                         {
                             case "/IMGs/Icons/None.png":
-                                BeveragesCollection = new ObservableCollection<Beverage>(beverages.Bverages);
+                                BeveragesCollection = new ObservableCollection<Beverage>(beverageContainer.Bverages);
                                 break;
 
                             case "/IMGs/Icons/ArrowDown.png":
-                                BeveragesCollection = new ObservableCollection<Beverage>(beverages.Bverages.OrderByDescending(x => x.Grade));
+                                BeveragesCollection = new ObservableCollection<Beverage>(beverageContainer.Bverages.OrderByDescending(x => x.Grade));
                                 break;
 
                             case "/IMGs/Icons/ArrowUp.png":
-                                BeveragesCollection = new ObservableCollection<Beverage>(beverages.Bverages.OrderBy(x => x.Grade));
+                                BeveragesCollection = new ObservableCollection<Beverage>(beverageContainer.Bverages.OrderBy(x => x.Grade));
                                 break;
                         }
                     },
@@ -257,15 +255,15 @@ namespace RumikApp.UI.ViewModels
                         switch (SortByGradeWithCokeSource)
                         {
                             case "/IMGs/Icons/None.png":
-                                BeveragesCollection = new ObservableCollection<Beverage>(beverages.Bverages);
+                                BeveragesCollection = new ObservableCollection<Beverage>(beverageContainer.Bverages);
                                 break;
 
                             case "/IMGs/Icons/ArrowDown.png":
-                                BeveragesCollection = new ObservableCollection<Beverage>(beverages.Bverages.OrderBy(x => x.GradeWithCoke));
+                                BeveragesCollection = new ObservableCollection<Beverage>(beverageContainer.Bverages.OrderBy(x => x.GradeWithCoke));
                                 break;
 
                             case "/IMGs/Icons/ArrowUp.png":
-                                BeveragesCollection = new ObservableCollection<Beverage>(beverages.Bverages.OrderByDescending(x => x.GradeWithCoke));
+                                BeveragesCollection = new ObservableCollection<Beverage>(beverageContainer.Bverages.OrderByDescending(x => x.GradeWithCoke));
                                 break;
                         }
                     },
@@ -277,33 +275,6 @@ namespace RumikApp.UI.ViewModels
 
                 return _SortByGradeWithCoke;
             }
-        }
-
-        void ClearAllSortingIcons()
-        {
-            SortByNameSource = "/IMGs/Icons/None.png";
-            SortByPriceSource = "/IMGs/Icons/None.png";
-            SortByGradeSource = "/IMGs/Icons/None.png";
-            SortByGradeWithCokeSource = "/IMGs/Icons/None.png";
-        }
-        string SwitchArrow(string sortingName)
-        {
-            switch (sortingName)
-            {
-                case "/IMGs/Icons/None.png":
-                    ClearAllSortingIcons();
-                    return "/IMGs/Icons/ArrowDown.png";
-                    break;
-                case "/IMGs/Icons/ArrowDown.png":
-                    ClearAllSortingIcons();
-                    return "/IMGs/Icons/ArrowUp.png";
-                    break;
-                case "/IMGs/Icons/ArrowUp.png":
-                    ClearAllSortingIcons();
-                    return "/IMGs/Icons/None.png";
-                    break;
-            }
-            return "";
         }
 
         private RelayCommand _GoToMainMenu;
@@ -360,22 +331,10 @@ namespace RumikApp.UI.ViewModels
                     _ImFeelingLucky = new RelayCommand(
                      async () =>
                      {
+                         beverageContainer.Clear();
 
-                         //PanelVisibilityService.RandomDataGridVisibility = Visibility.Visible;
-
-                         beverages.Clear();
-                         
                          var newBeverages = await beverageRepository.BrowseAll();
-                         beverages.Add(newBeverages.ElementAt(random.Next(0, newBeverages.Count())).BeverageDtoToBeverage());
-
-                         //var randomBeverage = await this.beverageService.PickRandomBeverage();
-
-                         //Beverage randomOne = await databaseConnectionService.GetRandomRow();
-
-                         //if (randomOne == null)
-                         //    informationBusService.OriginalBeverages = new ObservableCollection<Beverage>();
-                         //else
-                         //    informationBusService.OriginalBeverages = new ObservableCollection<Beverage>() { randomOne };
+                         beverageContainer.Add(newBeverages.ElementAt(random.Next(0, newBeverages.Count())).BeverageDtoToBeverage());
                      },
                     () =>
                     {
@@ -392,15 +351,36 @@ namespace RumikApp.UI.ViewModels
         {
             BeveragesCollection = new ObservableCollection<Beverage>();
             this.PanelVisibilityService = panelVisibilityService;
-            this.beverages = beverages;
+            this.beverageContainer = beverages;
 
             beverages.BveragesUpdated += Beverages_BveragesUpdated;
             this.beverageRepository = beverageRepository;
         }
+        void ClearAllSortingIcons()
+        {
+            SortByNameSource = "/IMGs/Icons/None.png";
+            SortByPriceSource = "/IMGs/Icons/None.png";
+            SortByGradeSource = "/IMGs/Icons/None.png";
+            SortByGradeWithCokeSource = "/IMGs/Icons/None.png";
+        }
+        string SwitchArrow(string sortingName)
+        {
+            ClearAllSortingIcons();
+            
+            switch (sortingName)
+            {
+                case "/IMGs/Icons/None.png": return "/IMGs/Icons/ArrowDown.png";
 
+                case "/IMGs/Icons/ArrowDown.png": return "/IMGs/Icons/ArrowUp.png";
+
+                case "/IMGs/Icons/ArrowUp.png":  return "/IMGs/Icons/None.png";
+            }
+
+            return "";
+        }
         private void Beverages_BveragesUpdated(object sender, System.EventArgs e)
         {
-            BeveragesCollection = new ObservableCollection<Beverage>(beverages.Bverages);
+            BeveragesCollection = new ObservableCollection<Beverage>(beverageContainer.Bverages);
 
             if (BeveragesCollection.Any()) UnknownGuyVisibility = Visibility.Collapsed;
             else UnknownGuyVisibility = Visibility.Visible;
